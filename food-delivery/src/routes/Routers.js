@@ -11,10 +11,13 @@ import Register from "../pages/Register";
 import Contact from "../pages/Contact";
 import FoodDetails from "../pages/FoodDetails";
 import AllFoods from "../pages/AllFoods";
+import AdminHeader from "../Admin/components/AdminHeader";
+
 
 const Routers = () => {
   return (
       <Routes>
+          <Route path="/admin" element={<AdminHeader />} />
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/foods" element={<AllFoods />} />
@@ -24,7 +27,10 @@ const Routers = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/admin" element={<AdminHeader />}>
+          </Route>
       </Routes>
+
   );
 };
 

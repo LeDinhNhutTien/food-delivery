@@ -1,12 +1,9 @@
-import React, {useRef, useEffect} from "react";
-
-import {Container} from "reactstrap";
+import React, { useRef, useEffect, useState } from "react";
+import { Container } from "reactstrap";
 import logo from "../../assets/images/res-logo.png";
-import {NavLink, Link} from "react-router-dom";
-import {useSelector, useDispatch} from "react-redux";
-
-import {cartUiActions} from "../../store/shopping-cart/cartUiSlice";
-
+import { NavLink, Link, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { cartUiActions } from "../../store/shopping-cart/cartUiSlice";
 import "../../styles/header.css";
 
 const nav__links = [
@@ -26,6 +23,10 @@ const nav__links = [
         display: "Contact",
         path: "/contact",
     },
+    {
+        display: "Admin",
+        path: "/admin",
+    },
 ];
 
 const Header = () => {
@@ -33,6 +34,8 @@ const Header = () => {
     const headerRef = useRef(null);
     const totalQuantity = useSelector((state) => state.cart.totalQuantity);
     const dispatch = useDispatch();
+    const location = useLocation();
+    const [isInAdminPage, setIsInAdminPage] = useState(false);
 
     const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
 
@@ -41,7 +44,12 @@ const Header = () => {
     };
 
     useEffect(() => {
-        window.addEventListener("scroll", () => {
+        // Check if the current location is within the admin page
+        setIsInAdminPage(location.pathname.startsWith("/admin"));
+    }, [location.pathname]);
+
+    useEffect(() => {
+        const handleScroll = () => {
             if (
                 document.body.scrollTop > 80 ||
                 document.documentElement.scrollTop > 80
@@ -50,57 +58,77 @@ const Header = () => {
             } else {
                 headerRef.current.classList.remove("header__shrink");
             }
-        });
+        };
 
-        return () => window.removeEventListener("scroll");
+        window.addEventListener("scroll", handleScroll);
+
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    return (
-        <header className="header" ref={headerRef}>
-            <Container>
-                <div className="nav__wrapper d-flex align-items-center justify-content-between">
-                    <div className="logo">
-                        <img src={logo} alt="logo"/>
-                        <h5>Tasty Treat</h5>
-                    </div>
+    if (isInAdminPage) {
+        // Render nothing if in admin page
+        return null;
+    }
 
-                    {/* ======= menu ======= */}
-                    <div className="navigation" ref={menuRef} onClick={toggleMenu}>
-                        <div className="menu d-flex align-items-center gap-5">
-                            {nav__links.map((item, index) => (
-                                <NavLink
-                                    to={item.path}
-                                    key={index}
-                                    className={(navClass) =>
-                                        navClass.isActive ? "active__menu" : ""
-                                    }
-                                >
-                                    {item.display}
-                                </NavLink>
-                            ))}
+    return (
+        <>
+            <header className="header" ref={headerRef}>
+                <Container>
+                    <div className="nav__wrapper d-flex align-items-center justify-content-between">
+                        <div className="logo">
+                            <img src={logo} alt="logo" />
+                            <h5>Tasty Treat</h5>
+                        </div>
+
+                        {/* ======= menu ======= */}
+                        <div
+                            className="navigation"
+                            ref={menuRef}
+                            onClick={toggleMenu}
+                        >
+                            <div className="menu d-flex align-items-center gap-5">
+                                {nav__links.map((item, index) => (
+                                    <NavLink
+                                        to={item.path}
+                                        key={index}
+                                        className={(navClass) =>
+                                            navClass.isActive
+                                                ? "active__menu"
+                                                : ""
+                                        }
+                                    >
+                                        {item.display}
+                                    </NavLink>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* ======== nav right icons ========= */}
+                        <div className="nav__right d-flex align-items-center gap-4">
+                            <span className="cart__icon" onClick={toggleCart}>
+                                <i className="ri-shopping-basket-line"></i>
+                                <span className="cart__badge">
+                                    {totalQuantity}
+                                </span>
+                            </span>
+
+                            <span className="user">
+                                <Link to="/login">
+                                    <i className="ri-user-line"></i>
+                                </Link>
+                            </span>
+
+                            <span className="mobile__menu" onClick={toggleMenu}>
+                                <i className="ri-menu-line"></i>
+                            </span>
                         </div>
                     </div>
-
-                    {/* ======== nav right icons ========= */}
-                    <div className="nav__right d-flex align-items-center gap-4">
-            <span className="cart__icon" onClick={toggleCart}>
-              <i class="ri-shopping-basket-line"></i>
-              <span className="cart__badge">{totalQuantity}</span>
-            </span>
-
-                        <span className="user">
-              <Link to="/login">
-                <i class="ri-user-line"></i>
-              </Link>
-            </span>
-
-                        <span className="mobile__menu" onClick={toggleMenu}>
-              <i class="ri-menu-line"></i>
-            </span>
-                    </div>
-                </div>
-            </Container>
-        </header>
+                </Container>
+            </header>
+            <footer className={isInAdminPage ? "hide" : ""}>
+                {/* Your footer content */}
+            </footer>
+        </>
     );
 };
 

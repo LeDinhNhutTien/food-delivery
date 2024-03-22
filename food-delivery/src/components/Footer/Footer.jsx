@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 import logo from "../../assets/images/res-logo.png";
 
 import "../../styles/footer.css";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const location = useLocation();
+  const [isInAdminPage, setIsInAdminPage] = useState(false);
+
+  useEffect(() => {
+    // Check if the current location is within the admin page
+    setIsInAdminPage(location.pathname.startsWith("/admin"));
+  }, [location.pathname]);
+
+  if (isInAdminPage) {
+    // Render nothing if in admin page
+    return null;
+  }
+
   return (
       <footer className="footer">
         <Container>
