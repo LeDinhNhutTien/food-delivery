@@ -15,6 +15,7 @@ import "../styles/home.css";
 import featureImg01 from "../assets/images/service-01.png";
 import featureImg02 from "../assets/images/service-02.png";
 import featureImg03 from "../assets/images/service-03.png";
+import payment from "../assets/images/payment.png";
 
 import products from "../assets/fake-data/products.js";
 
@@ -32,20 +33,20 @@ import TestimonialSlider from "../components/UI/slider/TestimonialSlider.jsx";
 
 const featureData = [
   {
-    title: "Quick Delivery",
+    title: "Giao hàng nhanh",
     imgUrl: featureImg01,
-    desc: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus, doloremque.",
+    desc: "Hóa đơn từ 300.000đ trở lên, miễn phí vận chuyển trong phạm vi 5km trong khung giờ 7h:00 - 15h:00",
   },
 
   {
-    title: "Super Dine In",
-    imgUrl: featureImg02,
-    desc: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus, doloremque.",
+    title: "Thanh toán",
+    imgUrl: payment,
+    desc: "Cung cấp nhiều hình thức thanh toán",
   },
   {
-    title: "Easy Pick Up",
+    title: "Đặt hàng dễ dàng",
     imgUrl: featureImg03,
-    desc: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus, doloremque.",
+    desc: "Đặt hàng trực tiếp trên website hoặc gọi vào số hotline",
   },
 ];
 
@@ -98,24 +99,23 @@ const Home = () => {
             <Row>
               <Col lg="6" md="6">
                 <div className="hero__content  ">
-                  <h5 className="mb-3">Easy way to make an order</h5>
+                  <h5 className="mb-3">Cách dễ dàng để đặt một đơn đặt hàng</h5>
                   <h1 className="mb-4 hero__title">
                     <span>HUNGRY?</span> Just wait <br /> food at
                     <span> your door</span>
                   </h1>
 
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui
-                    magni delectus tenetur autem, sint veritatis!
+                    Quý khách có thể đặt hàng trực tuyến ở website TastyCake
                   </p>
 
                   <div className="hero__btns d-flex align-items-center gap-5 mt-4">
                     <button className="order__btn d-flex align-items-center justify-content-between">
-                      Order now <i class="ri-arrow-right-s-line"></i>
+                      Đặt ngay<i class="ri-arrow-right-s-line"></i>
                     </button>
 
                     <button className="all__foods-btn">
-                      <Link to="/foods">See all foods</Link>
+                      <Link to="/foods">Xem tất cả</Link>
                     </button>
                   </div>
 
@@ -124,14 +124,14 @@ const Home = () => {
                     <span className="shipping__icon">
                       <i class="ri-car-line"></i>
                     </span>{" "}
-                      No shipping charge
+                      Miễn phí vẫn chuyển
                     </p>
 
                     <p className=" d-flex align-items-center gap-2 ">
                     <span className="shipping__icon">
                       <i class="ri-shield-check-line"></i>
                     </span>{" "}
-                      100% secure checkout
+                      100% Thanh toán an toàn
                     </p>
                   </div>
                 </div>
@@ -154,10 +154,10 @@ const Home = () => {
           <Container>
             <Row>
               <Col lg="12" className="text-center">
-                <h5 className="feature__subtitle mb-4">What we serve</h5>
-                <h2 className="feature__title">Just sit back at home</h2>
+                <h5 className="feature__subtitle mb-4">Những gì chúng tôi phục vụ</h5>
+                <h2 className="feature__title">Chỉ cần ngồi tại nhà</h2>
                 <h2 className="feature__title">
-                  we will <span>take care</span>
+                  chúng tôi sẽ <span>phục vụ</span>
                 </h2>
                 <p className="mb-1 mt-4 feature__text">
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor,
@@ -190,7 +190,7 @@ const Home = () => {
           <Container>
             <Row>
               <Col lg="12" className="text-center">
-                <h2>Popular Foods</h2>
+                <h2>Bánh phổ biến</h2>
               </Col>
 
               <Col lg="12">
@@ -254,45 +254,40 @@ const Home = () => {
               <Col lg="6" md="6">
                 <div className="why__tasty-treat">
                   <h2 className="tasty__treat-title mb-4">
-                    Why <span>Tasty Treat?</span>
+                    Tại sao chọn <span>Tasty Cake?</span>
                   </h2>
                   <p className="tasty__treat-desc">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Dolorum, minus. Tempora reprehenderit a corporis velit,
-                    laboriosam vitae ullam, repellat illo sequi odio esse iste
-                    fugiat dolor, optio incidunt eligendi deleniti!
+                    Đặt tiêu chí “Chất lượng” là ưu tiên hàng đầu, Savouré không ngừng cải tiến,
+                    phát triển và hoàn thiện bằng những hành động rõ ràng và cụ thể như – Cơ sở vật chất khang trang,
+                    nhà xưởng hiện đại và đạt tiêu chuẩn qua những chứng nhận có giá trị ISO – HACCP.
+                    Và trên hết, là sự công nhận tin yêu ngày càng lớn của Bạn đối với Savouré.
                   </p>
 
                   <ListGroup className="mt-4">
                     <ListGroupItem className="border-0 ps-0">
                       <p className=" choose__us-title d-flex align-items-center gap-2 ">
-                        <i class="ri-checkbox-circle-line"></i> Fresh and tasty
-                        foods
+                        <i class="ri-checkbox-circle-line"></i> An toàn thực phẩm
                       </p>
                       <p className="choose__us-desc">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        Quia, voluptatibus.
+                        Luôn xem chất lượng sản sản phẩm & an toàn thực phẩm là mục tiêu hàng đầu của công ty
                       </p>
                     </ListGroupItem>
 
                     <ListGroupItem className="border-0 ps-0">
                       <p className="choose__us-title d-flex align-items-center gap-2 ">
-                        <i class="ri-checkbox-circle-line"></i> Quality support
+                        <i class="ri-checkbox-circle-line"></i> Hỗ trợ
                       </p>
                       <p className="choose__us-desc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Qui, earum.
+                        Cung cấp cho khách hàng sự trợ giúp trực tiếp ở bất cứ lúc nào mà khách hàng cần hỗ trợ.
                       </p>
                     </ListGroupItem>
 
                     <ListGroupItem className="border-0 ps-0">
                       <p className="choose__us-title d-flex align-items-center gap-2 ">
-                        <i class="ri-checkbox-circle-line"></i>Order from any
-                        location{" "}
+                        <i class="ri-checkbox-circle-line"></i>Đặt hàng ở bất cứ đâu{" "}
                       </p>
                       <p className="choose__us-desc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Qui, earum.
+                        Tasty Cake nhận ship đến tận nơi với các đơn hàng có giá trị từ 200.000VNĐ trở lên
                       </p>
                     </ListGroupItem>
                   </ListGroup>
@@ -323,14 +318,13 @@ const Home = () => {
             <Row>
               <Col lg="6" md="6">
                 <div className="testimonial ">
-                  <h5 className="testimonial__subtitle mb-4">Testimonial</h5>
+                  <h5 className="testimonial__subtitle mb-4">Đánh giá</h5>
                   <h2 className="testimonial__title mb-4">
-                    What our <span>customers</span> are saying
+                    <span>Khách hàng</span> nói gì về chúng tôi
                   </h2>
                   <p className="testimonial__desc">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Distinctio quasi qui minus quos sit perspiciatis inventore
-                    quis provident placeat fugiat!
+                    Cảm ơn bạn đã dành sự quan tâm và mua sản phẩm của Tasty Cake.
+                    Hãy chia sẻ những sản phẩm để bạn bè, gia đình và  người thân yêu cùng thưởng thức nhé ạ!
                   </p>
 
                   <TestimonialSlider />

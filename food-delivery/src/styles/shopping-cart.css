@@ -65,7 +65,11 @@
     width: 25%;
   }
 }
-
+@media only screen and (max-width: 576px) {
+  .cart {
+    width: 300px !important;
+  }
+}
 .cart__closeButton {
   width: fit-content;
   height: 60px;

@@ -22,10 +22,9 @@ const TestimonialSlider = () => {
         <Slider {...settings}>
             <div>
                 <p className="review__text">
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-                    atque, quam minus totam maiores laborum! Impedit consectetur illum
-                    aliquid odit. Odit dolore ipsum quod debitis nostrum necessitatibus
-                    quis dolorem quas!"
+                    "Giao hàng nhanh chóng
+                    Đóng gói chắc mà không làm móp méo
+                    Giá thành rẻ, hương vị tuổi thơ, không quá ngọt nhưng để tủ lạnh ăn ngon hơn nha"
                 </p>
                 <div className=" slider__content d-flex align-items-center gap-3 ">
                     <img src={ava01} alt="avatar" className=" rounded" />
@@ -34,10 +33,8 @@ const TestimonialSlider = () => {
             </div>
             <div>
                 <p className="review__text">
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-                    atque, quam minus totam maiores laborum! Impedit consectetur illum
-                    aliquid odit. Odit dolore ipsum quod debitis nostrum necessitatibus
-                    quis dolorem quas!"
+                    "Đóng hàng cẩn thận, bánh không bị nát. Date còn siêu mới. Vị ngọt với hơi beo béo. Nói chung là ăn được.
+                    Nhưng mà kiểu không còn thấy giống cái vị hồi trước ăn nữa!"
                 </p>
                 <div className="slider__content d-flex align-items-center gap-3 ">
                     <img src={ava02} alt="avatar" className=" rounded" />
@@ -46,10 +43,8 @@ const TestimonialSlider = () => {
             </div>
             <div>
                 <p className="review__text">
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-                    atque, quam minus totam maiores laborum! Impedit consectetur illum
-                    aliquid odit. Odit dolore ipsum quod debitis nostrum necessitatibus
-                    quis dolorem quas!"
+                    "Bánh mềm thơm mùi bơ sữa ngon lắm, bóc được từng lớp. Mình thấy các bánh kiểu này ngon và
+                    rẻ hơn mấy bánh hottrend trên tiktok hot dc thời gian rồi chìm. Tặng shop ngàn sao luôn!"
                 </p>
                 <div className="slider__content d-flex align-items-center gap-3 ">
                     <img src={ava03} alt="avatar" className=" rounded" />
