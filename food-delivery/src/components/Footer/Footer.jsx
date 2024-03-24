@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 import logo from "../../assets/images/res-logo.png";
-
 import "../../styles/footer.css";
-
 import { Link, useLocation } from "react-router-dom";
 
 const Footer = () => {
   const location = useLocation();
-  const [isInAdminPage, setIsInAdminPage] = useState(false);
+  const [hideHeaderFooter, setHideHeaderFooter] = useState(false);
 
   useEffect(() => {
-    // Check if the current location is within the admin page
-    setIsInAdminPage(location.pathname.startsWith("/admin"));
-  }, [location.pathname]);
+    const isAdminPage = location.pathname === "/admin";
+    const isTableAdminPage = location.pathname === "/tableAdmin";
+    setHideHeaderFooter(isAdminPage || isTableAdminPage);
+  }, [location]);
 
-  if (isInAdminPage) {
-    // Render nothing if in admin page
+  if (hideHeaderFooter) {
+    // Render nothing if in admin page or table admin page
     return null;
   }
 
@@ -25,7 +24,7 @@ const Footer = () => {
         <Container>
           <Row>
             <Col lg="3" md="4" sm="6">
-              <div className=" footer__logo text-start">
+              <div className="footer__logo text-start">
                 <img src={logo} alt="logo" />
                 <h5>Tasty Treat</h5>
                 <p>
@@ -68,11 +67,11 @@ const Footer = () => {
 
             <Col lg="3" md="4" sm="6">
               <h5 className="footer__title">Newsletter</h5>
-              <p>Subscribe our newsletter</p>
+              <p>Subscribe to our newsletter</p>
               <div className="newsletter">
                 <input type="email" placeholder="Enter your email" />
                 <span>
-                <i class="ri-send-plane-line"></i>
+                <i className="ri-send-plane-line"></i>
               </span>
               </div>
             </Col>
@@ -89,30 +88,27 @@ const Footer = () => {
               <div className="social__links d-flex align-items-center gap-4 justify-content-end">
                 <p className="m-0">Follow: </p>
                 <span>
-                {" "}
-                  <Link to="https://www.facebook.com/muhib160">
-                  <i class="ri-facebook-line"></i>
-                </Link>{" "}
+                <a href="https://www.facebook.com/muhib160">
+                  <i className="ri-facebook-line"></i>
+                </a>
               </span>
 
                 <span>
-                <Link to="https://github.com/muhib160">
-                  <i class="ri-github-line"></i>
-                </Link>
+                <a href="https://github.com/muhib160">
+                  <i className="ri-github-line"></i>
+                </a>
               </span>
 
                 <span>
-                {" "}
-                  <Link to=" https://www.youtube.com/c/MuhibsTechDiary">
-                  <i class="ri-youtube-line"></i>
-                </Link>{" "}
+                <a href="https://www.youtube.com/c/MuhibsTechDiary">
+                  <i className="ri-youtube-line"></i>
+                </a>
               </span>
 
                 <span>
-                {" "}
-                  <Link to=" https://www.linkedin.com/in/muhib160/">
-                  <i class="ri-linkedin-line"></i>
-                </Link>{" "}
+                <a href="https://www.linkedin.com/in/muhib160/">
+                  <i className="ri-linkedin-line"></i>
+                </a>
               </span>
               </div>
             </Col>

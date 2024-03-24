@@ -11,13 +11,14 @@ import Register from "../pages/Register";
 import Contact from "../pages/Contact";
 import FoodDetails from "../pages/FoodDetails";
 import AllFoods from "../pages/AllFoods";
-import AdminHeader from "../Admin/components/AdminHeader";
-
+import AdminHeader from "../Admin/index";
+import TableAdmin from "../Admin/table";
 
 const Routers = () => {
   return (
       <Routes>
           <Route path="/admin" element={<AdminHeader />} />
+          <Route path="/tableAdmin" element={<TableAdmin />} />
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/foods" element={<AllFoods />} />
