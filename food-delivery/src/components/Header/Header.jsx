@@ -8,19 +8,19 @@ import "../../styles/header.css";
 
 const nav__links = [
     {
-        display: "Home",
+        display: "Trang chủ",
         path: "/home",
     },
     {
-        display: "Foods",
+        display: "Bánh",
         path: "/foods",
     },
     {
-        display: "Cart",
+        display: "Giỏ hàng",
         path: "/cart",
     },
     {
-        display: "Contact",
+        display: "Liên hệ",
         path: "/contact",
     },
     {
@@ -55,10 +55,12 @@ const Header = () => {
                 <header className="header" ref={headerRef}>
                     <Container>
                         <div className="nav__wrapper d-flex align-items-center justify-content-between">
-                            <div className="logo">
-                                <img src={logo} alt="logo" />
-                                <h5>Tasty Treat</h5>
-                            </div>
+                            <Link to="/home">
+                                <div className="logo">
+                                    <img src={logo} alt="logo" />
+                                    <h5 >Tasty Treat</h5>
+                                </div>
+                            </Link>
 
                             {/* ======= menu ======= */}
                             <div className="navigation" ref={menuRef} onClick={toggleMenu}>
@@ -98,8 +100,6 @@ const Header = () => {
                     </Container>
                 </header>
             )}
-
-
         </>
     );
 };
