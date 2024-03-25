@@ -12,7 +12,7 @@ const Footer = () => {
 
   useEffect(() => {
     // Check if the current location is within the admin page
-    setIsInAdminPage(location.pathname.startsWith("/admin"));
+    setIsInAdminPage(location.pathname.startsWith("/admin") ||  location.pathname.trim() === "/tableAdmin");
   }, [location.pathname]);
 
   if (isInAdminPage) {
