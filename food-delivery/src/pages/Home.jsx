@@ -63,11 +63,11 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    if (category === "ALL") {
+    if (category === "Tất cả") {
       setAllProducts(products);
     }
 
-    if (category === "BURGER") {
+    if (category === "Bánh Hamburger") {
       const filteredProducts = products.filter(
           (item) => item.category === "Burger"
       );
@@ -83,7 +83,7 @@ const Home = () => {
       setAllProducts(filteredProducts);
     }
 
-    if (category === "BREAD") {
+    if (category === "Bánh mì") {
       const filteredProducts = products.filter(
           (item) => item.category === "Bread"
       );

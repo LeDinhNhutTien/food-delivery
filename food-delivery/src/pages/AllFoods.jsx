@@ -42,7 +42,7 @@ const AllFoods = () => {
 
     return (
         <Helmet title="All-Foods">
-            <CommonSection title="All Foods" />
+            <CommonSection title="Tất cả bánh" />
 
             <section>
                 <Container>
@@ -63,11 +63,11 @@ const AllFoods = () => {
                         <Col lg="6" md="6" sm="6" xs="12" className="mb-5">
                             <div className="sorting__widget text-end">
                                 <select className="w-50">
-                                    <option>Default</option>
-                                    <option value="ascending">Alphabetically, A-Z</option>
-                                    <option value="descending">Alphabetically, Z-A</option>
-                                    <option value="high-price">High Price</option>
-                                    <option value="low-price">Low Price</option>
+                                    <option>Mặc định</option>
+                                    <option value="ascending">Thứ tự, A-Z</option>
+                                    <option value="descending">Thứ tự, Z-A</option>
+                                    <option value="high-price">Giá cao</option>
+                                    <option value="low-price">Giá thấp</option>
                                 </select>
                             </div>
                         </Col>
@@ -82,8 +82,8 @@ const AllFoods = () => {
                             <ReactPaginate
                                 pageCount={pageCount}
                                 onPageChange={changePage}
-                                previousLabel={"Prev"}
-                                nextLabel={"Next"}
+                                previousLabel={"Trước"}
+                                nextLabel={"Tiếp"}
                                 containerClassName=" paginationBttns "
                             />
                         </div>
