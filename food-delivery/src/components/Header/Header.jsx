@@ -38,8 +38,10 @@ const Header = () => {
     const [hideHeaderFooter, setHideHeaderFooter] = useState(false);
         useEffect(() => {
             const isAdminPage = location.pathname === "/admin";
-            const isTableAdminPage = location.pathname.trim() === "/tableAdmin";
-            setHideHeaderFooter(isAdminPage || isTableAdminPage);
+            const isUserAdminPage = location.pathname.trim() === "/userManagement";
+            const isProductAdminPage = location.pathname.trim() === "/productManagement";
+            const isRevenueAdminPage = location.pathname.trim() === "/revenueManagement";
+            setHideHeaderFooter(isAdminPage || isUserAdminPage ||isProductAdminPage || isRevenueAdminPage);
         }, [location]);
 
 
