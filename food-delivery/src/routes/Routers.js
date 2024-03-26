@@ -12,13 +12,16 @@ import Contact from "../pages/Contact";
 import FoodDetails from "../pages/FoodDetails";
 import AllFoods from "../pages/AllFoods";
 import AdminHeader from "../Admin/index";
-import TableAdmin from "../Admin/table";
-
+import UserManagement from "../Admin/userManagement";
+import ProductManagement from "../Admin/productManagement";
+import RevenueManagement from "../Admin/revenueManagement";
 const Routers = () => {
   return (
       <Routes>
           <Route path="/admin" element={<AdminHeader />} />
-          <Route path="/tableAdmin" element={<TableAdmin />} />
+          <Route path="/userManagement" element={<UserManagement />} />
+          <Route path="/productManagement" element={<ProductManagement />} />
+          <Route path="/revenueManagement" element={<RevenueManagement />} />
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/foods" element={<AllFoods />} />
