@@ -18445,7 +18445,7 @@ table:
 table-tennis:
   changes:
     - 5.0.5
-  label: Table Tennis
+  label: UserManagement Tennis
   search:
     terms:
       - ball
