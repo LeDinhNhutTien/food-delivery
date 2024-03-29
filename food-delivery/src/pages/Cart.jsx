@@ -13,22 +13,22 @@ const Cart = () => {
     const totalAmount = useSelector((state) => state.cart.totalAmount);
     return (
         <Helmet title="Cart">
-            <CommonSection title="Your Cart" />
+            <CommonSection title="Giỏ hàng của bạn" />
             <section>
                 <Container>
                     <Row>
                         <Col lg="12">
                             {cartItems.length === 0 ? (
-                                <h5 className="text-center">Your cart is empty</h5>
+                                <h5 className="text-center">Giỏ hàng của bạn thì trống</h5>
                             ) : (
                                 <table className="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>Image</th>
-                                        <th>Product Title</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>Delete</th>
+                                        <th>Hình</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Xóa</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -41,16 +41,16 @@ const Cart = () => {
 
                             <div className="mt-4">
                                 <h6>
-                                    Subtotal: $
+                                    Tổng: $
                                     <span className="cart__subtotal">{totalAmount}</span>
                                 </h6>
-                                <p>Taxes and shipping will calculate at checkout</p>
+                                <p>Thuế và phí vận chuyển sẽ được tính khi thanh toán</p>
                                 <div className="cart__page-btn">
                                     <button className="addTOCart__btn me-4">
-                                        <Link to="/foods">Continue Shopping</Link>
+                                        <Link to="/foods">Tiếp tục mua</Link>
                                     </button>
                                     <button className="addTOCart__btn">
-                                        <Link to="/checkout">Proceed to checkout</Link>
+                                        <Link to="/checkout">Tiến hành thanh toán</Link>
                                     </button>
                                 </div>
                             </div>

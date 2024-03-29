@@ -159,14 +159,14 @@ const Home = () => {
                 <h2 className="feature__title">
                   chúng tôi sẽ <span>phục vụ</span>
                 </h2>
-                <p className="mb-1 mt-4 feature__text">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor,
-                  officiis?
-                </p>
-                <p className="feature__text">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Aperiam, eius.{" "}
-                </p>
+                {/*<p className="mb-1 mt-4 feature__text">*/}
+                {/*  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor,*/}
+                {/*  officiis?*/}
+                {/*</p>*/}
+                {/*<p className="feature__text">*/}
+                {/*  Lorem ipsum dolor sit amet consectetur adipisicing elit.*/}
+                {/*  Aperiam, eius.{" "}*/}
+                {/*</p>*/}
               </Col>
 
               {featureData.map((item, index) => (
@@ -200,8 +200,7 @@ const Home = () => {
                           category === "ALL" ? "foodBtnActive" : ""
                       } `}
                       onClick={() => setCategory("ALL")}
-                  >
-                    All
+                  > Tất cả
                   </button>
                   <button
                       className={`d-flex align-items-center gap-2 ${
@@ -209,8 +208,7 @@ const Home = () => {
                       } `}
                       onClick={() => setCategory("BURGER")}
                   >
-                    <img src={foodCategoryImg01} alt="" />
-                    Burger
+                    <img src={foodCategoryImg01} alt="" />Hamburger
                   </button>
 
                   <button
@@ -219,8 +217,7 @@ const Home = () => {
                       } `}
                       onClick={() => setCategory("PIZZA")}
                   >
-                    <img src={foodCategoryImg02} alt="" />
-                    Pizza
+                    <img src={foodCategoryImg02} alt="" /> Pizza
                   </button>
 
                   <button
@@ -229,8 +226,7 @@ const Home = () => {
                       } `}
                       onClick={() => setCategory("BREAD")}
                   >
-                    <img src={foodCategoryImg03} alt="" />
-                    Bread
+                    <img src={foodCategoryImg03} alt="" /> Bánh mì
                   </button>
                 </div>
               </Col>
