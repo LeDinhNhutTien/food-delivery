@@ -11,7 +11,7 @@ import "../../../styles/category.css";
 
 const categoryData = [
     {
-        display: "Fastfood",
+        display: "Hamburger",
         imgUrl: categoryImg01,
     },
     {
@@ -25,7 +25,7 @@ const categoryData = [
     },
 
     {
-        display: "Row Meat",
+        display: "Bánh mì",
         imgUrl: categoryImg04,
     },
 ];
