@@ -15,6 +15,7 @@ import AdminHeader from "../Admin/index";
 import UserManagement from "../Admin/userManagement";
 import ProductManagement from "../Admin/productManagement";
 import RevenueManagement from "../Admin/revenueManagement";
+import Account from "../pages/Account"
 const Routers = () => {
   return (
       <Routes>
@@ -31,8 +32,8 @@ const Routers = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/admin" element={<AdminHeader />}>
-          </Route>
+          <Route path="/admin" element={<AdminHeader />} />
+                  <Route path="/account" element={<Account />} />
       </Routes>
 
   );
