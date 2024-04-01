@@ -16,6 +16,7 @@ import UserManagement from "../Admin/userManagement";
 import ProductManagement from "../Admin/productManagement";
 import RevenueManagement from "../Admin/revenueManagement";
 import Account from "../pages/Account"
+import ReviewOrder from "../pages/ReviewOrder"
 const Routers = () => {
   return (
       <Routes>
@@ -34,6 +35,7 @@ const Routers = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<AdminHeader />} />
                   <Route path="/account" element={<Account />} />
+              <Route path="/reviewOrder" element={<ReviewOrder />} />
       </Routes>
 
   );
