@@ -4,7 +4,9 @@
   line-height: 100px;
   top: 0;
 }
-
+a {
+  textDecoration: "none";
+}
 @keyframes animation {
   from {
     top: -100px;
