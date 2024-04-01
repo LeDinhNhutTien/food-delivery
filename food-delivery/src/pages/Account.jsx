@@ -23,8 +23,9 @@ const Account = () => {
                                         mật khẩu</a></li>
                                 <li className="first">
                                     <a id="reviewOrders" title="Xem lại đơn hàng"
-                                       href="${pageContext.request.contextPath}/account?action=reviewOrders">Xem
-                                        lại đơn hàng</a></li>
+                                       // href="${pageContext.request.contextPath}/account?action=reviewOrders">
+                                        href="/reviewOrder">
+                                        Xem lại đơn hàng</a></li>
                                 <li className="first">
                                     <a id="changePrivateKey" title="Đổi Private Key"
                                        href="${pageContext.request.contextPath}/account?action=changePrivateKey">Đổi
