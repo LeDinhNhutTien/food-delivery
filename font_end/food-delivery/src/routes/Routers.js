@@ -11,7 +11,7 @@ import Register from "../pages/Register";
 import Contact from "../pages/Contact";
 import FoodDetails from "../pages/FoodDetails";
 import AllFoods from "../pages/AllFoods";
-import AdminHeader from "../Admin/index";
+import AdminHeader from "../Admin/ProductList";
 import UserManagement from "../Admin/userManagement";
 import ProductManagement from "../Admin/productManagement";
 import RevenueManagement from "../Admin/revenueManagement";

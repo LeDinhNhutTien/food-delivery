@@ -12,7 +12,7 @@ public class ProductService {
     public static List<Product> getAllProducts() {
         // Truy vấn cơ sở dữ liệu hoặc lấy dữ liệu từ nguồn dữ liệu khác
         List<Product> products = new ArrayList<>();
-        Product p1 = new Product("1", "abc", 1234);
+        Product p1 = new Product("1", "abc", 12345454);
         products.add(p1);
         return products;
     }
