@@ -1,7 +1,6 @@
 import React from 'react';
 import './assests/css/sb-admin-2.min.css'
 
-import './vendor/jquery/jquery.min'
 import './vendor/fontawesome-free/css/all.min.css'
 
 function AdminHeader() {

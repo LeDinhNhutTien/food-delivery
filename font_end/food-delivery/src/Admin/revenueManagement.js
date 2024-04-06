@@ -1,5 +1,5 @@
 
-import './vendor/jquery/jquery.min'
+
 import './vendor/fontawesome-free/css/all.min.css'
 import './vendor/datatables/dataTables.bootstrap4.min.css'
 import React from "react";
