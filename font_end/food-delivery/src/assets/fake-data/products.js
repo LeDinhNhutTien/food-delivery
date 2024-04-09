@@ -1,5 +1,5 @@
 // all images imported from images directory
-import product_01_image_01 from "../images/product_01.jpg";
+import product_01_image_01 from "../images/Product_Hamburger/classic_hamburger.jpg";
 import product_01_image_02 from "../images/product_01.1.jpg";
 import product_01_image_03 from "../images/product_01.3.jpg";
 
@@ -44,7 +44,7 @@ const products = [
     image02: product_02_image_02,
     image03: product_02_image_03,
     category: "Pizza",
-    
+
     desc: "Thanh Nhẹ Với Ô Liu Đen Tuyệt Hảo, Cà Chua Bi Tươi Ngon, Nấm, Thơm, Bắp, Hành Tây Và Phô Mai Mozzarella Cho Bạn Bữa Tiệc Rau Củ Tròn Vị",
   },
 
@@ -56,7 +56,7 @@ const products = [
     image02: product_03_image_02,
     image03: product_03_image_03,
     category: "Pizza",
-    
+
     desc: "Thịt bò, thịt xông khói, pepperoni, thơm, ớt chuông, nấm, hành tây trên nền xốt cà chua, phô mai mozzarella",
   },
 
@@ -68,7 +68,7 @@ const products = [
     image02: product_04_image_02,
     image03: product_04_image_03,
     category: "Pizza",
-    
+
     desc: "Thơm Ngon Và Giàu Protein Với Thịt Xông Khói, Xúc Xích, ThịT Bò, Giăm Bông Và Pepperoni",
   },
 
@@ -103,7 +103,7 @@ const products = [
     image02: product_02_image_01,
     image03: product_02_image_03,
     category: "Pizza",
-    
+
     desc: "Pizza Hải Sản Với Hải Sản (MựC, Thanh Cua) Nhân Đôi Cùng Với Thơm, Ớt Chuông Xanh, HàNh Tây, Phủ Phô Mai Mozzarella Từ New Zealand Trên Nền XốT Cheesy Mayo.",
   },
 
@@ -115,7 +115,7 @@ const products = [
     image02: product_03_image_01,
     image03: product_03_image_03,
     category: "Pizza",
-    
+
     desc: "Thưởng thức vị gà Karaage chiên giòn cắt lát trên nền pizza đậm vị, cùng nấm tươi, hành tây hoà quyện xốt phô mai",
   },
 
@@ -127,7 +127,7 @@ const products = [
     image02: product_04_image_01,
     image03: product_04_image_03,
     category: "Pizza",
-    
+
     desc: "Pizza Gà Nướng Nấm Trong Cuộc Phiêu Lưu Vị Giác Với Thịt Gà, Nấm, Thơm, Cà Rốt Và Rau Mầm Phủ Xốt Tiêu Đen Thơm Nồng",
   },
 
