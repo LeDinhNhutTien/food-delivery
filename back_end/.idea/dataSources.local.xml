@@ -6,5 +6,10 @@
       <user-name>root</user-name>
       <schema-mapping />
     </data-source>
+    <data-source name="demo/Hibernate" uuid="75aa838d-0cc6-4264-890f-dce80965a4f9">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+      <user-name>root</user-name>
+      <schema-mapping />
+    </data-source>
   </component>
 </project>

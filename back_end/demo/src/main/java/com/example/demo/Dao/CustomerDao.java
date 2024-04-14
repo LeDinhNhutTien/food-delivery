@@ -1,12 +1,10 @@
 package com.example.demo.Dao;
 
-import com.example.demo.Modal.Customer;
-import com.example.demo.utils.MD5Utils;
+import com.example.demo.Modal.*;
+import com.example.demo.utils.*;
+import com.example.demo.Dao.*;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
 
 public class CustomerDao {
     MD5Utils utils = new MD5Utils();
@@ -18,7 +16,7 @@ public class CustomerDao {
                 "VALUES(?, ?, \"\", \"\", \"\", \"\", \"user\")";
         try {
             // Kết nối đến cơ sở dữ liệu
-            connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
+            connection = DatabaseConnectionTest.getConnection();
 
             ps = connection.prepareStatement(query);
             ps.setString(1, user);
@@ -34,7 +32,7 @@ public class CustomerDao {
         String query = "INSERT into customer(username, password, first_name, last_name, phone, address, role)\n" +
                 "VALUES(?, ?, \"\", \"\", \"\", \"\", \"user\")";
 
-        try (Connection connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
+        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
              PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, user);
