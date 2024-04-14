@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal" created-in="IU-221.5080.210">
-    <data-source name="hibernate.cfg.xml/Hibernate" uuid="c0091da6-c097-4cd9-87f7-158065cbf35e">
+    <data-source name="back_end:demo:hibernate.cfg.xml/Hibernate" uuid="c5242a49-0bf6-4bdb-b135-26451b182125">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
-      <user-name>root</user-name>
+      <secret-storage>forget</secret-storage>
       <schema-mapping />
     </data-source>
   </component>

@@ -10,6 +10,8 @@ public class Customer {
     String address;
     String role ;
 
+    public Customer(){}
+
     public Customer(String username, String password, String first_name, String last_name, String phone, String address, String role) {
         this.username = username;
         this.password = password;
@@ -18,6 +20,11 @@ public class Customer {
         this.phone = phone;
         this.address = address;
         this.role = role;
+    }
+
+    public Customer(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public int getId_user() {
@@ -82,5 +89,19 @@ public class Customer {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id_user=" + id_user +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }

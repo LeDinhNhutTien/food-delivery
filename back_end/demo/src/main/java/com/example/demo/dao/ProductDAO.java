@@ -1,6 +1,7 @@
-package com.example.demo.dao;
+package com.example.demo.Dao;
 
 import com.example.demo.modal.Product;
+import com.example.demo.service.Userservice;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -22,7 +23,7 @@ public class ProductDAO {
 
         try {
             // Connect to the database
-            connection = DatabaseConnectionTest.getConnection();
+            connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
             statement = connection.createStatement();
 
             // Execute the query
@@ -76,7 +77,8 @@ public class ProductDAO {
 
 
     public static void main(String[] args) {
-        ProductDAO dao = new ProductDAO();
-        System.out.println(dao.getAllProducts().size());
+//        ProductDAO dao = new ProductDAO();
+//        System.out.println(dao.getAllProducts().size());
+
     }
 }
