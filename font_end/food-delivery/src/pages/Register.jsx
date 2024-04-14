@@ -1,35 +1,39 @@
 import React, { useState } from "react";
-// import { useHistory } from "react-router-dom";
 import heroImg from "../assets/images/hero.png";
+import {Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [rePassword, setRePassword] = useState("");
     const [error, setError] = useState("");
-    // const history = useHistory();
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        if(password.trim() !==(rePassword)){
+            setError("Mật khẩu nhập không khớp");
+        }
+        else if(password.trim() ===(rePassword)) {
+            try {
+                const response = await fetch("http://localhost:8080/api/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({username, password, rePassword}),
+                });
 
-        try {
-            const response = await fetch("/api/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ username, password, rePassword }),
-            });
-
-            if (response.ok) {
-                // history.push("/login"); // Redirect to login page upon successful registration
-                console.error("Success");
-            } else {
-                const errorMessage = await response.text();
-                setError(errorMessage);
+                if (response.ok) {
+                    navigate('/login') // Redirect to login page upon successful registration
+                    console.error("Success");
+                } else {
+                    const errorMessage = await response.text();
+                    setError(errorMessage);
+                }
+            } catch (error) {
+                console.error("Error:", error);
             }
-        } catch (error) {
-            console.error("Error:", error);
         }
     };
 

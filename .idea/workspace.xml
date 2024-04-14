@@ -4,23 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7040cd83-6514-43a4-b2fb-11366a5bec77" name="Changes" comment="fix code">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="7040cd83-6514-43a4-b2fb-11366a5bec77" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/RegisterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Dao/CustomerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Dao/CustomerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Modal/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Modal/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/DatabaseConnectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/DatabaseConnectionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/ProductDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/servlet/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/servlet/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/utils/MD5Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/utils/MD5Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/font_end/food-delivery/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/assets/fake-data/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/assets/fake-data/products.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Register.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,26 +44,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;A:/NhungNgu/food-delivery/back_end&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;A:\\IntelliJ IDEA 2024.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/ChuyenDeWeb/sell-cake/back_end",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
+    "ts.external.directory.path": "A:\\IntelliJ IDEA 2024.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="A:\NhungNgu\food-delivery\font_end\food-delivery\src\assets" />
@@ -141,6 +135,7 @@
       <workItem from="1713057164204" duration="588000" />
       <workItem from="1713057774537" duration="192000" />
       <workItem from="1713058532030" duration="7485000" />
+      <workItem from="1713101036582" duration="5534000" />
     </task>
     <task id="LOCAL-00001" summary="fix code">
       <created>1712395860228</created>
@@ -177,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712655008915</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="xử lý phần backend chức năng register">
+      <created>1713101167186</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1713101167186</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,6 +189,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="fix code" />
     <MESSAGE value="load hình ảnh từ API" />
-    <option name="LAST_COMMIT_MESSAGE" value="load hình ảnh từ API" />
+    <MESSAGE value="xử lý phần backend chức năng register" />
+    <option name="LAST_COMMIT_MESSAGE" value="xử lý phần backend chức năng register" />
   </component>
 </project>

@@ -1,7 +1,8 @@
 package com.example.demo.Dao;
 
+import com.example.demo.Modal.*;
 import com.example.demo.modal.Product;
-import com.example.demo.service.Userservice;
+import com.example.demo.service.*;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,15 +16,15 @@ public class ProductDAO {
 
     private static final Logger LOGGER = Logger.getLogger(ProductDAO.class.getName());
 
-    public List<Product> getAllProducts() {
+    public List<com.example.demo.modal.Product> getAllProducts() {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
-        List<Product> productList = new ArrayList<>();
+        List<com.example.demo.modal.Product> productList = new ArrayList<>();
 
         try {
             // Connect to the database
-            connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
+            connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
             statement = connection.createStatement();
 
             // Execute the query
@@ -54,7 +55,7 @@ public class ProductDAO {
                     }
                 }
                 // Create a Product object and add to the list
-                Product product = new Product(id, name, type, description, price, imageUrls, specification, dateTime);
+                com.example.demo.modal.Product product = new Product(id, name, type, description, price, imageUrls, specification, dateTime);
                 productList.add(product);
             }
 
