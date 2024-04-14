@@ -5,43 +5,184 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbdc7fa1-e23b-4c02-a3f3-98e7c707b2ae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_6_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_mysql_mysql_connector_j_8_3_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_4_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_smallrye_jandex_3_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_inject_jakarta_inject_api_2_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_persistence_jakarta_persistence_api_3_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_transaction_jakarta_transaction_api_2_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_persistence_javax_persistence_api_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_antlr_antlr4_runtime_4_13_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_angus_angus_activation_2_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_core_4_0_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_4_0_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_txw2_4_0_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_6_0_6_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_orm_hibernate_core_6_4_4_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_5_3_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/hibernate.cfg.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/Dao/DatabaseConnectionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/Dao/ProductDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/Modal/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/ava-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/classic_hamburger.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/avocado_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/avocado_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/bacon_cheeseburger_image.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/bacon_cheeseburger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/bbq_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/bbq_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/bison_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/black_bean_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/black_bean_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/blue_cheese_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/blue_cheese_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/breakfast_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/buffalo_chicken_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/buffalo_chicken_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/cajun_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/caprese_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/classic_hamburger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/classic_hamburger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/cuban_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/double_cheeseburger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/double_cheeseburger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/egg_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/egg_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/fajita_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/greek_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/greek_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/guacamole_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/guacamole_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/hawaiian_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/hawaiian_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/jalapeno_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/jalapeno_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/mac_and_cheese_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/mushroom_swiss_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/mushroom_swiss_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/pesto_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/pesto_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/philly_cheeseburger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/pimento_cheeseburger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/pimento_cheeseburger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/portobello_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/pulled_chicken_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/pulled_pork_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/pulled_pork_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/reuben_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/salmon_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/salmon_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/smoked_gouda_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/spicy_chicken_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/spicy_chicken_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/steakhouse_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/steakhouse_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/swedish_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/teriyaki_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/teriyaki_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/texas_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/texas_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/thai_peanut_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/truffle_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/turkey_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/turkey_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/veggie_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/veggie_burger_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/western_burger_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/western_burger_image2.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/food-delivery.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/food-delivery.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_4_14.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_4_14.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_15_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_15_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_15_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_15_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_15_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_15_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_9_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_mysql_mysql_connector_j_8_3_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_4_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_micrometer_micrometer_commons_1_12_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_micrometer_micrometer_observation_1_12_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_smallrye_jandex_3_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_activation_jakarta_activation_api_2_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_annotation_jakarta_annotation_api_2_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_inject_jakarta_inject_api_2_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_persistence_jakarta_persistence_api_3_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_transaction_jakarta_transaction_api_2_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_xml_bind_jakarta_xml_bind_api_4_0_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_persistence_javax_persistence_api_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_14_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_14_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_accessors_smart_2_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_json_smart_2_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_antlr_antlr4_runtime_4_13_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_21_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_21_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_10_1_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_10_1_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_10_1_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_3_24_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_awaitility_awaitility_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_angus_angus_activation_2_0_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_core_4_0_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_4_0_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_txw2_4_0_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_6_0_6_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_orm_hibernate_core_6_4_4_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_5_3_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_10_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_10_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_10_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_10_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_10_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_10_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_core_5_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_junit_jupiter_5_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_3_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_3_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_9_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_5_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_2_0_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_2_0_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_xmlunit_xmlunit_core_2_9_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo/hibernate.cfg.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/Product.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/Servlet/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/Service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/Dao/DatabaseConnectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/dao/DatabaseConnectionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/Dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/dao/ProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/Modal/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/modal/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/Service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/Servlet/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/servlet/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/ava-1.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/fake-data/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/fake-data/products.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Product_Hamburger/classic_hamburger.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_01.1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_01.1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_01.3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_01.3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_01.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_04.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_04.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_08.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_08.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_09.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_09.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_2.1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_2.1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_2.2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_2.2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_2.3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_2.3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_3.1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_3.1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_3.2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_3.2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_3.3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_3.3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_4.1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_4.1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_4.2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_4.2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_4.3.png" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/product_4.3.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/components/UI/product-card/ProductCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/components/UI/product-card/ProductCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/AllFoods.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/AllFoods.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/store/shopping-cart/cartSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/store/shopping-cart/cartSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/Home.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,20 +202,20 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="useMavenConfig" value="true" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
   <component name="ProjectId" id="2eisJPnMKYgMY1lqX0URiZz1oHZ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -82,7 +223,9 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.DemoApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
+    "kotlin-language-version-configured": "true",
     "last_opened_file_path": "A:/NhungNgu/food-delivery/back_end",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -95,11 +238,11 @@
 }]]></component>
   <component name="RunManager" selected="Spring Boot.DemoApplication">
     <configuration name="DatabaseConnectionTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.demo.Dao.DatabaseConnectionTest" />
+      <option name="MAIN_CLASS_NAME" value="com.example.demo.dao.DatabaseConnectionTest" />
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.demo.Dao.*" />
+          <option name="PATTERN" value="com.example.demo.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -121,11 +264,11 @@
       </method>
     </configuration>
     <configuration name="ProductDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.demo.Dao.ProductDAO" />
+      <option name="MAIN_CLASS_NAME" value="com.example.demo.dao.ProductDAO" />
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.demo.Dao.*" />
+          <option name="PATTERN" value="com.example.demo.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -148,6 +291,14 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -162,11 +313,18 @@
       <workItem from="1712401338491" duration="7000" />
       <workItem from="1712405549546" duration="8267000" />
       <workItem from="1712417491711" duration="11000" />
-      <workItem from="1712650491888" duration="840000" />
+      <workItem from="1712650491888" duration="1633000" />
+      <workItem from="1712741237165" duration="2201000" />
+      <workItem from="1712756377547" duration="1031000" />
+      <workItem from="1712760634772" duration="221000" />
+      <workItem from="1713058966344" duration="3388000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
