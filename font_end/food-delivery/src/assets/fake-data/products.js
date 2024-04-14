@@ -1,7 +1,54 @@
 // all images imported from images directory
-import product_01_image_01 from "../images/Product_Hamburger/classic_hamburger.jpg";
-import product_01_image_02 from "../images/product_01.1.jpg";
-import product_01_image_03 from "../images/product_01.3.jpg";
+import product_01_image_01 from "../images/Product_Hamburger/classic_hamburger_image1.jpg";
+import product_01_image_02 from "../images/Product_Hamburger/bacon_cheeseburger_image1.jpg";
+import product_01_image_03 from "../images/Product_Hamburger/mushroom_swiss_burger_image1.jpg";
+import product_01_image_04 from "../images/Product_Hamburger/bbq_burger_image1.jpg";
+
+import product_01_image_011 from "../images/Product_Hamburger/western_burger_image1.jpg";
+import product_01_image_021 from "../images/Product_Hamburger/double_cheeseburger_image1.jpg";
+import product_01_image_031 from "../images/Product_Hamburger/veggie_burger_image1.jpg";
+import product_01_image_041 from "../images/Product_Hamburger/black_bean_burger_image1.jpg";
+
+import product_01_image_012 from "../images/Product_Hamburger/salmon_burger_image1.jpg";
+import product_01_image_022 from "../images/Product_Hamburger/spicy_chicken_burger_image1.jpg";
+import product_01_image_032 from "../images/Product_Hamburger/caprese_burger_image1.jpg";
+import product_01_image_042 from "../images/Product_Hamburger/blue_cheese_burger_image1.jpg";
+
+import product_01_image_013 from "../images/Product_Hamburger/avocado_burger_image1.jpg";
+import product_01_image_023 from "../images/Product_Hamburger/pulled_pork_burger_image1.jpg";
+import product_01_image_033 from "../images/Product_Hamburger/guacamole_burger_image1.jpg";
+import product_01_image_043 from "../images/Product_Hamburger/jalapeno_burger_image1.jpg";
+
+import product_01_image_014 from "../images/Product_Hamburger/hawaiian_burger_image1.jpg";
+import product_01_image_024 from "../images/Product_Hamburger/egg_burger_image1.jpg";
+import product_01_image_034 from "../images/Product_Hamburger/greek_burger_image1.jpg";
+import product_01_image_044 from "../images/Product_Hamburger/texas_burger_image1.jpg";
+
+import product_01_image_015 from "../images/Product_Hamburger/buffalo_chicken_burger_image1.jpg";
+import product_01_image_025 from "../images/Product_Hamburger/pesto_burger_image1.jpg";
+import product_01_image_035 from "../images/Product_Hamburger/pimento_cheeseburger_image1.jpg";
+import product_01_image_045 from "../images/Product_Hamburger/teriyaki_burger_image1.jpg";
+
+import product_01_image_016 from "../images/Product_Hamburger/steakhouse_burger_image1.jpg";
+import product_01_image_026 from "../images/Product_Hamburger/portobello_burger_image1.jpg";
+import product_01_image_036 from "../images/Product_Hamburger/bison_burger_image1.jpg";
+import product_01_image_046 from "../images/Product_Hamburger/cajun_burger_image1.jpg";
+
+import product_01_image_017 from "../images/Product_Hamburger/truffle_burger_image1.jpg";
+import product_01_image_027 from "../images/Product_Hamburger/swedish_burger_image1.jpg";
+import product_01_image_037 from "../images/Product_Hamburger/pulled_pork_burger_image1.jpg";
+import product_01_image_047 from "../images/Product_Hamburger/smoked_gouda_burger_image1.jpg";
+
+import product_01_image_018 from "../images/Product_Hamburger/pulled_chicken_burger_image1.jpg";
+import product_01_image_028 from "../images/Product_Hamburger/smoked_gouda_burger_image1.jpg";
+import product_01_image_038 from "../images/Product_Hamburger/reuben_burger_image1.jpg";
+import product_01_image_048 from "../images/Product_Hamburger/philly_cheeseburger_image1.jpg";
+
+import product_01_image_019 from "../images/Product_Hamburger/fajita_burger_image1.jpg";
+import product_01_image_029 from "../images/Product_Hamburger/thai_peanut_burger_image1.jpg";
+import product_01_image_039 from "../images/Product_Hamburger/mac_and_cheese_burger_image1.jpg";
+import product_01_image_049 from "../images/Product_Hamburger/cuban_burger_image1.jpg";
+import product_01_image_050 from "../images/Product_Hamburger/breakfast_burger_image1.jpg";
 
 import product_02_image_01 from "../images/product_2.1.jpg";
 import product_02_image_02 from "../images/product_2.2.jpg";
