@@ -6,16 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="dbdc7fa1-e23b-4c02-a3f3-98e7c707b2ae" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/Controller/RegisterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/Dao/CustomerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/Dao/CustomerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/dao/DatabaseConnectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/dao/DatabaseConnectionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/dao/ProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/AllFoods.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/AllFoods.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,34 +54,19 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.DemoApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/ChuyenDeWeb/sell-cake/back_end",
+    "last_opened_file_path": "A:/NhungNgu/food-delivery",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
     "spring.configuration.checksum": "fe01ce2a7fbac8fafaed7c982a04e229",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager" selected="Spring Boot.DemoApplication">
-    <configuration name="CustomerDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.demo.Dao.CustomerDao" />
-      <module name="demo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.demo.Dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="DatabaseConnectionTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.demo.dao.DatabaseConnectionTest" />
       <module name="demo" />
@@ -125,19 +106,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="com.example.demo.Dao.ProductDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.demo.Dao.ProductDAO" />
-      <module name="demo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.demo.Dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="demo" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.demo.DemoApplication" />
@@ -147,8 +115,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CustomerDao" />
-        <item itemvalue="Application.com.example.demo.Dao.ProductDAO" />
         <item itemvalue="Application.ProductDAO" />
         <item itemvalue="Application.DatabaseConnectionTest" />
         <item itemvalue="Application.DemoApplication" />
@@ -181,9 +147,9 @@
       <workItem from="1712741237165" duration="2201000" />
       <workItem from="1712756377547" duration="1031000" />
       <workItem from="1712760634772" duration="221000" />
-      <workItem from="1713058966344" duration="3388000" />
-      <workItem from="1713101189158" duration="1021000" />
-      <workItem from="1713102251234" duration="4468000" />
+      <workItem from="1713058966344" duration="3395000" />
+      <workItem from="1713151236338" duration="4643000" />
+      <workItem from="1713235721045" duration="2407000" />
     </task>
     <servers />
   </component>
