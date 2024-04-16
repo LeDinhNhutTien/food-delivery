@@ -1,4 +1,6 @@
-package com.example.demo.Dao;
+package com.example.demo.dao;
+
+import com.example.demo.dao.DatabaseConnectionTest;
 
 import java.sql.*;
 import java.util.ArrayList;
