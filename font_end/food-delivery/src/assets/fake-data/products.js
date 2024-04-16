@@ -11,7 +11,7 @@ import product_01_image_041 from "../images/Product_Hamburger/black_bean_burger_
 
 import product_01_image_012 from "../images/Product_Hamburger/salmon_burger_image1.jpg";
 import product_01_image_022 from "../images/Product_Hamburger/spicy_chicken_burger_image1.jpg";
-import product_01_image_032 from "../images/Product_Hamburger/caprese_burger_image1.jpg";
+import product_01_image_032 from "../images/Product_Hamburger/caprese_burger_image2.jpg";
 import product_01_image_042 from "../images/Product_Hamburger/blue_cheese_burger_image1.jpg";
 
 import product_01_image_013 from "../images/Product_Hamburger/avocado_burger_image1.jpg";
