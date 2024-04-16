@@ -5,13 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7040cd83-6514-43a4-b2fb-11366a5bec77" name="Changes" comment="load hình ảnh từ API, fix lại trang home">
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back_end/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c5242a49-0bf6-4bdb-b135-26451b182125.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/RegisterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Dao/CustomerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Dao/CustomerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/AllFoods.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/AllFoods.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/ProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/modal/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/modal/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/servlet/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/servlet/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/utils/MD5Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/utils/MD5Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Register.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,13 +59,16 @@
     "WebServerToolWindowFactoryState": "false",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "A:/NhungNgu/food-delivery",
+    "last_opened_file_path": "D:/ChuyenDeWeb/sell-cake/back_end",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "npm.start.executor": "Run",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
     "ts.external.directory.path": "A:\\IntelliJ IDEA 2024.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
@@ -133,6 +146,8 @@
       <workItem from="1713058532030" duration="7963000" />
       <workItem from="1713151218046" duration="6435000" />
       <workItem from="1713235863208" duration="2818000" />
+      <workItem from="1713248161603" duration="829000" />
+      <workItem from="1713249516807" duration="2475000" />
     </task>
     <task id="LOCAL-00001" summary="fix code">
       <created>1712395860228</created>
