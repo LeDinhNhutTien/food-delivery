@@ -15,22 +15,17 @@ const Account = () => {
                             <ul>
                                 <li className="first active">
                                     <a id="account" title="Thông tin tài khoản"
-                                       href="${pageContext.request.contextPath}/account?action=account">Thông tin tài
+                                       href="/account">Thông tin tài
                                         khoản</a></li>
                                 <li className="first">
                                     <a id="changePassword" title="Đổi mật khẩu"
-                                       href="${pageContext.request.contextPath}/account?action=changePassword">Đổi
+                                       href="/changePassword">Đổi
                                         mật khẩu</a></li>
                                 <li className="first">
                                     <a id="reviewOrders" title="Xem lại đơn hàng"
                                        // href="${pageContext.request.contextPath}/account?action=reviewOrders">
                                         href="/reviewOrder">
                                         Xem lại đơn hàng</a></li>
-                                <li className="first">
-                                    <a id="changePrivateKey" title="Đổi Private Key"
-                                       href="${pageContext.request.contextPath}/account?action=changePrivateKey">Đổi
-                                        Private Key</a>
-                                </li>
                                 <li className="first">
                                     <a id="logout" title="Đăng xuất"
                                        href="${pageContext.request.contextPath}/logout?action=logout">Đăng xuất</a>

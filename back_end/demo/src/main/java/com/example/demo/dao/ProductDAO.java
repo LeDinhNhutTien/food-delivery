@@ -1,7 +1,6 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Modal.*;
-import com.example.demo.Modal.Product;
 import com.example.demo.service.*;
 
 import java.sql.Connection;
