@@ -9,16 +9,23 @@ const ChangePassword = () => {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const [currentAlert, setCurrentAlert] = useState(""); // Thêm state để theo dõi thông báo hiện tại
+    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+
+    useEffect(() => {
+        if (userInfo) {
+            setUsername(userInfo.username);
+        }
+    }, [userInfo]); // Thêm dependency userInfo vào useEffect để cập nhật username khi userInfo thay đổi
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // if (confirmPassword === null || confirmPassword === ""){
-        //     setError("Xác nhận không được để trống");
-        // }
+        if (confirmPassword === null || confirmPassword === ""){
+            setError("Xác nhận không được để trống");
+        }
         if (newPass !== confirmPassword){
             setError("Mật khẩu mới nhập không khớp");
         }
-        else try {
+    else try {
             const response = await fetch("http://localhost:8080/api/changePassword", {
                 method: "POST",
                 headers: {
@@ -69,10 +76,10 @@ const ChangePassword = () => {
                             <h2>Thay đổi mật khẩu</h2>
                             {/* Xử lý hiển thị thông báo nếu cần */}
                             <form onSubmit={handleSubmit}>
-                                <div className="input">
-                                    <label htmlFor="acc_oldPass"><span className="req">*</span>Tên đăng nhập</label>
-                                    <input name="username" value={username} onChange={(e) => setUsername(e.target.value)} type="text" maxLength="20" id="acc_username" />
-                                </div>
+                                {/*<div className="input">*/}
+                                {/*    <label htmlFor="acc_oldPass"><span className="req">*</span>Tên đăng nhập</label>*/}
+                                {/*    <input name="username" value={username} onChange={(e) => setUsername(e.target.value)} type="text" maxLength="20" id="acc_username" />*/}
+                                {/*</div>*/}
                                 <div className="input">
                                     <label htmlFor="acc_oldPass"><span className="req">*</span>Mật khẩu cũ:</label>
                                     <input name="oldPass" value={oldPass} onChange={(e) => setOldPass(e.target.value)} type="password" maxLength="20" id="acc_oldPass" />
