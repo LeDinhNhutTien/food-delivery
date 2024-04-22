@@ -2,9 +2,9 @@ package com.example.demo.dao;
 
 import com.example.demo.dao.DatabaseConnectionTest;
 
-import com.example.demo.Modal.*;
+import com.example.demo.modal.*;
 import com.example.demo.utils.*;
-import com.example.demo.Dao.*;
+import com.example.demo.dao.*;
 
 import java.sql.*;
 
@@ -34,7 +34,7 @@ public class CustomerDao {
         String query = "INSERT into customer(username, password, first_name, last_name, phone, address, role)\n" +
                 "VALUES(?, ?, \"\", \"\", \"\", \"\", \"user\")";
 
-        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
+        try (Connection connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
              PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, user);

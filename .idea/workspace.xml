@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7040cd83-6514-43a4-b2fb-11366a5bec77" name="Changes" comment="load hình ảnh từ API, fix lại trang home">
+    <list default="true" id="7040cd83-6514-43a4-b2fb-11366a5bec77" name="Changes" comment="tất cả sản phẩm bổ sung chức năng lọc sản phẩm">
+      <change afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/servlet/SuggestionsServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Dao/CustomerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Dao/CustomerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/DatabaseConnectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/DatabaseConnectionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/ProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/servlet/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/servlet/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/utils/MD5Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/utils/MD5Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/AllFoods.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/AllFoods.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +54,7 @@
     "WebServerToolWindowFactoryState": "false",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "A:/NhungNgu/food-delivery",
+    "last_opened_file_path": "A:/NhungNgu/food-delivery/back_end",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -132,7 +137,9 @@
       <workItem from="1713057774537" duration="192000" />
       <workItem from="1713058532030" duration="7963000" />
       <workItem from="1713151218046" duration="6435000" />
-      <workItem from="1713235863208" duration="2818000" />
+      <workItem from="1713235863208" duration="7252000" />
+      <workItem from="1713269963644" duration="4062000" />
+      <workItem from="1713750849803" duration="383000" />
     </task>
     <task id="LOCAL-00001" summary="fix code">
       <created>1712395860228</created>
@@ -177,7 +184,23 @@
       <option name="project" value="LOCAL" />
       <updated>1713066228771</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="tất cả sản phẩm bổ sung chức năng lọc sản phẩm">
+      <option name="closed" value="true" />
+      <created>1713240328948</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1713240328948</updated>
+    </task>
+    <task id="LOCAL-00008" summary="tất cả sản phẩm bổ sung chức năng lọc sản phẩm">
+      <option name="closed" value="true" />
+      <created>1713240382018</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1713240382018</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,6 +211,7 @@
     <MESSAGE value="fix code" />
     <MESSAGE value="load hình ảnh từ API" />
     <MESSAGE value="load hình ảnh từ API, fix lại trang home" />
-    <option name="LAST_COMMIT_MESSAGE" value="load hình ảnh từ API, fix lại trang home" />
+    <MESSAGE value="tất cả sản phẩm bổ sung chức năng lọc sản phẩm" />
+    <option name="LAST_COMMIT_MESSAGE" value="tất cả sản phẩm bổ sung chức năng lọc sản phẩm" />
   </component>
 </project>

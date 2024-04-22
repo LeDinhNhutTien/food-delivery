@@ -1,7 +1,7 @@
 package com.example.demo.servlet;
 
 
-import com.example.demo.Dao.ProductDAO;
+import com.example.demo.dao.ProductDAO;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

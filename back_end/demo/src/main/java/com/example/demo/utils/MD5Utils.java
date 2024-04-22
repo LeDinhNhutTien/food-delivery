@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
 public class MD5Utils {
-    public String encrypt(String input) {
+    public static String encrypt(String input) {
         try {
             // Tạo một instance của MessageDigest với thuật toán MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
