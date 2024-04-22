@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/common-section/CommonSection";
 import { Container, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
@@ -8,19 +8,77 @@ import "../styles/all-foods.css";
 import "../styles/pagination.css";
 
 const AllFoods = () => {
-    const [allProducts, setAllProducts] = useState([]); // State lưu trữ danh sách ban đầu của tất cả sản phẩm
-    const [products, setProducts] = useState([]); // State lưu trữ danh sách sản phẩm hiện tại
+    const [allProducts, setAllProducts] = useState([]);
+    const [products, setProducts] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [pageNumber, setPageNumber] = useState(0);
     const [sortOption, setSortOption] = useState("");
+    const [suggestions, setSuggestions] = useState([]);
+    const [showSuggestions, setShowSuggestions] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await fetch("http://localhost:8080/api/products");
                 const data = await response.json();
-                setAllProducts(data); // Lưu trữ danh sách ban đầu của tất cả sản phẩm
-                setProducts(data); // Khởi tạo danh sách sản phẩm hiện tại với danh sách ban đầu
+                setAllProducts(data);
+                setProducts(data);
+            } catch (error) {
+                console.error("Lỗi khi lấy dữ liệu:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const debounce = (func, delay) => {
+        let timeoutId;
+        return function(...args) {
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+            timeoutId = setTimeout(() => {
+                func.apply(null, args);
+            }, delay);
+        };
+    };
+
+    const debouncedFetchSuggestions = useCallback(
+        debounce(async (query) => {
+            try {
+                if (query.trim() === "") {
+                    // Nếu query là khoảng trắng, setSuggestions rỗng và không hiển thị gợi ý
+                    setSuggestions([]);
+                    setShowSuggestions(false);
+                    return;
+                }
+
+                const response = await fetch(`http://localhost:8080/api/suggestions?query=${query}`);
+                const data = await response.json();
+                setSuggestions(data);
+                setShowSuggestions(data.length > 0);
+            } catch (error) {
+                console.error("Lỗi khi lấy gợi ý:", error);
+            }
+        }, 300), []
+    );
+
+
+    useEffect(() => {
+        debouncedFetchSuggestions(searchTerm);
+        if (searchTerm === " ") {
+            setShowSuggestions(false);
+        }
+    }, [searchTerm, debouncedFetchSuggestions]);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/api/products");
+                const data = await response.json();
+                setAllProducts(data);
+                setProducts(data);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -35,6 +93,12 @@ const AllFoods = () => {
     const filteredProducts = products.filter((item) =>
         item.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    const handleSuggestionClick = (suggestion) => {
+        setSearchTerm(suggestion);
+        setShowSuggestions(false);
+        setSuggestions([]);
+    };
 
     const sortedProducts = filteredProducts.sort((a, b) => {
         switch (sortOption) {
@@ -62,34 +126,29 @@ const AllFoods = () => {
         setPageNumber(selected);
     };
 
-    // Tạo hàm mới để xử lý việc lọc dữ liệu sản phẩm dựa trên loại sản phẩm
     const filterProductsByType = (type) => {
-        // Reset danh sách sản phẩm về danh sách ban đầu
         setProducts(allProducts);
-        // Lọc danh sách sản phẩm dựa trên loại sản phẩm
         const filteredProducts = allProducts.filter(item => item.type === type);
-        // Cập nhật danh sách sản phẩm đã lọc vào state
         setProducts(filteredProducts);
     };
 
-    // Hàm xử lý sự kiện để nhận loại sản phẩm và gọi hàm lọc dữ liệu sản phẩm tương ứng
     const handleFilter = (type) => {
         filterProductsByType(type);
     };
 
     return (
-        <Helmet title="All-Foods">
-            <CommonSection title="Tất cả bánh" />
+        <Helmet title="Tất cả món ăn">
+            <CommonSection title="Tất cả món ăn" />
             <section>
                 <Row className="mb-3" style={{ width: '67%', marginRight: '5%', marginLeft: 'auto' }}>
                     <Col xs={3} className="d-inline-block">
-                        <Button variant="outline-secondary" onClick={() => handleFilter(1)}>Humburger</Button>
+                        <Button variant="outline-secondary" onClick={() => handleFilter(1)}>Hamburger</Button>
                     </Col>
                     <Col xs={3} className="d-inline-block">
                         <Button variant="outline-secondary" onClick={() => handleFilter(2)}>Pizza</Button>
                     </Col>
                     <Col xs={3} className="d-inline-block">
-                        <Button variant="outline-secondary" onClick={() => handleFilter(3)}>Drink</Button>
+                        <Button variant="outline-secondary" onClick={() => handleFilter(3)}>Đồ uống</Button>
                     </Col>
                     <Col xs={3} className="d-inline-block">
                         <FormControl
@@ -101,9 +160,31 @@ const AllFoods = () => {
                                 padding: '4px',
                                 border: '2px solid #ccc',
                                 borderRadius: '5px',
-                                resize: 'vertical' // Cho phép chỉnh kích thước theo chiều dọc
+                                resize: 'vertical'
                             }}
                         />
+                        <ul style={{
+                            listStyleType: 'none',
+                            padding: 0,
+                            margin: 0,
+                            position: 'absolute',
+                            backgroundColor: '#fff',
+                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                            maxHeight: '200px',
+                            overflowY: 'auto',
+                            zIndex: 1000,
+                            width: '100%',
+                            display: showSuggestions ? 'block' : 'none'
+                        }}>
+                            {suggestions.map((suggestion, index) => (
+                                <li key={index} style={{
+                                    padding: '8px 12px',
+                                    cursor: 'pointer',
+                                    borderBottom: '1px solid #ccc'
+                                }} onClick={() => handleSuggestionClick(suggestion)}>{suggestion}</li>
+                            ))}
+                        </ul>
+
                     </Col>
                 </Row>
                 <Container>
@@ -149,6 +230,7 @@ const AllFoods = () => {
                 </Container>
             </section>
         </Helmet>
+
     );
 };
 

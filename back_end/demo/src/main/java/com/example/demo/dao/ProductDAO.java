@@ -1,6 +1,7 @@
-package com.example.demo.Dao;
+package com.example.demo.dao;
 
-import com.example.demo.Modal.*;
+import com.example.demo.modal.*;
+import com.example.demo.modal.Product;
 import com.example.demo.service.*;
 
 import java.sql.Connection;
@@ -15,15 +16,15 @@ public class ProductDAO {
 
     private static final Logger LOGGER = Logger.getLogger(ProductDAO.class.getName());
 
-    public List<com.example.demo.Modal.Product> getAllProducts() {
+    public List<com.example.demo.modal.Product> getAllProducts() {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
-        List<com.example.demo.Modal.Product> productList = new ArrayList<>();
+        List<com.example.demo.modal.Product> productList = new ArrayList<>();
 
         try {
             // Connect to the database
-            connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
+            connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
             statement = connection.createStatement();
 
             // Execute the query
@@ -54,7 +55,7 @@ public class ProductDAO {
                     }
                 }
                 // Create a Product object and add to the list
-                com.example.demo.Modal.Product product = new Product(id, name, type, description, price, imageUrls, specification, dateTime);
+                com.example.demo.modal.Product product = new Product(id, name, type, description, price, imageUrls, specification, dateTime);
                 productList.add(product);
             }
 
@@ -74,11 +75,50 @@ public class ProductDAO {
 
         return productList;
     }
+    public static List<String> getSearchSuggestions(String query) {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        List<String> suggestions = new ArrayList<>();
+
+        try {
+            // Connect to the database
+            connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
+            statement = connection.createStatement();
+
+            // Execute the query to get search suggestions
+            String searchQuery = "SELECT DISTINCT name FROM products WHERE name LIKE '%" + query + "%'";
+            resultSet = statement.executeQuery(searchQuery);
+
+            // Process the results
+            while (resultSet.next()) {
+                // Read suggestion and add to the list
+                String suggestion = resultSet.getString("name");
+                suggestions.add(suggestion);
+            }
+
+            LOGGER.info("Number of suggestions retrieved: " + suggestions.size());
+        } catch (SQLException e) {
+            LOGGER.severe("Error getting search suggestions: " + e.getMessage());
+        } finally {
+            // Close all resources
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                LOGGER.severe("Error closing resources: " + e.getMessage());
+            }
+        }
+
+        return suggestions;
+    }
+
 
 
     public static void main(String[] args) {
-        ProductDAO dao = new ProductDAO();
-        System.out.println(dao.getAllProducts().size());
+//        ProductDAO dao = new ProductDAO();
+//        System.out.println(dao.getAllProducts().size());
 
     }
 }
