@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,10 +10,10 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:3000")
-public class RegisterController {
+public class LoginController {
     CustomerDao dao = new CustomerDao();
 
-    @PostMapping("/register")
+    @PostMapping("/login")
     public ResponseEntity<?> register(@RequestBody Map<String, String> credentials) {
         String username = credentials.get("username");
         String password = credentials.get("password");
@@ -25,12 +26,11 @@ public class RegisterController {
         if(password.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Mật khẩu không được để trống");
         }
-        else if (dao.sign(username, password) == true) {
-            return ResponseEntity.status(HttpStatus.OK).body("Đăng kí tài khoản thành công");
+        else if (dao.login(username, password) == true) {
+            return ResponseEntity.status(HttpStatus.OK).body("Đăng nhập thành công");
 
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Đăng kí không thành công");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Đăng nhập không thành công");
         }
     }
-
 }
