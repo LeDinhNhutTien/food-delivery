@@ -36,6 +36,8 @@ const Header = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const [hideHeaderFooter, setHideHeaderFooter] = useState(false);
+    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+
         useEffect(() => {
             const isAdminPage = location.pathname === "/admin";
             const isUserAdminPage = location.pathname.trim() === "/userManagement";
@@ -89,18 +91,29 @@ const Header = () => {
                                 </span>
 
                                 <span className="user">
-                                    <Link to="/account">
-                                        <i className="ri-user-line"></i>
-                                    </Link>
-                                    {/*<ul className="navbar-nav mr-auto">*/}
-                                    {/*    <li className="nav-item dropdown">*/}
-                                    {/*        <div className="dropdown-menu" aria-labelledby="navbarDropdown">*/}
-                                    {/*          <a className="dropdown-item" href="#">Action</a>*/}
-                                    {/*          <a className="dropdown-item" href="#">Another action</a>*/}
-                                    {/*        </div>*/}
-                                    {/*    </li>*/}
-                                    {/*</ul>*/}
+                                    {userInfo ? (
+                                            <Link to="/account">
+                                                <span>{userInfo.username}</span>
+                                            </Link>
+                                    ) : (
+                                        <Link to="/login">
+                                            <i className="ri-user-line"></i>
+                                        </Link>
+                                    )}
                                 </span>
+                                {/*<span className="user">*/}
+                                {/*    <Link to="/account">*/}
+                                {/*        <i className="ri-user-line"></i>*/}
+                                {/*    </Link>*/}
+                                {/*    /!*<ul className="navbar-nav mr-auto">*!/*/}
+                                {/*    /!*    <li className="nav-item dropdown">*!/*/}
+                                {/*    /!*        <div className="dropdown-menu" aria-labelledby="navbarDropdown">*!/*/}
+                                {/*    /!*          <a className="dropdown-item" href="#">Action</a>*!/*/}
+                                {/*    /!*          <a className="dropdown-item" href="#">Another action</a>*!/*/}
+                                {/*    /!*        </div>*!/*/}
+                                {/*    /!*    </li>*!/*/}
+                                {/*    /!*</ul>*!/*/}
+                                {/*</span>*/}
 
                                 <span className="mobile__menu" onClick={toggleMenu}>
                                     <i className="ri-menu-line"></i>

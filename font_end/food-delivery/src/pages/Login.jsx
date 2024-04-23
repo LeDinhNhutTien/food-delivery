@@ -42,6 +42,11 @@ const Login = () => {
                 });
 
                 if (response.ok) {
+                    const userInfo = await response.json();
+
+                    // Lưu thông tin người dùng vào session storage
+                    sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
+
                     navigate('/home') // Redirect to login page upon successful registration
                     console.error("Success");
                 } else {
@@ -71,13 +76,7 @@ const Login = () => {
                 <a href="#" className="mb-2">Forgot Password?  </a>
                 <a href="/register" className="mb-2">Sign up</a>
             </form>
-
-
-
-
         </div>
-
-
     );
 };
 

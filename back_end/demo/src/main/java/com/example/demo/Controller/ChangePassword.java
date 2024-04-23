@@ -1,12 +1,10 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Dao.CustomerDao;
-import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.Dao.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import com.example.demo.Modal.*;
 import java.util.Map;
 
 @RestController
@@ -15,14 +13,11 @@ import java.util.Map;
 public class ChangePassword {
     CustomerDao dao = new CustomerDao();
     @PostMapping("/changePassword")
-    public ResponseEntity<?> register(@RequestBody Map<String, String> credentials) {
+    public ResponseEntity<?> changePassword(@RequestBody Map<String, String> credentials) {
         String username = credentials.get("username");
         String oldPass = credentials.get("oldPass");
         String newPass = credentials.get("newPass");
 
-        if(username.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tên đăng nhập không được để trống");
-        }
         if(oldPass.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Mật khẩu cũ không được để trống");
         }
