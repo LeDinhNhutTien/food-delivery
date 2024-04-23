@@ -28,7 +28,8 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Mật khẩu không được để trống");
         }
         else if (dao.login(username, password) == true) {
-            Customer c = new Customer(username, password);
+//            Customer c = new Customer(username, password, "","","","");
+            Customer c = dao.getUserInfo(username);
             return ResponseEntity.ok(c);
 //            return ResponseEntity.status(HttpStatus.OK).body("Đăng nhập thành công");
 
@@ -36,17 +37,5 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Đăng nhập không thành công");
         }
     }
-    @PostMapping("/home")
-    public ResponseEntity<?> getUserInfo(HttpServletRequest request) {
-        // Lấy thông tin người dùng từ session storage
-        Customer userInfo = (Customer) request.getSession().getAttribute("userInfo");
 
-        if (userInfo != null) {
-            // Nếu có thông tin người dùng, trả về
-            return ResponseEntity.ok(userInfo);
-        } else {
-            // Nếu không có thông tin người dùng, trả về lỗi hoặc thông báo không xác thực
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not authenticated");
-        }
-    }
 }

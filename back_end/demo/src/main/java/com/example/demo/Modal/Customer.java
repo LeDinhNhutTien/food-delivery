@@ -22,9 +22,13 @@ public class Customer {
         this.role = role;
     }
 
-    public Customer(String username, String password) {
+    public Customer(String username, String password, String first_name, String last_name, String phone, String address) {
         this.username = username;
         this.password = password;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.phone = phone;
+        this.address = address;
     }
 
     public int getId_user() {

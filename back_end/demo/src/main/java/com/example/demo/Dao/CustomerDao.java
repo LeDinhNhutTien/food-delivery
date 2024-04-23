@@ -116,6 +116,49 @@ public class CustomerDao {
             return false; // Trả về false nếu có lỗi xảy ra
         }
     }
+    public Customer getUserInfo(String username) {
+        String query = "SELECT * FROM customer WHERE username = ?";
+
+        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+
+            ps.setString(1, username);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Customer customer = new Customer(rs.getString(1),rs.getString(2),
+                            rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+                    return customer; // check success
+                } else {
+                    return null; // check failed
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public boolean updateAccount(String username, String firstName, String lastName, String phone, String address) {
+        String query = "UPDATE customer SET username = ?, first_name = ?, last_name = ?, phone = ?, address = ? WHERE username = ?";
+
+        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+
+            ps.setString(1,username);
+            ps.setString(2, firstName);
+            ps.setString(3,lastName);
+            ps.setString(4, phone);
+            ps.setString(5,address);
+            ps.setString(6,username);
+
+            int rowsUpdated = ps.executeUpdate();
+            return rowsUpdated > 0; // Trả về true nếu có ít nhất một hàng được cập nhật
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Trả về false nếu có lỗi xảy ra
+        }
+    }
 
     public static void main(String[] args) {
         CustomerDao dao = new CustomerDao();
