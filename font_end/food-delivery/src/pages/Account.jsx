@@ -35,8 +35,17 @@ const Account = () => {
 
             if (response.ok) {
                 const successMessage = await response.text();
+                const updatedUserInfo = await response.json();
                 setSuccess(successMessage);
                 setCurrentAlert("success");
+                setFormData({
+                    ...formData,
+                    username: updatedUserInfo.username,
+                    firstName: updatedUserInfo.first_name,
+                    lastName: updatedUserInfo.last_name,
+                    phone: updatedUserInfo.phone,
+                    address: updatedUserInfo.address,
+                });
             } else {
                 const errorMessage = await response.text();
                 setError(errorMessage);
@@ -55,6 +64,12 @@ const Account = () => {
         });
     };
 
+    const handleLogout = () => {
+        // Xóa sessionStorage khi người dùng đăng xuất
+        sessionStorage.removeItem("userInfo");
+        // Chuyển hướng người dùng đến trang đăng nhập hoặc trang chính
+        window.location.href = "/home"; // Thay đổi đường dẫn tùy theo yêu cầu của bạn
+    };
     return (
         <div id="content">
             <div className="wrapper">
@@ -73,7 +88,7 @@ const Account = () => {
                                     <a id="reviewOrders" title="Xem lại đơn hàng" href="/reviewOrder">Xem lại đơn hàng</a>
                                 </li>
                                 <li className="first">
-                                    <a id="logout" title="Đăng xuất" href="${pageContext.request.contextPath}/logout?action=logout">Đăng xuất</a>
+                                    <a onClick={handleLogout} id="logout" title="Đăng xuất" href="/home">Đăng xuất</a>
                                 </li>
                             </ul>
                         </div>

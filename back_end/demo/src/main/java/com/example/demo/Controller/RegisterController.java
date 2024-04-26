@@ -16,6 +16,7 @@ public class RegisterController {
     public ResponseEntity<?> register(@RequestBody Map<String, String> credentials) {
         String username = credentials.get("username");
         String password = credentials.get("password");
+
         if(username.isEmpty() &&  password.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Thông tin người dùng và mật khẩu không được để trống");
         }

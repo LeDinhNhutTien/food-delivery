@@ -101,20 +101,6 @@ const Header = () => {
                                         </Link>
                                     )}
                                 </span>
-                                {/*<span className="user">*/}
-                                {/*    <Link to="/account">*/}
-                                {/*        <i className="ri-user-line"></i>*/}
-                                {/*    </Link>*/}
-                                {/*    /!*<ul className="navbar-nav mr-auto">*!/*/}
-                                {/*    /!*    <li className="nav-item dropdown">*!/*/}
-                                {/*    /!*        <div className="dropdown-menu" aria-labelledby="navbarDropdown">*!/*/}
-                                {/*    /!*          <a className="dropdown-item" href="#">Action</a>*!/*/}
-                                {/*    /!*          <a className="dropdown-item" href="#">Another action</a>*!/*/}
-                                {/*    /!*        </div>*!/*/}
-                                {/*    /!*    </li>*!/*/}
-                                {/*    /!*</ul>*!/*/}
-                                {/*</span>*/}
-
                                 <span className="mobile__menu" onClick={toggleMenu}>
                                     <i className="ri-menu-line"></i>
                                 </span>
