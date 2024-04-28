@@ -19,13 +19,7 @@ const ChangePassword = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (confirmPassword === null || confirmPassword === ""){
-            setError("Xác nhận không được để trống");
-        }
-        if (newPass !== confirmPassword){
-            setError("Mật khẩu mới nhập không khớp");
-        }
-    else try {
+     try {
             const response = await fetch("http://localhost:8080/api/changePassword", {
                 method: "POST",
                 headers: {
@@ -48,6 +42,33 @@ const ChangePassword = () => {
         }
     };
 
+    const handleNewPasswordChange = (event) => {
+        const newPassword = event.target.value;
+        setNewPass(newPassword);
+        if (newPassword.length < 8) {
+            setCurrentAlert("error");
+            setError("Mật khẩu phải có ít nhất 8 ký tự");
+        } else {
+            setError("");
+        }
+    };
+
+    const handleConfirmPasswordChange = (event) => {
+        const newRePassword = event.target.value;
+        setConfirmPassword(newRePassword);
+        if (newRePassword !== newPass) {
+            setCurrentAlert("error");
+            setError("Mật khẩu nhập lại không khớp");
+        } else {
+            setError("");
+        }
+    };
+    const handleLogout = () => {
+        // Xóa sessionStorage khi người dùng đăng xuất
+        sessionStorage.removeItem("userInfo");
+        // Chuyển hướng người dùng đến trang đăng nhập hoặc trang chính
+        window.location.href = "/home"; // Thay đổi đường dẫn tùy theo yêu cầu của bạn
+    };
     return (
         <div id="content">
             <div className="wrapper">
@@ -66,7 +87,7 @@ const ChangePassword = () => {
                                     <a id="reviewOrders" title="Xem lại đơn hàng" href="/account?action=reviewOrders">Xem lại đơn hàng</a>
                                 </li>
                                 <li className="first">
-                                    <a id="logout" title="Đăng xuất" href="/logout?action=logout">Đăng xuất</a>
+                                    <a onClick={handleLogout} id="logout" title="Đăng xuất" href="/home">Đăng xuất</a>
                                 </li>
                             </ul>
                         </div>
@@ -76,21 +97,17 @@ const ChangePassword = () => {
                             <h2>Thay đổi mật khẩu</h2>
                             {/* Xử lý hiển thị thông báo nếu cần */}
                             <form onSubmit={handleSubmit}>
-                                {/*<div className="input">*/}
-                                {/*    <label htmlFor="acc_oldPass"><span className="req">*</span>Tên đăng nhập</label>*/}
-                                {/*    <input name="username" value={username} onChange={(e) => setUsername(e.target.value)} type="text" maxLength="20" id="acc_username" />*/}
-                                {/*</div>*/}
                                 <div className="input">
                                     <label htmlFor="acc_oldPass"><span className="req">*</span>Mật khẩu cũ:</label>
                                     <input name="oldPass" value={oldPass} onChange={(e) => setOldPass(e.target.value)} type="password" maxLength="20" id="acc_oldPass" />
                                 </div>
                                 <div className="input">
                                     <label htmlFor="acc_newPass"><span className="req">*</span>Mật khẩu mới:</label>
-                                    <input name="newPass" value={newPass} onChange={(e) => setNewPass(e.target.value)} type="password" maxLength="20" id="acc_newPass" />
+                                    <input name="newPass" value={newPass} onChange={handleNewPasswordChange} type="password" maxLength="20" id="acc_newPass" />
                                 </div>
                                 <div className="input">
                                     <label htmlFor="acc_confirmPass"><span className="req">*</span>Xác nhận:</label>
-                                    <input name="confirmPass" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} type="password" maxLength="20" id="acc_confirmPass" />
+                                    <input name="confirmPass" value={confirmPassword} onChange={handleConfirmPasswordChange} type="password" maxLength="20" id="acc_confirmPass" />
                                     {/* Thông báo lỗi nếu cần */}
                                 </div>
                                 {currentAlert === "error" && error && <div className="alert alert-danger">{error}</div>}
