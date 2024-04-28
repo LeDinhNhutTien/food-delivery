@@ -13,19 +13,19 @@ import java.util.Map;
 public class ForgetPassController {
     CustomerDao dao = new CustomerDao();
 
-    @PostMapping("/checkUsername")
-    public ResponseEntity<?> checkUsername(@RequestBody Map<String, String> credentials) {
-        String username = credentials.get("username");
-
-        if (username.isEmpty() || username == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tên đăng nhập không được để trống");
-        }
-        else if (dao.checkUsername(username)) {
-            return ResponseEntity.status(HttpStatus.OK).body("Username Ok");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Username không tồn tại");
-        }
-    }
+//    @PostMapping("/checkUsername")
+//    public ResponseEntity<?> checkUsername(@RequestBody Map<String, String> credentials) {
+//        String username = credentials.get("username");
+//
+//        if (username.isEmpty() || username == null) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tên đăng nhập không được để trống");
+//        }
+//        else if (dao.checkUsername(username)) {
+//            return ResponseEntity.status(HttpStatus.OK).body("Username Ok");
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Username không tồn tại");
+//        }
+//    }
 //    @PostMapping("/changePass")
 //        public ResponseEntity<?> checkUsername(@RequestBody Map<String, String> credentials) {
 //            String newPass = credentials.get("newPass");

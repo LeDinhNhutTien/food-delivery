@@ -3,7 +3,6 @@ package com.example.demo.Dao;
 import com.example.demo.Modal.*;
 import com.example.demo.utils.*;
 import com.example.demo.Dao.*;
-
 import java.sql.*;
 
 public class CustomerDao {
@@ -12,7 +11,7 @@ public class CustomerDao {
         String query = "INSERT into customer(username, password, first_name, last_name, phone, address, role)\n" +
                 "VALUES(?, ?, \"\", \"\", \"\", \"\", \"user\")";
 
-        try (Connection connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
+        try (Connection connection = DatabaseConnectionTest.getConnection();
              PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, user);
@@ -38,7 +37,7 @@ public class CustomerDao {
     public boolean login(String user, String pass) {
         String query = "SELECT * FROM customer WHERE username = ? AND password = ?";
 
-        try (Connection connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
+        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
             ps.setString(1, user);
@@ -60,7 +59,7 @@ public class CustomerDao {
     public Integer getById(String user, String pass) {
         String query = "SELECT id_user  FROM customer WHERE username = ? AND password = ?";
 
-        try (Connection connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
+        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
             ps.setString(1, user);
@@ -82,7 +81,7 @@ public class CustomerDao {
     public boolean checkPass(String username, String pass) {
         String query = "SELECT * FROM customer WHERE username = ? AND password = ?";
 
-        try (Connection connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
+        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
             ps.setString(1, username);
@@ -104,7 +103,7 @@ public class CustomerDao {
     public boolean checkUsername(String username) {
         String query = "SELECT * FROM customer WHERE username = ?";
 
-        try (Connection connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
+        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
             ps.setString(1, username);
@@ -124,7 +123,7 @@ public class CustomerDao {
     public boolean updatePassword(String username, String newPassword) {
         String query = "UPDATE customer SET password = ? WHERE username = ?";
 
-        try (Connection connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
+        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
             ps.setString(1, utils.encrypt(newPassword));
@@ -140,7 +139,7 @@ public class CustomerDao {
     public Customer getUserInfo(String username) {
         String query = "SELECT username, password, first_name,last_name,phone,address FROM customer WHERE username = ?";
 
-        try (Connection connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
+        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
             ps.setString(1, username);
@@ -163,7 +162,7 @@ public class CustomerDao {
     public boolean updateAccount(String username, String firstName, String lastName, String phone, String address) {
         String query = "UPDATE customer SET username = ?, first_name = ?, last_name = ?, phone = ?, address = ? WHERE username = ?";
 
-        try (Connection connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
+        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
             ps.setString(1,username);
