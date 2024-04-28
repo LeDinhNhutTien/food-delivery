@@ -34,4 +34,13 @@ public class RegisterController {
         }
     }
 
+    @GetMapping("/checkUsername/{username}")
+    public ResponseEntity<String> checkUsernameExists(@PathVariable String username) {
+        if (dao.checkUsername(username) == true) {
+            return ResponseEntity.status(HttpStatus.OK).body("Tài khoản đã tồn tại");
+
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tài khoản chưa tồn tại");
+        }
+    }
 }

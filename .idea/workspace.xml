@@ -5,18 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7040cd83-6514-43a4-b2fb-11366a5bec77" name="Changes" comment="tất cả sản phẩm bổ sung chức năng lọc sản phẩm">
-      <change afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/servlet/SuggestionsServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/ForgetPassController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/ForgetPassController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/RegisterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Dao/CustomerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Dao/CustomerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/DatabaseConnectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/DatabaseConnectionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/ProductDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/servlet/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/servlet/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/utils/MD5Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/utils/MD5Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/AllFoods.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/AllFoods.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Account.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Account.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Register.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +52,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;A:/NhungNgu/food-delivery/back_end&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/ChuyenDeWeb/sell-cake/back_end&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -140,6 +138,10 @@
       <workItem from="1713235863208" duration="7252000" />
       <workItem from="1713269963644" duration="4062000" />
       <workItem from="1713750849803" duration="383000" />
+      <workItem from="1713971450619" duration="3278000" />
+      <workItem from="1714043107059" duration="29000" />
+      <workItem from="1714099268530" duration="7976000" />
+      <workItem from="1714284101968" duration="2656000" />
     </task>
     <task id="LOCAL-00001" summary="fix code">
       <created>1712395860228</created>
@@ -200,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713240382018</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fix chức năng cập nhật tài khoản, thêm phần đăng xuất">
+      <created>1714106722618</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1714106722618</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,6 +221,7 @@
     <MESSAGE value="load hình ảnh từ API" />
     <MESSAGE value="load hình ảnh từ API, fix lại trang home" />
     <MESSAGE value="tất cả sản phẩm bổ sung chức năng lọc sản phẩm" />
-    <option name="LAST_COMMIT_MESSAGE" value="tất cả sản phẩm bổ sung chức năng lọc sản phẩm" />
+    <MESSAGE value="fix chức năng cập nhật tài khoản, thêm phần đăng xuất" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix chức năng cập nhật tài khoản, thêm phần đăng xuất" />
   </component>
 </project>

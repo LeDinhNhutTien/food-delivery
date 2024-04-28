@@ -99,7 +99,7 @@ const Account = () => {
                             <form id="form" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
                                 <div className="input ">
                                     <label><span className="req">*</span>Tên đăng nhập:</label>
-                                    <input name="userName" type="text" value={formData.username} onChange={handleChange} onKeyPress={handleKeyPress} maxLength="150" id="acc_email" />
+                                    <input name="userName" type="text" value={formData.username} maxLength="150" id="acc_email" />
                                     <small>{error}</small>
                                 </div>
                                 <div className="input ">

@@ -23,21 +23,6 @@ public class AccountController {
         String phone = credentials.get("phone");
         String address = credentials.get("address");
 
-//        if(username.isEmpty() || firstName == null){
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tên đăng nhập không được để trống");
-//        }
-//        if (firstName.isEmpty() || firstName == null) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Mật khẩu mới không được để trống");
-//        }
-//        if(lastName.isEmpty() || lastName == null){
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Mật khẩu cũ không được để trống");
-//        }
-//        if (phone.isEmpty() || phone == null) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Mật khẩu mới không được để trống");
-//        }
-//        if (address.isEmpty() || address == null) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Mật khẩu mới không được để trống");
-//        }
 //        if(dao.checkUsername(username)){
 //            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tên đăng nhập đã tồn tại");
 //        }
