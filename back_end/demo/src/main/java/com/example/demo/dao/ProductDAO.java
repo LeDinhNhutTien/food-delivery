@@ -24,7 +24,7 @@ public class ProductDAO {
 
         try {
             // Connect to the database
-            connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
+            connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
             statement = connection.createStatement();
 
             // Execute the query
@@ -83,7 +83,7 @@ public class ProductDAO {
 
         try {
             // Connect to the database
-            connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
+            connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
             statement = connection.createStatement();
 
             // Execute the query to get search suggestions

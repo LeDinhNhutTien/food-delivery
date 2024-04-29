@@ -1,8 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Dao.CustomerDao;
-import com.example.demo.Modal.Customer;
-import jakarta.servlet.http.HttpServletRequest;
+import com.example.demo.Modal.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,11 +22,9 @@ public class AccountController {
         String phone = credentials.get("phone");
         String address = credentials.get("address");
 
-//        if(dao.checkUsername(username)){
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tên đăng nhập đã tồn tại");
-//        }
          if (dao.updateAccount(username, firstName, lastName, phone, address)) {
-            return ResponseEntity.status(HttpStatus.OK).body("Thông tin đã được cập nhật");
+             Customer c = new Customer(username, "", firstName, lastName, phone, address);
+            return ResponseEntity.ok(c);
 
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cập nhật không thành công");

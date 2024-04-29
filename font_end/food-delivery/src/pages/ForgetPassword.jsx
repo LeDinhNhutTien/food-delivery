@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import '../styles/change-password.css';
+import '../styles/forget-password.css';
 
 const ChangePassword = () => {
     const [username, setUsername] = useState("");
@@ -9,23 +10,22 @@ const ChangePassword = () => {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const [currentAlert, setCurrentAlert] = useState(""); // Thêm state để theo dõi thông báo hiện tại
-    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-
-    useEffect(() => {
-        if (userInfo) {
-            setUsername(userInfo.username);
-        }
-    }, [userInfo]); // Thêm dependency userInfo vào useEffect để cập nhật username khi userInfo thay đổi
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-     try {
-            const response = await fetch("http://localhost:8080/api/changePassword", {
+        try {
+            // Kiểm tra username đã tồn tại hay chưa
+            const usernameCheckResponse = await fetch(`http://localhost:8080/api/checkUsername/${username}`);
+            if (!usernameCheckResponse.ok) {
+                setError("Tên đăng nhập không tồn tại");
+                return;
+            } else {
+            const response = await fetch("http://localhost:8080/api/forgetPassword", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({username, oldPass, newPass}),
+                body: JSON.stringify({username, newPass, confirmPassword}),
             });
 
             if (response.ok) {
@@ -37,7 +37,8 @@ const ChangePassword = () => {
                 setError(errorMessage);
                 setCurrentAlert("error"); // Cập nhật thông báo hiện tại là lỗi
             }
-        } catch (error) {
+        }
+            }catch (error) {
             console.error("Error:", error);
         }
     };
@@ -63,43 +64,51 @@ const ChangePassword = () => {
             setError("");
         }
     };
-    const handleLogout = () => {
-        // Xóa sessionStorage khi người dùng đăng xuất
-        sessionStorage.removeItem("userInfo");
-        // Chuyển hướng người dùng đến trang đăng nhập hoặc trang chính
-        window.location.href = "/home"; // Thay đổi đường dẫn tùy theo yêu cầu của bạn
+    // Function to handle checking username
+    const checkUsername = async (username) => {
+        try {
+            const response = await fetch(`http://localhost:8080/api/checkUsername/${username}`);
+            const data = await response.text();
+            if (!response.ok) {
+                setError(data);
+            }else {
+                setError("");
+            }
+        } catch (error) {
+            console.error("Error checking username:", error);
+        }
+    };
+
+    // Debounce function
+    const debounce = (func, delay) => {
+        let timeoutId;
+        return function (...args) {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => func.apply(this, args), delay);
+        };
+    };
+
+    // Debounced version of checkUsername function with 500ms delay
+    const debouncedCheckUsername = debounce(checkUsername, 500);
+
+    // Event handler for username input change
+    const handleUsernameChange = (event) => {
+        const newUsername = event.target.value;
+        setUsername(newUsername);
+        debouncedCheckUsername(newUsername); // Debounced check
     };
     return (
         <div id="content">
             <div className="wrapper">
                 <div className="form_ctrl">
-                    <div className="acc_ctrl m_r12">
-                        <h2>Tài khoản</h2>
-                        <div className="list_ctrl">
-                            <ul>
-                                <li className="first">
-                                    <a id="account" title="Thông tin tài khoản" href="/account">Thông tin tài khoản</a>
-                                </li>
-                                <li className="first active">
-                                    <a id="changePassword" title="Đổi mật khẩu" href="/changePassword">Đổi mật khẩu</a>
-                                </li>
-                                <li className="first">
-                                    <a id="reviewOrders" title="Xem lại đơn hàng" href="/account?action=reviewOrders">Xem lại đơn hàng</a>
-                                </li>
-                                <li className="first">
-                                    <a onClick={handleLogout} id="logout" title="Đăng xuất" href="/home">Đăng xuất</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="col_1_1">
+                    <div className="col_1_1 ml-5">
                         <div id="login" className="frm_content">
-                            <h2>Thay đổi mật khẩu</h2>
+                            <h2>Quên mật khẩu</h2>
                             {/* Xử lý hiển thị thông báo nếu cần */}
                             <form onSubmit={handleSubmit}>
                                 <div className="input">
-                                    <label htmlFor="acc_oldPass"><span className="req">*</span>Mật khẩu cũ:</label>
-                                    <input name="oldPass" value={oldPass} onChange={(e) => setOldPass(e.target.value)} type="password" maxLength="20" id="acc_oldPass" />
+                                    <label htmlFor="acc_oldPass"><span className="req">*</span>Tên đăng nhập</label>
+                                    <input name="oldPass" value={username} onChange={handleUsernameChange} type="text" maxLength="20" id="acc_username" />
                                 </div>
                                 <div className="input">
                                     <label htmlFor="acc_newPass"><span className="req">*</span>Mật khẩu mới:</label>
