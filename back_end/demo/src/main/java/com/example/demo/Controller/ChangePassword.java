@@ -18,7 +18,7 @@ public class ChangePassword {
         String oldPass = credentials.get("oldPass");
         String newPass = credentials.get("newPass");
 
-        if(oldPass.isEmpty()){
+        if(oldPass.isEmpty() || oldPass == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Mật khẩu cũ không được để trống");
         }
         if (newPass.isEmpty() || newPass == null) {
