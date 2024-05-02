@@ -1,4 +1,4 @@
-package com.example.demo.Modal;
+package com.example.demo.modal;
 
 public class Customer {
     int id_user;

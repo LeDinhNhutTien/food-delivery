@@ -1,15 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  cartItems: [],
-  totalQuantity: 0,
-  totalAmount: 0,
+  cartItems: JSON.parse(localStorage.getItem("cartItems")) || [],
+  totalQuantity: parseInt(localStorage.getItem("totalQuantity")) || 0,
+  totalAmount: parseFloat(localStorage.getItem("totalAmount")) || 0,
 };
 
 const setItemFunc = (cartItems, totalAmount, totalQuantity) => {
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
   localStorage.setItem("totalAmount", JSON.stringify(totalAmount));
   localStorage.setItem("totalQuantity", JSON.stringify(totalQuantity));
+};
+
+const calculateTotalAmount = (cartItems) => {
+  return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 };
 
 const cartSlice = createSlice({
@@ -23,18 +27,20 @@ const cartSlice = createSlice({
       );
 
       if (existingItemIndex === -1) {
+        const imageUrl = newItem.imageUrl && newItem.imageUrl[0];
         state.cartItems.push({
           id: newItem.id,
           name: newItem.name,
           price: newItem.price,
           quantity: 1,
+          imageUrl: imageUrl,
         });
       } else {
         state.cartItems[existingItemIndex].quantity++;
       }
 
       state.totalQuantity++;
-      state.totalAmount += newItem.price;
+      state.totalAmount = calculateTotalAmount(state.cartItems);
 
       setItemFunc(state.cartItems, state.totalAmount, state.totalQuantity);
     },
@@ -45,19 +51,20 @@ const cartSlice = createSlice({
       );
 
       if (existingItemIndex !== -1) {
-        if (state.cartItems[existingItemIndex].quantity === 1) {
+        const existingItem = state.cartItems[existingItemIndex];
+        if (existingItem.quantity === 1) {
           state.cartItems.splice(existingItemIndex, 1);
         } else {
-          state.cartItems[existingItemIndex].quantity--;
+          existingItem.quantity--;
         }
 
         state.totalQuantity--;
-        state.totalAmount -= state.cartItems[existingItemIndex].price;
+        state.totalAmount = calculateTotalAmount(state.cartItems);
 
         setItemFunc(state.cartItems, state.totalAmount, state.totalQuantity);
       }
     },
-    // Add other reducers as needed
+    // Thêm các reducers khác nếu cần
   },
 });
 

@@ -1,8 +1,8 @@
-package com.example.demo.Dao;
+package com.example.demo.dao;
 
-import com.example.demo.Modal.*;
-import com.example.demo.Modal.Product;
-import com.example.demo.service.*;
+
+
+import com.example.demo.modal.Product;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,15 +16,15 @@ public class ProductDAO {
 
     private static final Logger LOGGER = Logger.getLogger(ProductDAO.class.getName());
 
-    public List<com.example.demo.Modal.Product> getAllProducts() {
+    public List<Product> getAllProducts() {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
-        List<com.example.demo.Modal.Product> productList = new ArrayList<>();
+        List<Product> productList = new ArrayList<>();
 
         try {
             // Connect to the database
-            connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
+            connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
             statement = connection.createStatement();
 
             // Execute the query
@@ -55,7 +55,7 @@ public class ProductDAO {
                     }
                 }
                 // Create a Product object and add to the list
-                com.example.demo.Modal.Product product = new Product(id, name, type, description, price, imageUrls, specification, dateTime);
+                Product product = new Product(id, name, type, description, price, imageUrls, specification, dateTime);
                 productList.add(product);
             }
 
@@ -83,7 +83,7 @@ public class ProductDAO {
 
         try {
             // Connect to the database
-            connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
+            connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
             statement = connection.createStatement();
 
             // Execute the query to get search suggestions

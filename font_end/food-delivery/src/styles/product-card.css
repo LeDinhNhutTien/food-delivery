@@ -51,4 +51,27 @@
     padding: 5px 15px;
     font-size: 0.7rem;
   }
+  /* CSS cho nút "Thêm vào giỏ hàng" */
+  .addTOCart__btn {
+    background-color: #007bff; /* Màu nền */
+    color: #fff; /* Màu chữ */
+    border: none; /* Không có viền */
+    padding: 8px 16px; /* Kích thước padding */
+    cursor: pointer; /* Con trỏ chuột là pointer */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển đổi màu nền */
+  }
+
+  .addTOCart__btn:hover {
+    background-color: #0056b3; /* Màu nền khi di chuột vào */
+  }
+
+  /* CSS cho nút "Đã thêm vào giỏ hàng" */
+  .addedToCart__btn {
+    background-color: #28a745; /* Màu nền */
+    color: #fff; /* Màu chữ */
+    border: none; /* Không có viền */
+    padding: 8px 16px; /* Kích thước padding */
+    cursor: not-allowed; /* Không cho phép click */
+  }
+
 }

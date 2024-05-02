@@ -1,12 +1,13 @@
-package com.example.demo.servlet;
+package com.example.demo.Controller;
 
 
-import com.example.demo.Dao.ProductDAO;
+import com.example.demo.dao.ProductDAO;
+import com.example.demo.modal.Product;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.demo.Modal.Product;
+
 
 import java.util.List;
 

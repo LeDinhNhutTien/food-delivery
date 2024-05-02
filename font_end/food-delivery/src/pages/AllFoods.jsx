@@ -95,9 +95,10 @@ const AllFoods = () => {
     );
 
     const handleSuggestionClick = (suggestion) => {
+        setSuggestions([]);
         setSearchTerm(suggestion);
         setShowSuggestions(false);
-        setSuggestions([]);
+
     };
 
     const sortedProducts = filteredProducts.sort((a, b) => {

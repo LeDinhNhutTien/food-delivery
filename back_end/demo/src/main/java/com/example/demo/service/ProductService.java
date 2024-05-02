@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 
 import org.springframework.stereotype.Service;
-import com.example.demo.Modal.Product;
+import com.example.demo.modal.Product;
 import java.util.ArrayList;
 import java.util.List;
 
