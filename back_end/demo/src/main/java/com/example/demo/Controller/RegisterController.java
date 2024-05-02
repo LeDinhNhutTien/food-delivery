@@ -16,6 +16,7 @@ public class RegisterController {
     public ResponseEntity<?> register(@RequestBody Map<String, String> credentials) {
         String username = credentials.get("username");
         String password = credentials.get("password");
+
         if(username.isEmpty() &&  password.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Thông tin người dùng và mật khẩu không được để trống");
         }
@@ -33,4 +34,13 @@ public class RegisterController {
         }
     }
 
+    @GetMapping("/checkUsername/{username}")
+    public ResponseEntity<String> checkUsernameExists(@PathVariable String username) {
+        if (dao.checkUsername(username) == true) {
+            return ResponseEntity.status(HttpStatus.OK).body("Tài khoản đã tồn tại");
+
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tài khoản chưa tồn tại");
+        }
+    }
 }

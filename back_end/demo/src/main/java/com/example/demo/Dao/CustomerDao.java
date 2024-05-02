@@ -1,9 +1,8 @@
 package com.example.demo.dao;
 
-import com.example.demo.modal.*;
+import com.example.demo.Modal.*;
 import com.example.demo.utils.*;
-import com.example.demo.dao.*;
-
+import com.example.demo.Dao.*;
 import java.sql.*;
 
 public class CustomerDao {
@@ -12,7 +11,7 @@ public class CustomerDao {
         String query = "INSERT into customer(username, password, first_name, last_name, phone, address, role)\n" +
                 "VALUES(?, ?, \"\", \"\", \"\", \"\", \"user\")";
 
-        try (Connection connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
+        try (Connection connection = DatabaseConnectionTest.getConnection();
              PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, user);
@@ -100,6 +99,27 @@ public class CustomerDao {
             return false;
         }
     }
+
+    public boolean checkUsername(String username) {
+        String query = "SELECT * FROM customer WHERE username = ?";
+
+        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+
+            ps.setString(1, username);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return true; // check success
+                } else {
+                    return false; // check failed
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     public boolean updatePassword(String username, String newPassword) {
         String query = "UPDATE customer SET password = ? WHERE username = ?";
 
@@ -108,6 +128,49 @@ public class CustomerDao {
 
             ps.setString(1, utils.encrypt(newPassword));
             ps.setString(2, username);
+
+            int rowsUpdated = ps.executeUpdate();
+            return rowsUpdated > 0; // Trả về true nếu có ít nhất một hàng được cập nhật
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Trả về false nếu có lỗi xảy ra
+        }
+    }
+    public Customer getUserInfo(String username) {
+        String query = "SELECT username, password, first_name,last_name,phone,address FROM customer WHERE username = ?";
+
+        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+
+            ps.setString(1, username);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Customer customer = new Customer(rs.getString(1),rs.getString(2),
+                            rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+                    return customer; // check success
+                } else {
+                    return null; // check failed
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public boolean updateAccount(String username, String firstName, String lastName, String phone, String address) {
+        String query = "UPDATE customer SET username = ?, first_name = ?, last_name = ?, phone = ?, address = ? WHERE username = ?";
+
+        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+
+            ps.setString(1,username);
+            ps.setString(2, firstName);
+            ps.setString(3,lastName);
+            ps.setString(4, phone);
+            ps.setString(5,address);
+            ps.setString(6,username);
 
             int rowsUpdated = ps.executeUpdate();
             return rowsUpdated > 0; // Trả về true nếu có ít nhất một hàng được cập nhật

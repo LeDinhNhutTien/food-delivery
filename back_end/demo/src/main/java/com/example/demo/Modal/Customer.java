@@ -12,19 +12,13 @@ public class Customer {
 
     public Customer(){}
 
-    public Customer(String username, String password, String first_name, String last_name, String phone, String address, String role) {
+    public Customer(String username, String password, String first_name, String last_name, String phone, String address) {
         this.username = username;
         this.password = password;
         this.first_name = first_name;
         this.last_name = last_name;
         this.phone = phone;
         this.address = address;
-        this.role = role;
-    }
-
-    public Customer(String username, String password) {
-        this.username = username;
-        this.password = password;
     }
 
     public int getId_user() {

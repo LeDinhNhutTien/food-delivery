@@ -1,6 +1,6 @@
 package com.example.demo.servlet;
 
-import com.example.demo.dao.ProductDAO;
+import com.example.demo.Dao.ProductDAO;
 import com.google.gson.Gson;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;

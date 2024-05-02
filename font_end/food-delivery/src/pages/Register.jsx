@@ -9,31 +9,87 @@ const Register = () => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
+    // Function to handle checking username
+    const checkUsername = async (username) => {
+        try {
+            const response = await fetch(`http://localhost:8080/api/checkUsername/${username}`);
+            const data = await response.text();
+            if (response.ok) {
+                setError(data);
+            }else {
+                setError("");
+            }
+        } catch (error) {
+            console.error("Error checking username:", error);
+        }
+    };
+
+    // Debounce function
+    const debounce = (func, delay) => {
+        let timeoutId;
+        return function (...args) {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => func.apply(this, args), delay);
+        };
+    };
+
+    // Debounced version of checkUsername function with 500ms delay
+    const debouncedCheckUsername = debounce(checkUsername, 500);
+
+    // Event handler for username input change
+    const handleUsernameChange = (event) => {
+        const newUsername = event.target.value;
+        setUsername(newUsername);
+        debouncedCheckUsername(newUsername); // Debounced check
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if(password.trim() !==(rePassword)){
-            setError("Mật khẩu nhập không khớp");
-        }
-        else if(password.trim() ===(rePassword)) {
             try {
-                const response = await fetch("http://localhost:8080/api/register", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({username, password, rePassword}),
-                });
-
-                if (response.ok) {
-                    navigate('/login') // Redirect to login page upon successful registration
-                    console.error("Success");
+                // Kiểm tra username đã tồn tại hay chưa
+                const usernameCheckResponse = await fetch(`http://localhost:8080/api/checkUsername/${username}`);
+                const usernameCheckResult = await usernameCheckResponse.text();
+                if (usernameCheckResponse.ok) {
+                    setError(usernameCheckResult);
+                    return;
                 } else {
-                    const errorMessage = await response.text();
-                    setError(errorMessage);
+                    const response = await fetch("http://localhost:8080/api/register", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({username, password, rePassword}),
+                    });
+
+                    if (response.ok) {
+                        navigate('/login') // Redirect to login page upon successful registration
+                        console.error("Success");
+                    } else {
+                        const errorMessage = await response.text();
+                        setError(errorMessage);
+                    }
                 }
             } catch (error) {
                 console.error("Error:", error);
             }
+    };
+    const handlePasswordChange = (event) => {
+        const newPassword = event.target.value;
+        setPassword(newPassword);
+        if (newPassword.length < 8) {
+            setError("Mật khẩu phải có ít nhất 8 ký tự");
+        } else {
+            setError("");
+        }
+    };
+
+    const handleRePasswordChange = (event) => {
+        const newRePassword = event.target.value;
+        setRePassword(newRePassword);
+        if (newRePassword !== password) {
+            setError("Mật khẩu nhập lại không khớp");
+        } else {
+            setError("");
         }
     };
 
@@ -42,9 +98,9 @@ const Register = () => {
             <form onSubmit={handleSubmit} className="form-signin text-center" style={{marginTop: "40px"}}>
                 <img className="mb-4 d-block mx-auto" src={heroImg} alt="" width="72" height="72"/>
                 <h1 className="h3 mb-3 font-weight-normal">Vui lòng nhập đầy đủ thông tin</h1>
-                <input style={{ marginBottom : "10px"}} type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} className="form-control" placeholder="Tên đăng nhập" required autoFocus/>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" placeholder="Mật khẩu" required/>
-                <input type="password" value={rePassword} onChange={(e) => setRePassword(e.target.value)} className="form-control" placeholder="Nhập lại mật khẩu" required/>
+                <input style={{ marginBottom : "10px"}} type="text" name="username" value={username} onChange={handleUsernameChange} className="form-control" placeholder="Tên đăng nhập" required autoFocus/>
+                <input type="password" value={password} onChange={handlePasswordChange} className="form-control" placeholder="Mật khẩu" required/>
+                <input type="password" value={rePassword} onChange={handleRePasswordChange} className="form-control" placeholder="Nhập lại mật khẩu" required/>
                 <div className="checkbox mb-3">
                     <label>
                         <input type="checkbox" value="remember-me"/> Remember me
