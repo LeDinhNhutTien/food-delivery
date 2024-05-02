@@ -1,6 +1,6 @@
-package com.example.demo.servlet;
+package com.example.demo.Controller;
 
-import com.example.demo.Dao.ProductDAO;
+import com.example.demo.dao.ProductDAO;
 import com.google.gson.Gson;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
@@ -17,17 +17,17 @@ public class SuggestionsServlet {
     @GetMapping
     protected void doGet(@RequestParam("query") String query, HttpServletResponse response) throws IOException {
         try {
-            // Gọi phương thức từ DAO để lấy danh sách gợi ý
+
             List<String> suggestions = ProductDAO.getSearchSuggestions(query);
 
-            // Thiết lập kiểu dữ liệu trả về là JSON
+
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
 
-            // Chuyển danh sách gợi ý thành chuỗi JSON
+
             String json = convertListToJson(suggestions);
 
-            // Gửi chuỗi JSON chứa danh sách gợi ý về client
+
             PrintWriter out = response.getWriter();
             out.print(json);
             out.flush();
@@ -39,9 +39,8 @@ public class SuggestionsServlet {
         }
     }
 
-    // Phương thức để chuyển danh sách gợi ý thành chuỗi JSON
     private String convertListToJson(List<String> suggestions) {
-        // Sử dụng Gson để chuyển đổi danh sách thành JSON
+
         return new Gson().toJson(suggestions);
     }
 }

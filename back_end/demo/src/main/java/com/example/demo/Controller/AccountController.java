@@ -1,7 +1,7 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Dao.CustomerDao;
-import com.example.demo.Modal.*;
+import com.example.demo.dao.CustomerDao;
+import com.example.demo.modal.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
