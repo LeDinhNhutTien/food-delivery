@@ -1,8 +1,8 @@
 package com.example.demo.dao;
 
-import com.example.demo.modal.*;
+
+
 import com.example.demo.modal.Product;
-import com.example.demo.service.*;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,11 +16,11 @@ public class ProductDAO {
 
     private static final Logger LOGGER = Logger.getLogger(ProductDAO.class.getName());
 
-    public List<com.example.demo.modal.Product> getAllProducts() {
+    public List<Product> getAllProducts() {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
-        List<com.example.demo.modal.Product> productList = new ArrayList<>();
+        List<Product> productList = new ArrayList<>();
 
         try {
             // Connect to the database
@@ -55,7 +55,7 @@ public class ProductDAO {
                     }
                 }
                 // Create a Product object and add to the list
-                com.example.demo.modal.Product product = new Product(id, name, type, description, price, imageUrls, specification, dateTime);
+                Product product = new Product(id, name, type, description, price, imageUrls, specification, dateTime);
                 productList.add(product);
             }
 

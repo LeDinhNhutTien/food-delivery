@@ -1,4 +1,4 @@
-package com.example.demo.Modal; // Changed package name to lowercase and corrected typo in 'Modal' to 'modal'
+package com.example.demo.modal; // Changed package name to lowercase and corrected typo in 'Modal' to 'modal'
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
