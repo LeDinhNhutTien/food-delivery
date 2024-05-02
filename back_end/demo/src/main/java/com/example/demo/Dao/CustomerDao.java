@@ -1,4 +1,4 @@
-package com.example.demo.Dao;
+package com.example.demo.dao;
 
 import com.example.demo.modal.*;
 import com.example.demo.utils.*;
@@ -38,7 +38,7 @@ public class CustomerDao {
     public boolean login(String user, String pass) {
         String query = "SELECT * FROM customer WHERE username = ? AND password = ?";
 
-        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
+        try (Connection connection = DatabaseConnectionTest.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
             ps.setString(1, user);
@@ -60,7 +60,7 @@ public class CustomerDao {
     public Integer getById(String user, String pass) {
         String query = "SELECT id_user  FROM customer WHERE username = ? AND password = ?";
 
-        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
+        try (Connection connection = DatabaseConnectionTest.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
             ps.setString(1, user);
@@ -82,7 +82,7 @@ public class CustomerDao {
     public boolean checkPass(String username, String pass) {
         String query = "SELECT * FROM customer WHERE username = ? AND password = ?";
 
-        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
+        try (Connection connection = DatabaseConnectionTest.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
             ps.setString(1, username);
@@ -103,7 +103,7 @@ public class CustomerDao {
     public boolean updatePassword(String username, String newPassword) {
         String query = "UPDATE customer SET password = ? WHERE username = ?";
 
-        try (Connection connection = com.example.demo.Dao.DatabaseConnectionTest.getConnection();
+        try (Connection connection = DatabaseConnectionTest.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
             ps.setString(1, utils.encrypt(newPassword));
