@@ -74,14 +74,11 @@ const ReviewOrder = () => {
                                   {/*<button className="tablinks" onClick="openCity(event, 'DonHangDaMua')">Đơn hàng đã mua*/}
                                   {/*</button>*/}
 
-                                  <button className="tablinks">Chờ xác nhận
-                                  </button>
-                                  <button className="tablinks" >Chờ lấy hàng
-                                  </button>
-                                  <button className="tablinks" >Đang giao</button>
-                                  <button className="tablinks" >Đánh giá</button>
-                                  <button className="tablinks" >Đơn hàng đã mua
-                                  </button>
+                                  {/*<button className="tablinks">Chờ xác nhận</button>*/}
+                                  {/*<button className="tablinks" >Chờ lấy hàng</button>*/}
+                                  {/*<button className="tablinks" >Đang giao</button>*/}
+                                  {/*<button className="tablinks" >Đánh giá</button>*/}
+                                  {/*<button className="tablinks" >Đơn hàng đã mua</button>*/}
                               </div>
 
                               {/*<c:if test="${not empty message}">*/}
@@ -111,6 +108,7 @@ const ReviewOrder = () => {
                                           <th scope="col">Mã đơn hàng</th>
                                           <th scope="col" >Tên sản phẩm</th>
                                           <th scope="col">Ảnh</th>
+                                          <th scope="col">Ngày</th>
                                           <th scope="col">Tình trạng</th>
                                           <th scope="col">Chi tiết</th>
                                       </tr>
@@ -143,185 +141,183 @@ const ReviewOrder = () => {
 
                                       </tbody>
                                   </table>
-
-
                               </div>
 
-                              <div id="ChoLayHang" className="tabcontent">
+                              {/*<div id="ChoLayHang" className="tabcontent">*/}
 
-                                  <table className="table">
-                                      <thead>
-                                      <tr>
-                                          <th scope="col">Mã đơn hàng</th>
-                                          <th scope="col" >Tên sản phẩm</th>
-                                          <th scope="col">Ảnh</th>
-                                          <th scope="col">Tình trạng</th>
-                                          <th scope="col">Chi tiết</th>
-                                      </tr>
-                                      </thead>
-                                      <tbody>
-                                      {/*<c:forEach var="cartW" items="${listBillWarByIdOrder}">*/}
-                                      {/*    <tr>*/}
-                                      {/*        <td><a*/}
-                                      {/*            href="${pageContext.request.contextPath}/orderDetail?id=${cartW.getId()}">${cartW.getId()}</a>*/}
-                                      {/*        </td>*/}
-                                      {/*        <td>*/}
-                                      {/*            /!*<c:forEach var="billW" items="${cartW.getBills()}">*!/*/}
-                                      {/*            /!*    <p>${billW.name}<br><br></p>*!/*/}
-                                      {/*            /!*</c:forEach>*!/*/}
-                                      {/*        </td>*/}
-                                      {/*        <td>*/}
-                                      {/*            /!*<c:forEach var="billW" items="${cartW.getBills()}">*!/*/}
-                                      {/*            /!*    <img style="height: 50px"*!/*/}
-                                      {/*            /!*         src="${pageContext.request.contextPath}/${billW.image}"><br><br>*!/*/}
-                                      {/*            /!*</c:forEach>*!/*/}
-                                      {/*        </td>*/}
-                                      {/*        <td><a className="btn_blue"*/}
-                                      {/*               href="${pageContext.request.contextPath}/cancelOrder?id=${cartW.id}">Hủy*/}
-                                      {/*            đơn</a></td>*/}
-                                      {/*        <td><a className="btn_blue"*/}
-                                      {/*               href="${pageContext.request.contextPath}/orderDetail?id=${cartW.id}">Chi*/}
-                                      {/*            tiết</a></td>*/}
-                                      {/*    </tr>*/}
-                                      {/*</c:forEach>*/}
+                              {/*    <table className="table">*/}
+                              {/*        <thead>*/}
+                              {/*        <tr>*/}
+                              {/*            <th scope="col">Mã đơn hàng</th>*/}
+                              {/*            <th scope="col" >Tên sản phẩm</th>*/}
+                              {/*            <th scope="col">Ảnh</th>*/}
+                              {/*            <th scope="col">Tình trạng</th>*/}
+                              {/*            <th scope="col">Chi tiết</th>*/}
+                              {/*        </tr>*/}
+                              {/*        </thead>*/}
+                              {/*        <tbody>*/}
+                              {/*        /!*<c:forEach var="cartW" items="${listBillWarByIdOrder}">*!/*/}
+                              {/*        /!*    <tr>*!/*/}
+                              {/*        /!*        <td><a*!/*/}
+                              {/*        /!*            href="${pageContext.request.contextPath}/orderDetail?id=${cartW.getId()}">${cartW.getId()}</a>*!/*/}
+                              {/*        /!*        </td>*!/*/}
+                              {/*        /!*        <td>*!/*/}
+                              {/*        /!*            /!*<c:forEach var="billW" items="${cartW.getBills()}">*!/*!/*/}
+                              {/*        /!*            /!*    <p>${billW.name}<br><br></p>*!/*!/*/}
+                              {/*        /!*            /!*</c:forEach>*!/*!/*/}
+                              {/*        /!*        </td>*!/*/}
+                              {/*        /!*        <td>*!/*/}
+                              {/*        /!*            /!*<c:forEach var="billW" items="${cartW.getBills()}">*!/*!/*/}
+                              {/*        /!*            /!*    <img style="height: 50px"*!/*!/*/}
+                              {/*        /!*            /!*         src="${pageContext.request.contextPath}/${billW.image}"><br><br>*!/*!/*/}
+                              {/*        /!*            /!*</c:forEach>*!/*!/*/}
+                              {/*        /!*        </td>*!/*/}
+                              {/*        /!*        <td><a className="btn_blue"*!/*/}
+                              {/*        /!*               href="${pageContext.request.contextPath}/cancelOrder?id=${cartW.id}">Hủy*!/*/}
+                              {/*        /!*            đơn</a></td>*!/*/}
+                              {/*        /!*        <td><a className="btn_blue"*!/*/}
+                              {/*        /!*               href="${pageContext.request.contextPath}/orderDetail?id=${cartW.id}">Chi*!/*/}
+                              {/*        /!*            tiết</a></td>*!/*/}
+                              {/*        /!*    </tr>*!/*/}
+                              {/*        /!*</c:forEach>*!/*/}
 
-                                      </tbody>
-                                  </table>
-                              </div>
+                              {/*        </tbody>*/}
+                              {/*    </table>*/}
+                              {/*</div>*/}
 
-                              <div id="DangGiao" className="tabcontent">
+                              {/*<div id="DangGiao" className="tabcontent">*/}
 
-                                  <table className="table">
-                                      <thead>
-                                      <tr>
-                                          <th scope="col">Mã đơn hàng</th>
-                                          <th scope="col" >Tên sản phẩm</th>
-                                          <th scope="col">Ảnh</th>
-                                          <th scope="col">Chi tiết</th>
-                                      </tr>
-                                      </thead>
-                                      <tbody>
-                                      {/*<c:forEach var="cartL" items="${listBillDelivByIdOrder}">*/}
-                                      {/*    <tr>*/}
-                                      {/*        <td><a*/}
-                                      {/*            href="${pageContext.request.contextPath}/orderDetail?id=${cartL.getId()}">${cartL.getId()}</a>*/}
-                                      {/*        </td>*/}
-                                      {/*        <td>*/}
-                                      {/*            /!*<c:forEach var="billL" items="${cartL.getBills()}">*!/*/}
-                                      {/*            /!*    <p>${billL.name}<br><br></p>*!/*/}
-                                      {/*            /!*</c:forEach>*!/*/}
-                                      {/*        </td>*/}
-                                      {/*        <td>*/}
-                                      {/*            /!*<c:forEach var="billL" items="${cartL.getBills()}">*!/*/}
-                                      {/*            /!*    <img style="height: 50px"*!/*/}
-                                      {/*            /!*         src="${pageContext.request.contextPath}/${billL.image}"><br><br>*!/*/}
-                                      {/*            /!*</c:forEach>*!/*/}
-                                      {/*        </td>*/}
-                                      {/*        <td><a className="btn_blue"*/}
-                                      {/*               href="${pageContext.request.contextPath}/orderDetail?id=${cartL.id}">Chi*/}
-                                      {/*            tiết</a></td>*/}
-                                      {/*    </tr>*/}
-                                      {/*</c:forEach>*/}
+                              {/*    <table className="table">*/}
+                              {/*        <thead>*/}
+                              {/*        <tr>*/}
+                              {/*            <th scope="col">Mã đơn hàng</th>*/}
+                              {/*            <th scope="col" >Tên sản phẩm</th>*/}
+                              {/*            <th scope="col">Ảnh</th>*/}
+                              {/*            <th scope="col">Chi tiết</th>*/}
+                              {/*        </tr>*/}
+                              {/*        </thead>*/}
+                              {/*        <tbody>*/}
+                              {/*        /!*<c:forEach var="cartL" items="${listBillDelivByIdOrder}">*!/*/}
+                              {/*        /!*    <tr>*!/*/}
+                              {/*        /!*        <td><a*!/*/}
+                              {/*        /!*            href="${pageContext.request.contextPath}/orderDetail?id=${cartL.getId()}">${cartL.getId()}</a>*!/*/}
+                              {/*        /!*        </td>*!/*/}
+                              {/*        /!*        <td>*!/*/}
+                              {/*        /!*            /!*<c:forEach var="billL" items="${cartL.getBills()}">*!/*!/*/}
+                              {/*        /!*            /!*    <p>${billL.name}<br><br></p>*!/*!/*/}
+                              {/*        /!*            /!*</c:forEach>*!/*!/*/}
+                              {/*        /!*        </td>*!/*/}
+                              {/*        /!*        <td>*!/*/}
+                              {/*        /!*            /!*<c:forEach var="billL" items="${cartL.getBills()}">*!/*!/*/}
+                              {/*        /!*            /!*    <img style="height: 50px"*!/*!/*/}
+                              {/*        /!*            /!*         src="${pageContext.request.contextPath}/${billL.image}"><br><br>*!/*!/*/}
+                              {/*        /!*            /!*</c:forEach>*!/*!/*/}
+                              {/*        /!*        </td>*!/*/}
+                              {/*        /!*        <td><a className="btn_blue"*!/*/}
+                              {/*        /!*               href="${pageContext.request.contextPath}/orderDetail?id=${cartL.id}">Chi*!/*/}
+                              {/*        /!*            tiết</a></td>*!/*/}
+                              {/*        /!*    </tr>*!/*/}
+                              {/*        /!*</c:forEach>*!/*/}
 
-                                      </tbody>
-                                  </table>
-                              </div>
-                              <div id="DanhGia" className="tabcontent">
-                                  <table className="table">
-                                      <thead>
-                                      <tr>
-                                          <th scope="col">Mã đơn hàng</th>
-                                          <th scope="col" >Tên sản phẩm</th>
-                                          <th scope="col">Ảnh</th>
-                                          <th scope="col">Đánh giá</th>
-                                          <th scope="col">Chi tiết</th>
-                                      </tr>
-                                      </thead>
-                                      <tbody>
-                                      {/*<c:forEach var="cartR" items="${listBillRateByIdOrder}">*/}
-                                      {/*    <tr>*/}
-                                      {/*        <td><a*/}
-                                      {/*            href="${pageContext.request.contextPath}/orderDetail?id=${cartR.getId()}">${cartR.getId()}</a>*/}
-                                      {/*        </td>*/}
-                                      {/*        <td>*/}
-                                      {/*            /!*<c:forEach var="billR" items="${cartR.getBills()}">*!/*/}
-                                      {/*            /!*    <p>${billR.name}<br><br></p>*!/*/}
-                                      {/*            /!*</c:forEach>*!/*/}
-                                      {/*        </td>*/}
-                                      {/*        <td>*/}
-                                      {/*            /!*<c:forEach var="billR" items="${cartR.getBills()}">*!/*/}
-                                      {/*            /!*    <img style="height: 50px"*!/*/}
-                                      {/*            /!*         src="${pageContext.request.contextPath}/${billR.image}"><br><br>*!/*/}
-                                      {/*            /!*</c:forEach>*!/*/}
-                                      {/*        </td>*/}
-                                      {/*        <td>*/}
-                                      {/*            /!*<c:forEach var="billR" items="${cartR.getBills()}">*!/*/}
-                                      {/*            /!*    <a className="btn_blue"*!/*/}
-                                      {/*            /!*       href="${pageContext.request.contextPath}/rate?id=${cartR.getId()}&idBook=${billR.idBook}">Đánh*!/*/}
-                                      {/*            /!*        giá</a><br><br>*!/*/}
-                                      {/*            /!*</c:forEach>*!/*/}
-                                      {/*        </td>*/}
-                                      {/*        <td><a className="btn_blue"*/}
-                                      {/*               href="${pageContext.request.contextPath}/orderDetail?id=${cartR.getId()}">Chi*/}
-                                      {/*            tiết</a></td>*/}
-                                      {/*    </tr>*/}
-                                      {/*</c:forEach>*/}
+                              {/*        </tbody>*/}
+                              {/*    </table>*/}
+                              {/*</div>*/}
+                              {/*<div id="DanhGia" className="tabcontent">*/}
+                              {/*    <table className="table">*/}
+                              {/*        <thead>*/}
+                              {/*        <tr>*/}
+                              {/*            <th scope="col">Mã đơn hàng</th>*/}
+                              {/*            <th scope="col" >Tên sản phẩm</th>*/}
+                              {/*            <th scope="col">Ảnh</th>*/}
+                              {/*            <th scope="col">Đánh giá</th>*/}
+                              {/*            <th scope="col">Chi tiết</th>*/}
+                              {/*        </tr>*/}
+                              {/*        </thead>*/}
+                              {/*        <tbody>*/}
+                              {/*        /!*<c:forEach var="cartR" items="${listBillRateByIdOrder}">*!/*/}
+                              {/*        /!*    <tr>*!/*/}
+                              {/*        /!*        <td><a*!/*/}
+                              {/*        /!*            href="${pageContext.request.contextPath}/orderDetail?id=${cartR.getId()}">${cartR.getId()}</a>*!/*/}
+                              {/*        /!*        </td>*!/*/}
+                              {/*        /!*        <td>*!/*/}
+                              {/*        /!*            /!*<c:forEach var="billR" items="${cartR.getBills()}">*!/*!/*/}
+                              {/*        /!*            /!*    <p>${billR.name}<br><br></p>*!/*!/*/}
+                              {/*        /!*            /!*</c:forEach>*!/*!/*/}
+                              {/*        /!*        </td>*!/*/}
+                              {/*        /!*        <td>*!/*/}
+                              {/*        /!*            /!*<c:forEach var="billR" items="${cartR.getBills()}">*!/*!/*/}
+                              {/*        /!*            /!*    <img style="height: 50px"*!/*!/*/}
+                              {/*        /!*            /!*         src="${pageContext.request.contextPath}/${billR.image}"><br><br>*!/*!/*/}
+                              {/*        /!*            /!*</c:forEach>*!/*!/*/}
+                              {/*        /!*        </td>*!/*/}
+                              {/*        /!*        <td>*!/*/}
+                              {/*        /!*            /!*<c:forEach var="billR" items="${cartR.getBills()}">*!/*!/*/}
+                              {/*        /!*            /!*    <a className="btn_blue"*!/*!/*/}
+                              {/*        /!*            /!*       href="${pageContext.request.contextPath}/rate?id=${cartR.getId()}&idBook=${billR.idBook}">Đánh*!/*!/*/}
+                              {/*        /!*            /!*        giá</a><br><br>*!/*!/*/}
+                              {/*        /!*            /!*</c:forEach>*!/*!/*/}
+                              {/*        /!*        </td>*!/*/}
+                              {/*        /!*        <td><a className="btn_blue"*!/*/}
+                              {/*        /!*               href="${pageContext.request.contextPath}/orderDetail?id=${cartR.getId()}">Chi*!/*/}
+                              {/*        /!*            tiết</a></td>*!/*/}
+                              {/*        /!*    </tr>*!/*/}
+                              {/*        /!*</c:forEach>*!/*/}
 
-                                      </tbody>
-                                  </table>
-                              </div>
-                              <div id="DonHangDaMua" className="tabcontent">
-                                  <table className="table">
-                                      <thead>
-                                      <tr>
-                                          <th scope="col">Mã đơn hàng</th>
-                                          <th scope="col">Tên sản phẩm</th>
-                                          <th scope="col">Ảnh</th>
-                                          <th scope="col">Số lượng</th>
-                                          <th scope="col">Tổng tiền</th>
-                                          <th scope="col">Tình trạng</th>
-                                      </tr>
-                                      </thead>
-                                      <tbody>
-                                      {/*<c:forEach var="cartH" items="${listBillByIdOrder}">*/}
-                                      {/*    <tr>*/}
-                                      {/*        <td><a*/}
-                                      {/*            href="${pageContext.request.contextPath}/orderDetail?id=${cartH.getId()}">${cartH.getId()}</a>*/}
-                                      {/*        </td>*/}
-                                      {/*        <td>*/}
-                                      {/*            /!*<c:forEach var="billH" items="${cartH.getBills()}">*!/*/}
-                                      {/*            /!*    <p>${billH.name}<br><br></p>*!/*/}
-                                      {/*            /!*</c:forEach>*!/*/}
-                                      {/*        </td>*/}
-                                      {/*        <td>*/}
-                                      {/*            /!*<c:forEach var="billH" items="${cartH.getBills()}">*!/*/}
-                                      {/*            /!*    <img style="height: 50px"*!/*/}
-                                      {/*            /!*         src="${pageContext.request.contextPath}/${billH.image}"><br><br>*!/*/}
-                                      {/*            /!*</c:forEach>*!/*/}
-                                      {/*        </td>*/}
-                                      {/*        <td>*/}
-                                      {/*            /!*<c:forEach var="billH" items="${cartH.getBills()}">*!/*/}
-                                      {/*            /!*    <p>${billH.quantity}<br><br></p>*!/*/}
-                                      {/*            /!*</c:forEach>*!/*/}
-                                      {/*        </td>*/}
-                                      {/*        <td>*/}
-                                      {/*            /!*<c:forEach var="billH" items="${cartH.getBills()}">*!/*/}
-                                      {/*            /!*    <p>${billH.totalPrice}<br><br></p>*!/*/}
-                                      {/*            /!*</c:forEach>*!/*/}
-                                      {/*        </td>*/}
-                                      {/*        <td>*/}
-                                      {/*            /!*<c:forEach var="billH" items="${cartH.getBills()}">*!/*/}
-                                      {/*            /!*    <a className="btn_blue"*!/*/}
-                                      {/*            /!*       href="${pageContext.request.contextPath}/products/product-detail?id=${billH.idBook}">Mua*!/*/}
-                                      {/*            /!*        lại</a><br><br>*!/*/}
-                                      {/*            /!*</c:forEach>*!/*/}
-                                      {/*        </td>*/}
-                                      {/*    </tr>*/}
-                                      {/*</c:forEach>*/}
+                              {/*        </tbody>*/}
+                              {/*    </table>*/}
+                              {/*</div>*/}
+                              {/*<div id="DonHangDaMua" className="tabcontent">*/}
+                              {/*    <table className="table">*/}
+                              {/*        <thead>*/}
+                              {/*        <tr>*/}
+                              {/*            <th scope="col">Mã đơn hàng</th>*/}
+                              {/*            <th scope="col">Tên sản phẩm</th>*/}
+                              {/*            <th scope="col">Ảnh</th>*/}
+                              {/*            <th scope="col">Số lượng</th>*/}
+                              {/*            <th scope="col">Tổng tiền</th>*/}
+                              {/*            <th scope="col">Tình trạng</th>*/}
+                              {/*        </tr>*/}
+                              {/*        </thead>*/}
+                              {/*        <tbody>*/}
+                              {/*        /!*<c:forEach var="cartH" items="${listBillByIdOrder}">*!/*/}
+                              {/*        /!*    <tr>*!/*/}
+                              {/*        /!*        <td><a*!/*/}
+                              {/*        /!*            href="${pageContext.request.contextPath}/orderDetail?id=${cartH.getId()}">${cartH.getId()}</a>*!/*/}
+                              {/*        /!*        </td>*!/*/}
+                              {/*        /!*        <td>*!/*/}
+                              {/*        /!*            /!*<c:forEach var="billH" items="${cartH.getBills()}">*!/*!/*/}
+                              {/*        /!*            /!*    <p>${billH.name}<br><br></p>*!/*!/*/}
+                              {/*        /!*            /!*</c:forEach>*!/*!/*/}
+                              {/*        /!*        </td>*!/*/}
+                              {/*        /!*        <td>*!/*/}
+                              {/*        /!*            /!*<c:forEach var="billH" items="${cartH.getBills()}">*!/*!/*/}
+                              {/*        /!*            /!*    <img style="height: 50px"*!/*!/*/}
+                              {/*        /!*            /!*         src="${pageContext.request.contextPath}/${billH.image}"><br><br>*!/*!/*/}
+                              {/*        /!*            /!*</c:forEach>*!/*!/*/}
+                              {/*        /!*        </td>*!/*/}
+                              {/*        /!*        <td>*!/*/}
+                              {/*        /!*            /!*<c:forEach var="billH" items="${cartH.getBills()}">*!/*!/*/}
+                              {/*        /!*            /!*    <p>${billH.quantity}<br><br></p>*!/*!/*/}
+                              {/*        /!*            /!*</c:forEach>*!/*!/*/}
+                              {/*        /!*        </td>*!/*/}
+                              {/*        /!*        <td>*!/*/}
+                              {/*        /!*            /!*<c:forEach var="billH" items="${cartH.getBills()}">*!/*!/*/}
+                              {/*        /!*            /!*    <p>${billH.totalPrice}<br><br></p>*!/*!/*/}
+                              {/*        /!*            /!*</c:forEach>*!/*!/*/}
+                              {/*        /!*        </td>*!/*/}
+                              {/*        /!*        <td>*!/*/}
+                              {/*        /!*            /!*<c:forEach var="billH" items="${cartH.getBills()}">*!/*!/*/}
+                              {/*        /!*            /!*    <a className="btn_blue"*!/*!/*/}
+                              {/*        /!*            /!*       href="${pageContext.request.contextPath}/products/product-detail?id=${billH.idBook}">Mua*!/*!/*/}
+                              {/*        /!*            /!*        lại</a><br><br>*!/*!/*/}
+                              {/*        /!*            /!*</c:forEach>*!/*!/*/}
+                              {/*        /!*        </td>*!/*/}
+                              {/*        /!*    </tr>*!/*/}
+                              {/*        /!*</c:forEach>*!/*/}
 
-                                      </tbody>
-                                  </table>
-                              </div>
+                              {/*        </tbody>*/}
+                              {/*    </table>*/}
+                              {/*</div>*/}
                           </div>
                       </div>
                   </div>
