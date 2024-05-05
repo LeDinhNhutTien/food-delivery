@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.HistoryDao;
-import com.example.demo.modal.Customer;
-import com.example.demo.modal.History;
-import com.example.demo.modal.Product;
+import com.example.demo.dao.*;
+import com.example.demo.modal.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

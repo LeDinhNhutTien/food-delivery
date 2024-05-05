@@ -1,7 +1,6 @@
 package com.example.demo.dao;
 
-import com.example.demo.modal.History;
-import com.example.demo.modal.Product;
+import com.example.demo.modal.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,21 +13,21 @@ public class HistoryDao {
         ResultSet resultSet = null;
         List<History> historyList = new ArrayList<>();
 
-        String query = "SELECT o.OrderID, p.`name`, i.url, o.CreationDate, o.OrderStatus\n" +
-                "FROM orders o JOIN orderitems od ON \n" +
-                "o.OrderID = od.OrderID JOIN products p \n" +
-                "ON p.id = od.ProductID JOIN images i\n" +
-                "ON i.products_id = p.id JOIN customer c\n" +
-                "ON c.id_user = o.UserID\n" +
+        String query = "SELECT o.OrderID, p.`name`, i.url, o.CreationDate, o.OrderStatus " +
+                "FROM orders o " +
+                "JOIN orderitems od ON o.OrderID = od.OrderID " +
+                "JOIN products p ON p.id = od.ProductID " +
+                "JOIN images i ON i.products_id = p.id " +
+                "JOIN customer c ON c.id_user = o.UserID " +
                 "WHERE c.id_user = ?";
         try {
             // Connect to the database
-            connection = com.example.demo.dao.DatabaseConnectionTest.getConnection();
+            connection = DatabaseConnectionTest.getConnection();
             PreparedStatement ps = connection.prepareStatement(query);
 
             ps.setInt(1, id);
 
-            resultSet = ps.executeQuery(query);
+            resultSet = ps.executeQuery(); // Execute the query without passing 'query' parameter
 
             // Process the results
             while (resultSet.next()) {
@@ -44,15 +43,26 @@ public class HistoryDao {
                 historyList.add(history);
             }
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
+            // Handle exceptions
         } finally {
+            // Close resources in the finally block
             try {
                 if (resultSet != null) resultSet.close();
                 if (connection != null) connection.close();
             } catch (SQLException e) {
+                // Handle exceptions
             }
         }
 
         return historyList;
+    }
+
+
+    public static void main(String[] args) throws SQLException {
+        HistoryDao dao = new HistoryDao();
+//        for (History h : dao.getAllHistory(1) ){
+//            System.out.println(h);
+//        }
     }
 }
