@@ -6,6 +6,17 @@ public class History {
     String url;
     String date;
     String status;
+    double totalPrice;
+    int quantity;
+
+    public History(String name, String url, String date, String status, double totalPrice, int quantity) {
+        this.name = name;
+        this.url = url;
+        this.date = date;
+        this.status = status;
+        this.totalPrice = totalPrice;
+        this.quantity = quantity;
+    }
 
     public History(int orderID, String name, String url, String date, String status) {
         this.orderID = orderID;

@@ -28,4 +28,16 @@ public class HistoryOrdersController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Không có lịch sử đơn hàng");
         }
     }
+
+    @GetMapping("/orderDetail/{id}")
+    public ResponseEntity<?> orderDetail(@PathVariable String id) throws SQLException {
+        HistoryDao historyDao = new HistoryDao();
+        int idd = Integer.parseInt(id);
+        if ( idd!=0) {
+            History history = historyDao.getHistoryById(Integer.parseInt(id));
+            return ResponseEntity.status(HttpStatus.OK).body(history);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tài khoản chưa tồn tại");
+        }
+    }
 }

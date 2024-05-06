@@ -114,7 +114,7 @@ const ReviewOrder = () => {
                                               <td><img style={{ height: "50px" }} src={order.url} alt="product" /></td>
                                               <td style={{paddingTop: "20px"}}>{order.date}</td>
                                               <td style={{paddingTop: "20px"}}>{order.status}</td>
-                                              <td style={{paddingTop: "20px"}}><a className="btn_blue" href={`/orderDetail?id=${order.orderID}`}>Chi tiết</a></td>
+                                              <td style={{paddingTop: "20px"}}><a className="btn_blue"  href={`/orderDetail?id=${order.orderID}`}>Chi tiết</a></td>
                                           </tr>
                                       ))}
                                       </tbody>
