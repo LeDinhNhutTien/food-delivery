@@ -19,6 +19,7 @@ import Account from "../pages/Account"
 import ReviewOrder from "../pages/ReviewOrder"
 import ChangePassword from  "../pages/changePassword"
 import ForgetPassword from "../pages/ForgetPassword";
+import OrderDetail from  "../pages/OrderDetail";
 
 const Routers = () => {
   return (
@@ -41,6 +42,7 @@ const Routers = () => {
           <Route path="/reviewOrder" element={<ReviewOrder />} />
           <Route path="/changePassword" element={<ChangePassword />} />
           <Route path="/forgetPassword" element={<ForgetPassword />} />
+          <Route path="/orderDetail" element={<OrderDetail />} />
       </Routes>
 
   );
