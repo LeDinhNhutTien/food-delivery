@@ -4,27 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7040cd83-6514-43a4-b2fb-11366a5bec77" name="Changes" comment="dùng ajax thực hiện gợi ý tìm kiếm sản phẩm">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="7040cd83-6514-43a4-b2fb-11366a5bec77" name="Changes" comment="thêm API tỉnh thành phố vào chức năng checkout">
+      <change afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/utils/FreeGNH.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/ChangePassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/ChangePassword.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/ForgetPassController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/ForgetPassController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/ForgetPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/ForgetPassword.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Dao/CustomerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Dao/CustomerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/DatabaseConnectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/DatabaseConnectionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/servlet/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/servlet/SuggestionsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/Controller/SuggestionsServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/components/UI/cart/CartItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/components/UI/cart/CartItem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/components/UI/cart/Carts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/components/UI/cart/Carts.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/components/UI/product-card/ProductCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/components/UI/product-card/ProductCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/store/shopping-cart/cartSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/store/shopping-cart/cartSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/styles/product-card.css" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/styles/product-card.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Checkout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Checkout.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,26 +44,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;A:/NhungNgu/food-delivery&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;A:\\IntelliJ IDEA 2024.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "A:/NhungNgu/food-delivery/back_end",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
+    "ts.external.directory.path": "A:\\IntelliJ IDEA 2024.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="A:\NhungNgu\food-delivery\font_end\food-delivery\src\assets" />
@@ -155,7 +140,11 @@
       <workItem from="1713269963644" duration="4062000" />
       <workItem from="1713750849803" duration="1414000" />
       <workItem from="1714614272439" duration="23000" />
-      <workItem from="1714614333796" duration="5739000" />
+      <workItem from="1714614333796" duration="8484000" />
+      <workItem from="1714652774856" duration="1407000" />
+      <workItem from="1714697968554" duration="1240000" />
+      <workItem from="1715307245792" duration="2441000" />
+      <workItem from="1715309736777" duration="1589000" />
     </task>
     <task id="LOCAL-00001" summary="fix code">
       <created>1712395860228</created>
@@ -240,7 +229,23 @@
       <option name="project" value="LOCAL" />
       <updated>1713751505474</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Thêm sản phẩm vào giỏ hàng">
+      <option name="closed" value="true" />
+      <created>1714620387075</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1714620387075</updated>
+    </task>
+    <task id="LOCAL-00013" summary="thêm API tỉnh thành phố vào chức năng checkout">
+      <option name="closed" value="true" />
+      <created>1714698604957</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1714698604957</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,6 +258,19 @@
     <MESSAGE value="load hình ảnh từ API, fix lại trang home" />
     <MESSAGE value="tất cả sản phẩm bổ sung chức năng lọc sản phẩm" />
     <MESSAGE value="dùng ajax thực hiện gợi ý tìm kiếm sản phẩm" />
-    <option name="LAST_COMMIT_MESSAGE" value="dùng ajax thực hiện gợi ý tìm kiếm sản phẩm" />
+    <MESSAGE value="Thêm sản phẩm vào giỏ hàng" />
+    <MESSAGE value="thêm API tỉnh thành phố vào chức năng checkout" />
+    <option name="LAST_COMMIT_MESSAGE" value="thêm API tỉnh thành phố vào chức năng checkout" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/font_end/food-delivery/src/pages/Checkout.jsx</url>
+          <line>72</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
