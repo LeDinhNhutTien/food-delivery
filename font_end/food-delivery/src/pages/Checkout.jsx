@@ -7,8 +7,9 @@ const Checkout = () => {
   const [wards, setWards] = useState([]);
   const [selectedProvince, setSelectedProvince] = useState('');
   const [selectedDistrict, setSelectedDistrict] = useState('');
+  const [selectedWard, setSelectedWard] = useState('');
   const [loading, setLoading] = useState(true);
-
+  const [shippingFee, setShippingFee] = useState('');
   useEffect(() => {
     const fetchProvinces = async () => {
       try {
@@ -47,6 +48,29 @@ const Checkout = () => {
     }
   };
 
+  const handleWardChange = async (event) => {
+    const value = event.target.value;
+    setSelectedWard(value);
+    const selectedWardData = wards.find(ward => ward.Id === value);
+    const selectedDistrictData = districts.find(district => district.Id === selectedDistrict);
+    console.log(selectedDistrictData.Name + selectedWardData.Name)
+    if (selectedWardData && selectedDistrictData) {
+      try {
+        const response = await fetch(`http://localhost:8080/api/feeGHN?toDistrict=${selectedDistrictData.Name}&toWard=${selectedWardData.Name}`);
+
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+
+        const data = await response.json();
+        setShippingFee(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+  };
+
   return (
       <div style={{ maxWidth: "85%", margin: "0 auto", marginTop: "80px", marginBottom: "80px" }}>
         <div className="row">
@@ -60,6 +84,7 @@ const Checkout = () => {
             </ul>
             <ul className="list-group mb-3">
               {/* Your list items */}
+              <p>Shipping fee: {shippingFee}</p> {/* Hiển thị giá vận chuyển */}
             </ul>
             <form className="card p-2">
               <div className="input-group">
@@ -116,7 +141,7 @@ const Checkout = () => {
                   </div>
                   <div className="col-md-4">
                     <label htmlFor="inputWard" className="form-label">Phường/xã</label>
-                    <select className="form-select" required>
+                    <select value={selectedWard} className="form-select" onChange={handleWardChange} required>
                       <option value="">Chọn Xã/Phường</option>
                       {wards && wards.map(ward => (
                           <option key={ward.Id} value={ward.Id}>
@@ -129,7 +154,7 @@ const Checkout = () => {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="inputAddress" className="form-label">Địa chỉ</label>
-                  <input type="text" className="form-control" id="inputAddress" placeholder="Địa chỉ" required />
+                  <input type="text" className="form-control" id="inputAddress" placeholder="Địa chỉ" required/>
                 </div>
                 <div className="mb-3">
                   <label htmlFor="inputNote" className="form-label">Ghi chú</label>
