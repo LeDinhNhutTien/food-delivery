@@ -47,7 +47,6 @@ const AllFoods = () => {
         debounce(async (query) => {
             try {
                 if (query.trim() === "") {
-                    // Nếu query là khoảng trắng, setSuggestions rỗng và không hiển thị gợi ý
                     setSuggestions([]);
                     setShowSuggestions(false);
                     return;

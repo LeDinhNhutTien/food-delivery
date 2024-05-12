@@ -1,5 +1,4 @@
 import React from "react";
-
 import CommonSection from "../components/UI/common-section/CommonSection";
 import Helmet from "../components/Helmet/Helmet";
 import "../styles/cart-page.css";
@@ -9,8 +8,14 @@ import { cartActions } from "../store/shopping-cart/cartSlice";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-    const cartItems = useSelector((state) => state.cart.cartItems);
     const totalAmount = useSelector((state) => state.cart.totalAmount);
+    const cartItems = useSelector((state) => state.cart.cartItems);
+    const dispatch = useDispatch();
+
+    const deleteItem = (id) => {
+        dispatch(cartActions.deleteItem(id));
+    };
+
     return (
         <Helmet title="Cart">
             <CommonSection title="Giỏ hàng của bạn" />
@@ -19,7 +24,7 @@ const Cart = () => {
                     <Row>
                         <Col lg="12">
                             {cartItems.length === 0 ? (
-                                <h5 className="text-center">Giỏ hàng của bạn thì trống</h5>
+                                <h5 className="text-center">Giỏ hàng của bạn trống</h5>
                             ) : (
                                 <table className="table table-bordered">
                                     <thead>
@@ -33,7 +38,7 @@ const Cart = () => {
                                     </thead>
                                     <tbody>
                                     {cartItems.map((item) => (
-                                        <Tr item={item} key={item.id} />
+                                        <Tr item={item} key={item.id} deleteItem={deleteItem} />
                                     ))}
                                     </tbody>
                                 </table>
@@ -63,22 +68,18 @@ const Cart = () => {
 };
 
 const Tr = (props) => {
-    const { id, image01, title, price, quantity } = props.item;
-    const dispatch = useDispatch();
+    const { id, imageUrl, name, price, quantity } = props.item;
 
-    const deleteItem = () => {
-        dispatch(cartActions.deleteItem(id));
-    };
     return (
         <tr>
             <td className="text-center cart__img-box">
-                <img src={image01} alt="" />
+                <img src={imageUrl} alt="" />
             </td>
-            <td className="text-center">{title}</td>
+            <td className="text-center">{name}</td>
             <td className="text-center">${price}</td>
-            <td className="text-center">{quantity}px</td>
+            <td className="text-center">{quantity}</td>
             <td className="text-center cart__item-del">
-                <i class="ri-delete-bin-line" onClick={deleteItem}></i>
+                <i className="ri-delete-bin-line" onClick={() => props.deleteItem(id)}></i>
             </td>
         </tr>
     );
