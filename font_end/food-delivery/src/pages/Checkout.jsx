@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {useSelector} from "react-redux";
 
 const Checkout = () => {
   const [provinces, setProvinces] = useState([]);
@@ -10,6 +11,12 @@ const Checkout = () => {
   const [selectedWard, setSelectedWard] = useState('');
   const [loading, setLoading] = useState(true);
   const [shippingFee, setShippingFee] = useState('');
+  const [shippingTime, setShippingTime] = useState('');
+  const [cartItems, setCartItems] = useState([]);
+  useEffect(() => {
+    const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    setCartItems(storedCartItems);
+  }, []);
   useEffect(() => {
     const fetchProvinces = async () => {
       try {
@@ -28,7 +35,9 @@ const Checkout = () => {
 
     fetchProvinces();
   }, []);
-
+  const totalPrice = cartItems.reduce((total, item) => {
+    return total + (item.price * item.quantity);
+  }, 0);
   const handleProvinceChange = (event) => {
     const value = event.target.value;
     setSelectedProvince(value);
@@ -56,20 +65,41 @@ const Checkout = () => {
     console.log(selectedDistrictData.Name + selectedWardData.Name)
     if (selectedWardData && selectedDistrictData) {
       try {
-        const response = await fetch(`http://localhost:8080/api/feeGHN?toDistrict=${selectedDistrictData.Name}&toWard=${selectedWardData.Name}`);
-
-
+        const encodedToDistrict = encodeURIComponent(selectedDistrictData.Name);
+        const encodedToWard = encodeURIComponent(selectedWardData.Name);
+        const response = await fetch(`http://localhost:8080/api/feeGHN?toDistrict=${encodedToDistrict}&toWard=${encodedToWard}`);
+        console.log(response);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
 
         const data = await response.json();
-        setShippingFee(data);
+
+
+        const total = data.total; // Lấy giá trị total từ đối tượng JSON data
+        const time = data.time;
+
+        setShippingFee(total); // Sử dụng giá trị total để cập nhật state hoặc giao diện người dùng
+        setShippingTime(time);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     }
   };
+
+
+// Parse totalPrice as a floating-point number
+  const totalPriceNumeric = parseFloat(totalPrice);
+
+// Parse shippingFee as a floating-point number, or set it to 0 if it's not defined
+  const shippingFeeNumeric = shippingFee ? parseFloat(shippingFee) : 0;
+
+// Add totalPriceNumeric to shippingFeeNumeric and round to 3 decimal places
+  const totalPriceWithShippingTime = (totalPriceNumeric + shippingFeeNumeric).toFixed(3);
+
+
+
+
 
   return (
       <div style={{ maxWidth: "85%", margin: "0 auto", marginTop: "80px", marginBottom: "80px" }}>
@@ -79,18 +109,47 @@ const Checkout = () => {
               <span className="text-muted">Giỏ hàng của bạn</span>
               <span className="badge badge-secondary badge-pill">3</span>
             </h4>
-            <ul className="list-group" style={{ textDecoration: "none" }}>
-              {/* Your list items */}
+            <ul className="list-group">
+              {cartItems.map((item, index) => (
+                  <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+                    <div className="d-flex align-items-center">
+                      <img src={item.imageUrl} alt={item.name} style={{width: "50px", marginRight: "10px"}}/>
+                      <span>{item.name}</span>
+                    </div>
+                    <div>
+                      <span className="badge bg-primary rounded-pill me-2">Price: ${item.price}</span>
+                      <br/>
+                      <span className="badge bg-secondary rounded-pill me-2">Quantity: {item.quantity}</span>
+                    </div>
+                  </li>
+              ))}
+              <li className="list-group-item d-flex justify-content-between align-items-center">
+                <span>Total Price Food:</span>
+                <span>${totalPrice.toFixed(2)}</span>
+              </li>
             </ul>
+
             <ul className="list-group mb-3">
               {/* Your list items */}
-              <p>Shipping fee: {shippingFee}</p> {/* Hiển thị giá vận chuyển */}
+              <li className="list-group-item d-flex justify-content-between align-items-center">
+                <span>Delivery charges:</span>
+                <span className="badge bg-primary rounded-pill">{shippingFee}</span>
+              </li>
+              <li className="list-group-item d-flex justify-content-between align-items-center">
+                <span>Delivery time:</span>
+                <span className="badge bg-primary rounded-pill">{shippingTime}</span>
+              </li>
+              <li className="list-group-item d-flex justify-content-between align-items-center">
+                <span>Total Price:</span>
+                <span className="badge bg-primary rounded-pill">{totalPriceWithShippingTime}</span>
+              </li>
             </ul>
+
             <form className="card p-2">
               <div className="input-group">
-                <input type="text" className="form-control" placeholder="Promo code" />
+                <input type="text" className="form-control" placeholder="Promo code"/>
                 <div className="input-group-append">
-                  <button type="submit" className="btn btn-secondary">Redeem</button>
+                <button type="submit" className="btn btn-secondary">Redeem</button>
                 </div>
               </div>
             </form>
@@ -103,7 +162,7 @@ const Checkout = () => {
                 <div className="row g-3">
                   <div className="col-md-6">
                     <label htmlFor="inputName" className="form-label">Tên</label>
-                    <input type="text" className="form-control" id="inputName" placeholder="Tên" required />
+                    <input type="text" className="form-control" id="inputName" placeholder="Tên" required/>
                   </div>
                   <div className="col-md-6">
                     <label htmlFor="inputPhone" className="form-label">Điện thoại</label>
