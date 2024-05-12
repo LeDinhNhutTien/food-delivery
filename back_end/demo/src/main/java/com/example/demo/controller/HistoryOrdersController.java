@@ -34,7 +34,7 @@ public class HistoryOrdersController {
         HistoryDao historyDao = new HistoryDao();
         int idd = Integer.parseInt(id);
         if ( idd!=0) {
-            History history = historyDao.getHistoryById(Integer.parseInt(id));
+            List<History> history = historyDao.getHistoryById(Integer.parseInt(id));
             return ResponseEntity.status(HttpStatus.OK).body(history);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tài khoản chưa tồn tại");

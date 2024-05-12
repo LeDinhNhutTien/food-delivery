@@ -84,16 +84,10 @@ const ReviewOrder = () => {
                               <div className="order-box-header-left">
                                   Thông tin đơn hàng
                               </div>
-                              {/*<*/}
-                              {/*%-- <div className="clear">--%>*/}
-                              {/*<%-- Các hóa đơn--%>*/}
-                              {/*<%-- </div>--%>*/}
                           </div>
                           <div className="paging">
                               <div className="tab">
-
                               </div>
-
                               <div id="ChoXacNhan" className="tabcontent">
                                   <table className="table">
                                       <thead>

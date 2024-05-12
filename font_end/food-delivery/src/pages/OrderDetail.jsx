@@ -4,7 +4,7 @@ import '../styles/order-detail.css';
 
 const OrderDetail = () => {
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-    const [orderDetail, setOrderDetail] = useState(null);
+    const [orderDetail, setOrderDetail] = useState([]);
 
     useEffect(() => {
         const fetchOrderDetail = async () => {
@@ -14,6 +14,7 @@ const OrderDetail = () => {
                 if (response.ok) {
                     const data = await response.json();
                     setOrderDetail(data);
+                    console.error("Error order detail");
                 } else {
                     console.error("Error fetching order detail");
                 }
@@ -30,8 +31,8 @@ const OrderDetail = () => {
             <div>
                 <h1 className="text-center my-4" style={{ paddingTop: "60px" }}>Chi tiết đơn hàng</h1>
             </div>
-            {orderDetail && (
-            <form action="" method="post" acceptCharset="UTF-8">
+            {Array.isArray(orderDetail) && orderDetail.map(order => (
+                <form action="" method="post" acceptCharset="UTF-8" key={order.orderID}>
                 <div className="row">
                     <div className="col-md-6">
                         <h2 style={{fontSize: "25px"}}>Thông tin khách hàng</h2>
@@ -49,10 +50,6 @@ const OrderDetail = () => {
                                 <td>Số điện thoại:</td>
                                 <td>{userInfo.phone}</td>
                             </tr>
-                            {/*<tr>*/}
-                            {/*    <td>Email:</td>*/}
-                            {/*    /!*<td>{orderReviewDetail.email}</td>*!/*/}
-                            {/*</tr>*/}
                             </tbody>
                         </table>
                     </div>
@@ -62,23 +59,19 @@ const OrderDetail = () => {
                             <tbody>
                             <tr>
                                 <td>Mã đơn hàng:</td>
-                                <td>{orderDetail.orderID}</td>
+                                <td>{order.orderID}</td>
                             </tr>
                             <tr>
                                 <td>Ngày đặt hàng:</td>
-                                <td>{orderDetail.date}</td>
+                                <td>{order.date}</td>
                             </tr>
-                            {/*<tr>*/}
-                            {/*    <td>Ngày giao đến:</td>*/}
-                            {/*    /!*<td>{orderReviewDetail.timeShip}</td>*!/*/}
-                            {/*</tr>*/}
                             <tr>
                                 <td>Tổng giá trị:</td>
-                                <td>{orderDetail.price} VNĐ</td>
+                                <td>{order.price} VNĐ</td>
                             </tr>
                             <tr>
                                 <td>Tình trạng:</td>
-                                <td>{orderDetail.status}</td>
+                                <td>{order.status}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -97,23 +90,21 @@ const OrderDetail = () => {
                             </tr>
                             </thead>
                             <tbody>
-                            {/*{cartReviewDetail.map((item, index) => (*/}
-                            {/*    <tr key={index}>*/}
-                            {/*        <td>{item.nameSach}</td>*/}
-                            {/*        <td><img style={{ height: "50px" }} src={`${process.env.PUBLIC_URL}/${item.image}`} alt={item.nameSach} /></td>*/}
-                            {/*        <td>{item.quantity}</td>*/}
-                            {/*        <td>{item.totalPrice}</td>*/}
-                            {/*    </tr>*/}
-                            {/*))}*/}
+                                <tr key={order.orderID}>
+                                     <td>{order.name}</td>
+                                    <td><img style={{ height: "50px" }} src={order.url} alt="product" /></td>
+                                     <td>{order.quantity}</td>
+                                     <td>{order.price}</td>
+                                </tr>
                             </tbody>
                         </table>
                         <div className="parent-button">
-                            <button className="centered-button">check</button>
+                            <button className="centered-button">Hủy đơn</button>
                         </div>
                     </div>
                 </div>
             </form>
-                )}
+            ))}
         </div>
     );
 };
