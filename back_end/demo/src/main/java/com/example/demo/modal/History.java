@@ -65,4 +65,17 @@ public class History {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "History{" +
+                "orderID=" + orderID +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", date='" + date + '\'' +
+                ", status='" + status + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

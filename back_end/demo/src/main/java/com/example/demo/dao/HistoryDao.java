@@ -58,10 +58,10 @@ public class HistoryDao {
         return historyList;
     }
 
-    public History getHistoryById(int id) throws SQLException {
+    public List<History> getHistoryById(int id) throws SQLException {
         Connection connection = null;
         ResultSet resultSet = null;
-        History historyList = null;
+        List<History> historyList = new ArrayList<>();
 
         String query = "SELECT p.`name`, i.url, o.CreationDate, o.OrderStatus, od.Quantity, od.Price " +
                 "FROM orders o " +
@@ -89,7 +89,8 @@ public class HistoryDao {
                 int quantity = Integer.parseInt(resultSet.getString("Quantity"));
                 double price = Double.parseDouble(resultSet.getString("Price"));
 
-                 historyList = new History(name, url, date, status, price, quantity);
+                History history = new History(name, url, date, status, price, quantity);
+                historyList.add(history);
             }
 
         } catch (Exception ex) {
@@ -106,10 +107,12 @@ public class HistoryDao {
         return historyList;
     }
 
+
     public static void main(String[] args) throws SQLException {
         HistoryDao dao = new HistoryDao();
 //        for (History h : dao.getAllHistory(1) ){
 //            System.out.println(h);
 //        }
+//        System.out.println(dao.getHistoryById(1));
     }
 }
