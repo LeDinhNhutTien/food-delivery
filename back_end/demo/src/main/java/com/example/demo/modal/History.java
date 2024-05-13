@@ -9,7 +9,8 @@ public class History {
     double totalPrice;
     int quantity;
 
-    public History(String name, String url, String date, String status, double totalPrice, int quantity) {
+    public History(int orderID, String name, String url, String date, String status, double totalPrice, int quantity) {
+        this.orderID = orderID;
         this.name = name;
         this.url = url;
         this.date = date;
