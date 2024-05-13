@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/order-detail.css';
+import {useNavigate} from "react-router-dom";
 
 const OrderDetail = () => {
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
     const [orderDetail, setOrderDetail] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchOrderDetail = async () => {
@@ -14,7 +16,6 @@ const OrderDetail = () => {
                 if (response.ok) {
                     const data = await response.json();
                     setOrderDetail(data);
-                    console.error("Error order detail");
                 } else {
                     console.error("Error fetching order detail");
                 }
@@ -25,6 +26,28 @@ const OrderDetail = () => {
 
         fetchOrderDetail();
     }, []);
+
+    // Thay thế thẻ button bằng sự kiện onClick trực tiếp trên nút "Hủy đơn" và ngăn chặn hành vi mặc định của trình duyệt
+    const cancelOrder = async (orderId, event) => {
+        event.preventDefault(); // Ngăn chặn hành vi mặc định của trình duyệt
+        try {
+            const response = await fetch(`http://localhost:8080/api/cancelOrder/${orderId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            if (response.ok) {
+                // Xử lý thành công, có thể cập nhật UI hoặc hiển thị thông báo
+                navigate('/reviewOrder')
+                console.log('Đã hủy đơn hàng thành công');
+            } else {
+                console.error('Error cancelling order');
+            }
+        } catch (error) {
+            console.error('Error cancelling order:', error);
+        }
+    };
 
     return (
         <div className="container" style={{ minHeight: "600px" }}>
@@ -67,7 +90,7 @@ const OrderDetail = () => {
                             </tr>
                             <tr>
                                 <td>Tổng giá trị:</td>
-                                <td>{order.price} VNĐ</td>
+                                <td>{order.totalPrice} VNĐ</td>
                             </tr>
                             <tr>
                                 <td>Tình trạng:</td>
@@ -94,12 +117,12 @@ const OrderDetail = () => {
                                      <td>{order.name}</td>
                                     <td><img style={{ height: "50px" }} src={order.url} alt="product" /></td>
                                      <td>{order.quantity}</td>
-                                     <td>{order.price}</td>
+                                     <td>{order.totalPrice}</td>
                                 </tr>
                             </tbody>
                         </table>
                         <div className="parent-button">
-                            <button className="centered-button">Hủy đơn</button>
+                            <button className="centered-button" onClick={(event) => cancelOrder(order.orderID, event)}>Hủy đơn</button>
                         </div>
                     </div>
                 </div>
