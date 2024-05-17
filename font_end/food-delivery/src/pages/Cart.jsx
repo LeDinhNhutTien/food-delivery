@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CommonSection from "../components/UI/common-section/CommonSection";
 import Helmet from "../components/Helmet/Helmet";
 import "../styles/cart-page.css";
@@ -11,6 +11,14 @@ const Cart = () => {
     const totalAmount = useSelector((state) => state.cart.totalAmount);
     const cartItems = useSelector((state) => state.cart.cartItems);
     const dispatch = useDispatch();
+
+    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+
+    useEffect(() => {
+        if (!userInfo) {
+            window.location.href = "/login";
+        }
+    }, [userInfo]);
 
     const deleteItem = (id) => {
         dispatch(cartActions.deleteItem(id));

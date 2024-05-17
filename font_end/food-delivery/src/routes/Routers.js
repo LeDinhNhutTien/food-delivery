@@ -2,8 +2,6 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import Home from "../pages/Home";
-import Pizzas from "../pages/Pizzas";
-import PizzaDetails from "../pages/PizzaDetails";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import Login from "../pages/Login";
@@ -20,7 +18,7 @@ import ReviewOrder from "../pages/ReviewOrder"
 import ChangePassword from  "../pages/changePassword"
 import ForgetPassword from "../pages/ForgetPassword";
 import OrderDetail from  "../pages/OrderDetail";
-
+import ConfirmCheckOut from "../pages/ConfirmCheckOut";
 const Routers = () => {
   return (
       <Routes>
@@ -43,6 +41,7 @@ const Routers = () => {
           <Route path="/changePassword" element={<ChangePassword />} />
           <Route path="/forgetPassword" element={<ForgetPassword />} />
           <Route path="/orderDetail" element={<OrderDetail />} />
+              <Route path="/order-confirmation" element={<ConfirmCheckOut />} />
       </Routes>
 
   );

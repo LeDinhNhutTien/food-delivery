@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useSelector} from "react-redux";
 
 const Checkout = () => {
   const [provinces, setProvinces] = useState([]);
@@ -13,10 +13,15 @@ const Checkout = () => {
   const [shippingFee, setShippingFee] = useState('');
   const [shippingTime, setShippingTime] = useState('');
   const [cartItems, setCartItems] = useState([]);
+  const [paymentMethod, setPaymentMethod] = useState('direct');
+  const [orderPlaced, setOrderPlaced] = useState(false);
+
+
   useEffect(() => {
     const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     setCartItems(storedCartItems);
   }, []);
+
   useEffect(() => {
     const fetchProvinces = async () => {
       try {
@@ -25,7 +30,6 @@ const Checkout = () => {
           throw new Error('Failed to fetch provinces');
         }
         const data = await response.json();
-
         setProvinces(data);
         setLoading(false);
       } catch (error) {
@@ -35,9 +39,9 @@ const Checkout = () => {
 
     fetchProvinces();
   }, []);
-  const totalPrice = cartItems.reduce((total, item) => {
-    return total + (item.price * item.quantity);
-  }, 0);
+
+  const totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+
   const handleProvinceChange = (event) => {
     const value = event.target.value;
     setSelectedProvince(value);
@@ -62,24 +66,16 @@ const Checkout = () => {
     setSelectedWard(value);
     const selectedWardData = wards.find(ward => ward.Id === value);
     const selectedDistrictData = districts.find(district => district.Id === selectedDistrict);
-    console.log(selectedDistrictData.Name + selectedWardData.Name)
     if (selectedWardData && selectedDistrictData) {
       try {
         const encodedToDistrict = encodeURIComponent(selectedDistrictData.Name);
         const encodedToWard = encodeURIComponent(selectedWardData.Name);
         const response = await fetch(`http://localhost:8080/api/feeGHN?toDistrict=${encodedToDistrict}&toWard=${encodedToWard}`);
-        console.log(response);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
-
-        const data = await response.json();
-
-
-        const total = data.total; // Lấy giá trị total từ đối tượng JSON data
-        const time = data.time;
-
-        setShippingFee(total); // Sử dụng giá trị total để cập nhật state hoặc giao diện người dùng
+        const { total, time } = await response.json();
+        setShippingFee(total);
         setShippingTime(time);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -87,17 +83,45 @@ const Checkout = () => {
     }
   };
 
+  const handlePaymentMethodChange = (event) => {
+    setPaymentMethod(event.target.value);
+  };
+  const placeOrder = (event) => {
+    event.preventDefault();
 
-// Parse totalPrice as a floating-point number
-  const totalPriceNumeric = parseFloat(totalPrice);
+    // Find selected province, district, and ward objects
+    const selectedProvinceData = provinces.find(province => province.Id === selectedProvince);
+    const selectedDistrictData = districts.find(district => district.Id === selectedDistrict);
+    const selectedWardData = wards.find(ward => ward.Id === selectedWard);
 
-// Parse shippingFee as a floating-point number, or set it to 0 if it's not defined
-  const shippingFeeNumeric = shippingFee ? parseFloat(shippingFee) : 0;
+    // Retrieve names from selected objects
+    const provinceName = selectedProvinceData ? selectedProvinceData.Name : '';
+    const districtName = selectedDistrictData ? selectedDistrictData.Name : '';
+    const wardName = selectedWardData ? selectedWardData.Name : '';
 
-// Add totalPriceNumeric to shippingFeeNumeric and round to 3 decimal places
-  const totalPriceWithShippingTime = (totalPriceNumeric + shippingFeeNumeric).toFixed(3);
+    // Save user information to localStorage
+    const formData = {
+      name: document.getElementById("inputName").value,
+      phone: document.getElementById("inputPhone").value,
+      email: document.getElementById("inputEmail").value,
+      province: provinceName,
+      district: districtName,
+      ward: wardName,
+      address: document.getElementById("inputAddress").value,
+      note: document.getElementById("inputNote").value,
+      paymentMethod: paymentMethod,
+      totalPrice: totalPriceWithShipping
+    };
+    localStorage.setItem("shippingInfo", JSON.stringify(formData));
+
+    // Logic to place the order
+    setOrderPlaced(true);
+    window.location.href = "/order-confirmation"; // Redirect to the order confirmation page
+  };
 
 
+
+  const totalPriceWithShipping = (totalPrice + parseFloat(shippingFee || 0)).toFixed(2);
 
 
 
@@ -107,7 +131,7 @@ const Checkout = () => {
           <div className="col-md-4 order-md-2 mb-4">
             <h4 className="d-flex justify-content-between align-items-center mb-3">
               <span className="text-muted">Giỏ hàng của bạn</span>
-              <span className="badge badge-secondary badge-pill">3</span>
+              <span className="badge badge-secondary badge-pill">{cartItems.length}</span>
             </h4>
             <ul className="list-group">
               {cartItems.map((item, index) => (
@@ -130,7 +154,6 @@ const Checkout = () => {
             </ul>
 
             <ul className="list-group mb-3">
-              {/* Your list items */}
               <li className="list-group-item d-flex justify-content-between align-items-center">
                 <span>Delivery charges:</span>
                 <span className="badge bg-primary rounded-pill">{shippingFee}</span>
@@ -141,7 +164,7 @@ const Checkout = () => {
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center">
                 <span>Total Price:</span>
-                <span className="badge bg-primary rounded-pill">{totalPriceWithShippingTime}</span>
+                <span className="badge bg-primary rounded-pill">{totalPriceWithShipping}</span>
               </li>
             </ul>
 
@@ -149,29 +172,38 @@ const Checkout = () => {
               <div className="input-group">
                 <input type="text" className="form-control" placeholder="Promo code"/>
                 <div className="input-group-append">
-                <button type="submit" className="btn btn-secondary">Redeem</button>
+                  <button type="submit" className="btn btn-secondary">Redeem</button>
                 </div>
               </div>
             </form>
           </div>
           <div className="col-md-8 order-md-1">
             <h4 className="mb-3">Billing address</h4>
-            <form className="needs-validation" noValidate>
+            <form className="needs-validation">
               <div className="cart-section-right">
                 <h2 className="main-h2">Thông tin Giao hàng</h2>
                 <div className="row g-3">
                   <div className="col-md-6">
                     <label htmlFor="inputName" className="form-label">Tên</label>
-                    <input type="text" className="form-control" id="inputName" placeholder="Tên" required/>
+                    <input type="text" className="form-control" id="inputName" placeholder="Tên" required />
+                    <div className="invalid-feedback">
+                      Vui lòng nhập tên của bạn.
+                    </div>
                   </div>
                   <div className="col-md-6">
                     <label htmlFor="inputPhone" className="form-label">Điện thoại</label>
                     <input type="text" className="form-control" id="inputPhone" placeholder="Điện thoại" required />
+                    <div className="invalid-feedback">
+                      Vui lòng nhập số điện thoại của bạn.
+                    </div>
                   </div>
                 </div>
                 <div className="mb-3">
                   <label htmlFor="inputEmail" className="form-label">Email</label>
                   <input type="email" className="form-control" id="inputEmail" placeholder="Email" required />
+                  <div className="invalid-feedback">
+                    Vui lòng nhập một địa chỉ email hợp lệ.
+                  </div>
                 </div>
                 <div className="row g-3">
                   <div className="col-md-4">
@@ -183,8 +215,10 @@ const Checkout = () => {
                             {province.Name}
                           </option>
                       ))}
-
                     </select>
+                    <div className="invalid-feedback">
+                      Vui lòng chọn tỉnh/thành phố.
+                    </div>
                   </div>
                   <div className="col-md-4">
                     <label htmlFor="inputDistrict" className="form-label">Quận/huyện</label>
@@ -195,8 +229,10 @@ const Checkout = () => {
                             {district.Name}
                           </option>
                       ))}
-
                     </select>
+                    <div className="invalid-feedback">
+                      Vui lòng chọn quận/huyện.
+                    </div>
                   </div>
                   <div className="col-md-4">
                     <label htmlFor="inputWard" className="form-label">Phường/xã</label>
@@ -207,13 +243,18 @@ const Checkout = () => {
                             {ward.Name}
                           </option>
                       ))}
-
                     </select>
+                    <div className="invalid-feedback">
+                      Vui lòng chọn xã/phường.
+                    </div>
                   </div>
                 </div>
                 <div className="mb-3">
                   <label htmlFor="inputAddress" className="form-label">Địa chỉ</label>
-                  <input type="text" className="form-control" id="inputAddress" placeholder="Địa chỉ" required/>
+                  <input type="text" className="form-control" id="inputAddress" placeholder="Địa chỉ" required />
+                  <div className="invalid-feedback">
+                    Vui lòng nhập địa chỉ của bạn.
+                  </div>
                 </div>
                 <div className="mb-3">
                   <label htmlFor="inputNote" className="form-label">Ghi chú</label>
@@ -229,20 +270,20 @@ const Checkout = () => {
               <h4 className="mb-3">Hình thức thanh toán</h4>
               <div className="d-block my-3">
                 <div className="custom-control custom-radio">
-                  <input id="credit" name="paymentMethod" type="radio" className="custom-control-input" checked required />
+                  <input id="credit" name="paymentMethod" type="radio" className="custom-control-input" value="direct" checked={paymentMethod === 'direct'} onChange={handlePaymentMethodChange} required />
                   <label className="custom-control-label" htmlFor="credit">Thanh toán trực tiếp</label>
                 </div>
                 <div className="custom-control custom-radio">
-                  <input id="debit" name="paymentMethod" type="radio" className="custom-control-input" required />
-                  <label className="custom-control-label" htmlFor="debit">Thẻ ngân hàng</label>
+                  <input id="debit" name="paymentMethod" type="radio" className="custom-control-input" value="vnpay" checked={paymentMethod === 'vnpay'} onChange={handlePaymentMethodChange} required />
+                  <label className="custom-control-label" htmlFor="debit">VNPay</label>
                 </div>
                 <div className="custom-control custom-radio">
-                  <input id="paypal" name="paymentMethod" type="radio" className="custom-control-input" required />
+                  <input id="paypal" name="paymentMethod" type="radio" className="custom-control-input" value="momo" checked={paymentMethod === 'momo'} onChange={handlePaymentMethodChange} required />
                   <label className="custom-control-label" htmlFor="paypal">Momo</label>
                 </div>
               </div>
               <hr className="mb-4" />
-              <button className="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+              <button className="btn btn-primary btn-lg btn-block"onClick={placeOrder} type="submit">Tiếp tục thanh toán</button>
             </form>
           </div>
         </div>

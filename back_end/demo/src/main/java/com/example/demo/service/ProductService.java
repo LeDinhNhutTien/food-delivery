@@ -11,7 +11,7 @@ import java.util.List;
 public class ProductService {
 
     public static List<Product> getAllProducts() {
-        // Truy vấn cơ sở dữ liệu hoặc lấy dữ liệu từ nguồn dữ liệu khác
+
         List<Product> products = new ArrayList<>();
 
         return products;

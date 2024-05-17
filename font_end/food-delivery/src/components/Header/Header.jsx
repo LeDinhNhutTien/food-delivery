@@ -53,6 +53,7 @@ const Header = () => {
         dispatch(cartUiActions.toggle());
     };
 
+
     return (
         <>
             {!hideHeaderFooter && (
