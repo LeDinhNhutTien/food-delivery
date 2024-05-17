@@ -19,7 +19,7 @@ const AllFoods = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:8080/api/products");
+                const response = await fetch("http://localhost:3000/api/products");
                 const data = await response.json();
                 setAllProducts(data);
                 setProducts(data);
@@ -52,7 +52,7 @@ const AllFoods = () => {
                     return;
                 }
 
-                const response = await fetch(`http://localhost:8080/api/suggestions?query=${query}`);
+                const response = await fetch(`http://localhost:3000/api/suggestions?query=${query}`);
                 const data = await response.json();
                 setSuggestions(data);
                 setShowSuggestions(data.length > 0);
@@ -74,7 +74,7 @@ const AllFoods = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:8080/api/products");
+                const response = await fetch("http://localhost:300/api/products");
                 const data = await response.json();
                 setAllProducts(data);
                 setProducts(data);
