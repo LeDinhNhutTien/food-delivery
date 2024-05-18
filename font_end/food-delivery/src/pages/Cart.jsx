@@ -21,7 +21,15 @@ const Cart = () => {
     }, [userInfo]);
 
     const deleteItem = (id) => {
-        dispatch(cartActions.deleteItem(id));
+        dispatch(cartActions.removeItem(id));
+    };
+
+    const increaseQuantity = (item) => {
+        dispatch(cartActions.addItem(item));
+    };
+
+    const decreaseQuantity = (id) => {
+        dispatch(cartActions.removeItem(id));
     };
 
     return (
@@ -41,12 +49,16 @@ const Cart = () => {
                                         <th>Tên sản phẩm</th>
                                         <th>Giá</th>
                                         <th>Số lượng</th>
-                                        <th>Xóa</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {cartItems.map((item) => (
-                                        <Tr item={item} key={item.id} deleteItem={deleteItem} />
+                                        <Tr
+                                            key={item.id}
+                                            item={item}
+                                            increaseQuantity={increaseQuantity}
+                                            decreaseQuantity={decreaseQuantity}
+                                        />
                                     ))}
                                     </tbody>
                                 </table>
@@ -62,9 +74,15 @@ const Cart = () => {
                                     <button className="addTOCart__btn me-4">
                                         <Link to="/foods">Tiếp tục mua</Link>
                                     </button>
-                                    <button className="addTOCart__btn">
-                                        <Link to="/checkout">Tiến hành thanh toán</Link>
-                                    </button>
+                                    {cartItems.length > 0 ? (
+                                        <button className="addTOCart__btn">
+                                            <Link to="/checkout">Tiến hành thanh toán</Link>
+                                        </button>
+                                    ) : (
+                                        <button className="addTOCart__btn" disabled>
+                                            Tiến hành thanh toán
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </Col>
@@ -75,8 +93,8 @@ const Cart = () => {
     );
 };
 
-const Tr = (props) => {
-    const { id, imageUrl, name, price, quantity } = props.item;
+const Tr = ({ item, increaseQuantity, decreaseQuantity }) => {
+    const { id, imageUrl, name, price, quantity } = item;
 
     return (
         <tr>
@@ -85,9 +103,12 @@ const Tr = (props) => {
             </td>
             <td className="text-center">{name}</td>
             <td className="text-center">${price}</td>
-            <td className="text-center">{quantity}</td>
-            <td className="text-center cart__item-del">
-                <i className="ri-delete-bin-line" onClick={() => props.deleteItem(id)}></i>
+            <td className="text-center">
+                <div className="d-flex align-items-center justify-content-center">
+                    <button className="btn btn-sm btn-secondary" onClick={() => decreaseQuantity(id)}>-</button>
+                    <span className="mx-2">{quantity}</span>
+                    <button className="btn btn-sm btn-secondary" onClick={() => increaseQuantity(item)}>+</button>
+                </div>
             </td>
         </tr>
     );

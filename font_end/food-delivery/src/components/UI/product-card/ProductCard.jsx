@@ -29,6 +29,7 @@ const ProductCard = (props) => {
 
     const increaseQuantity = () => {
         setQuantity(prevQuantity => prevQuantity + 1);
+        addToCart();
     };
 
     const decreaseQuantity = () => {
@@ -36,6 +37,7 @@ const ProductCard = (props) => {
             setQuantity(prevQuantity => prevQuantity - 1);
         } else if (quantity === 1) {
             removeItem();
+            dispatch(cartActions.removeItem(id));
         }
     };
 
