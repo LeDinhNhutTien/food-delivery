@@ -56,6 +56,13 @@ public class Product {
         this.dateTime = dateTime;
     }
 
+    public Product(String name, String description, double price, List<String> imageUrls) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imageUrls = imageUrls;
+    }
+
     public Long getId() {
         return id;
     }

@@ -59,7 +59,7 @@ const ProductCard = (props) => {
 
                     <div className="product__content">
                         <h5>
-                            <Link to={`/foods/${id}`}>{name}</Link>
+                            <Link to={`/detailProduct?id=${id}`}>{name}</Link>
                         </h5>
                         <div className="d-flex align-items-center justify-content-between">
                             <span className="product__price">${price}</span>

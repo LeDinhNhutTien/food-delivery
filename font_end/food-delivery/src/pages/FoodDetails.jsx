@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 
 import products from "../assets/fake-data/products";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/common-section/CommonSection";
-import { Container, Row, Col } from "reactstrap";
+import {Container, Row, Col} from "reactstrap";
 
-import { useDispatch } from "react-redux";
-import { cartActions } from "../store/shopping-cart/cartSlice";
+import {useDispatch} from "react-redux";
+import {cartActions} from "../store/shopping-cart/cartSlice";
 
 import "../styles/product-details.css";
 
@@ -18,25 +18,45 @@ const FoodDetails = () => {
     const [enteredName, setEnteredName] = useState("");
     const [enteredEmail, setEnteredEmail] = useState("");
     const [reviewMsg, setReviewMsg] = useState("");
-    const { id } = useParams();
     const dispatch = useDispatch();
+    // const [id, setId] = useState("");
+    const [productDetail, setProductDetail] = useState();
 
-    const product = products.find((product) => product.id === id);
-    const [previewImg, setPreviewImg] = useState(product.image01);
-    const { title, price, category, desc, image01 } = product;
+    // const product = products.find((product) => product.id === id);
+    // // const [previewImg, setPreviewImg] = useState(product.image01);
 
-    const relatedProduct = products.filter((item) => category === item.category);
 
-    const addItem = () => {
-        dispatch(
-            cartActions.addItem({
-                id,
-                title,
-                price,
-                image01,
-            })
-        );
-    };
+    // const relatedProduct = products.filter((item) => category === item.category);
+    // const {name, price, category, image01} = productDetail;
+
+    useEffect(() => {
+        const fetchProductDetail = async () => {
+            try {
+                const id = new URLSearchParams(window.location.search).get("id");
+                const response = await fetch(`http://localhost:8080/api/products/detailProduct/${id}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setProductDetail(data);
+                } else {
+                    console.error("Error fetching product detail");
+                }
+            } catch (error) {
+                console.error("Error fetching product detail:", error);
+            }
+        };
+        fetchProductDetail();
+    }, []);
+
+    // const addItem = () => {
+    //     dispatch(
+    //         cartActions.addItem({
+    //             id,
+    //             name,
+    //             price,
+    //             image01,
+    //         })
+    //     );
+    // };
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -44,87 +64,69 @@ const FoodDetails = () => {
         console.log(enteredName, enteredEmail, reviewMsg);
     };
 
-    useEffect(() => {
-        setPreviewImg(product.image01);
-    }, [product]);
+    // useEffect(() => {
+    //     setPreviewImg(product.image01);
+    // }, [product]);
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [product]);
+    // useEffect(() => {
+    //     window.scrollTo(0, 0);
+    // }, [product]);
+
+
 
     return (
         <Helmet title="Product-details">
-            <CommonSection title={title} />
-
+            {/*<CommonSection title={title}/>*/}
+            {Array.isArray(productDetail) && productDetail.map(product => (
             <section>
                 <Container>
                     <Row>
                         <Col lg="2" md="2">
                             <div className="product__images ">
-                                <div
-                                    className="img__item mb-3"
-                                    onClick={() => setPreviewImg(product.image01)}
-                                >
-                                    <img src={product.image01} alt="" className="w-50" />
-                                </div>
-                                <div
-                                    className="img__item mb-3"
-                                    onClick={() => setPreviewImg(product.image02)}
-                                >
-                                    <img src={product.image02} alt="" className="w-50" />
-                                </div>
-
-                                <div
-                                    className="img__item"
-                                    onClick={() => setPreviewImg(product.image03)}
-                                >
-                                    <img src={product.image03} alt="" className="w-50" />
-                                </div>
+                                {product.imageUrls.map((image, index) => (
+                                    <div className="img__item mb-3" key={index}>
+                                        <img src={image} alt="" className="w-50" />
+                                    </div>
+                                ))}
                             </div>
                         </Col>
 
                         <Col lg="4" md="4">
                             <div className="product__main-img">
-                                <img src={previewImg} alt="" className="w-100" />
+                                {/*<img src={previewImg} alt="" className="w-100" />*/}
                             </div>
                         </Col>
 
                         <Col lg="6" md="6">
                             <div className="single__product-content">
-                                <h2 className="product__title mb-3">{title}</h2>
+                                <h2 className="product__title mb-3">{product.name}</h2>
                                 <p className="product__price">
                                     {" "}
-                                    Giá: <span>${price}</span>
+                                    Giá: <span>${product.price}</span>
                                 </p>
-                                <p className="category mb-5">
-                                    Danh mục: <span>{category}</span>
-                                </p>
+                                {/*<p className="category mb-5">*/}
+                                {/*    Danh mục: <span>{category}</span>*/}
+                                {/*</p>*/}
 
-                                <button onClick={addItem} className="addTOCart__btn">
-                                    Thêm vào giỏ hàng
-                                </button>
+                                {/*<button onClick={addItem} className="addTOCart__btn">*/}
+                                {/*    Thêm vào giỏ hàng*/}
+                                {/*</button>*/}
                             </div>
                         </Col>
 
                         <Col lg="12">
                             <div className="tabs d-flex align-items-center gap-5 py-3">
-                                <h6
-                                    className={` ${tab === "desc" ? "tab__active" : ""}`}
-                                    onClick={() => setTab("desc")}
-                                >
+                                <h6 className={` ${tab === "desc" ? "tab__active" : ""}`} onClick={() => setTab("desc")}>
                                     Mô tả
                                 </h6>
-                                <h6
-                                    className={` ${tab === "rev" ? "tab__active" : ""}`}
-                                    onClick={() => setTab("rev")}
-                                >
+                                <h6 className={` ${tab === "rev" ? "tab__active" : ""}`} onClick={() => setTab("rev")}>
                                     Đánh giá
                                 </h6>
                             </div>
 
                             {tab === "desc" ? (
                                 <div className="tab__content">
-                                    <p>{desc}</p>
+                                    <p>{product.description}</p>
                                 </div>
                             ) : (
                                 <div className="tab__form mb-3">
@@ -186,14 +188,15 @@ const FoodDetails = () => {
                             <h2 className="related__Product-title">Những loại bánh liên quan</h2>
                         </Col>
 
-                        {relatedProduct.map((item) => (
-                            <Col lg="3" md="4" sm="6" xs="6" className="mb-4" key={item.id}>
-                                <ProductCard item={item} />
-                            </Col>
-                        ))}
+                        {/*{relatedProduct.map((item) => (*/}
+                        {/*    <Col lg="3" md="4" sm="6" xs="6" className="mb-4" key={item.id}>*/}
+                        {/*        <ProductCard item={item}/>*/}
+                        {/*    </Col>*/}
+                        {/*))}*/}
                     </Row>
                 </Container>
             </section>
+            ))}
         </Helmet>
     );
 };
