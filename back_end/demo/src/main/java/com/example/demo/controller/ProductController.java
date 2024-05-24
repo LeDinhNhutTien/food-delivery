@@ -1,6 +1,4 @@
 package com.example.demo.controller;
-
-
 import com.example.demo.dao.ProductDAO;
 import com.example.demo.modal.Product;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
-@CrossOrigin(origins = "http://localhost:3000") // Cho phép truy cập từ origin http://localhost:3000
+@CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
     ProductDAO dao = new ProductDAO();
     @GetMapping

@@ -22,6 +22,7 @@ public class ConfirmOrderController {
     @PostMapping("/api/confirmOrder")
     public ResponseEntity<String> confirmOrder(@RequestBody OrderRequest request) {
         try {
+            System.out.println(request.getShippingInfo().getTotalPrice() + "aaaaa");
             orderDao.insert(request);
             return new ResponseEntity<>("Order confirmed successfully", HttpStatus.OK);
         } catch (Exception e) {

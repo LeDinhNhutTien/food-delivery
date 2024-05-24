@@ -10,13 +10,13 @@ public class ShippingInfo {
     private String province;
     private String note;
     private String paymentMethod;
-    private double totalPrice;
+    private String totalPrice;
 
 
     public ShippingInfo() {
     }
 
-    public ShippingInfo(String name, String phone, String email, String address, String ward, String district, String province, String note, String paymentMethod, double totalPrice) {
+    public ShippingInfo(String name, String phone, String email, String address, String ward, String district, String province, String note, String paymentMethod, String totalPrice) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -29,33 +29,8 @@ public class ShippingInfo {
         this.totalPrice = totalPrice;
     }
 
-    // Getters and setters
     public String getName() {
         return name;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    public double getTotalPriceWithShipping() {
-        return totalPrice;
-    }
-
-    public void setTotalPriceWithShipping(double totalPrice) {
-        this.totalPrice = totalPrice;
     }
 
     public void setName(String name) {
@@ -108,5 +83,29 @@ public class ShippingInfo {
 
     public void setProvince(String province) {
         this.province = province;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(String totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

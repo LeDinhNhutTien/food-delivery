@@ -9,6 +9,7 @@ public class Customer {
     String phone ;
     String address;
     String role ;
+    String createDate;
 
     public Customer(){}
 
@@ -29,6 +30,18 @@ public class Customer {
         this.last_name = last_name;
         this.phone = phone;
         this.address = address;
+    }
+
+    public Customer(int id_user, String username, String password, String first_name, String last_name, String phone, String address, String role, String createDate) {
+        this.id_user = id_user;
+        this.username = username;
+        this.password = password;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.phone = phone;
+        this.address = address;
+        this.role = role;
+        this.createDate = createDate;
     }
 
     public int getId_user() {
@@ -93,6 +106,14 @@ public class Customer {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 
     @Override

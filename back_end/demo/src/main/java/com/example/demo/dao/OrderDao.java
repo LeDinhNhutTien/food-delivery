@@ -35,9 +35,9 @@ public class OrderDao {
             // Set parameters for the order
             preparedStatement.setInt(1, orderRequest.getUserId());
             preparedStatement.setTimestamp(2, new java.sql.Timestamp(System.currentTimeMillis()));
-            preparedStatement.setDouble(3, orderRequest.getShippingInfo().getTotalPriceWithShipping());
+            preparedStatement.setString(3, orderRequest.getShippingInfo().getTotalPrice());
             preparedStatement.setString(4, "Pending");
-            preparedStatement.setString(5, orderRequest.getShippingInfo().getAddress());
+            preparedStatement.setString(5, orderRequest.getShippingInfo().getAddress()+", "+orderRequest.getShippingInfo().getDistrict()+", "+orderRequest.getShippingInfo().getWard()+", "+orderRequest.getShippingInfo().getProvince());
             preparedStatement.setString(6, orderRequest.getShippingInfo().getPaymentMethod());
             preparedStatement.setString(7, "");
             preparedStatement.setString(8, orderRequest.getShippingInfo().getNote());
