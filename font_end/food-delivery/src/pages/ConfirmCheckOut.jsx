@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 const ConfirmCheckOut = () => {
+
     const [shippingInfo, setShippingInfo] = useState({});
     const [orderDetails, setOrderDetails] = useState([]);
     const [cartItems, setCartItems] = useState([]);
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-    console.log(cartItems);
+    console.log(shippingInfo);
     useEffect(() => {
         // Fetch shipping information and order details from local storage
         const storedShippingInfo = JSON.parse(localStorage.getItem("shippingInfo")) || {};
@@ -18,7 +19,7 @@ const ConfirmCheckOut = () => {
     }, []);
 
     const handleConfirm = () => {
-        const shippingInfo = JSON.parse(localStorage.getItem("shippingInfo")) || {};
+
         const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
         const userId = userInfo.id_user;

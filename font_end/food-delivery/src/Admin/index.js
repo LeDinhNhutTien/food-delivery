@@ -1,10 +1,47 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './assests/css/sb-admin-2.min.css'
 
 import './vendor/fontawesome-free/css/all.min.css'
 
 function AdminHeader() {
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [showDropdown1, setShowDropdown1] = useState(false);
+    const [information, setinformation] = useState([]);
+    const [users, setUsers] = useState([]);
+    const toggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/api/managementAdmin");
+                const data = await response.json();
+                setinformation(data);
 
+            } catch (error) {
+                console.error("Lỗi khi lấy dữ liệu:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/api/managementCustomerAdmin");
+                const data = await response.json();
+                setUsers(data);
+
+            } catch (error) {
+                console.error("Lỗi khi lấy dữ liệu:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+    const toggleDropdown1 = () => {
+        setShowDropdown1(!showDropdown1);
+    };
     return (
     <div>
         <div id="wrapper">
@@ -14,37 +51,17 @@ function AdminHeader() {
                     <div className="sidebar-brand-icon rotate-n-15">
                         <i className="fas fa-laugh-wink"></i>
                     </div>
-                    <div className="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                    <div className="sidebar-brand-text mx-3">MITI FOOD <sup>2</sup></div>
                 </a>
 
                 <hr className="sidebar-divider my-0"/>
 
                     <li className="nav-item active">
-                        <a className="nav-link" href="index.html">
+                        <a className="nav-link" href="/admin">
                             <i className="fas fa-fw fa-tachometer-alt"></i>
-                            <span>Dashboard</span></a>
+                            <span>Tổng quan </span></a>
                     </li>
-                            <li className="nav-item">
-                                <a className="nav-link collapsed" href="#" data-toggle="collapse"
-                                   data-target="#collapsePages"
-                                   aria-expanded="true" aria-controls="collapsePages">
-                                    <i className="fas fa-fw fa-folder"></i>
-                                    <span>Pages</span>
-                                </a>
-                                <div id="collapsePages" className="collapse" aria-labelledby="headingPages"
-                                     data-parent="#accordionSidebar">
-                                    <div className="bg-white py-2 collapse-inner rounded">
-                                        <h6 className="collapse-header">Login Screens:</h6>
-                                        <a className="collapse-item" href="login.html">Login</a>
-                                        <a className="collapse-item" href="register.html">Register</a>
-                                        <a className="collapse-item" href="forgot-password.html">Forgot Password</a>
-                                        <div className="collapse-divider"></div>
-                                        <h6 className="collapse-header">Other Pages:</h6>
-                                        <a className="collapse-item" href="404.html">404 Page</a>
-                                        <a className="collapse-item" href="blank.html">Blank Page</a>
-                                    </div>
-                                </div>
-                            </li>
+
 
                             <li className="nav-item">
                                 <a className="nav-link" href="/userManagement">
@@ -67,7 +84,7 @@ function AdminHeader() {
 
 
                                 <div className="text-center d-none d-md-inline">
-                                    <button className="rounded-circle border-0" id="sidebarToggle"></button>
+                                    <a href="/home" className="rounded-circle border-0" id="sidebarToggle"></a>
                                 </div>
 
 
@@ -93,11 +110,11 @@ function AdminHeader() {
                                 <input type="text" className="form-control bg-light border-0 small"
                                        placeholder="Search for..."
                                        aria-label="Search" aria-describedby="basic-addon2"/>
-                                    <div className="input-group-append">
-                                        <button className="btn btn-primary" type="button">
-                                            <i className="fas fa-search fa-sm"></i>
-                                        </button>
-                                    </div>
+                                <div className="input-group-append">
+                                    <button className="btn btn-primary" type="button">
+                                        <i className="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
                             </div>
                         </form>
 
@@ -118,11 +135,11 @@ function AdminHeader() {
                                             <input type="text" className="form-control bg-light border-0 small"
                                                    placeholder="Search for..." aria-label="Search"
                                                    aria-describedby="basic-addon2"/>
-                                                <div className="input-group-append">
-                                                    <button className="btn btn-primary" type="button">
-                                                        <i className="fas fa-search fa-sm"></i>
-                                                    </button>
-                                                </div>
+                                            <div className="input-group-append">
+                                                <button className="btn btn-primary" type="button">
+                                                    <i className="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -130,16 +147,24 @@ function AdminHeader() {
 
 
                             <li className="nav-item dropdown no-arrow mx-1">
-                                <a className="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a
+                                    className="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="alertsDropdown"
+                                    role="button"
+                                    onClick={toggleDropdown1}
+                                    aria-haspopup="true"
+                                    aria-expanded={showDropdown1 ? "true" : "false"}
+                                >
                                     <i className="fas fa-bell fa-fw"></i>
 
                                     <span className="badge badge-danger badge-counter">3+</span>
                                 </a>
 
                                 <div
-                                    className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                    aria-labelledby="alertsDropdown">
+                                    className={`dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in ${showDropdown1 ? 'show' : ''}`}
+                                    aria-labelledby="alertsDropdown"
+                                >
                                     <h6 className="dropdown-header">
                                         Alerts Center
                                     </h6>
@@ -182,94 +207,27 @@ function AdminHeader() {
                             </li>
 
 
-                            <li className="nav-item dropdown no-arrow mx-1">
-                                <a className="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i className="fas fa-envelope fa-fw"></i>
-
-                                    <span className="badge badge-danger badge-counter">7</span>
-                                </a>
-
-                                <div
-                                    className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                    aria-labelledby="messagesDropdown">
-                                    <h6 className="dropdown-header">
-                                        Message Center
-                                    </h6>
-                                    <a className="dropdown-item d-flex align-items-center" href="#">
-                                        <div className="dropdown-list-image mr-3">
-                                            <img className="rounded-circle" src="img/undraw_profile_1.svg"
-                                                 alt="..."/>
-                                                <div className="status-indicator bg-success"></div>
-                                        </div>
-                                        <div className="font-weight-bold">
-                                            <div className="text-truncate">Hi there! I am wondering if you can help me
-                                                with a
-                                                problem I've been having.
-                                            </div>
-                                            <div className="small text-gray-500">Emily Fowler · 58m</div>
-                                        </div>
-                                    </a>
-                                    <a className="dropdown-item d-flex align-items-center" href="#">
-                                        <div className="dropdown-list-image mr-3">
-                                            <img className="rounded-circle" src="img/undraw_profile_2.svg"
-                                                 alt="..."/>
-                                                <div className="status-indicator"></div>
-                                        </div>
-                                        <div>
-                                            <div className="text-truncate">I have the photos that you ordered last
-                                                month, how
-                                                would you like them sent to you?
-                                            </div>
-                                            <div className="small text-gray-500">Jae Chun · 1d</div>
-                                        </div>
-                                    </a>
-                                    <a className="dropdown-item d-flex align-items-center" href="#">
-                                        <div className="dropdown-list-image mr-3">
-                                            <img className="rounded-circle" src="img/undraw_profile_3.svg"
-                                                 alt="..."/>
-                                                <div className="status-indicator bg-warning"></div>
-                                        </div>
-                                        <div>
-                                            <div className="text-truncate">Last month's report looks great, I am very
-                                                happy with
-                                                the progress so far, keep up the good work!
-                                            </div>
-                                            <div className="small text-gray-500">Morgan Alvarez · 2d</div>
-                                        </div>
-                                    </a>
-                                    <a className="dropdown-item d-flex align-items-center" href="#">
-                                        <div className="dropdown-list-image mr-3">
-                                            <img className="rounded-circle"
-                                                 src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                                 alt="..."/>
-                                                <div className="status-indicator bg-success"></div>
-                                        </div>
-                                        <div>
-                                            <div className="text-truncate">Am I a good boy? The reason I ask is because
-                                                someone
-                                                told me that people say this to all dogs, even if they aren't good...
-                                            </div>
-                                            <div className="small text-gray-500">Chicken the Dog · 2w</div>
-                                        </div>
-                                    </a>
-                                    <a className="dropdown-item text-center small text-gray-500" href="#">Read More
-                                        Messages</a>
-                                </div>
-                            </li>
-
                             <div className="topbar-divider d-none d-sm-block"></div>
 
                             <li className="nav-item dropdown no-arrow">
-                                <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a
+                                    className="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="alertsDropdown"
+                                    role="button"
+                                    onClick={toggleDropdown}
+                                    aria-haspopup="true"
+                                    aria-expanded={showDropdown ? "true" : "false"}
+                                >
                                     <span className="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                     <img className="img-profile rounded-circle"
                                          src="img/undraw_profile.svg"/>
                                 </a>
 
-                                <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                     aria-labelledby="userDropdown">
+                                <div
+                                    className={`dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in ${showDropdown ? 'show' : ''}`}
+                                    aria-labelledby="alertsDropdown"
+                                >
                                     <a className="dropdown-item" href="#">
                                         <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Profile
@@ -298,9 +256,9 @@ function AdminHeader() {
                     <div className="container-fluid">
 
                         <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
+                            <h1 className="h3 mb-0 text-gray-800">Tổng quan</h1>
                             <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                className="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                                className="fas fa-download fa-sm text-white-50"></i> Tải báo cáo</a>
                         </div>
 
                         <div className="row">
@@ -312,13 +270,12 @@ function AdminHeader() {
                                             <div className="col mr-2">
                                                 <div
                                                     className="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    Earnings (Monthly)
+                                                    Doanh thu hàng tháng
                                                 </div>
-                                                <div className="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                <div
+                                                    className="h5 mb-0 font-weight-bold text-gray-800">${information.danhSoHangThang}</div>
                                             </div>
-                                            <div className="col-auto">
-                                                <i className="fas fa-calendar fa-2x text-gray-300"></i>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -331,13 +288,12 @@ function AdminHeader() {
                                             <div className="col mr-2">
                                                 <div
                                                     className="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Earnings (Annual)
+                                                    Số người đăng ký trong tháng
                                                 </div>
-                                                <div className="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                <div
+                                                    className="h5 mb-0 font-weight-bold text-gray-800">{information.soNguoiDangKy}</div>
                                             </div>
-                                            <div className="col-auto">
-                                                <i className="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -350,26 +306,20 @@ function AdminHeader() {
                                         <div className="row no-gutters align-items-center">
                                             <div className="col mr-2">
                                                 <div
-                                                    className="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                                    className="text-xs font-weight-bold text-info text-uppercase mb-1">Tổng
+                                                    số sản phẩm đã bán trong tháng
                                                 </div>
                                                 <div className="row no-gutters align-items-center">
                                                     <div className="col-auto">
                                                         <div
-                                                            className="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%
+                                                            style={{marginLeft: '10px'}}
+                                                            className="h5 mb-0 mr-3 font-weight-bold text-gray-800">{information.soLuongBanRa}
                                                         </div>
                                                     </div>
-                                                    <div className="col">
-                                                        <div className="progress progress-sm mr-2">
-                                                            <div className="progress-bar bg-info" role="progressbar"
-                                                                 style={{width: '50%' }} aria-valuenow="50" aria-valuemin="0"
-                                                                 aria-valuemax="100"></div>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
                                             </div>
-                                            <div className="col-auto">
-                                                <i className="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -383,265 +333,112 @@ function AdminHeader() {
                                             <div className="col mr-2">
                                                 <div
                                                     className="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                    Pending Requests
+                                                    Tổng doanh thu
                                                 </div>
-                                                <div className="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                <div
+                                                    className="h5 mb-0 font-weight-bold text-gray-800">${information.tongDoanhSo}</div>
                                             </div>
-                                            <div className="col-auto">
-                                                <i className="fas fa-comments fa-2x text-gray-300"></i>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div className="row">
-
-                            <div className="col-xl-8 col-lg-7">
-                                <div className="card shadow mb-4">
-
-                                    <div
-                                        className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 className="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                                        <div className="dropdown no-arrow">
-                                            <a className="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i className="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                            </a>
-                                            <div className="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                 aria-labelledby="dropdownMenuLink">
-                                                <div className="dropdown-header">Dropdown Header:</div>
-                                                <a className="dropdown-item" href="#">Action</a>
-                                                <a className="dropdown-item" href="#">Another action</a>
-                                                <div className="dropdown-divider"></div>
-                                                <a className="dropdown-item" href="#">Something else here</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="card-body">
-                                        <div className="chart-area">
-                                            <canvas id="myAreaChart"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div className="col-xl-4 col-lg-5">
-                                <div className="card shadow mb-4">
-
-                                    <div
-                                        className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 className="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                        <div className="dropdown no-arrow">
-                                            <a className="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i className="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                            </a>
-                                            <div className="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                 aria-labelledby="dropdownMenuLink">
-                                                <div className="dropdown-header">Dropdown Header:</div>
-                                                <a className="dropdown-item" href="#">Action</a>
-                                                <a className="dropdown-item" href="#">Another action</a>
-                                                <div className="dropdown-divider"></div>
-                                                <a className="dropdown-item" href="#">Something else here</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="card-body">
-                                        <div className="chart-pie pt-4 pb-2">
-                                            <canvas id="myPieChart"></canvas>
-                                        </div>
-                                        <div className="mt-4 text-center small">
-                                        <span className="mr-2">
-                                            <i className="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                            <span className="mr-2">
-                                            <i className="fas fa-circle text-success"></i> Social
-                                        </span>
-                                            <span className="mr-2">
-                                            <i className="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div className="row">
-
-
-                            <div className="col-lg-6 mb-4">
-
-
-                                <div className="card shadow mb-4">
-                                    <div className="card-header py-3">
-                                        <h6 className="m-0 font-weight-bold text-primary">Projects</h6>
-                                    </div>
-                                    <div className="card-body">
-                                        <h4 className="small font-weight-bold">Server Migration <span
-                                            className="float-right">20%</span></h4>
-                                        <div className="progress mb-4">
-                                            <div className="progress-bar bg-danger" role="progressbar"
-                                                 style={{width: '20%' }}
-                                                 aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <h4 className="small font-weight-bold">Sales Tracking <span
-                                            className="float-right">40%</span></h4>
-                                        <div className="progress mb-4">
-                                            <div className="progress-bar bg-warning" role="progressbar"
-                                                 style={{width: '40%' }}
-                                                 aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <h4 className="small font-weight-bold">Customer Database <span
-                                            className="float-right">60%</span></h4>
-                                        <div className="progress mb-4">
-                                            <div className="progress-bar" role="progressbar" style={{width: '60%' }}
-                                                 aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <h4 className="small font-weight-bold">Payout Details <span
-                                            className="float-right">80%</span></h4>
-                                        <div className="progress mb-4">
-                                            <div className="progress-bar bg-info" role="progressbar" style={{width: '80%' }}
-                                                 aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <h4 className="small font-weight-bold">Account Setup <span
-                                            className="float-right">Complete!</span></h4>
-                                        <div className="progress">
-                                            <div className="progress-bar bg-success" role="progressbar"
-                                                 style={{width: '100%' }}
-                                                 aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div className="row">
-                                    <div className="col-lg-6 mb-4">
-                                        <div className="card bg-primary text-white shadow">
-                                            <div className="card-body">
-                                                Primary
-                                                <div className="text-white-50 small">#4e73df</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-6 mb-4">
-                                        <div className="card bg-success text-white shadow">
-                                            <div className="card-body">
-                                                Success
-                                                <div className="text-white-50 small">#1cc88a</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-6 mb-4">
-                                        <div className="card bg-info text-white shadow">
-                                            <div className="card-body">
-                                                Info
-                                                <div className="text-white-50 small">#36b9cc</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-6 mb-4">
-                                        <div className="card bg-warning text-white shadow">
-                                            <div className="card-body">
-                                                Warning
-                                                <div className="text-white-50 small">#f6c23e</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-6 mb-4">
-                                        <div className="card bg-danger text-white shadow">
-                                            <div className="card-body">
-                                                Danger
-                                                <div className="text-white-50 small">#e74a3b</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-6 mb-4">
-                                        <div className="card bg-secondary text-white shadow">
-                                            <div className="card-body">
-                                                Secondary
-                                                <div className="text-white-50 small">#858796</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-6 mb-4">
-                                        <div className="card bg-light text-black shadow">
-                                            <div className="card-body">
-                                                Light
-                                                <div className="text-black-50 small">#f8f9fc</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-6 mb-4">
-                                        <div className="card bg-dark text-white shadow">
-                                            <div className="card-body">
-                                                Dark
-                                                <div className="text-white-50 small">#5a5c69</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div className="col-lg-6 mb-4">
-
-
-                                <div className="card shadow mb-4">
-                                    <div className="card-header py-3">
-                                        <h6 className="m-0 font-weight-bold text-primary">Illustrations</h6>
-                                    </div>
-                                    <div className="card-body">
-                                        <div className="text-center">
-                                            <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{width: '25rem' }}
-                                                 src="img/undraw_posting_photo.svg" alt="..."/>
-                                        </div>
-                                        <p>Add some quality, svg illustrations to your project courtesy of <a
-                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                            constantly updated collection of beautiful svg images that you can use
-                                            completely free and without attribution!</p>
-                                        <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations
-                                            on
-                                            unDraw &rarr;</a>
-                                    </div>
-                                </div>
-
-
-                                <div className="card shadow mb-4">
-                                    <div className="card-header py-3">
-                                        <h6 className="m-0 font-weight-bold text-primary">Development Approach</h6>
-                                    </div>
-                                    <div className="card-body">
-                                        <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to
-                                            reduce
-                                            CSS bloat and poor page performance. Custom CSS classes are used to create
-                                            custom components and custom utility classes.</p>
-                                        <p className="mb-0">Before working with this theme, you should become familiar
-                                            with the
-                                            Bootstrap framework, especially the utility classes.</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
                     </div>
+                    <div style={{width: '50%', padding :'12px'}}>
+                        <h1 style={{fontSize: '24px', color: '#333'}}>Danh sách người dùng</h1>
+                        <table className="table">
+                            <thead>
+                            <tr>
+                                <th style={{
+                                    width: '20%',
+                                    fontSize: '12px',
+                                    padding: '10px',
+                                    border: '1px solid #ddd',
+                                    backgroundColor: '#f2f2f2',
 
+                                }}>Email
+                                </th>
+
+                                <th style={{
+                                    width: '20%',
+                                    padding: '10px',
+                                    fontSize: '12px',
+                                    border: '1px solid #ddd',
+                                    backgroundColor: '#f2f2f2',
+
+                                }}>Họ tên
+                                </th>
+                                <th style={{
+                                    width: '17%',
+                                    fontSize: '12px',
+                                    padding: '10px',
+                                    border: '1px solid #ddd',
+                                    backgroundColor: '#f2f2f2',
+
+                                }}>Số điện thoại
+                                </th>
+                                <th style={{
+                                    width: '30%',
+                                    padding: '10px',
+                                    fontSize: '12px',
+                                    border: '1px solid #ddd',
+                                    backgroundColor: '#f2f2f2',
+
+                                }}>Địa chỉ
+                                </th>
+
+                                <th style={{
+                                    width: '13%',
+                                    fontSize: '12px',
+                                    padding: '10px',
+                                    border: '1px solid #ddd',
+                                    backgroundColor: '#f2f2f2',
+
+                                }}>Ngày tạo
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {users.map(user => (
+                                <tr key={user.id_user}>
+                                    <td  style={{
+                                        width: '13%',
+                                        fontSize: '10px',
+                                        padding: '10px',
+
+                                        }}>{user.username}</td>
+                                    <td style={{
+                                        width: '13%',
+                                        fontSize: '10px',
+                                        padding: '10px',
+
+                                    }}>{user.last_name} {user.first_name}  </td>
+                                    <td style={{
+                                        width: '13%',
+                                        fontSize: '10px',
+                                        padding: '10px',
+
+                                    }}>{user.phone}</td>
+                                    <td style={{
+                                        width: '13%',
+                                        fontSize: '10px',
+                                        padding: '10px',
+
+                                    }}>{user.address}</td>
+                                    <td style={{
+                                        width: '13%',
+                                        fontSize: '10px',
+                                        padding: '10px',
+
+                                    }}>{user.createDate}</td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
-
-                <footer className="sticky-footer bg-white">
-                    <div className="container my-auto">
-                        <div className="copyright text-center my-auto">
-                            <span>Copyright &copy; Your Website 2021</span>
-                        </div>
-                    </div>
-                </footer>
 
 
             </div>
@@ -650,28 +447,9 @@ function AdminHeader() {
         </div>
 
         <a className="scroll-to-top rounded" href="#page-top">
-        <i className="fas fa-angle-up"></i>
-    </a>
+            <i className="fas fa-angle-up"></i>
+        </a>
 
-
-        <div className="modal fade" id="logoutModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div className="modal-dialog" role="document">
-            <div className="modal-content">
-                <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button className="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div className="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div className="modal-footer">
-                    <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a className="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     </div>
     );
