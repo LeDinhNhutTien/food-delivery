@@ -10,6 +10,7 @@ public class Customer {
     String address;
     String role ;
     String createDate;
+    int status;
 
     public Customer(){}
 
@@ -32,7 +33,7 @@ public class Customer {
         this.address = address;
     }
 
-    public Customer(int id_user, String username, String password, String first_name, String last_name, String phone, String address, String role, String createDate) {
+    public Customer(int id_user, String username, String password, String first_name, String last_name, String phone, String address, String role, String createDate,int status) {
         this.id_user = id_user;
         this.username = username;
         this.password = password;
@@ -42,6 +43,15 @@ public class Customer {
         this.address = address;
         this.role = role;
         this.createDate = createDate;
+        this.status = status;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public int getId_user() {

@@ -2,356 +2,405 @@
 
 import './vendor/fontawesome-free/css/all.min.css'
 import './vendor/datatables/dataTables.bootstrap4.min.css'
-import React from "react";
-
+import React, {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
+import AddUserModal from './AddUser';
+import UpdateUserModal from './UpdateUser';
 function UserManagement() {
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [showDropdown1, setShowDropdown1] = useState(false);
+    const [users, setUsers] = useState([]);
+    const [showAddUserModal, setShowAddUserModal] = useState(false);
+    const [showUpdateUserModal, setShowUpdateUserModal] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/api/managementCustomerAdmin");
+                const data = await response.json();
+                const filteredUsers = data.filter(user => user.role === 'user');
+                setUsers(filteredUsers);
+
+            } catch (error) {
+                console.error("Lỗi khi lấy dữ liệu:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+    const toggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
+    const toggleDropdown1 = () => {
+        setShowDropdown1(!showDropdown1);
+    };
+    const handleAddUserClick = () => {
+        setShowAddUserModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowAddUserModal(false);
+    };
+    const handleEditUserClick = (user) => {
+        setSelectedUser(user);
+        setShowUpdateUserModal(true);
+    };
+
+    const handleCloseUpdateUserModal = () => {
+        setShowUpdateUserModal(false);
+        setSelectedUser(null);
+    };
+    const handleLockUser = async (userId) => {
+        try {
+            // Optimistically update the local state
+            const updatedUsers = users.map(user => {
+                if (user.id_user === userId) {
+                    return { ...user, status: '0' }; // Assuming '0' represents inactive status
+                }
+                return user;
+            });
+            setUsers(updatedUsers);
+
+            const response = await fetch(`http://localhost:8080/api/managementCustomerAdmin/${userId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status: '0' }), // Assuming '0' represents inactive status
+            });
+            if (!response.ok) {
+                console.error("Lỗi khi cập nhật trạng thái người dùng");
+            }
+        } catch (error) {
+            // Revert the local state update in case of an error
+            console.error("Lỗi khi gửi yêu cầu:", error);
+            // Optionally, you can handle error-specific scenarios here
+        }
+    };
+
+    const handleUnLockUser = async (userId) => {
+        try {
+            // Optimistically update the local state
+            const updatedUsers = users.map(user => {
+                if (user.id_user === userId) {
+                    return { ...user, status: '1' }; // Assuming '1' represents active status
+                }
+                return user;
+            });
+            setUsers(updatedUsers);
+
+            const response = await fetch(`http://localhost:8080/api/managementCustomerAdmin/${userId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status: '1' }), // Assuming '1' represents active status
+            });
+            if (!response.ok) {
+                console.error("Lỗi khi cập nhật trạng thái người dùng");
+            }
+        } catch (error) {
+            // Revert the local state update in case of an error
+            console.error("Lỗi khi gửi yêu cầu:", error);
+            // Optionally, you can handle error-specific scenarios here
+        }
+    };
+
     return (
         <div>
-        <div id="wrapper">
-            <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <div id="wrapper">
+                <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-                <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                    <div className="sidebar-brand-icon rotate-n-15">
-                        <i className="fas fa-laugh-wink"></i>
-                    </div>
-                    <div className="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-                </a>
-
-                <hr className="sidebar-divider my-0"/>
-
-                <li className="nav-item active">
-                    <a className="nav-link" href="index.html">
-                        <i className="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Dashboard</span></a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link collapsed" href="#" data-toggle="collapse"
-                       data-target="#collapsePages"
-                       aria-expanded="true" aria-controls="collapsePages">
-                        <i className="fas fa-fw fa-folder"></i>
-                        <span>Pages</span>
-                    </a>
-                    <div id="collapsePages" className="collapse" aria-labelledby="headingPages"
-                         data-parent="#accordionSidebar">
-                        <div className="bg-white py-2 collapse-inner rounded">
-                            <h6 className="collapse-header">Login Screens:</h6>
-                            <a className="collapse-item" href="login.html">Login</a>
-                            <a className="collapse-item" href="register.html">Register</a>
-                            <a className="collapse-item" href="forgot-password.html">Forgot Password</a>
-                            <div className="collapse-divider"></div>
-                            <h6 className="collapse-header">Other Pages:</h6>
-                            <a className="collapse-item" href="404.html">404 Page</a>
-                            <a className="collapse-item" href="blank.html">Blank Page</a>
+                    <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                        <div className="sidebar-brand-icon rotate-n-15">
+                            <i className="fas fa-laugh-wink"></i>
                         </div>
+                        <div className="sidebar-brand-text mx-3">MITI FOOD <sup>2</sup></div>
+                    </a>
+
+                    <hr className="sidebar-divider my-0"/>
+
+                    <li className="nav-item active">
+                        <a className="nav-link" href="/admin">
+                            <i className="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Tổng quan </span></a>
+                    </li>
+
+
+                    <li className="nav-item">
+                        <a className="nav-link" href="/userManagement">
+                            <i className="fas fa-fw fa-table"></i>
+                            <span>Quản lý người dùng</span></a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="/productManagement">
+                            <i className="fas fa-fw fa-table"></i>
+                            <span>Quản lý sản phẩm</span></a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="/revenueManagement">
+                            <i className="fas fa-fw fa-chart-area"></i>
+                            <span>Biểu đồ doanh thu</span></a>
+                    </li>
+
+
+                    <hr className="sidebar-divider d-none d-md-block"/>
+
+
+                    <div className="text-center d-none d-md-inline">
+                        <a href="/home" className="rounded-circle border-0" id="sidebarToggle"></a>
                     </div>
-                </li>
-
-                <li className="nav-item">
-                    <a className="nav-link" href="/userManagement">
-                        <i className="fas fa-fw fa-table"></i>
-                        <span>Quản lý người dùng</span></a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="/productManagement">
-                        <i className="fas fa-fw fa-table"></i>
-                        <span>Quản lý sản phẩm</span></a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="/revenueManagement">
-                        <i className="fas fa-fw fa-chart-area"></i>
-                        <span>Biểu đồ doanh thu</span></a>
-                </li>
 
 
-                <hr className="sidebar-divider d-none d-md-block"/>
+                </ul>
 
+                <div id="content-wrapper" class="d-flex flex-column">
 
-                <div className="text-center d-none d-md-inline">
-                    <button className="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
+                    <div id="content">
 
+                        <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-
-
-            </ul>
-
-
-            <div id="content-wrapper" class="d-flex flex-column">
-
-                <div id="content">
-
-                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                        <form class="form-inline">
-                            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                                <i class="fa fa-bars"></i>
+                            <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
+                                <i className="fa fa-bars"></i>
                             </button>
-                        </form>
 
-                        <form
-                            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                       aria-label="Search" aria-describedby="basic-addon2"/>
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
-                                            <i class="fas fa-search fa-sm"></i>
+                            <form
+                                className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div className="input-group">
+                                    <input type="text" className="form-control bg-light border-0 small"
+                                           placeholder="Search for..."
+                                           aria-label="Search" aria-describedby="basic-addon2"/>
+                                    <div className="input-group-append">
+                                        <button className="btn btn-primary" type="button">
+                                            <i className="fas fa-search fa-sm"></i>
                                         </button>
                                     </div>
-                            </div>
-                        </form>
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item dropdown no-arrow d-sm-none">
-                                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-search fa-fw"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                     aria-labelledby="searchDropdown">
-                                    <form class="form-inline mr-auto w-100 navbar-search">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small"
-                                                   placeholder="Search for..." aria-label="Search"
-                                                   aria-describedby="basic-addon2"/>
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-primary" type="button">
-                                                        <i class="fas fa-search fa-sm"></i>
+                                </div>
+                            </form>
+
+
+                            <ul className="navbar-nav ml-auto">
+
+
+                                <li className="nav-item dropdown no-arrow d-sm-none">
+                                    <a className="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i className="fas fa-search fa-fw"></i>
+                                    </a>
+
+                                    <div className="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                         aria-labelledby="searchDropdown">
+                                        <form className="form-inline mr-auto w-100 navbar-search">
+                                            <div className="input-group">
+                                                <input type="text" className="form-control bg-light border-0 small"
+                                                       placeholder="Search for..." aria-label="Search"
+                                                       aria-describedby="basic-addon2"/>
+                                                <div className="input-group-append">
+                                                    <button className="btn btn-primary" type="button">
+                                                        <i className="fas fa-search fa-sm"></i>
                                                     </button>
                                                 </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-bell fa-fw"></i>
-                                    <span class="badge badge-danger badge-counter">3+</span>
-                                </a>
-                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                     aria-labelledby="alertsDropdown">
-                                    <h6 class="dropdown-header">
-                                        Alerts Center
-                                    </h6>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-primary">
-                                                <i class="fas fa-file-alt text-white"></i>
                                             </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">December 12, 2019</div>
-                                            <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                        </div>
+                                        </form>
+                                    </div>
+                                </li>
+
+
+                                <li className="nav-item dropdown no-arrow mx-1">
+                                    <a
+                                        className="nav-link dropdown-toggle"
+                                        href="#"
+                                        id="alertsDropdown"
+                                        role="button"
+                                        onClick={toggleDropdown1}
+                                        aria-haspopup="true"
+                                        aria-expanded={showDropdown1 ? "true" : "false"}
+                                    >
+                                        <i className="fas fa-bell fa-fw"></i>
+
+                                        <span className="badge badge-danger badge-counter">3+</span>
                                     </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-success">
-                                                <i class="fas fa-donate text-white"></i>
+
+                                    <div
+                                        className={`dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in ${showDropdown1 ? 'show' : ''}`}
+                                        aria-labelledby="alertsDropdown"
+                                    >
+                                        <h6 className="dropdown-header">
+                                            Alerts Center
+                                        </h6>
+                                        <a className="dropdown-item d-flex align-items-center" href="#">
+                                            <div className="mr-3">
+                                                <div className="icon-circle bg-primary">
+                                                    <i className="fas fa-file-alt text-white"></i>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">December 7, 2019</div>
-                                            $290.29 has been deposited into your account!
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-warning">
-                                                <i class="fas fa-exclamation-triangle text-white"></i>
+                                            <div>
+                                                <div className="small text-gray-500">December 12, 2019</div>
+                                                <span className="font-weight-bold">A new monthly report is ready to download!</span>
                                             </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">December 2, 2019</div>
-                                            Spending Alert: We've noticed unusually high spending for your account.
-                                        </div>
+                                        </a>
+                                        <a className="dropdown-item d-flex align-items-center" href="#">
+                                            <div className="mr-3">
+                                                <div className="icon-circle bg-success">
+                                                    <i className="fas fa-donate text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div className="small text-gray-500">December 7, 2019</div>
+                                                $290.29 has been deposited into your account!
+                                            </div>
+                                        </a>
+                                        <a className="dropdown-item d-flex align-items-center" href="#">
+                                            <div className="mr-3">
+                                                <div className="icon-circle bg-warning">
+                                                    <i className="fas fa-exclamation-triangle text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div className="small text-gray-500">December 2, 2019</div>
+                                                Spending Alert: We've noticed unusually high spending for your account.
+                                            </div>
+                                        </a>
+                                        <a className="dropdown-item text-center small text-gray-500" href="#">Show All
+                                            Alerts</a>
+                                    </div>
+                                </li>
+
+
+                                <div className="topbar-divider d-none d-sm-block"></div>
+
+                                <li className="nav-item dropdown no-arrow">
+                                    <a
+                                        className="nav-link dropdown-toggle"
+                                        href="#"
+                                        id="alertsDropdown"
+                                        role="button"
+                                        onClick={toggleDropdown}
+                                        aria-haspopup="true"
+                                        aria-expanded={showDropdown ? "true" : "false"}
+                                    >
+                                        <span
+                                            className="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                        <img className="img-profile rounded-circle"
+                                             src="img/undraw_profile.svg"/>
                                     </a>
-                                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+
+                                    <div
+                                        className={`dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in ${showDropdown ? 'show' : ''}`}
+                                        aria-labelledby="alertsDropdown"
+                                    >
+                                        <a className="dropdown-item" href="#">
+                                            <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Profile
+                                        </a>
+                                        <a className="dropdown-item" href="#">
+                                            <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Settings
+                                        </a>
+                                        <a className="dropdown-item" href="#">
+                                            <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Activity Log
+                                        </a>
+                                        <div className="dropdown-divider"></div>
+                                        <a className="dropdown-item" href="#" data-toggle="modal"
+                                           data-target="#logoutModal">
+                                            <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Logout
+                                        </a>
+                                    </div>
+                                </li>
+
+                            </ul>
+
+                        </nav>
+
+                        <div className="container-fluid">
+                            <h1 className="h3 mb-2 text-gray-800">Quản lý người dùng</h1>
+
+                            <div className="card shadow mb-4">
+                                <div className="card-header py-3 d-flex justify-content-between">
+                                    <h6 className="m-0 font-weight-bold text-primary">Danh sách người dùng</h6>
+                                    <button className="btn btn-primary" onClick={handleAddUserClick}>Thêm mới</button>
                                 </div>
-                            </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-envelope fa-fw"></i>
-                                    <span class="badge badge-danger badge-counter">7</span>
-                                </a>
-                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                     aria-labelledby="messagesDropdown">
-                                    <h6 class="dropdown-header">
-                                        Message Center
-                                    </h6>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                                 alt="..."/>
-                                                <div class="status-indicator bg-success"></div>
-                                        </div>
-                                        <div class="font-weight-bold">
-                                            <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                                problem I've been having.</div>
-                                            <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                                 alt="..."/>
-                                                <div class="status-indicator"></div>
-                                        </div>
-                                        <div>
-                                            <div class="text-truncate">I have the photos that you ordered last month, how
-                                                would you like them sent to you?</div>
-                                            <div class="small text-gray-500">Jae Chun · 1d</div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                                 alt="..."/>
-                                                <div class="status-indicator bg-warning"></div>
-                                        </div>
-                                        <div>
-                                            <div class="text-truncate">Last month's report looks great, I am very happy with
-                                                the progress so far, keep up the good work!</div>
-                                            <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                                 alt="..."/>
-                                                <div class="status-indicator bg-success"></div>
-                                        </div>
-                                        <div>
-                                            <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                                told me that people say this to all dogs, even if they aren't good...</div>
-                                            <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                                </div>
-                            </li>
+                                {showAddUserModal && <AddUserModal onClose={handleCloseModal} />}
+                                {showUpdateUserModal && <UpdateUserModal onClose={handleCloseUpdateUserModal} userData={selectedUser} />}
+                                <div className="card-body">
+                                    <div className="table-responsive">
+                                        <table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Tên người dùng</th>
+                                                <th>Email</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Số điện thoại</th>
+                                                <th>Ngày tạo</th>
+                                                <th>Trạng thái</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {users.map(user => (
+                                                <tr key={user.id_user}>
+                                                    <td>{user.id_user}</td>
+                                                    <td>{user.last_name} {user.first_name}</td>
+                                                    <td>{user.username}</td>
+                                                    <td>{user.address}</td>
+                                                    <td>{user.phone}</td>
+                                                    <td>{user.createDate}</td>
+                                                    <td>{user.status === '1' ? 'active' : 'inactive'}</td>
+                                                    <td>
+                                                        <a href="#" className="edit-link" onClick={() => handleEditUserClick(user)}>Sửa</a>
+                                                        <span> | </span>
+                                                        {user.status === '1' ? (
+                                                            <a href="#" className="delete-link" onClick={() => handleLockUser(user.id_user)}>Khóa</a>
+                                                        ) : (
+                                                            <a href="#" className="delete-link"
+                                                               onClick={() => handleUnLockUser(user.id_user)}>Mở khóa</a>
+                                                        )}
+                                                    </td>
+                                                </tr>
+                                            ))}
 
-                            <div class="topbar-divider d-none d-sm-block"></div>
-                            <li class="nav-item dropdown no-arrow">
-                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                    <img class="img-profile rounded-circle"
-                                         src="img/undraw_profile.svg"/>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                     aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profile
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Settings
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Activity Log
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Logout
-                                    </a>
-                                </div>
-                            </li>
-
-                        </ul>
-
-                    </nav>
-                    <div class="container-fluid">
-                        <h1 class="h3 mb-2 text-gray-800">Quản lý người dùng</h1>
-
-                        <div class="card shadow mb-4">
-                            <div className="card-header py-3 d-flex justify-content-between">
-                                <h6 className="m-0 font-weight-bold text-primary">Danh sách người dùng</h6>
-                                <button id="addButton" type="button" className="btn btn-primary"
-                                        onClick="addNewItem()">Thêm mới
-                                </button>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Tên người dùng</th>
-                                            <th>Email</th>
-                                            <th>Địa chỉ</th>
-                                            <th>Vai trò</th>
-                                            <th>Trạng thái</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-
-                                        <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                            <td>
-                                                <a href="#" className="edit-link">Sửa</a>
-                                                <span> | </span>
-                                                <a href="#" className="delete-link">Xóa</a>
-                                            </td>
-                                        </tr>
-
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
-
                 </div>
+            </div>
 
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Your Website 2020</span>
+            <a className="scroll-to-top rounded" href="#page-top">
+                <i className="fas fa-angle-up"></i>
+            </a>
+
+            
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-primary" href="login.html">Logout</a>
                         </div>
                     </div>
-                </footer>
-
-            </div>
-        </div>
-
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
             </div>
-        </div>
-    </div>
         </div>
     );
 
 
 }
+
 export default UserManagement;

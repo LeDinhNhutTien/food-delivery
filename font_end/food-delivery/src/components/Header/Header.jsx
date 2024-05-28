@@ -43,7 +43,8 @@ const Header = () => {
             const isUserAdminPage = location.pathname.trim() === "/userManagement";
             const isProductAdminPage = location.pathname.trim() === "/productManagement";
             const isRevenueAdminPage = location.pathname.trim() === "/revenueManagement";
-            setHideHeaderFooter(isAdminPage || isUserAdminPage ||isProductAdminPage || isRevenueAdminPage);
+            const addUser = location.pathname.trim() === "/addUser";
+            setHideHeaderFooter(isAdminPage || isUserAdminPage ||isProductAdminPage || isRevenueAdminPage || addUser);
         }, [location]);
 
 
