@@ -19,15 +19,14 @@ const FoodDetails = () => {
     const [enteredEmail, setEnteredEmail] = useState("");
     const [reviewMsg, setReviewMsg] = useState("");
     const dispatch = useDispatch();
-    // const [id, setId] = useState("");
     const [productDetail, setProductDetail] = useState();
 
     // const product = products.find((product) => product.id === id);
     // // const [previewImg, setPreviewImg] = useState(product.image01);
 
 
-    // const relatedProduct = products.filter((item) => category === item.category);
-    // const {name, price, category, image01} = productDetail;
+    const relatedProduct = productDetail.filter((item) => category === item.category);
+    const { id, name, price, category, imageUrl } = productDetail || {};
 
     useEffect(() => {
         const fetchProductDetail = async () => {
@@ -47,16 +46,17 @@ const FoodDetails = () => {
         fetchProductDetail();
     }, []);
 
-    // const addItem = () => {
-    //     dispatch(
-    //         cartActions.addItem({
-    //             id,
-    //             name,
-    //             price,
-    //             image01,
-    //         })
-    //     );
-    // };
+    const addItem = () => {
+        if (!productDetail) return;
+        dispatch(
+            cartActions.addItem({
+                id,
+                name,
+                price,
+                imageUrl,
+            })
+        );
+    };
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -83,11 +83,16 @@ const FoodDetails = () => {
                     <Row>
                         <Col lg="2" md="2">
                             <div className="product__images ">
-                                {product.imageUrls.map((image, index) => (
-                                    <div className="img__item mb-3" key={index}>
-                                        <img src={image} alt="" className="w-50" />
+                                {product.imageUrls && product.imageUrls.length > 0 && (
+                                    <div className="img__item mb-3">
+                                        <img src={product.imageUrls[0]} alt="" className="w-50" />
                                     </div>
-                                ))}
+                                )}
+                                {/*{product.imageUrls.map((image, index) => (*/}
+                                {/*    <div className="img__item mb-3" key={index}>*/}
+                                {/*        <img src={image} alt="" className="w-50" />*/}
+                                {/*    </div>*/}
+                                {/*))}*/}
                             </div>
                         </Col>
 
@@ -108,9 +113,9 @@ const FoodDetails = () => {
                                 {/*    Danh mục: <span>{category}</span>*/}
                                 {/*</p>*/}
 
-                                {/*<button onClick={addItem} className="addTOCart__btn">*/}
-                                {/*    Thêm vào giỏ hàng*/}
-                                {/*</button>*/}
+                                <button onClick={addItem} className="addTOCart__btn">
+                                    Thêm vào giỏ hàng
+                                </button>
                             </div>
                         </Col>
 
@@ -188,11 +193,11 @@ const FoodDetails = () => {
                             <h2 className="related__Product-title">Những loại bánh liên quan</h2>
                         </Col>
 
-                        {/*{relatedProduct.map((item) => (*/}
-                        {/*    <Col lg="3" md="4" sm="6" xs="6" className="mb-4" key={item.id}>*/}
-                        {/*        <ProductCard item={item}/>*/}
-                        {/*    </Col>*/}
-                        {/*))}*/}
+                        {relatedProduct.map((item) => (
+                            <Col lg="3" md="4" sm="6" xs="6" className="mb-4" key={item.id}>
+                                <ProductCard item={item}/>
+                            </Col>
+                        ))}
                     </Row>
                 </Container>
             </section>

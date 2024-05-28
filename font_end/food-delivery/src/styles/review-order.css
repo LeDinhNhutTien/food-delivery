@@ -45,6 +45,7 @@
 
 .btn_blue:hover {
     opacity: 0.8;
+    color: #FFFFFF;
 }
 
 .table tr th:nth-child(2){

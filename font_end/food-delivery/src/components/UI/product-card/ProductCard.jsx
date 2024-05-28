@@ -12,7 +12,6 @@ const ProductCard = (props) => {
 
     const addToCart = () => {
         if (!id || !name || !price || !imageUrls) return;
-        console.log(imageUrls)
         dispatch(
             cartActions.addItem({
                 id,

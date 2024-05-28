@@ -55,7 +55,23 @@ const ReviewOrder = () => {
         window.location.href = "/home"; // Thay đổi đường dẫn tùy theo yêu cầu của bạn
     };
 
-  return (
+    // Function để format ngày
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        return formattedDate;
+    };
+
+    // set active khi nhan vao
+    function setActiveTab(tabId) {
+        const tabLinks = document.querySelectorAll('.tablinks');
+        tabLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+        document.getElementById(tabId).classList.add('active');
+    }
+
+    return (
       <div id="content">
           <div className="wrapper">
               <div className="form_ctrl">
@@ -63,17 +79,17 @@ const ReviewOrder = () => {
                       <h2>Tài khoản</h2>
                       <div className="list_ctrl">
                           <ul>
+                              <li className="first">
+                                  <a id="account" title="Thông tin tài khoản" href="/account" onClick={() => setActiveTab('account')}>Thông tin tài khoản</a>
+                              </li>
+                              <li className="first">
+                                  <a id="changePassword" title="Đổi mật khẩu" href="/changePassword" onClick={() => setActiveTab('changePassword')}>Đổi mật khẩu</a>
+                              </li>
                               <li className="first active">
-                                  <a id="account" title="Thông tin tài khoản" href="/account">Thông tin tài khoản</a>
+                                  <a id="reviewOrders" title="Xem lại đơn hàng" href="/reviewOrder" onClick={() => setActiveTab('reviewOrders')}>Xem lại đơn hàng</a>
                               </li>
                               <li className="first">
-                                  <a id="changePassword" title="Đổi mật khẩu" href="/changePassword">Đổi mật khẩu</a>
-                              </li>
-                              <li className="first">
-                                  <a id="reviewOrders" title="Xem lại đơn hàng" href="/reviewOrder">Xem lại đơn hàng</a>
-                              </li>
-                              <li className="first">
-                                  <a onClick={handleLogout} id="logout" title="Đăng xuất" href="/home">Đăng xuất</a>
+                                  <a id="logout" title="Đăng xuất" href="/home" onClick={handleLogout}>Đăng xuất</a>
                               </li>
                           </ul>
                       </div>
@@ -106,9 +122,10 @@ const ReviewOrder = () => {
                                               <td style={{width: "73px", paddingTop: "20px"} }>{order.orderID}</td>
                                               <td style={{width: "63px", paddingTop: "20px"}}>{order.name}</td>
                                               <td><img style={{ height: "50px" }} src={order.url} alt="product" /></td>
-                                              <td style={{paddingTop: "20px"}}>{order.date}</td>
+                                              <td style={{paddingTop: "20px"}}>{formatDate(order.date)}</td>
                                               <td style={{paddingTop: "20px"}}>{order.status}</td>
-                                              <td style={{paddingTop: "20px"}}><a className="btn_blue"  href={`/orderDetail?id=${order.orderID}`}>Chi tiết</a></td>
+                                              <td style={{paddingTop: "20px"}}><a className="btn_blue"
+                                                  href={`/orderDetail?id=${order.orderID}`}>Chi tiết</a></td>
                                           </tr>
                                       ))}
                                       </tbody>
