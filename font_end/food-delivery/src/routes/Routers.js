@@ -19,6 +19,8 @@ import ChangePassword from  "../pages/changePassword"
 import ForgetPassword from "../pages/ForgetPassword";
 import OrderDetail from  "../pages/OrderDetail";
 import ConfirmCheckOut from "../pages/ConfirmCheckOut";
+import AddUser from "../Admin/AddUser";
+import UpdateUser from "../Admin/UpdateUser";
 const Routers = () => {
   return (
       <Routes>
@@ -41,7 +43,9 @@ const Routers = () => {
           <Route path="/changePassword" element={<ChangePassword />} />
           <Route path="/forgetPassword" element={<ForgetPassword />} />
           <Route path="/orderDetail" element={<OrderDetail />} />
-              <Route path="/order-confirmation" element={<ConfirmCheckOut />} />
+          <Route path="/order-confirmation" element={<ConfirmCheckOut />} />
+          <Route path="/addUser" element={<AddUser />} />
+          <Route path="/updateUser" element={<UpdateUser />} />
       </Routes>
 
   );

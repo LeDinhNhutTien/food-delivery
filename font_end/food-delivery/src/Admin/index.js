@@ -8,9 +8,11 @@ function AdminHeader() {
     const [showDropdown1, setShowDropdown1] = useState(false);
     const [information, setinformation] = useState([]);
     const [users, setUsers] = useState([]);
+    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
     const toggleDropdown = () => {
         setShowDropdown(!showDropdown);
     };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
