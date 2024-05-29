@@ -47,7 +47,11 @@ const Login = () => {
                     // Lưu thông tin người dùng vào session storage
                     sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
 
-                    navigate('/home') // Redirect to login page upon successful registration
+                    if (userInfo.role === "user") {
+                        navigate('/home');
+                    } else if (userInfo.role === "admin") {
+                        navigate('/admin');
+                    }
                     console.error("Success");
                 } else {
                     const errorMessage = await response.text();

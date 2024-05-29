@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from "react";
 
-import products from "../assets/fake-data/products";
-import {useParams} from "react-router-dom";
 import Helmet from "../components/Helmet/Helmet";
-import CommonSection from "../components/UI/common-section/CommonSection";
 import {Container, Row, Col} from "reactstrap";
 
 import {useDispatch} from "react-redux";
@@ -20,12 +17,12 @@ const FoodDetails = () => {
     const [reviewMsg, setReviewMsg] = useState("");
     const dispatch = useDispatch();
     const [productDetail, setProductDetail] = useState();
+    const [products, setProducts] = useState([]);
 
     // const product = products.find((product) => product.id === id);
     // // const [previewImg, setPreviewImg] = useState(product.image01);
 
 
-    const relatedProduct = productDetail.filter((item) => category === item.category);
     const { id, name, price, category, imageUrl } = productDetail || {};
 
     useEffect(() => {
@@ -46,6 +43,20 @@ const FoodDetails = () => {
         fetchProductDetail();
     }, []);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch("http://localhost:300/api/products");
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     const addItem = () => {
         if (!productDetail) return;
         dispatch(
@@ -63,6 +74,10 @@ const FoodDetails = () => {
 
         console.log(enteredName, enteredEmail, reviewMsg);
     };
+
+    const relatedProduct = productDetail
+        ? products.filter((item) => item.category === category)
+        : [];
 
     // useEffect(() => {
     //     setPreviewImg(product.image01);
@@ -85,7 +100,7 @@ const FoodDetails = () => {
                             <div className="product__images ">
                                 {product.imageUrls && product.imageUrls.length > 0 && (
                                     <div className="img__item mb-3">
-                                        <img src={product.imageUrls[0]} alt="" className="w-50" />
+                                        <img src={product.imageUrls[0]} alt="" className="img" />
                                     </div>
                                 )}
                                 {/*{product.imageUrls.map((image, index) => (*/}

@@ -69,7 +69,7 @@ public class HistoryDao {
                 "JOIN products p ON p.id = od.ProductID " +
                 "JOIN images i ON i.products_id = p.id " +
                 "JOIN customer c ON c.id_user = o.UserID " +
-                "WHERE c.id_user = ?";
+                "WHERE o.OrderID = ?";
         try {
             // Connect to the database
             connection = DatabaseConnectionTest.getConnection();
