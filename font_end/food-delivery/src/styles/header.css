@@ -3,6 +3,7 @@
   height: 100px;
   line-height: 100px;
   top: 0;
+  margin-bottom: 14px;
 }
 a {
   textDecoration: "none";

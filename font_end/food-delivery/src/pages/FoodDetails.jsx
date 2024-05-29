@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from "react";
 
-import products from "../assets/fake-data/products";
-import {useParams} from "react-router-dom";
 import Helmet from "../components/Helmet/Helmet";
-import CommonSection from "../components/UI/common-section/CommonSection";
 import {Container, Row, Col} from "reactstrap";
 
 import {useDispatch} from "react-redux";
@@ -19,15 +16,14 @@ const FoodDetails = () => {
     const [enteredEmail, setEnteredEmail] = useState("");
     const [reviewMsg, setReviewMsg] = useState("");
     const dispatch = useDispatch();
-    // const [id, setId] = useState("");
     const [productDetail, setProductDetail] = useState();
+    const [products, setProducts] = useState([]);
 
     // const product = products.find((product) => product.id === id);
     // // const [previewImg, setPreviewImg] = useState(product.image01);
 
 
-    // const relatedProduct = products.filter((item) => category === item.category);
-    // const {name, price, category, image01} = productDetail;
+    const { id, name, price, category, imageUrl } = productDetail || {};
 
     useEffect(() => {
         const fetchProductDetail = async () => {
@@ -47,22 +43,41 @@ const FoodDetails = () => {
         fetchProductDetail();
     }, []);
 
-    // const addItem = () => {
-    //     dispatch(
-    //         cartActions.addItem({
-    //             id,
-    //             name,
-    //             price,
-    //             image01,
-    //         })
-    //     );
-    // };
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch("http://localhost:300/api/products");
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const addItem = () => {
+        if (!productDetail) return;
+        dispatch(
+            cartActions.addItem({
+                id,
+                name,
+                price,
+                imageUrl,
+            })
+        );
+    };
 
     const submitHandler = (e) => {
         e.preventDefault();
 
         console.log(enteredName, enteredEmail, reviewMsg);
     };
+
+    const relatedProduct = productDetail
+        ? products.filter((item) => item.category === category)
+        : [];
 
     // useEffect(() => {
     //     setPreviewImg(product.image01);
@@ -83,11 +98,16 @@ const FoodDetails = () => {
                     <Row>
                         <Col lg="2" md="2">
                             <div className="product__images ">
-                                {product.imageUrls.map((image, index) => (
-                                    <div className="img__item mb-3" key={index}>
-                                        <img src={image} alt="" className="w-50" />
+                                {product.imageUrls && product.imageUrls.length > 0 && (
+                                    <div className="img__item mb-3">
+                                        <img src={product.imageUrls[0]} alt="" className="img" />
                                     </div>
-                                ))}
+                                )}
+                                {/*{product.imageUrls.map((image, index) => (*/}
+                                {/*    <div className="img__item mb-3" key={index}>*/}
+                                {/*        <img src={image} alt="" className="w-50" />*/}
+                                {/*    </div>*/}
+                                {/*))}*/}
                             </div>
                         </Col>
 
@@ -108,9 +128,9 @@ const FoodDetails = () => {
                                 {/*    Danh mục: <span>{category}</span>*/}
                                 {/*</p>*/}
 
-                                {/*<button onClick={addItem} className="addTOCart__btn">*/}
-                                {/*    Thêm vào giỏ hàng*/}
-                                {/*</button>*/}
+                                <button onClick={addItem} className="addTOCart__btn">
+                                    Thêm vào giỏ hàng
+                                </button>
                             </div>
                         </Col>
 
@@ -188,11 +208,11 @@ const FoodDetails = () => {
                             <h2 className="related__Product-title">Những loại bánh liên quan</h2>
                         </Col>
 
-                        {/*{relatedProduct.map((item) => (*/}
-                        {/*    <Col lg="3" md="4" sm="6" xs="6" className="mb-4" key={item.id}>*/}
-                        {/*        <ProductCard item={item}/>*/}
-                        {/*    </Col>*/}
-                        {/*))}*/}
+                        {relatedProduct.map((item) => (
+                            <Col lg="3" md="4" sm="6" xs="6" className="mb-4" key={item.id}>
+                                <ProductCard item={item}/>
+                            </Col>
+                        ))}
                     </Row>
                 </Container>
             </section>

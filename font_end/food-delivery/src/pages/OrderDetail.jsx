@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/order-detail.css';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const OrderDetail = () => {
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
@@ -26,6 +26,13 @@ const OrderDetail = () => {
 
         fetchOrderDetail();
     }, []);
+
+    // Function để format ngày
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        return formattedDate;
+    };
 
     // Thay thế thẻ button bằng sự kiện onClick trực tiếp trên nút "Hủy đơn" và ngăn chặn hành vi mặc định của trình duyệt
     const cancelOrder = async (orderId, event) => {
@@ -56,77 +63,77 @@ const OrderDetail = () => {
             </div>
             {Array.isArray(orderDetail) && orderDetail.map(order => (
                 <form action="" method="post" acceptCharset="UTF-8" key={order.orderID}>
-                <div className="row">
-                    <div className="col-md-6">
-                        <h2 style={{fontSize: "25px"}}>Thông tin khách hàng</h2>
-                        <table className="table">
-                            <tbody>
-                            <tr>
-                                <td>Tên:</td>
-                                <td>{userInfo.username}</td>
-                            </tr>
-                            <tr>
-                                <td>Địa chỉ:</td>
-                                <td>{userInfo.address}</td>
-                            </tr>
-                            <tr>
-                                <td>Số điện thoại:</td>
-                                <td>{userInfo.phone}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className="col-md-6">
-                        <h2 style={{fontSize: "25px"}}>Thông tin đơn hàng</h2>
-                        <table className="table">
-                            <tbody>
-                            <tr>
-                                <td>Mã đơn hàng:</td>
-                                <td>{order.orderID}</td>
-                            </tr>
-                            <tr>
-                                <td>Ngày đặt hàng:</td>
-                                <td>{order.date}</td>
-                            </tr>
-                            <tr>
-                                <td>Tổng giá trị:</td>
-                                <td>{order.totalPrice} VNĐ</td>
-                            </tr>
-                            <tr>
-                                <td>Tình trạng:</td>
-                                <td>{order.status}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-12">
-                        <h2 style={{fontSize: "25px"}}>Danh sách sản phẩm</h2>
-                        <table className="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">Tên sản phẩm</th>
-                                <th scope="col">Ảnh</th>
-                                <th scope="col">Số lượng</th>
-                                <th scope="col">Tổng tiền</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <tr key={order.orderID}>
-                                     <td>{order.name}</td>
-                                    <td><img style={{ height: "50px" }} src={order.url} alt="product" /></td>
-                                     <td>{order.quantity}</td>
-                                     <td>{order.totalPrice}</td>
+                    <div className="row">
+                        <div className="col-md-6">
+                            <h2 style={{fontSize: "25px"}}>Thông tin khách hàng</h2>
+                            <table className="table">
+                                <tbody>
+                                <tr>
+                                    <td>Tên:</td>
+                                    <td>{userInfo.username}</td>
                                 </tr>
-                            </tbody>
-                        </table>
-                        <div className="parent-button">
-                            <button className="centered-button" onClick={(event) => cancelOrder(order.orderID, event)}>Hủy đơn</button>
+                                <tr>
+                                    <td>Địa chỉ:</td>
+                                    <td>{userInfo.address}</td>
+                                </tr>
+                                <tr>
+                                    <td>Số điện thoại:</td>
+                                    <td>{userInfo.phone}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="col-md-6">
+                            <h2 style={{fontSize: "25px"}}>Thông tin đơn hàng</h2>
+                            <table className="table">
+                                <tbody>
+                                <tr>
+                                    <td>Mã đơn hàng:</td>
+                                    <td>{order.orderID}</td>
+                                </tr>
+                                <tr>
+                                    <td>Ngày đặt hàng:</td>
+                                    <td>{formatDate(order.date)}</td>
+                                </tr>
+                                <tr>
+                                    <td>Tổng giá trị:</td>
+                                    <td>{order.totalPrice} VNĐ</td>
+                                </tr>
+                                <tr>
+                                    <td>Tình trạng:</td>
+                                    <td>{order.status}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </div>
-            </form>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <h2 style={{fontSize: "25px"}}>Danh sách sản phẩm</h2>
+                            <table className="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Tên sản phẩm</th>
+                                    <th scope="col">Ảnh</th>
+                                    <th scope="col">Số lượng</th>
+                                    <th scope="col">Tổng tiền</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr key={order.orderID}>
+                                    <td>{order.name}</td>
+                                    <td><img style={{ height: "50px" }} src={order.url} alt="product" /></td>
+                                    <td>{order.quantity}</td>
+                                    <td>{order.totalPrice}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div className="parent-button">
+                                <button className="centered-button" onClick={(event) => cancelOrder(order.orderID, event)}>Hủy đơn</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             ))}
         </div>
     );

@@ -137,7 +137,7 @@ public class CustomerDao {
         }
     }
     public Customer getUserInfo(String username) {
-        String query = "SELECT id_user, username, password, first_name,last_name,phone,address FROM customer WHERE username = ?";
+        String query = "SELECT id_user, username, password, first_name,last_name,phone,address,role FROM customer WHERE username = ?";
 
         try (Connection connection = DatabaseConnectionTest.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
@@ -147,7 +147,8 @@ public class CustomerDao {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     Customer customer = new Customer( rs.getInt(1),rs.getString(2),rs.getString(3),
-                            rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7));
+                            rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),
+                            rs.getString(8));
                     return customer; // check success
                 } else {
                     return null; // check failed

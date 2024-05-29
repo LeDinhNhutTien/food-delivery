@@ -195,7 +195,7 @@ a {
     border-color: #ed2917;
 }
 .frm_content .button:hover{
-    background: var(--bs-blue-default);
+    background-color: #62a1f1;
 }
 .input small{
     font-size: 12px;

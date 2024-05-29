@@ -141,44 +141,44 @@ const Checkout = () => {
                       <span>{item.name}</span>
                     </div>
                     <div>
-                      <span className="badge bg-primary rounded-pill me-2">Price: ${item.price}</span>
+                      <span className="badge bg-primary rounded-pill me-2">Giá: ${item.price}</span>
                       <br/>
-                      <span className="badge bg-secondary rounded-pill me-2">Quantity: {item.quantity}</span>
+                      <span className="badge bg-secondary rounded-pill me-2">Số lượng: {item.quantity}</span>
                     </div>
                   </li>
               ))}
               <li className="list-group-item d-flex justify-content-between align-items-center">
-                <span>Total Price Food:</span>
+                <span>Tổng tiền sản phẩm:</span>
                 <span>${totalPrice.toFixed(2)}</span>
               </li>
             </ul>
 
             <ul className="list-group mb-3">
               <li className="list-group-item d-flex justify-content-between align-items-center">
-                <span>Delivery charges:</span>
+                <span>Phí giao hàng:</span>
                 <span className="badge bg-primary rounded-pill">{shippingFee}</span>
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center">
-                <span>Delivery time:</span>
+                <span>Thời gian giao:</span>
                 <span className="badge bg-primary rounded-pill">{shippingTime}</span>
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center">
-                <span>Total Price:</span>
+                <span>Tổng tiền:</span>
                 <span className="badge bg-primary rounded-pill">{totalPriceWithShipping}</span>
               </li>
             </ul>
 
             <form className="card p-2">
               <div className="input-group">
-                <input type="text" className="form-control" placeholder="Promo code"/>
+                <input type="text" className="form-control" placeholder="Mã khuyến mại"/>
                 <div className="input-group-append">
-                  <button type="submit" className="btn btn-secondary">Redeem</button>
+                  <button type="submit" className="btn btn-secondary">Áp dụng</button>
                 </div>
               </div>
             </form>
           </div>
           <div className="col-md-8 order-md-1">
-            <h4 className="mb-3">Billing address</h4>
+            <h4 className="mb-3">Địa chỉ thanh toán</h4>
             <form className="needs-validation">
               <div className="cart-section-right">
                 <h2 className="main-h2">Thông tin Giao hàng</h2>

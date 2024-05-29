@@ -12,7 +12,6 @@ const ProductCard = (props) => {
 
     const addToCart = () => {
         if (!id || !name || !price || !imageUrls) return;
-        console.log(imageUrls)
         dispatch(
             cartActions.addItem({
                 id,
@@ -73,7 +72,7 @@ const ProductCard = (props) => {
                                     <button className="btn btn-danger btn-sm" onClick={removeItem}>Hủy</button>
                                 </div>
                             ) : (
-                                <button className="btn btn-primary" onClick={addToCart}>
+                                <button className="btn btn-primaryy" onClick={addToCart}>
                                     Thêm vào giỏ hàng
                                 </button>
                             )}

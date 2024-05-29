@@ -39,6 +39,14 @@
   border-radius: 5px;
   font-size: 0.9rem;
 }
+.btn-primaryy {
+  border: none !important;
+  padding: 7px 14px !important;
+  background: #df2020 !important;
+  color: #fff !important;
+  border-radius: 5px !important;
+  font-size: 0.9rem !important;
+}
 
 @media only screen and (max-width: 992px) {
   .product__content h5 a {
