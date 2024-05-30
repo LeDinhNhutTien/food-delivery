@@ -187,6 +187,6 @@ public class CustomerDao {
 //        System.out.println(dao.sign("tien bip 897", "123456"));
 //        System.out.println(dao.login("Tien", "123456"));
 //        System.out.println(dao.getById("Duy", "123456"));
-        System.out.println(dao.checkPass("Duy", "123456"));
+//        System.out.println(dao.checkPass("Duy", "123456"));
     }
 }

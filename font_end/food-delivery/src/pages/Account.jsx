@@ -5,6 +5,7 @@ import '../styles/account.css';
 
 const Account = () => {
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+
     const [formData, setFormData] = useState({
         username: userInfo.username || "",
         firstName: userInfo.first_name || "",
@@ -45,6 +46,8 @@ const Account = () => {
                     phone: updatedUserInfo.phone,
                     address: updatedUserInfo.address,
                 });
+                // Lưu thông tin người dùng vào session storage
+                sessionStorage.setItem("userInfo", JSON.stringify(updatedUserInfo));
             } else {
                 const errorMessage = await response.text();
                 setError(errorMessage);
