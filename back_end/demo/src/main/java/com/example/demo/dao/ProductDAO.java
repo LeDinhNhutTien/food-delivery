@@ -2,12 +2,10 @@ package com.example.demo.dao;
 
 
 
+import com.example.demo.modal.History;
 import com.example.demo.modal.Product;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -115,10 +113,88 @@ public class ProductDAO {
     }
 
 
+    public List<Product> getProductById(long id) throws SQLException {
+        Connection connection = null;
+        ResultSet resultSet = null;
+        List<String> imageUrls = getImageProductById(id);
+        List<Product> productList = new ArrayList<>();
+        Product product = null;
 
-    public static void main(String[] args) {
-//        ProductDAO dao = new ProductDAO();
-//        System.out.println(dao.getAllProducts().size());
+        String query = "SELECT p.name, p.price, p.description\n" +
+                "FROM products p\n" +
+                "WHERE p.id = ?";
+        try {
+            // Connect to the database
+            connection = DatabaseConnectionTest.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+
+            ps.setLong(1, id);
+
+            resultSet = ps.executeQuery(); // Execute the query without passing 'query' parameter
+
+            while (resultSet.next()) {
+                // Read information of each product and add to the list
+                String name = resultSet.getString("name");
+                double price = Double.parseDouble(resultSet.getString("price"));
+                String description = resultSet.getString("description");
+
+                 product = new Product(name, description, price, imageUrls);
+                productList.add(product);
+            }
+
+        } catch (Exception ex) {
+            // Handle exceptions
+        } finally {
+            // Close resources in the finally block
+            try {
+                if (resultSet != null) resultSet.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                // Handle exceptions
+            }
+        }
+        return productList;
+    }
+
+    public List<String> getImageProductById(long id) throws SQLException {
+        Connection connection = null;
+        ResultSet resultSet = null;
+        List<String> list = new ArrayList<>();
+
+        String query = "SELECT i.url\n" +
+                "FROM images i \n" +
+                "WHERE i.products_id = ?";
+        try {
+            // Connect to the database
+            connection = DatabaseConnectionTest.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+
+            ps.setLong(1, id);
+
+            resultSet = ps.executeQuery(); // Execute the query without passing 'query' parameter
+
+            // Process the results
+            while (resultSet.next()) {
+                String url = resultSet.getString("url");
+                list.add(url);
+            }
+
+        } catch (Exception ex) {
+            // Handle exceptions
+        } finally {
+            // Close resources in the finally block
+            try {
+                if (resultSet != null) resultSet.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                // Handle exceptions
+            }
+        }
+        return list;
+    }
+    public static void main(String[] args) throws SQLException {
+        ProductDAO dao = new ProductDAO();
+        System.out.println(dao.getProductById(1));
 
     }
 }

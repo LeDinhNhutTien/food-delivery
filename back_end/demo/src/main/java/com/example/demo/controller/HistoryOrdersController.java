@@ -34,10 +34,28 @@ public class HistoryOrdersController {
         HistoryDao historyDao = new HistoryDao();
         int idd = Integer.parseInt(id);
         if ( idd!=0) {
-            History history = historyDao.getHistoryById(Integer.parseInt(id));
+            List<History> history = historyDao.getHistoryById(Integer.parseInt(id));
             return ResponseEntity.status(HttpStatus.OK).body(history);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tài khoản chưa tồn tại");
         }
     }
+
+    // Thêm một endpoint mới để xử lý yêu cầu cập nhật tình trạng đơn hàng
+    @PostMapping("/cancelOrder/{id}")
+    public ResponseEntity<String> cancelOrder(@PathVariable String id) {
+        int idd = Integer.parseInt(id);
+        try {
+            // Gọi phương thức updateHistoryById từ dao để cập nhật tình trạng đơn hàng
+            boolean success = dao.updateHistoryById(idd);
+            if (success) {
+                return ResponseEntity.ok("Đã hủy đơn hàng thành công");
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Không thể hủy đơn hàng");
+            }
+        } catch (SQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi khi xử lý yêu cầu");
+        }
+    }
+
 }

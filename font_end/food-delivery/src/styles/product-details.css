@@ -56,6 +56,15 @@
   font-size: 1.4rem;
 }
 
+.product__images {
+  width: 250px;
+  height: 180px;
+  margin-bottom: 120px;
+}
+
+.product__images .img{
+  width: 100% !important;
+}
 @media only screen and (max-width: 830px) {
   .product__title {
     font-size: 1.2rem;

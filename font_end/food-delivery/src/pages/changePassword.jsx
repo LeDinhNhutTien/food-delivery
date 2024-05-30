@@ -69,6 +69,14 @@ const ChangePassword = () => {
         // Chuyển hướng người dùng đến trang đăng nhập hoặc trang chính
         window.location.href = "/home"; // Thay đổi đường dẫn tùy theo yêu cầu của bạn
     };
+    // set active khi nhan vao
+    function setActiveTab(tabId) {
+        const tabLinks = document.querySelectorAll('.tablinks');
+        tabLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+        document.getElementById(tabId).classList.add('active');
+    }
     return (
         <div id="content">
             <div className="wrapper">
@@ -78,16 +86,16 @@ const ChangePassword = () => {
                         <div className="list_ctrl">
                             <ul>
                                 <li className="first">
-                                    <a id="account" title="Thông tin tài khoản" href="/account">Thông tin tài khoản</a>
+                                    <a id="account" title="Thông tin tài khoản" href="/account" onClick={() => setActiveTab('account')}>Thông tin tài khoản</a>
                                 </li>
                                 <li className="first active">
-                                    <a id="changePassword" title="Đổi mật khẩu" href="/changePassword">Đổi mật khẩu</a>
+                                    <a id="changePassword" title="Đổi mật khẩu" href="/changePassword" onClick={() => setActiveTab('changePassword')}>Đổi mật khẩu</a>
+                                </li>
+                                <li className="first ">
+                                    <a id="reviewOrders" title="Xem lại đơn hàng" href="/reviewOrder" onClick={() => setActiveTab('reviewOrders')}>Xem lại đơn hàng</a>
                                 </li>
                                 <li className="first">
-                                    <a id="reviewOrders" title="Xem lại đơn hàng" href="/account?action=reviewOrders">Xem lại đơn hàng</a>
-                                </li>
-                                <li className="first">
-                                    <a onClick={handleLogout} id="logout" title="Đăng xuất" href="/home">Đăng xuất</a>
+                                    <a id="logout" title="Đăng xuất" href="/home" onClick={handleLogout}>Đăng xuất</a>
                                 </li>
                             </ul>
                         </div>

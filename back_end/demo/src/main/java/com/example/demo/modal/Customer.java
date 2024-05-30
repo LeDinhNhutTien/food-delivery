@@ -23,7 +23,7 @@ public class Customer {
         this.address = address;
     }
 
-    public Customer(int id_user, String username, String password, String first_name, String last_name, String phone, String address) {
+    public Customer(int id_user, String username, String password, String first_name, String last_name, String phone, String address, String role) {
         this.id_user = id_user;
         this.username = username;
         this.password = password;
@@ -31,6 +31,7 @@ public class Customer {
         this.last_name = last_name;
         this.phone = phone;
         this.address = address;
+        this.role = role;
     }
 
     public Customer(int id_user, String username, String password, String first_name, String last_name, String phone, String address, String role, String createDate,int status) {

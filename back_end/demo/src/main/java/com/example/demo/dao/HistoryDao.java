@@ -58,18 +58,18 @@ public class HistoryDao {
         return historyList;
     }
 
-    public History getHistoryById(int id) throws SQLException {
+    public List<History> getHistoryById(int id) throws SQLException {
         Connection connection = null;
         ResultSet resultSet = null;
-        History historyList = null;
+        List<History> historyList = new ArrayList<>();
 
-        String query = "SELECT p.`name`, i.url, o.CreationDate, o.OrderStatus, od.Quantity, od.Price " +
+        String query = "SELECT o.OrderID, p.`name`, i.url, o.CreationDate, o.OrderStatus, od.Quantity, od.Price " +
                 "FROM orders o " +
                 "JOIN orderitems od ON o.OrderID = od.OrderID " +
                 "JOIN products p ON p.id = od.ProductID " +
                 "JOIN images i ON i.products_id = p.id " +
                 "JOIN customer c ON c.id_user = o.UserID " +
-                "WHERE c.id_user = ?";
+                "WHERE o.OrderID = ?";
         try {
             // Connect to the database
             connection = DatabaseConnectionTest.getConnection();
@@ -82,6 +82,7 @@ public class HistoryDao {
             // Process the results
             while (resultSet.next()) {
                 // Read information of each product and add to the list
+                int orderId = resultSet.getInt("OrderID");
                 String name = resultSet.getString("name");
                 String url = resultSet.getString("url");
                 String date = resultSet.getString("CreationDate");
@@ -89,7 +90,8 @@ public class HistoryDao {
                 int quantity = Integer.parseInt(resultSet.getString("Quantity"));
                 double price = Double.parseDouble(resultSet.getString("Price"));
 
-                 historyList = new History(name, url, date, status, price, quantity);
+                History history = new History(orderId, name, url, date, status, price, quantity);
+                historyList.add(history);
             }
 
         } catch (Exception ex) {
@@ -106,10 +108,37 @@ public class HistoryDao {
         return historyList;
     }
 
+    public boolean updateHistoryById(int id) throws SQLException {
+        Connection connection = null;
+        int affect =0;
+        boolean result =false;
+        String query = "update orders\n" +
+                "set OrderStatus = 'Đã hủy'\n" +
+                "WHERE OrderID = ?";
+        try {
+            // Connect to the database
+            connection = DatabaseConnectionTest.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+
+            affect = ps.executeUpdate();
+            if (affect !=0) result = true;
+        } catch (Exception ex) {
+        } finally {
+        try {
+            if (connection != null) connection.close();
+        } catch (SQLException e) {
+            // Handle exceptions
+        }
+    }
+        return result;
+    }
+
     public static void main(String[] args) throws SQLException {
         HistoryDao dao = new HistoryDao();
-//        for (History h : dao.getAllHistory(1) ){
-//            System.out.println(h);
-//        }
+        for (History h : dao.getHistoryById(1) ){
+            System.out.println(h);
+        }
+//        System.out.println(dao.getHistoryById(1));
     }
 }
