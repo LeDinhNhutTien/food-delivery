@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7040cd83-6514-43a4-b2fb-11366a5bec77" name="Changes" comment="bổ sung chức năng quản lý người dùng">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/components/UI/product-card/ProductCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/components/UI/product-card/ProductCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Checkout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Checkout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,6 +173,9 @@
       <workItem from="1716975645687" duration="992000" />
       <workItem from="1717028203164" duration="2042000" />
       <workItem from="1717053038155" duration="1549000" />
+      <workItem from="1717054965411" duration="599000" />
+      <workItem from="1717056726228" duration="195000" />
+      <workItem from="1717060694361" duration="661000" />
     </task>
     <task id="LOCAL-00001" summary="fix code">
       <created>1712395860228</created>
@@ -314,7 +324,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716889098031</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="bổ sung chức năng quản lý người dùng">
+      <option name="closed" value="true" />
+      <created>1717054987388</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1717054987388</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

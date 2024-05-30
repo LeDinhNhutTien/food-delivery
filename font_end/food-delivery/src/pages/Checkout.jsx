@@ -270,7 +270,7 @@ const Checkout = () => {
               <h4 className="mb-3">Hình thức thanh toán</h4>
               <div className="d-block my-3">
                 <div className="custom-control custom-radio">
-                  <input id="credit" name="paymentMethod" type="radio" className="custom-control-input" value="direct" checked={paymentMethod === 'direct'} onChange={handlePaymentMethodChange} required />
+                  <input id="credit" name="paymentMethod" type="radio" className="custom-control-input" value="Thanh toán trực tiếp" checked={paymentMethod === 'Thanh toán trực tiếp'} onChange={handlePaymentMethodChange} required />
                   <label className="custom-control-label" htmlFor="credit">Thanh toán trực tiếp</label>
                 </div>
                 <div className="custom-control custom-radio">
