@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const TextInput = ({ label, name, value, onChange, required }) => (
     <div className="form-group">
@@ -17,6 +17,11 @@ const TextInput = ({ label, name, value, onChange, required }) => (
 const UpdateUser = ({ onClose, userData }) => {
     const [updatedUser, setUpdatedUser] = useState({ ...userData });
 
+    useEffect(() => {
+        console.log("UserData passed to UpdateUser:", userData); // Debugging log
+        setUpdatedUser({ ...userData });
+    }, [userData]);
+
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setUpdatedUser({ ...updatedUser, [name]: value, status: 1 });
@@ -24,21 +29,39 @@ const UpdateUser = ({ onClose, userData }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log("Submitting updated user:", updatedUser); // Debugging log
+
         try {
-            const response = await fetch(`http://localhost:8080/api/managementCustomerAdmin/${updatedUser.id}`, {
+            const response = await fetch(`http://localhost:8080/api/managementCustomerAdmin/${updatedUser.id_user}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(updatedUser),
             });
+
+            const contentType = response.headers.get("content-type");
+            let responseData;
+
+            if (contentType && contentType.includes("application/json")) {
+                responseData = await response.json();
+            } else {
+                responseData = await response.text(); // Handle non-JSON responses
+            }
+
+            console.log("Response status:", response.status);
+            console.log("Response data:", responseData);
+
             if (response.ok) {
+                console.log("User updated successfully");
                 window.location.reload();
             } else {
-                console.error("Lỗi khi cập nhật người dùng");
+                console.error("Error updating user:", responseData);
+                alert("Lỗi khi cập nhật người dùng: " + (responseData.message || responseData));
             }
         } catch (error) {
-            console.error("Lỗi khi gửi yêu cầu:", error);
+            console.error("Error making request:", error);
+            alert("Lỗi khi gửi yêu cầu: " + error.message);
         }
     };
 
