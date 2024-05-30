@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { cartActions } from "../../../store/shopping-cart/cartSlice";
 import "../../../styles/product-card.css";
 import "../../../assets/fake-data/products"
-
 const ProductCard = (props) => {
     const { id, name, imageUrls, price } = props.item || {};
     const dispatch = useDispatch();
@@ -53,8 +52,7 @@ const ProductCard = (props) => {
                 <>
                     <div className="product__img">
                         {imageUrls && imageUrls.length > 0 && (
-                            <img src={imageUrls[0]} alt="product-img"
-                                 style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
+                            <img src={imageUrls[0]} alt="product-img" style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
                         )}
                     </div>
 
