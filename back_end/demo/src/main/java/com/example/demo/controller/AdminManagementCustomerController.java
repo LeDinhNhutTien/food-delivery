@@ -38,6 +38,7 @@ public class AdminManagementCustomerController {
         try {
 
             customer.setId_user(id);
+            System.out.println(customer);
             dao.updateCustomer(customer);
             return ResponseEntity.ok("Cập nhật thông tin người dùng thành công");
         } catch (Exception e) {

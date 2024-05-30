@@ -27,7 +27,7 @@ public class AdminManagementCustomerDao {
                 String address = rs.getString(7);
                 String role = rs.getString(8);
                 String date = rs.getString(9);
-                String status = rs.getString(10);
+                int status = rs.getInt(10);
                 Customer c = new Customer(id, email, password, firtName, lastName, phone, address, role, date, status);
                 customers.add(c);
             }
