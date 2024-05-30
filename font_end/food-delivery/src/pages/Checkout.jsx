@@ -13,7 +13,7 @@ const Checkout = () => {
   const [shippingFee, setShippingFee] = useState('');
   const [shippingTime, setShippingTime] = useState('');
   const [cartItems, setCartItems] = useState([]);
-  const [paymentMethod, setPaymentMethod] = useState('direct');
+  const [paymentMethod, setPaymentMethod] = useState('Thanh toán trực tiếp');
   const [orderPlaced, setOrderPlaced] = useState(false);
 
 
@@ -274,11 +274,11 @@ const Checkout = () => {
                   <label className="custom-control-label" htmlFor="credit">Thanh toán trực tiếp</label>
                 </div>
                 <div className="custom-control custom-radio">
-                  <input id="debit" name="paymentMethod" type="radio" className="custom-control-input" value="vnpay" checked={paymentMethod === 'vnpay'} onChange={handlePaymentMethodChange} required />
+                  <input id="debit" name="paymentMethod" type="radio" className="custom-control-input" value="Vnpay" checked={paymentMethod === 'vnpay'} onChange={handlePaymentMethodChange} required />
                   <label className="custom-control-label" htmlFor="debit">VNPay</label>
                 </div>
                 <div className="custom-control custom-radio">
-                  <input id="paypal" name="paymentMethod" type="radio" className="custom-control-input" value="momo" checked={paymentMethod === 'momo'} onChange={handlePaymentMethodChange} required />
+                  <input id="paypal" name="paymentMethod" type="radio" className="custom-control-input" value="Momo" checked={paymentMethod === 'momo'} onChange={handlePaymentMethodChange} required />
                   <label className="custom-control-label" htmlFor="paypal">Momo</label>
                 </div>
               </div>
