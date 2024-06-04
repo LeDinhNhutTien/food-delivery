@@ -5,13 +5,17 @@ const ConfirmCheckOut = () => {
     const [shippingInfo, setShippingInfo] = useState({});
     const [orderDetails, setOrderDetails] = useState([]);
     const [cartItems, setCartItems] = useState([]);
-    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+    const [userInfo, setUserInfo] = useState(null);
     console.log(shippingInfo);
     useEffect(() => {
         // Fetch shipping information and order details from local storage
         const storedShippingInfo = JSON.parse(localStorage.getItem("shippingInfo")) || {};
         const storedOrderDetails = JSON.parse(localStorage.getItem("orderDetails")) || [];
         const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+        // Fetch userInfo from local storage
+        const storedUserInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+        setUserInfo(storedUserInfo);
 
         setShippingInfo(storedShippingInfo);
         setOrderDetails(storedOrderDetails);
@@ -22,7 +26,9 @@ const ConfirmCheckOut = () => {
 
         const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-        const userId = userInfo.id_user;
+        // Use userInfo.id_user instead of 0
+        const userId = userInfo ? userInfo.id_user : 0;
+        console.log(userId);
 
         axios.post('/api/confirmOrder', {
             shippingInfo,
