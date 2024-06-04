@@ -5,6 +5,7 @@ import '../styles/account.css';
 
 const Account = () => {
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+    const id = userInfo.id_user;
 
     const [formData, setFormData] = useState({
         username: userInfo.username || "",
@@ -12,6 +13,8 @@ const Account = () => {
         lastName: userInfo.last_name || "",
         phone: userInfo.phone || "",
         address: userInfo.address || "",
+        id: id || "",
+        role: userInfo.role || "",
     });
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
@@ -45,8 +48,10 @@ const Account = () => {
                     lastName: updatedUserInfo.last_name,
                     phone: updatedUserInfo.phone,
                     address: updatedUserInfo.address,
+                    id: id || "",
+                    role: userInfo.role || "",
                 });
-                // Lưu thông tin người dùng vào session storage
+                // Cập nhật thông tin người dùng trong session storage
                 sessionStorage.setItem("userInfo", JSON.stringify(updatedUserInfo));
             } else {
                 const errorMessage = await response.text();

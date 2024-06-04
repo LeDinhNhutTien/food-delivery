@@ -21,9 +21,11 @@ public class AccountController {
         String lastName = credentials.get("lastName");
         String phone = credentials.get("phone");
         String address = credentials.get("address");
+        int id = Integer.parseInt(credentials.get("id"));
+        String role = credentials.get("role");
 
          if (dao.updateAccount(username, firstName, lastName, phone, address)) {
-             Customer c = new Customer(username, "", firstName, lastName, phone, address);
+             Customer c = new Customer(id ,username, "", firstName, lastName, phone, address, role);
             return ResponseEntity.ok(c);
 
         } else {
