@@ -1,8 +1,63 @@
-import './vendor/fontawesome-free/css/all.min.css'
-import './vendor/datatables/dataTables.bootstrap4.min.css'
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios"; // Import axios library
+import Chart from "chart.js/auto"; // Import Chart.js library
 
 function RevenueManagement() {
+    const [revenueData, setRevenueData] = useState([]);
+
+    const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+    useEffect(() => {
+        fetchRevenueData();
+    }, []);
+
+    useEffect(() => {
+        drawChart();
+    }, [revenueData]);
+
+    const fetchRevenueData = async () => {
+        try {
+            const response = await axios.get('http://localhost:8080/api/revenue');
+            setRevenueData(response.data);
+        } catch (error) {
+            console.error('Error fetching revenue data:', error);
+        }
+    };
+
+    const drawChart = () => {
+        const months = revenueData.map(item => item.month);
+        const revenues = revenueData.map(item => item.totalRevenue);
+
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+
+        // Check if a chart instance exists, if yes, destroy it
+        if (window.myChart instanceof Chart) {
+            window.myChart.destroy();
+        }
+
+        window.myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Monthly Revenue',
+                    data: revenues,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    };
+    const handleYearChange = (event) => {
+        setSelectedYear(parseInt(event.target.value));
+    };
 
     return  (
         <div>
@@ -270,32 +325,61 @@ function RevenueManagement() {
                             </li>
                         </ul>
                     </nav>
+                    <h2>Revenue Data</h2>
+                    <div>
+                        <select id="yearFilter" value={selectedYear} onChange={handleYearChange}>
+                            <option value={2023}>2023</option>
+                            <option value={2024}>2024</option>
+                            <option value={2025}>2025</option>
+                            {/* Add other years as options */}
+                        </select>
+                    </div>
+                    <div style={{
 
-                    <div className="container-fluid">
-                        <h1 className="h3 mb-2 text-gray-800">Charts</h1>
-                        <p className="mb-4">Chart.js is a third party plugin that is used to generate the charts in this
-                            theme. The charts below have been customized - for further customization options, please
-                            visit the <a target="_blank" href="https://www.chartjs.org/docs/latest/">official Chart.js
-                                documentation</a>.</p>
+                        width: '100%',
+                        justifyContent: 'space-between',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        marginRight: '16px',
+                        marginLeft: '16px'
 
+                    }}>
+
+                        <div style={{display: 'flex',  marginRight: '16px', marginLeft: '16px',flexDirection: 'row',justifyContent: 'space-between'}}>
+                            <div style={{width: '20%'}}>
+                                <table style={{width: '100%'}} className="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Month</th>
+                                        <th>Total Revenue</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody style={{maxHeight: '50px', overflowY: 'auto'}}>
+                                    {revenueData.map((item, index) => (
+                                        <tr key={index}>
+                                            <td style={{fontSize: '12px'}}>{item.month}</td>
+                                            <td style={{fontSize: '12px'}}>{item.totalRevenue}</td>
+                                        </tr>
+                                    ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style={{width: '60%'}}>
+                                <canvas style={{width: '40%'}} id="revenueChart"></canvas>
+                            </div>
+                        </div>
 
                     </div>
+
+
                 </div>
-
-
-
-
-
             </div>
-
-
         </div>
 
 
-
-
         </div>
-    );
+    )
+        ;
 }
 
 export default RevenueManagement;
