@@ -123,6 +123,42 @@ function UserManagement() {
         }
     };
 
+
+    const handlePrintUserList = () => {
+        fetch('http://localhost:8080/api/printCustomer/excel')
+            .then(response => {
+                // Check if the response is successful
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                // Return the response blob
+                return response.blob();
+            })
+            .then(blob => {
+                // Create a URL for the blob
+                const url = URL.createObjectURL(blob);
+                // Create an <a> element to trigger download
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'userList.xlsx'; // Set the filename
+                // Append the <a> element to the body and trigger the download
+                document.body.appendChild(a);
+                a.click();
+                // Revoke the URL object to free up memory
+                URL.revokeObjectURL(url);
+                // Remove the <a> element from the DOM
+                document.body.removeChild(a);
+            })
+            .catch(error => {
+                console.error('Error downloading Excel file:', error);
+            });
+    };
+
+
+
+
+
+
     return (
         <div>
             <div id="wrapper">
@@ -319,10 +355,13 @@ function UserManagement() {
                         <div className="container-fluid">
                             <h1 className="h3 mb-2 text-gray-800">Quản lý người dùng</h1>
                             <p className="mb-4">
-                                <button className="btn btn-primary" onClick={handleAddUserClick}>Thêm người dùng</button>
+                                <button className="btn btn-primary" onClick={handleAddUserClick}>Thêm người dùng
+                                </button>
+                                <button className="btn btn-success ml-2" onClick={handlePrintUserList}>In danh sách
+                                </button>
                             </p>
                             <div className="card shadow mb-4">
-                                <div className="card-header py-3">
+                            <div className="card-header py-3">
                                     <h6 className="m-0 font-weight-bold text-primary">Danh sách người dùng</h6>
                                 </div>
                                 <div className="card-body">
