@@ -103,7 +103,43 @@ public class HistoryDao {
         return historyList;
     }
 
+    public Customer getCustomerByIdOrder(int id) throws SQLException {
+        Connection connection = null;
+        ResultSet resultSet = null;
+        Customer customer = null;
 
+        String query = "SELECT c.username, c.address, c.phone " +
+                "FROM orders o " +
+                "JOIN customer c ON c.id_user = o.UserID " +
+                "WHERE o.OrderID = ?";
+        try {
+            connection = DatabaseConnectionTest.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+
+            resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                String username = resultSet.getString("username");
+                String address = resultSet.getString("address");
+                String phone = resultSet.getString("phone");
+
+                customer = new Customer(username, phone, address);
+            }
+
+        } catch (Exception ex) {
+            // Handle exceptions
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                // Handle exceptions
+            }
+        }
+
+        return customer;
+    }
     public List<History> getHistoryById(int id) throws SQLException {
         Connection connection = null;
         ResultSet resultSet = null;
@@ -180,11 +216,37 @@ public class HistoryDao {
         return result;
     }
 
+    public boolean updateHistory(int id, String state) throws SQLException {
+        Connection connection = null;
+        int affect =0;
+        boolean result =false;
+        String query = "update orders\n" +
+                "set OrderStatus = ? \n" +
+                "WHERE OrderID = ?";
+        try {
+            // Connect to the database
+            connection = DatabaseConnectionTest.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, state);
+            ps.setInt(2, id);
+
+            affect = ps.executeUpdate();
+            if (affect !=0) result = true;
+        } catch (Exception ex) {
+        } finally {
+            try {
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                // Handle exceptions
+            }
+        }
+        return result;
+    }
     public static void main(String[] args) throws SQLException {
         HistoryDao dao = new HistoryDao();
-        for (History h : dao.getHistoryById(1) ){
-            System.out.println(h);
-        }
-//        System.out.println(dao.getHistoryById(1));
+//        for (History h : dao.getHistoryById(1) ){
+//            System.out.println(h);
+//        }
+        System.out.println(dao.getCustomerByIdOrder(10));
     }
 }

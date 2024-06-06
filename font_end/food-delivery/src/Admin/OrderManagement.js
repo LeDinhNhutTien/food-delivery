@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './vendor/fontawesome-free/css/all.min.css';
 import './vendor/datatables/dataTables.bootstrap4.min.css';
+import { Link } from 'react-router-dom';
 
 function OrderManagement() {
     const [showDropdown, setShowDropdown] = useState(false);
@@ -376,12 +377,13 @@ function OrderManagement() {
                                                 <tbody>
                                                 {orders.map((order) => (
                                                     <tr key={order.orderID}>
-                                                        <td>{order.orderID}</td>
+                                                        <td><Link to={`/orderDetailAdmin?id=${order.orderID}`}>{order.orderID}</Link></td>
                                                         <td>
-                                                            <img src={order.url} alt={order.name}
-                                                                 style={{ maxWidth: '100px', maxHeight: '100px' }} />
-                                                            <br />
-                                                            {order.name}
+                                                            <Link to={`/orderDetailAdmin?id=${order.orderID}`}>
+                                                                <img src={order.url} alt={order.name} style={{ maxWidth: '100px', maxHeight: '100px' }} />
+                                                                <br />
+                                                                {order.name}
+                                                            </Link>
                                                         </td>
                                                         <td>{order.nameCustomer}</td>
                                                         <td>{order.date}</td>
