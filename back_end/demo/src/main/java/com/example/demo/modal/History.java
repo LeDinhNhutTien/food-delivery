@@ -9,6 +9,8 @@ public class History {
     double totalPrice;
     int quantity;
 
+    String nameCustomer;
+
     public History(int orderID, String name, String url, String date, String status, double totalPrice, int quantity) {
         this.orderID = orderID;
         this.name = name;
@@ -25,6 +27,16 @@ public class History {
         this.url = url;
         this.date = date;
         this.status = status;
+    }
+
+    public History(int orderID, String name, String nameCustomer, String date, double totalPrice, String status, String url) {
+        this.orderID = orderID;
+        this.name = name;
+        this.date = date;
+        this.status = status;
+        this.totalPrice = totalPrice;
+        this.nameCustomer = nameCustomer;
+        this.url = url;
     }
 
     public int getOrderID() {
@@ -81,6 +93,14 @@ public class History {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getNameCustomer() {
+        return nameCustomer;
+    }
+
+    public void setNameCustomer(String nameCustomer) {
+        this.nameCustomer = nameCustomer;
     }
 
     @Override

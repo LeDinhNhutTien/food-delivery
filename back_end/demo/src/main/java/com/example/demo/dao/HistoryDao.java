@@ -8,7 +8,7 @@ import java.util.List;
 
 public class HistoryDao {
 
-    public List<History> getAllHistory(int id) throws SQLException {
+    public List<History> getAllHistoryById(int id) throws SQLException {
         Connection connection = null;
         ResultSet resultSet = null;
         List<History> historyList = new ArrayList<>();
@@ -57,6 +57,52 @@ public class HistoryDao {
 
         return historyList;
     }
+
+    public List<History> getAllHistory() throws SQLException {
+        Connection connection = null;
+        ResultSet resultSet = null;
+        List<History> historyList = new ArrayList<>();
+
+        String query = "SELECT o.OrderID, GROUP_CONCAT(p.`name` SEPARATOR ', ') AS products, c.username, " +
+                "o.CreationDate, SUM(od.Price) AS totalPrice, o.OrderStatus, i.url " +
+                "FROM orders o " +
+                "JOIN orderitems od ON o.OrderID = od.OrderID " +
+                "JOIN products p ON p.id = od.ProductID " +
+                "JOIN images i ON i.products_id = p.id " +
+                "JOIN customer c ON c.id_user = o.UserID " +
+                "GROUP BY o.OrderID, c.username, o.CreationDate, o.OrderStatus, i.url";
+        try {
+            connection = DatabaseConnectionTest.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                int orderId = resultSet.getInt("OrderID");
+                String products = resultSet.getString("products");
+                String username = resultSet.getString("username");
+                String date = resultSet.getString("CreationDate");
+                String status = resultSet.getString("OrderStatus");
+                double totalPrice = resultSet.getDouble("totalPrice");
+                String url = resultSet.getString("url");
+
+                History history = new History(orderId, products, username, date, totalPrice, status, url);
+                historyList.add(history);
+            }
+
+        } catch (Exception ex) {
+            // Handle exceptions
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                // Handle exceptions
+            }
+        }
+
+        return historyList;
+    }
+
 
     public List<History> getHistoryById(int id) throws SQLException {
         Connection connection = null;

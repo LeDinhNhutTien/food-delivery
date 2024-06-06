@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './vendor/fontawesome-free/css/all.min.css';
 import './vendor/datatables/dataTables.bootstrap4.min.css';
-import AddUserModal from './AddUser';
-import UpdateUserModal from './UpdateUser';
 
 function OrderManagement() {
     const [showDropdown, setShowDropdown] = useState(false);
@@ -11,14 +9,14 @@ function OrderManagement() {
     const [showAddUserModal, setShowAddUserModal] = useState(false);
     const [showUpdateUserModal, setShowUpdateUserModal] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
+    const [orders, setOrders] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:8080/api/managementCustomerAdmin");
+                const response = await fetch("http://localhost:8080/api/managementOrderAdmin");
                 const data = await response.json();
-                const filteredUsers = data.filter(user => user.role === 'user');
-                setUsers(filteredUsers);
+                setOrders(data);
             } catch (error) {
                 console.error("Lỗi khi lấy dữ liệu:", error);
             }
@@ -356,54 +354,49 @@ function OrderManagement() {
                             </ul>
                         </nav>
 
-                        <div className="container-fluid">
-                            <h1 className="h3 mb-2 text-gray-800">Danh sách đơn hàng</h1>
-                            <div className="card shadow mb-4">
-                                {/*<div className="card-header py-3">*/}
-                                {/*    <h6 className="m-0 font-weight-bold text-primary">Danh sách người dùng</h6>*/}
-                                {/*</div>*/}
-                                <div className="card-body">
-                                    <div className="table-responsive">
-                                        <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
-                                            <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Sản phẩm</th>
-                                                <th>Tên khách hàng</th>
-                                                <th>Ngày đặt hàng</th>
-                                                <th>Tổng tiền</th>
-                                                <th>Trạng thái</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            {users.map((user) => (
-                                                <tr key={user.id_user}>
-                                                    <td>{user.last_name}</td>
-                                                    <td>{user.first_name}</td>
-                                                    <td>{user.username}</td>
-                                                    <td>{user.address}</td>
-                                                    <td>{user.phone}</td>
-                                                    <td>{user.status === '0' ? 'Khóa' : 'Mở khóa'}</td>
+                            <div className="container-fluid">
+                                <h1 className="h3 mb-2 text-gray-800">Danh sách đơn hàng</h1>
+                                <div className="card shadow mb-4">
+                                    {/*<div className="card-header py-3">*/}
+                                    {/*    <h6 className="m-0 font-weight-bold text-primary">Danh sách người dùng</h6>*/}
+                                    {/*</div>*/}
+                                    <div className="card-body">
+                                        <div className="table-responsive">
+                                            <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
+                                                <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Sản phẩm</th>
+                                                    <th>Tên khách hàng</th>
+                                                    <th>Ngày đặt hàng</th>
+                                                    <th>Tổng tiền</th>
+                                                    <th>Trạng thái</th>
                                                 </tr>
-                                            ))}
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+                                                {orders.map((order) => (
+                                                    <tr key={order.orderID}>
+                                                        <td>{order.orderID}</td>
+                                                        <td>
+                                                            <img src={order.url} alt={order.name}
+                                                                 style={{ maxWidth: '100px', maxHeight: '100px' }} />
+                                                            <br />
+                                                            {order.name}
+                                                        </td>
+                                                        <td>{order.nameCustomer}</td>
+                                                        <td>{order.date}</td>
+                                                        <td>{order.totalPrice}</td>
+                                                        <td>{order.status}</td>
+                                                    </tr>
+                                                ))}
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
-
-                {showAddUserModal && (
-                    <AddUserModal onClose={handleCloseModal} />
-                )}
-                {showUpdateUserModal && selectedUser && (
-                    <UpdateUserModal
-                        onClose={handleCloseUpdateUserModal}
-                        userData={selectedUser}
-                    />
-                )}
             </div>
         </div>
     );
