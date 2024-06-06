@@ -61,6 +61,12 @@ public class Customer {
         this.status = status;
     }
 
+    public Customer(String username, String phone, String address) {
+        this.username = username;
+        this.phone = phone;
+        this.address = address;
+    }
+
     public int getStatus() {
         return status;
     }

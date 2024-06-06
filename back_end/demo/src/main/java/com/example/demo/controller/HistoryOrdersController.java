@@ -21,7 +21,7 @@ public class HistoryOrdersController {
         int id = Integer.parseInt(credentials.get("idUser"));
 
         if (id != 0) {
-            List<History> historys = dao.getAllHistory(id);
+            List<History> historys = dao.getAllHistoryById(id);
             return ResponseEntity.ok(historys);
 
         } else {

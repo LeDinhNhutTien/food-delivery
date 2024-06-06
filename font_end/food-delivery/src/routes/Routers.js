@@ -21,12 +21,16 @@ import OrderDetail from  "../pages/OrderDetail";
 import ConfirmCheckOut from "../pages/ConfirmCheckOut";
 import AddUser from "../Admin/AddUser";
 import UpdateUser from "../Admin/UpdateUser";
+import OrderManagement from "../Admin/OrderManagement"
+import OrderDetailManagement from "../Admin/OrderDetailManagement"
 const Routers = () => {
   return (
       <Routes>
           <Route path="/admin" element={<AdminHeader />} />
           <Route path="/userManagement" element={<UserManagement />} />
           <Route path="/productManagement" element={<ProductManagement />} />
+          <Route path="/orderManagement" element={<OrderManagement />} />
+          <Route path="/orderDetailAdmin" element={<OrderDetailManagement />} />
           <Route path="/revenueManagement" element={<RevenueManagement />} />
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
