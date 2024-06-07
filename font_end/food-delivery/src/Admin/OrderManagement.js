@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import './vendor/fontawesome-free/css/all.min.css';
 import './vendor/datatables/dataTables.bootstrap4.min.css';
 import { Link } from 'react-router-dom';
+import '../styles/OrderDetailManagement.css'
 
 function OrderManagement() {
     const [showDropdown, setShowDropdown] = useState(false);
@@ -388,7 +389,7 @@ function OrderManagement() {
                                                         <td>{order.nameCustomer}</td>
                                                         <td>{order.date}</td>
                                                         <td>{order.totalPrice}</td>
-                                                        <td>{order.status}</td>
+                                                        <td className= "status">{order.status}</td>
                                                     </tr>
                                                 ))}
                                                 </tbody>

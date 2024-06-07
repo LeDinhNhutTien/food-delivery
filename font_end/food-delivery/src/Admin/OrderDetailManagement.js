@@ -6,28 +6,8 @@ import { useNavigate } from "react-router-dom";
 const OrderDetailManagement = () => {
     const [orderDetail, setOrderDetail] = useState([]);
     const navigate = useNavigate();
-    const [userInfo, setUserInfo] = useState([]);
+    const [userInfo, setUserInfo] = useState({});
     const [selectedStatuses, setSelectedStatuses] = useState({});
-
-    const statuses = [
-        {
-            label: "Đang xử lý",
-            options: ["Đang xử lý"]
-        },
-        {
-            label: "Đang giao hàng",
-            options: ["Đang giao hàng"]
-        },
-        {
-            label: "Đã hoàn thành",
-            options: ["Đã giao"]
-        },
-        {
-            label: "Đã hủy",
-            options: ["Hủy"]
-        }
-    ];
-
 
     useEffect(() => {
         const fetchOrderDetail = async () => {
@@ -57,21 +37,19 @@ const OrderDetailManagement = () => {
                     const data = await response.json();
                     setUserInfo(data);
                 } else {
-                    console.error("Error fetching order detail");
+                    console.error("Error fetching customer detail");
                 }
             } catch (error) {
-                console.error("Error fetching order detail:", error);
+                console.error("Error fetching customer detail:", error);
             }
         };
 
         getCustomer();
     }, []);
 
-    // Function để format ngày
     const formatDate = (dateString) => {
         const date = new Date(dateString);
-        const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-        return formattedDate;
+        return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     };
 
     const updateOrder = async (orderId, event) => {
@@ -88,6 +66,11 @@ const OrderDetailManagement = () => {
             if (response.ok) {
                 navigate('/orderManagement');
                 console.log('Đã cập nhật đơn hàng thành công');
+
+                // Update the order status in orderDetail
+                setOrderDetail(prevDetails => prevDetails.map(order =>
+                    order.orderID === orderId ? { ...order, OrderStatus: state } : order
+                ));
             } else {
                 console.error('Error updating order');
             }
@@ -96,19 +79,13 @@ const OrderDetailManagement = () => {
         }
     };
 
-
     const handleStatusChange = (orderID, event) => {
-        const { options } = event.target;
-        const selectedOptions = [];
-        for (const option of options) {
-            if (option.selected) {
-                selectedOptions.push(option.value);
-            }
-        }
+        const newStatus = event.target.value;
         setSelectedStatuses({
             ...selectedStatuses,
-            [orderID]: selectedOptions,
+            [orderID]: newStatus,
         });
+        console.log(`Status for order ${orderID} changed to ${newStatus}`);
     };
 
     return (
@@ -117,7 +94,7 @@ const OrderDetailManagement = () => {
                 <h1 className="text-center my-4" style={{ paddingTop: "60px" }}>Chi tiết đơn hàng</h1>
             </div>
             {Array.isArray(orderDetail) && orderDetail.map(order => (
-                <form action="" method="post" acceptCharset="UTF-8" key={order.orderID}>
+                <form acceptCharset="UTF-8" key={order.orderID} onSubmit={(event) => updateOrder(order.orderID, event)}>
                     <div className="row">
                         <div className="col-md-6">
                             <h2 style={{fontSize: "25px"}}>Thông tin khách hàng</h2>
@@ -158,16 +135,14 @@ const OrderDetailManagement = () => {
                                     <td>Tình trạng:</td>
                                     <td>
                                         <select
-                                            value={order.OrderStatus}
-                                            onChange={(e) => handleStatusChange(order.orderID, e)}
+                                            value={selectedStatuses[order.orderID] || order.OrderStatus}
+                                            onChange={(event) => handleStatusChange(order.orderID, event)}
                                         >
-                                            {statuses.map((statusGroup) => (
-                                                <optgroup key={statusGroup.label}>
-                                                    {statusGroup.options.map((status) => (
-                                                        <option key={status} value={status}>{status}</option>
-                                                    ))}
-                                                </optgroup>
-                                            ))}
+                                            <option value="">Chọn</option>
+                                            <option value="Chờ xử lý" selected={order.OrderStatus === "Chờ xử lý"}>Chờ xử lý</option>
+                                            <option value="Đang giao" selected={order.OrderStatus === "Đang giao"}>Đang giao</option>
+                                            <option value="Đã giao" selected={order.OrderStatus === "Đã giao"}>Đã giao</option>
+                                            <option value="Hủy đơn" selected={order.OrderStatus === "Hủy đơn"}>Hủy đơn</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -197,7 +172,7 @@ const OrderDetailManagement = () => {
                                 </tbody>
                             </table>
                             <div className="parent-button">
-                                <button className="centered-button" onClick={(event) => updateOrder(order.orderID, event)}>Cập nhật</button>
+                                <button className="centered-button" type="submit">Cập nhật</button>
                             </div>
                         </div>
                     </div>
