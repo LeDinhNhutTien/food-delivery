@@ -2,6 +2,8 @@ package com.example.demo.utils;
 
 import com.example.demo.modal.Customer;
 
+import com.example.demo.modal.RevenueRecord;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -44,4 +46,30 @@ public class WriteExcel {
 
         return workbook;
     }
+    public static Workbook exportRevenueToExcel(List<RevenueRecord> revenues) {
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Revenue Report");
+
+        // Create header row
+        Row headerRow = sheet.createRow(0);
+        headerRow.createCell(0).setCellValue("Date");
+        headerRow.createCell(1).setCellValue("Amount");
+
+
+        // Add data of each revenue to the Excel file
+        int rowNum = 1;
+        for (RevenueRecord revenue : revenues) {
+            Row dataRow = sheet.createRow(rowNum++);
+            Cell dateCell = dataRow.createCell(0);
+            dateCell.setCellValue(revenue.getMonth()); // Assuming getDate() returns a Date object
+            // Format date if needed
+            // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            // dateCell.setCellValue(dateFormat.format(revenue.getDate()));
+            dataRow.createCell(1).setCellValue(revenue.getTotalRevenue());
+
+        }
+
+        return workbook;
+    }
+
 }

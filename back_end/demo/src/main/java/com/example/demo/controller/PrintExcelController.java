@@ -1,16 +1,16 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.AdminManagementCustomerDao;
+import com.example.demo.dao.RevenueManagementDao;
 import com.example.demo.modal.Customer;
+import com.example.demo.modal.RevenueRecord;
 import com.example.demo.utils.WriteExcel;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -34,6 +34,22 @@ public class PrintExcelController {
         workbook.write(response.getOutputStream());
         workbook.close();
     }
+    @GetMapping("/excelRevenue")
+    public void exportToExcelRevengue(HttpServletResponse response, @RequestParam int year) throws IOException, SQLException {
+        // Tạo một đối tượng RevenueManagementDao và gọi phương thức để lấy danh sách doanh thu cho năm cụ thể
+        RevenueManagementDao revenueManagementDao = new RevenueManagementDao();
+        List<RevenueRecord> revenueRecords = revenueManagementDao.calculateMonthlyRevenue(year);
+
+        // Thiết lập loại nội dung và tiêu đề phản hồi
+        response.setContentType("application/vnd.ms-excel");
+        response.setHeader("Content-Disposition", "attachment; filename=revenue_report_" + year + ".xlsx");
+
+        // Tạo workbook Excel từ danh sách doanh thu và ghi dữ liệu vào luồng đầu ra của phản hồi
+        Workbook workbook = WriteExcel.exportRevenueToExcel(revenueRecords);
+        workbook.write(response.getOutputStream());
+        workbook.close();
+    }
+
 
 
 }
