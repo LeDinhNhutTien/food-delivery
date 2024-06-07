@@ -56,8 +56,10 @@ public class Product {
         this.dateTime = dateTime;
     }
 
-    public Product(String name, String description, double price, List<String> imageUrls) {
+    public Product(Long id, String name, String description, double price, List<String> imageUrls, int type) {
+        this.id = id;
         this.name = name;
+        this.type = type;
         this.description = description;
         this.price = price;
         this.imageUrls = imageUrls;

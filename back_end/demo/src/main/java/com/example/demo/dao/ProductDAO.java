@@ -1,9 +1,5 @@
 package com.example.demo.dao;
-
-
-
-import com.example.demo.modal.History;
-import com.example.demo.modal.Product;
+import com.example.demo.modal.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -120,7 +116,7 @@ public class ProductDAO {
         List<Product> productList = new ArrayList<>();
         Product product = null;
 
-        String query = "SELECT p.name, p.price, p.description\n" +
+        String query = "SELECT p.id, p.name, p.price, p.description, p.type_id\n" +
                 "FROM products p\n" +
                 "WHERE p.id = ?";
         try {
@@ -133,12 +129,13 @@ public class ProductDAO {
             resultSet = ps.executeQuery(); // Execute the query without passing 'query' parameter
 
             while (resultSet.next()) {
-                // Read information of each product and add to the list
+                Long idProduct = resultSet.getLong("id");
                 String name = resultSet.getString("name");
                 double price = Double.parseDouble(resultSet.getString("price"));
                 String description = resultSet.getString("description");
+                int type = resultSet.getInt("type_id");
 
-                 product = new Product(name, description, price, imageUrls);
+                 product = new Product(idProduct,name, description, price, imageUrls, type);
                 productList.add(product);
             }
 
