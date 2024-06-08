@@ -7,6 +7,9 @@ public class OrderRequest {
     private int userId;
     private List<CartItem> storedCartItems;
 
+    public OrderRequest() {
+    }
+
     // Getters and setters
     public ShippingInfo getShippingInfo() {
         return shippingInfo;

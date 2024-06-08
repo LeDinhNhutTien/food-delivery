@@ -18,18 +18,17 @@ const FoodDetails = () => {
     const dispatch = useDispatch();
     const [productDetail, setProductDetail] = useState();
     const [products, setProducts] = useState([]);
+    const [type, setType] = useState();
 
     // const product = products.find((product) => product.id === id);
     // // const [previewImg, setPreviewImg] = useState(product.image01);
 
 
-    const { id, name, price, category, imageUrl } = productDetail || {};
-
     useEffect(() => {
         const fetchProductDetail = async () => {
             try {
-                const id = new URLSearchParams(window.location.search).get("id");
-                const response = await fetch(`http://localhost:8080/api/products/detailProduct/${id}`);
+                const idd = new URLSearchParams(window.location.search).get("id");
+                const response = await fetch(`http://localhost:8080/api/products/detailProduct/${idd}`);
                 if (response.ok) {
                     const data = await response.json();
                     setProductDetail(data);
@@ -43,10 +42,11 @@ const FoodDetails = () => {
         fetchProductDetail();
     }, []);
 
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:300/api/products");
+                const response = await fetch("http://localhost:8080/api/products");
                 const data = await response.json();
                 setProducts(data);
             } catch (error) {
@@ -57,16 +57,22 @@ const FoodDetails = () => {
         fetchData();
     }, []);
 
+
     const addItem = () => {
         if (!productDetail) return;
-        dispatch(
-            cartActions.addItem({
-                id,
-                name,
-                price,
-                imageUrl,
-            })
-        );
+        {
+            Array.isArray(productDetail) && productDetail.map(product => (
+                    dispatch(
+                        cartActions.addItem({
+                            id: product.id,
+                            name: product.name,
+                            price: product.price,
+                            imageUrl: product.imageUrls,
+                        })
+                    )
+                )
+            )
+        }
     };
 
     const submitHandler = (e) => {
@@ -75,19 +81,21 @@ const FoodDetails = () => {
         console.log(enteredName, enteredEmail, reviewMsg);
     };
 
+    useEffect(() => {
+        const fetchData = async () => {
+            if (Array.isArray(productDetail)) {
+                productDetail.forEach(product => {
+                    setType(product.type);
+                    console.log(product.type);
+                });
+            }
+        };
+        fetchData();
+    }, []);
+
     const relatedProduct = productDetail
-        ? products.filter((item) => item.category === category)
+        ? products.filter((item) => item.type === type)
         : [];
-
-    // useEffect(() => {
-    //     setPreviewImg(product.image01);
-    // }, [product]);
-
-    // useEffect(() => {
-    //     window.scrollTo(0, 0);
-    // }, [product]);
-
-
 
     return (
         <Helmet title="Product-details">
@@ -161,49 +169,30 @@ const FoodDetails = () => {
                                         <p className="user__email">jhon1@gmail.com</p>
                                         <p className="feedback__text">great product</p>
                                     </div>
-
-                                    <div className="review">
-                                        <p className="user__name mb-0">Jhon Doe</p>
-                                        <p className="user__email">jhon1@gmail.com</p>
-                                        <p className="feedback__text">great product</p>
-                                    </div>
                                     <form className="form" onSubmit={submitHandler}>
                                         <div className="form__group">
                                             <input
-                                                type="text"
-                                                placeholder="Enter your name"
-                                                onChange={(e) => setEnteredName(e.target.value)}
-                                                required
-                                            />
+                                                type="text" placeholder="Enter your name"
+                                                onChange={(e) => setEnteredName(e.target.value)} required/>
                                         </div>
 
                                         <div className="form__group">
                                             <input
-                                                type="text"
-                                                placeholder="Enter your email"
-                                                onChange={(e) => setEnteredEmail(e.target.value)}
-                                                required
-                                            />
+                                                type="text" placeholder="Enter your email"
+                                                onChange={(e) => setEnteredEmail(e.target.value)} required/>
                                         </div>
 
                                         <div className="form__group">
-                      <textarea
-                          rows={5}
-                          type="text"
-                          placeholder="Write your review"
-                          onChange={(e) => setReviewMsg(e.target.value)}
-                          required
-                      />
-                                        </div>
-
-                                        <button type="submit" className="addTOCart__btn">
-                                            Submit
-                                        </button>
-                                    </form>
-                                </div>
-                            )}
-                        </Col>
-
+                                          <textarea
+                                              rows={5}  type="text"  placeholder="Write your review"
+                                              onChange={(e) => setReviewMsg(e.target.value)}  required/>
+                                                            </div>
+                                                            <button type="submit" className="addTOCart__btn">
+                                                                Submit </button>
+                                                        </form>
+                                                    </div>
+                                                )}
+                                            </Col>
                         <Col lg="12" className="mb-5 mt-4">
                             <h2 className="related__Product-title">Những loại bánh liên quan</h2>
                         </Col>
