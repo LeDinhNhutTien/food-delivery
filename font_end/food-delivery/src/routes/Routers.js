@@ -21,6 +21,7 @@ import OrderDetail from  "../pages/OrderDetail";
 import ConfirmCheckOut from "../pages/ConfirmCheckOut";
 import AddUser from "../Admin/AddUser";
 import UpdateUser from "../Admin/UpdateUser";
+import RevenMonth from "../Admin/revenueMonthManagement";
 const Routers = () => {
   return (
       <Routes>
@@ -46,6 +47,7 @@ const Routers = () => {
           <Route path="/order-confirmation" element={<ConfirmCheckOut />} />
           <Route path="/addUser" element={<AddUser />} />
           <Route path="/updateUser" element={<UpdateUser />} />
+         <Route path="/revenueMonth" element={<RevenMonth />} />
       </Routes>
 
   );

@@ -4,6 +4,7 @@ import com.example.demo.dao.AdminManagementCustomerDao;
 import com.example.demo.dao.RevenueManagementDao;
 import com.example.demo.modal.Customer;
 import com.example.demo.modal.RevenueRecord;
+import com.example.demo.modal.RevenueRecordMonth;
 import com.example.demo.utils.WriteExcel;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -49,7 +50,27 @@ public class PrintExcelController {
         workbook.write(response.getOutputStream());
         workbook.close();
     }
+    @GetMapping("/excelRevenueMonth")
+    public void exportToExcelRevenueMonth(HttpServletResponse response, @RequestParam int year, @RequestParam int month) throws IOException, SQLException {
+        try {
+            // Get revenue data for the specific year and month
+            RevenueManagementDao revenueManagementDao = new RevenueManagementDao();
+            List<RevenueRecordMonth> revenueRecordMonths = revenueManagementDao.calculateMonthlyRevenueForMonth(year, month);
 
+            // Set response content type and header
+            response.setContentType("application/vnd.ms-excel");
+            response.setHeader("Content-Disposition", "attachment; filename=revenue_report_" + year + "_" + month + ".xlsx");
+
+            // Create Excel workbook from revenue data and write data to the response output stream
+            Workbook workbook = WriteExcel.exportRevenueToExcelForMonth(revenueRecordMonths);
+            workbook.write(response.getOutputStream());
+            workbook.close();
+        } catch (Exception e) {
+            // Handle any exceptions and return appropriate response
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("An error occurred: " + e.getMessage());
+        }
+    }
 
 
 }

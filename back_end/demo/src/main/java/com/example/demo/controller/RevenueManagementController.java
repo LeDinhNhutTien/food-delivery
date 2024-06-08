@@ -2,11 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.dao.RevenueManagementDao;
 import com.example.demo.modal.RevenueRecord;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.demo.modal.RevenueRecordMonth;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -23,4 +20,9 @@ public class RevenueManagementController {
         return revenueRecords;
     }
 
+    @GetMapping("/details/{year}/{month}")
+    public List<RevenueRecordMonth> getRevenueRecordsForMonth(@PathVariable int year, @PathVariable int month) throws SQLException {
+        List<RevenueRecordMonth> revenueRecords = dao.calculateMonthlyRevenueForMonth(year, month);
+        return revenueRecords;
+    }
 }

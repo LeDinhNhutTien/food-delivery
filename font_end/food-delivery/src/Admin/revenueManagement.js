@@ -2,9 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Chart from "chart.js/auto";
 
+import {useParams} from "react-router-dom";
+import RevenueMonthManagement from "./revenueMonthManagement";
+
 function RevenueManagement() {
+
     const [revenueData, setRevenueData] = useState([]);
     const [selectedYear, setSelectedYear] = useState(2024);
+    const [showDetailsModal, setShowDetailsModal] = useState(false);
+    const [selectedMonth, setSelectedMonth] = useState(null);
+    const { year } = useParams(); // Using useParams to get the year and month
 
     useEffect(() => {
         fetchRevenueData(selectedYear);
@@ -13,6 +20,12 @@ function RevenueManagement() {
     useEffect(() => {
         drawChart();
     }, [revenueData]);
+
+    useEffect(() => {
+        if (year) {
+            setSelectedYear(year); // Set the selected year from the URL params
+        }
+    }, [year]);
 
     const fetchRevenueData = async (year) => {
         try {
@@ -26,8 +39,8 @@ function RevenueManagement() {
     const handleYearChange = (event) => {
         const year = event.target.value;
         setSelectedYear(year);
-        fetchRevenueData(year);
     };
+
 
     const drawChart = () => {
         const months = revenueData.map(item => item.month);
@@ -60,29 +73,23 @@ function RevenueManagement() {
             }
         });
     };
+
     const handlePrintRevenue = () => {
         fetch(`http://localhost:8080/api/printCustomer/excelRevenue?year=${selectedYear}`)
             .then(response => {
-                // Check if the response is successful
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                // Return the response blob
                 return response.blob();
             })
             .then(blob => {
-                // Create a URL for the blob
                 const url = URL.createObjectURL(blob);
-                // Create an <a> element to trigger download
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `revenue_report_${selectedYear}.xlsx`; // Set the filename
-                // Append the <a> element to the body and trigger the download
+                a.download = `revenue_report_${selectedYear}.xlsx`;
                 document.body.appendChild(a);
                 a.click();
-                // Revoke the URL object to free up memory
                 URL.revokeObjectURL(url);
-                // Remove the <a> element from the DOM
                 document.body.removeChild(a);
             })
             .catch(error => {
@@ -90,7 +97,15 @@ function RevenueManagement() {
             });
     };
 
+    const handleViewDetails = (month) => {
+        console.log(month)
+        setSelectedMonth(month);
+        setShowDetailsModal(true);
+    };
 
+    const handleCloseDetailsModal = () => {
+        setShowDetailsModal(false);
+    };
     return (
         <div>
             <div id="wrapper">
@@ -249,7 +264,8 @@ function RevenueManagement() {
                                         <li>
                                             <a className="dropdown-item d-flex align-items-center" href="#">
                                                 <div className="dropdown-list-image mr-3">
-                                                    <img className="rounded-circle" src="img/undraw_profile_1.svg" alt="..." />
+                                                    <img className="rounded-circle" src="img/undraw_profile_1.svg"
+                                                         alt="..." />
                                                     <div className="status-indicator bg-success"></div>
                                                 </div>
                                                 <div className="font-weight-bold">
@@ -261,7 +277,8 @@ function RevenueManagement() {
                                         <li>
                                             <a className="dropdown-item d-flex align-items-center" href="#">
                                                 <div className="dropdown-list-image mr-3">
-                                                    <img className="rounded-circle" src="img/undraw_profile_2.svg" alt="..." />
+                                                    <img className="rounded-circle" src="img/undraw_profile_2.svg"
+                                                         alt="..." />
                                                     <div className="status-indicator"></div>
                                                 </div>
                                                 <div>
@@ -273,7 +290,8 @@ function RevenueManagement() {
                                         <li>
                                             <a className="dropdown-item d-flex align-items-center" href="#">
                                                 <div className="dropdown-list-image mr-3">
-                                                    <img className="rounded-circle" src="img/undraw_profile_3.svg" alt="..." />
+                                                    <img className="rounded-circle" src="img/undraw_profile_3.svg"
+                                                         alt="..." />
                                                     <div className="status-indicator bg-warning"></div>
                                                 </div>
                                                 <div>
@@ -285,7 +303,8 @@ function RevenueManagement() {
                                         <li>
                                             <a className="dropdown-item d-flex align-items-center" href="#">
                                                 <div className="dropdown-list-image mr-3">
-                                                    <img className="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="..." />
+                                                    <img className="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                                         alt="..." />
                                                     <div className="status-indicator bg-success"></div>
                                                 </div>
                                                 <div>
@@ -301,76 +320,69 @@ function RevenueManagement() {
                                     <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                        data-bs-toggle="dropdown" aria-expanded="false">
                                         <span className="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                        <img className="img-profile rounded-circle" src="img/undraw_profile.svg" alt="Profile" />
+                                        <img className="img-profile rounded-circle" src="img/undraw_profile.svg" />
                                     </a>
                                     <ul className="dropdown-menu dropdown-menu-end shadow animated--grow-in"
                                         aria-labelledby="userDropdown">
                                         <li><a className="dropdown-item" href="#"><i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Profile</a></li>
                                         <li><a className="dropdown-item" href="#"><i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings</a></li>
                                         <li><a className="dropdown-item" href="#"><i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>Activity Log</a></li>
-                                        <li>
-                                            <div className="dropdown-divider"></div>
-                                            <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                                <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout
-                                            </a>
-                                        </li>
+                                        <li><div className="dropdown-divider"></div></li>
+                                        <li><a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </nav>
                         <div className="container-fluid">
-                            <h1 className="h3 mb-2 text-gray-800">Quản lý doanh thu</h1>
-                            <div className="form-group" style={{overflow: 'hidden'}}>
-
-                                <select id="yearSelect" className="form-control" value={selectedYear} onChange={handleYearChange}
-                                        style={{float: 'left', width: 'calc(30% - 10px)', marginRight: '10px'}}>
-                                    <option value="2023">2023</option>
-                                    <option value="2024">2024</option>
-                                    <option value="2025">2025</option>
-                                </select>
-                                <button onClick={handlePrintRevenue} className="btn btn-success" style={{float: 'left', minWidth: '120px'}}>In báo cáo
+                            <div className="d-sm-flex align-items-center justify-content-between mb-4">
+                                <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
+                                <button onClick={handlePrintRevenue} className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                                    <i className="fas fa-download fa-sm text-white-50"></i> Download Excel
                                 </button>
                             </div>
-
-
                             <div className="row">
-
-                                <div className="col-md-6">
+                                <div className="col-xl-12 col-lg-12">
                                     <div className="card shadow mb-4">
-                                        <div className="card-header py-3">
-                                            <h6 className="m-0 font-weight-bold text-primary">Dữ liệu doanh thu</h6>
+                                        <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h6 className="m-0 font-weight-bold text-primary">Doanh thu theo tháng</h6>
+                                            <div className="dropdown no-arrow">
+                                                <select value={selectedYear} onChange={handleYearChange} className="form-select">
+                                                    <option value="2022">2022</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2024">2024</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div className="card-body">
+                                            <div className="chart-bar">
+                                                <canvas id="revenueChart"></canvas>
+                                            </div>
+                                            <hr />
                                             <div className="table-responsive">
-                                                <table className="table table-bordered" id="dataTable" width="100%"
-                                                       cellSpacing="0">
+                                                <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                                                     <thead>
                                                     <tr>
                                                         <th>Tháng</th>
-                                                        <th>Doanh thu</th>
+                                                        <th>Tổng doanh thu</th>
+                                                        <th>Thao tác</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                     {revenueData.map((item, index) => (
                                                         <tr key={index}>
                                                             <td>{item.month}</td>
-                                                            <td>{item.totalRevenue}</td>
+                                                            <td>${item.totalRevenue}</td>
+                                                            <td>
+                                                                <button
+                                                                    onClick={() => handleViewDetails(item.month)}
+                                                                    className="btn btn-primary">Xem chi tiết
+                                                                </button>
+                                                            </td>
                                                         </tr>
                                                     ))}
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="card shadow mb-4">
-                                        <div className="card-header py-3">
-                                            <h6 className="m-0 font-weight-bold text-primary">Biểu đồ doanh thu hàng
-                                                tháng</h6>
-                                        </div>
-                                        <div className="card-body">
-                                            <canvas id="revenueChart"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -380,15 +392,20 @@ function RevenueManagement() {
                     <footer className="sticky-footer bg-white">
                         <div className="container my-auto">
                             <div className="copyright text-center my-auto">
-                                <span>Copyright &copy; Your Website 2024</span>
+                                <span>Copyright &copy; Your Website 2021</span>
                             </div>
                         </div>
                     </footer>
+                    {showDetailsModal && (
+                        <RevenueMonthManagement
+                            year={selectedYear}
+                            month={selectedMonth}
+                            onClose={handleCloseDetailsModal}
+                        />
+                    )}
+
                 </div>
             </div>
-            <a className="scroll-to-top rounded" href="#page-top">
-                <i className="fas fa-angle-up"></i>
-            </a>
         </div>
     );
 }
