@@ -91,7 +91,7 @@ const OrderDetailManagement = () => {
     return (
         <div className="container" style={{ minHeight: "600px" }}>
             <div>
-                <h1 className="text-center my-4" style={{ paddingTop: "60px" }}>Chi tiết đơn hàng</h1>
+                <h1 className="text-center my-4" style={{ paddingTop: "60px" }}>Quản lý đơn hàng</h1>
             </div>
             {Array.isArray(orderDetail) && orderDetail.map(order => (
                 <form acceptCharset="UTF-8" key={order.orderID} onSubmit={(event) => updateOrder(order.orderID, event)}>

@@ -17,7 +17,7 @@ public class HistoryOrdersController {
     HistoryDao dao = new HistoryDao();
 
     @PostMapping("/historyOrders")
-    public ResponseEntity<?> changePassword(@RequestBody Map<String, String> credentials) throws SQLException {
+    public ResponseEntity<?> historyOrder(@RequestBody Map<String, String> credentials) throws SQLException {
         int id = Integer.parseInt(credentials.get("idUser"));
 
         if (id != 0) {

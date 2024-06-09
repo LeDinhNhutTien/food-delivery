@@ -23,7 +23,6 @@ const OrderDetail = () => {
                 console.error("Error fetching order detail:", error);
             }
         };
-
         fetchOrderDetail();
     }, []);
 
@@ -120,12 +119,16 @@ const OrderDetail = () => {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr key={order.orderID}>
-                                    <td>{order.name}</td>
-                                    <td><img style={{ height: "50px" }} src={order.url} alt="product" /></td>
-                                    <td>{order.quantity}</td>
-                                    <td>{order.totalPrice}</td>
-                                </tr>
+                                {order.name.split(', ').map((name, index) => (
+                                    <tr key={index}>
+                                        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{name}</td>
+                                        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>
+                                            <img style={{ height: "50px" }} src={order.url.split(', ')[index]} alt="product" />
+                                        </td>
+                                        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{order.quantity}</td>
+                                        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{order.totalPrice}</td>
+                                    </tr>
+                                ))}
                                 </tbody>
                             </table>
                             <div className="parent-button">
