@@ -13,64 +13,64 @@ public class HistoryDao {
         ResultSet resultSet = null;
         List<History> historyList = new ArrayList<>();
 
-        String query = "SELECT o.OrderID, p.`name`, i.url, o.CreationDate, o.OrderStatus " +
+        String query = "SELECT o.OrderID, GROUP_CONCAT(DISTINCT p.`name` SEPARATOR ', ') AS productNames, " +
+                "GROUP_CONCAT(DISTINCT selected_images.url SEPARATOR ', ') AS imageUrls, " +
+                "o.CreationDate, o.OrderStatus " +
                 "FROM orders o " +
                 "JOIN orderitems od ON o.OrderID = od.OrderID " +
                 "JOIN products p ON p.id = od.ProductID " +
-                "JOIN images i ON i.products_id = p.id " +
+                "JOIN (SELECT products_id, MIN(url) AS url FROM images GROUP BY products_id) AS selected_images " +
+                "ON selected_images.products_id = p.id " +
                 "JOIN customer c ON c.id_user = o.UserID " +
-                "WHERE c.id_user = ?";
+                "WHERE c.id_user = ? " +
+                "GROUP BY o.OrderID, o.CreationDate, o.OrderStatus";
         try {
-            // Connect to the database
             connection = DatabaseConnectionTest.getConnection();
             PreparedStatement ps = connection.prepareStatement(query);
-
             ps.setInt(1, id);
+            resultSet = ps.executeQuery();
 
-            resultSet = ps.executeQuery(); // Execute the query without passing 'query' parameter
-
-            // Process the results
             while (resultSet.next()) {
-                // Read information of each product and add to the list
                 int orderId = resultSet.getInt("OrderID");
-                String name = resultSet.getString("name");
-                String url = resultSet.getString("url");
+                String productNames = resultSet.getString("productNames");
+                String imageUrls = resultSet.getString("imageUrls");
                 String date = resultSet.getString("CreationDate");
                 String status = resultSet.getString("OrderStatus");
 
-                // Create a History object and add to the list
-                History history = new History(orderId, name, url, date, status);
+                History history = new History(orderId, productNames, imageUrls, date, status);
                 historyList.add(history);
             }
-
         } catch (Exception ex) {
-            // Handle exceptions
+            ex.printStackTrace();
         } finally {
-            // Close resources in the finally block
             try {
                 if (resultSet != null) resultSet.close();
                 if (connection != null) connection.close();
             } catch (SQLException e) {
-                // Handle exceptions
+                e.printStackTrace();
             }
         }
-
         return historyList;
     }
 
+
+
+    // admin
     public List<History> getAllHistory() throws SQLException {
         Connection connection = null;
         ResultSet resultSet = null;
         List<History> historyList = new ArrayList<>();
 
-        String query = "SELECT o.OrderID, GROUP_CONCAT(p.`name` SEPARATOR ', ') AS products, c.username, " +
-                "o.CreationDate, SUM(od.Price) AS totalPrice, o.OrderStatus, i.url " +
+        String query = "SELECT o.OrderID, GROUP_CONCAT(DISTINCT p.`name` SEPARATOR ', ') AS products, c.username, " +
+                "o.CreationDate, SUM(od.Price) AS totalPrice, o.OrderStatus, " +
+                "GROUP_CONCAT(DISTINCT selected_images.url SEPARATOR ', ') AS image_urls " +
                 "FROM orders o " +
                 "JOIN orderitems od ON o.OrderID = od.OrderID " +
                 "JOIN products p ON p.id = od.ProductID " +
-                "JOIN images i ON i.products_id = p.id " +
+                "JOIN (SELECT products_id, MIN(url) AS url FROM images GROUP BY products_id) AS selected_images " +
+                "ON selected_images.products_id = p.id " +
                 "JOIN customer c ON c.id_user = o.UserID " +
-                "GROUP BY o.OrderID, c.username, o.CreationDate, o.OrderStatus, i.url";
+                "GROUP BY o.OrderID, c.username, o.CreationDate, o.OrderStatus";
         try {
             connection = DatabaseConnectionTest.getConnection();
             PreparedStatement ps = connection.prepareStatement(query);
@@ -83,25 +83,28 @@ public class HistoryDao {
                 String date = resultSet.getString("CreationDate");
                 String status = resultSet.getString("OrderStatus");
                 double totalPrice = resultSet.getDouble("totalPrice");
-                String url = resultSet.getString("url");
+                String imageUrls = resultSet.getString("image_urls");
 
-                History history = new History(orderId, products, username, date, totalPrice, status, url);
+                History history = new History(orderId, products, username, date, totalPrice, status, imageUrls);
                 historyList.add(history);
             }
 
         } catch (Exception ex) {
             // Handle exceptions
+            ex.printStackTrace();
         } finally {
             try {
                 if (resultSet != null) resultSet.close();
                 if (connection != null) connection.close();
             } catch (SQLException e) {
                 // Handle exceptions
+                e.printStackTrace();
             }
         }
 
         return historyList;
     }
+
 
     public Customer getCustomerByIdOrder(int id) throws SQLException {
         Connection connection = null;
@@ -145,13 +148,21 @@ public class HistoryDao {
         ResultSet resultSet = null;
         List<History> historyList = new ArrayList<>();
 
-        String query = "SELECT o.OrderID, p.`name`, i.url, o.CreationDate, o.OrderStatus, od.Quantity, od.Price " +
+        String query = "SELECT o.OrderID, " +
+                "GROUP_CONCAT(DISTINCT p.`name` SEPARATOR ', ') AS product_names, " +
+                "GROUP_CONCAT(DISTINCT selected_images.url SEPARATOR ', ') AS image_urls, " +
+                "o.CreationDate, " +
+                "o.OrderStatus, " +
+                "o.ShippingAddress, " +
+                "SUM(od.Price) AS total_price " +
                 "FROM orders o " +
                 "JOIN orderitems od ON o.OrderID = od.OrderID " +
                 "JOIN products p ON p.id = od.ProductID " +
-                "JOIN images i ON i.products_id = p.id " +
+                "JOIN (SELECT products_id, MIN(url) AS url FROM images GROUP BY products_id) AS selected_images " +
+                "ON selected_images.products_id = p.id " +
                 "JOIN customer c ON c.id_user = o.UserID " +
-                "WHERE o.OrderID = ?";
+                "WHERE o.OrderID = ? " +
+                "GROUP BY o.OrderID, o.CreationDate, o.OrderStatus";
         try {
             // Connect to the database
             connection = DatabaseConnectionTest.getConnection();
@@ -159,25 +170,26 @@ public class HistoryDao {
 
             ps.setInt(1, id);
 
-            resultSet = ps.executeQuery(); // Execute the query without passing 'query' parameter
+            resultSet = ps.executeQuery();
 
             // Process the results
             while (resultSet.next()) {
-                // Read information of each product and add to the list
+                // Read information of the order and add to the list
                 int orderId = resultSet.getInt("OrderID");
-                String name = resultSet.getString("name");
-                String url = resultSet.getString("url");
+                String productNames = resultSet.getString("product_names");
+                String imageUrls = resultSet.getString("image_urls");
                 String date = resultSet.getString("CreationDate");
                 String status = resultSet.getString("OrderStatus");
-                int quantity = Integer.parseInt(resultSet.getString("Quantity"));
-                double price = Double.parseDouble(resultSet.getString("Price"));
+                String address = resultSet.getString("ShippingAddress");
+                double price = resultSet.getDouble("total_price");
 
-                History history = new History(orderId, name, url, date, status, price, quantity);
+                History history = new History(orderId, productNames, imageUrls, date, status, price, address);
                 historyList.add(history);
             }
 
         } catch (Exception ex) {
             // Handle exceptions
+            ex.printStackTrace();
         } finally {
             // Close resources in the finally block
             try {
@@ -185,6 +197,55 @@ public class HistoryDao {
                 if (connection != null) connection.close();
             } catch (SQLException e) {
                 // Handle exceptions
+                e.printStackTrace();
+            }
+        }
+        return historyList;
+    }
+    public List<History> getHistoryInformationById(int id) throws SQLException {
+        Connection connection = null;
+        ResultSet resultSet = null;
+        List<History> historyList = new ArrayList<>();
+
+        String query = "SELECT p.`name`, od.Quantity, od.Price, selected_images.url AS image_urls " +
+                "FROM orders o " +
+                "JOIN orderitems od ON o.OrderID = od.OrderID " +
+                "JOIN products p ON p.id = od.ProductID " +
+                "JOIN (SELECT products_id, MIN(url) AS url FROM images GROUP BY products_id) AS selected_images " +
+                "ON selected_images.products_id = p.id " +
+                "WHERE od.OrderID = ? ";
+
+        try {
+            // Connect to the database
+            connection = DatabaseConnectionTest.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+
+            ps.setInt(1, id);
+
+            resultSet = ps.executeQuery();
+
+            // Process the results
+            while (resultSet.next()) {
+                String productNames = resultSet.getString("name");
+                String imageUrls = resultSet.getString("image_urls");
+                int quantity = resultSet.getInt("Quantity");
+                double price = resultSet.getDouble("Price");
+
+                History history = new History(productNames, imageUrls,price, quantity);
+                historyList.add(history);
+            }
+
+        } catch (Exception ex) {
+            // Handle exceptions
+            ex.printStackTrace();
+        } finally {
+            // Close resources in the finally block
+            try {
+                if (resultSet != null) resultSet.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                // Handle exceptions
+                e.printStackTrace();
             }
         }
         return historyList;
@@ -247,6 +308,6 @@ public class HistoryDao {
 //        for (History h : dao.getHistoryById(1) ){
 //            System.out.println(h);
 //        }
-        System.out.println(dao.getCustomerByIdOrder(10));
+//        System.out.println(dao.getCustomerByIdOrder(10));
     }
 }

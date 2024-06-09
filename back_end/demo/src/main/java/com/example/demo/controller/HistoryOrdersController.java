@@ -17,7 +17,7 @@ public class HistoryOrdersController {
     HistoryDao dao = new HistoryDao();
 
     @PostMapping("/historyOrders")
-    public ResponseEntity<?> changePassword(@RequestBody Map<String, String> credentials) throws SQLException {
+    public ResponseEntity<?> historyOrder(@RequestBody Map<String, String> credentials) throws SQLException {
         int id = Integer.parseInt(credentials.get("idUser"));
 
         if (id != 0) {
@@ -41,6 +41,17 @@ public class HistoryOrdersController {
         }
     }
 
+    @GetMapping("/orderDetailInfo/{id}")
+    public ResponseEntity<?> orderDetailInfo(@PathVariable String id) throws SQLException {
+        HistoryDao historyDao = new HistoryDao();
+        int idd = Integer.parseInt(id);
+        if ( idd!=0) {
+            List<History> history = historyDao.getHistoryInformationById(Integer.parseInt(id));
+            return ResponseEntity.status(HttpStatus.OK).body(history);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tài khoản chưa tồn tại");
+        }
+    }
     // Thêm một endpoint mới để xử lý yêu cầu cập nhật tình trạng đơn hàng
     @PostMapping("/cancelOrder/{id}")
     public ResponseEntity<String> cancelOrder(@PathVariable String id) {
