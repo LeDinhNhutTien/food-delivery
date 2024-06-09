@@ -7,13 +7,16 @@
     <list default="true" id="dbdc7fa1-e23b-4c02-a3f3-98e7c707b2ae" name="Changes" comment="fix lại chức năng cập nhật và khóa tài khoản người dùng trong quản lý người dùng">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controller/AdminManagementOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controller/AdminManagementOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controller/HistoryOrdersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controller/HistoryOrdersController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/dao/HistoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/dao/HistoryDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/modal/History.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/modal/History.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/OrderDetailManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/OrderDetailManagement.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/OrderManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/OrderManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/productManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/productManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/revenueManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/revenueManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/userManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/userManagement.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/OrderDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/OrderDetail.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/ReviewOrder.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/ReviewOrder.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +211,7 @@
       <workItem from="1717513111149" duration="6079000" />
       <workItem from="1717649632974" duration="11129000" />
       <workItem from="1717721771104" duration="8804000" />
-      <workItem from="1717900470330" duration="9084000" />
+      <workItem from="1717900470330" duration="12564000" />
     </task>
     <task id="LOCAL-00001" summary="push để pull">
       <option name="closed" value="true" />

@@ -122,7 +122,6 @@ function OrderManagement() {
         }
     };
 
-
     const handlePrintUserList = () => {
         fetch('http://localhost:8080/api/printCustomer/excel')
             .then(response => {
@@ -152,11 +151,6 @@ function OrderManagement() {
                 console.error('Error downloading Excel file:', error);
             });
     };
-
-
-
-
-
 
     return (
         <div>

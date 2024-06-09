@@ -145,24 +145,26 @@ function RevenueManagement() {
                     <li className="nav-item">
                         <a className="nav-link" href="/userManagement">
                             <i className="fas fa-fw fa-table"></i>
-                            <span>Quản lý người dùng</span>
-                        </a>
+                            <span>Quản lý người dùng</span></a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="/productManagement">
                             <i className="fas fa-fw fa-table"></i>
-                            <span>Quản lý sản phẩm</span>
-                        </a>
+                            <span>Quản lý sản phẩm</span></a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="/orderManagement">
+                            <i className="fas fa-fw fa-table"></i>
+                            <span>Quản lý đơn hàng</span></a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="/revenueManagement">
                             <i className="fas fa-fw fa-chart-area"></i>
-                            <span>Biểu đồ doanh thu</span>
-                        </a>
+                            <span>Biểu đồ doanh thu</span></a>
                     </li>
-                    <hr className="sidebar-divider d-none d-md-block" />
+                    <hr className="sidebar-divider d-none d-md-block"/>
                     <div className="text-center d-none d-md-inline">
-                        <button className="rounded-circle border-0" id="sidebarToggle"></button>
+                        <a href="/home" className="rounded-circle border-0" id="sidebarToggle"></a>
                     </div>
                 </ul>
                 <div id="content-wrapper" className="d-flex flex-column">
