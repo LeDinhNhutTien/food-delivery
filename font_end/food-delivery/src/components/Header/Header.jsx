@@ -44,7 +44,9 @@ const Header = () => {
             const isProductAdminPage = location.pathname.trim() === "/productManagement";
             const isRevenueAdminPage = location.pathname.trim() === "/revenueManagement";
             const addUser = location.pathname.trim() === "/addUser";
-            setHideHeaderFooter(isAdminPage || isUserAdminPage ||isProductAdminPage || isRevenueAdminPage || addUser);
+            const isRoot = location.pathname.trim() === "/root";
+            const isDiary = location.pathname.trim() === "/root/diary";
+            setHideHeaderFooter(isAdminPage || isUserAdminPage ||isProductAdminPage || isRevenueAdminPage || addUser || isRoot || isDiary);
         }, [location]);
 
 

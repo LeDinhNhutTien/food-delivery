@@ -23,6 +23,8 @@ import AddUser from "../Admin/AddUser";
 import UpdateUser from "../Admin/UpdateUser";
 import OrderManagement from "../Admin/OrderManagement"
 import OrderDetailManagement from "../Admin/OrderDetailManagement"
+import Root from "../root/index"
+import WorkDiary from "../root/WorkDiary"
 const Routers = () => {
   return (
       <Routes>
@@ -50,6 +52,8 @@ const Routers = () => {
           <Route path="/order-confirmation" element={<ConfirmCheckOut />} />
           <Route path="/addUser" element={<AddUser />} />
           <Route path="/updateUser" element={<UpdateUser />} />
+          <Route path="/root" element={<Root />} />
+           <Route path="/root/diary" element={<WorkDiary />} />
       </Routes>
 
   );
