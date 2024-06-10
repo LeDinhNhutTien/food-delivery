@@ -50,7 +50,7 @@ public class AdminManagementCustomerDao {
             ps.setString(4, c.getLast_name());
             ps.setString(5, c.getPhone());
             ps.setString(6, c.getAddress());
-            ps.setString(7, "user");
+            ps.setString(7, c.getRole());
             ps.setInt(8, 1);
 
             ps.executeUpdate();
