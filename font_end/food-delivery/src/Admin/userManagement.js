@@ -212,11 +212,6 @@ function UserManagement() {
             });
     };
 
-
-
-
-
-
     return (
         <div>
             <div id="wrapper">
@@ -242,6 +237,11 @@ function UserManagement() {
                         <a className="nav-link" href="/productManagement">
                             <i className="fas fa-fw fa-table"></i>
                             <span>Quản lý sản phẩm</span></a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="/orderManagement">
+                            <i className="fas fa-fw fa-table"></i>
+                            <span>Quản lý đơn hàng</span></a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="/revenueManagement">

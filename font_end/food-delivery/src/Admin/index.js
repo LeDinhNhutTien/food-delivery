@@ -72,35 +72,30 @@ function AdminHeader() {
                             <i className="fas fa-fw fa-tachometer-alt"></i>
                             <span>Tổng quan </span></a>
                     </li>
-
-
-                            <li className="nav-item">
-                                <a className="nav-link" href="/userManagement">
-                                    <i className="fas fa-fw fa-table"></i>
-                                    <span>Quản lý người dùng</span></a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/productManagement">
-                                <i className="fas fa-fw fa-table"></i>
-                                <span>Quản lý sản phẩm</span></a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/revenueManagement">
-                                    <i className="fas fa-fw fa-chart-area"></i>
-                                    <span>Biểu đồ doanh thu</span></a>
-                            </li>
-
-
-                            <hr className="sidebar-divider d-none d-md-block"/>
-
-
-                                <div className="text-center d-none d-md-inline">
-                                    <a href="/home" className="rounded-circle border-0" id="sidebarToggle"></a>
-                                </div>
-
-
-
-
+                <li className="nav-item">
+                    <a className="nav-link" href="/userManagement">
+                        <i className="fas fa-fw fa-table"></i>
+                        <span>Quản lý người dùng</span></a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="/productManagement">
+                        <i className="fas fa-fw fa-table"></i>
+                        <span>Quản lý sản phẩm</span></a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="/orderManagement">
+                        <i className="fas fa-fw fa-table"></i>
+                        <span>Quản lý đơn hàng</span></a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="/revenueManagement">
+                        <i className="fas fa-fw fa-chart-area"></i>
+                        <span>Biểu đồ doanh thu</span></a>
+                </li>
+                <hr className="sidebar-divider d-none d-md-block"/>
+                <div className="text-center d-none d-md-inline">
+                    <a href="/home" className="rounded-circle border-0" id="sidebarToggle"></a>
+                </div>
             </ul>
 
             <div id="content-wrapper" className="d-flex flex-column">

@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 const OrderDetail = () => {
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
     const [orderDetail, setOrderDetail] = useState([]);
+    const [orderDetailInfo, setOrderDetailInfo] = useState([]);
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -23,10 +25,26 @@ const OrderDetail = () => {
                 console.error("Error fetching order detail:", error);
             }
         };
-
         fetchOrderDetail();
     }, []);
 
+    useEffect(() => {
+        const fetchOrderDetail = async () => {
+            try {
+                const orderId = new URLSearchParams(window.location.search).get("id");
+                const response = await fetch(`http://localhost:8080/api/orderDetailInfo/${orderId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setOrderDetailInfo(data);
+                } else {
+                    console.error("Error fetching order detail");
+                }
+            } catch (error) {
+                console.error("Error fetching order detail:", error);
+            }
+        };
+        fetchOrderDetail();
+    }, []);
     // Function để format ngày
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -74,7 +92,7 @@ const OrderDetail = () => {
                                 </tr>
                                 <tr>
                                     <td>Địa chỉ:</td>
-                                    <td>{userInfo.address}</td>
+                                    <td>{order.address}</td>
                                 </tr>
                                 <tr>
                                     <td>Số điện thoại:</td>
@@ -120,12 +138,26 @@ const OrderDetail = () => {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr key={order.orderID}>
-                                    <td>{order.name}</td>
-                                    <td><img style={{ height: "50px" }} src={order.url} alt="product" /></td>
-                                    <td>{order.quantity}</td>
-                                    <td>{order.totalPrice}</td>
-                                </tr>
+                                {Array.isArray(orderDetailInfo) && orderDetailInfo.map(orderInfo => (
+                                    <tr key={orderInfo}>
+                                                <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{orderInfo.name}</td>
+                                                <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>
+                                                    <img style={{ height: "50px" }} src={orderInfo.url} alt="product" />
+                                                </td>
+                                                <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{orderInfo.quantity}</td>
+                                                <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{orderInfo.totalPrice}</td>
+                                            </tr>
+                                ))}
+                                {/*{order.name.split(', ').map((name, index) => (*/}
+                                {/*    <tr key={index}>*/}
+                                {/*        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{name}</td>*/}
+                                {/*        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>*/}
+                                {/*            <img style={{ height: "50px" }} src={order.url.split(', ')[index]} alt="product" />*/}
+                                {/*        </td>*/}
+                                {/*        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{order.quantity}</td>*/}
+                                {/*        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{order.totalPrice}</td>*/}
+                                {/*    </tr>*/}
+                                {/*))}*/}
                                 </tbody>
                             </table>
                             <div className="parent-button">

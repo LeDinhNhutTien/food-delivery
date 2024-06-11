@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.HistoryDao;
+import com.example.demo.dao.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +18,7 @@ public class AdminManagementOrder {
     HistoryDao dao =  new HistoryDao();
 
     @GetMapping
-    public List<History> getAllCustomer() throws SQLException {
+    public List<History> getAllHistory() throws SQLException {
         List<History> histories = dao.getAllHistory();
 
         return histories;

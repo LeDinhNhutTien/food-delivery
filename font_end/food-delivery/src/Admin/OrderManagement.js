@@ -131,7 +131,6 @@ function OrderManagement() {
         }
     };
 
-
     const handlePrintUserList = () => {
         fetch('http://localhost:8080/api/printCustomer/excel')
             .then(response => {
@@ -161,11 +160,6 @@ function OrderManagement() {
                 console.error('Error downloading Excel file:', error);
             });
     };
-
-
-
-
-
 
     return (
         <div>
@@ -390,9 +384,13 @@ function OrderManagement() {
                                                         <td><Link to={`/orderDetailAdmin?id=${order.orderID}`}>{order.orderID}</Link></td>
                                                         <td>
                                                             <Link to={`/orderDetailAdmin?id=${order.orderID}`}>
-                                                                <img src={order.url} alt={order.name} style={{ maxWidth: '100px', maxHeight: '100px' }} />
-                                                                <br />
-                                                                {order.name}
+                                                                {order.url.split(', ').map((url, index) => (
+                                                                    <div key={index} style={{ marginBottom: "10px" }}>
+                                                                        <img style={{ height: "50px" }} src={url} alt="product" />
+                                                                        <br />
+                                                                        {order.name.split(', ')[index]}
+                                                                    </div>
+                                                                ))}
                                                             </Link>
                                                         </td>
                                                         <td>{order.nameCustomer}</td>
