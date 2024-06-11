@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/order-detail.css';
 import { useNavigate } from "react-router-dom";
 
 const OrderDetailManagement = () => {
@@ -7,8 +8,16 @@ const OrderDetailManagement = () => {
     const navigate = useNavigate();
     const [userInfo, setUserInfo] = useState({});
     const [selectedStatuses, setSelectedStatuses] = useState({});
-    const [orderDetailInfo, setOrderDetailInfo] = useState([]);
-
+    const userLogin = JSON.parse(sessionStorage.getItem("userInfo"));
+    useEffect(() => {
+        if (!userLogin) {
+            window.location.href = "/login";
+        } else {
+            if(userLogin.role != "admin") {
+                window.location.href = "/";
+            }
+        }
+    }, [userLogin]);
     useEffect(() => {
         const fetchOrderDetail = async () => {
             try {
@@ -47,23 +56,6 @@ const OrderDetailManagement = () => {
         getCustomer();
     }, []);
 
-    useEffect(() => {
-        const fetchOrderDetail = async () => {
-            try {
-                const orderId = new URLSearchParams(window.location.search).get("id");
-                const response = await fetch(`http://localhost:8080/api/orderDetailInfo/${orderId}`);
-                if (response.ok) {
-                    const data = await response.json();
-                    setOrderDetailInfo(data);
-                } else {
-                    console.error("Error fetching order detail");
-                }
-            } catch (error) {
-                console.error("Error fetching order detail:", error);
-            }
-        };
-        fetchOrderDetail();
-    }, []);
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
@@ -108,7 +100,7 @@ const OrderDetailManagement = () => {
     return (
         <div className="container" style={{ minHeight: "600px" }}>
             <div>
-                <h1 className="text-center my-4" style={{ paddingTop: "60px" }}>Quản lý đơn hàng</h1>
+                <h1 className="text-center my-4" style={{ paddingTop: "60px" }}>Chi tiết đơn hàng</h1>
             </div>
             {Array.isArray(orderDetail) && orderDetail.map(order => (
                 <form acceptCharset="UTF-8" key={order.orderID} onSubmit={(event) => updateOrder(order.orderID, event)}>
@@ -123,7 +115,7 @@ const OrderDetailManagement = () => {
                                 </tr>
                                 <tr>
                                     <td>Địa chỉ:</td>
-                                    <td>{order.address}</td>
+                                    <td>{userInfo.address}</td>
                                 </tr>
                                 <tr>
                                     <td>Số điện thoại:</td>
@@ -180,16 +172,12 @@ const OrderDetailManagement = () => {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {Array.isArray(orderDetailInfo) && orderDetailInfo.map(orderInfo => (
-                                    <tr key={orderInfo}>
-                                        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{orderInfo.name}</td>
-                                        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>
-                                            <img style={{ height: "50px" }} src={orderInfo.url} alt="product" />
-                                        </td>
-                                        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{orderInfo.quantity}</td>
-                                        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{orderInfo.totalPrice}</td>
-                                    </tr>
-                                ))}
+                                <tr key={order.orderID}>
+                                    <td>{order.name}</td>
+                                    <td><img style={{ height: "50px" }} src={order.url} alt="product" /></td>
+                                    <td>{order.quantity}</td>
+                                    <td>{order.totalPrice}</td>
+                                </tr>
                                 </tbody>
                             </table>
                             <div className="parent-button">

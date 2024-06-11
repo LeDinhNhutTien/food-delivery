@@ -7,16 +7,18 @@
     <list default="true" id="dbdc7fa1-e23b-4c02-a3f3-98e7c707b2ae" name="Changes" comment="fix lại chức năng cập nhật và khóa tài khoản người dùng trong quản lý người dùng">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controller/HistoryOrdersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controller/HistoryOrdersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/dao/HistoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/dao/HistoryDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/modal/History.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/modal/History.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/OrderDetailManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/OrderDetailManagement.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/OrderManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/OrderManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/ProductList.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/ProductList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/productManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/productManagement.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/revenueManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/revenueManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/revenueMonthManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/revenueMonthManagement.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/userManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/userManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/OrderDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/OrderDetail.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/Checkout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/Checkout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/ConfirmCheckOut.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/ConfirmCheckOut.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/root/WorkDiary.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/root/WorkDiary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/root/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/root/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,37 +49,62 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.AdminManagementCustomerDao.executor&quot;: &quot;Run&quot;,
-    &quot;Application.AdminManagementDao.executor&quot;: &quot;Run&quot;,
-    &quot;Application.FreeGNH.executor&quot;: &quot;Run&quot;,
-    &quot;Application.OrderItemsDao.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.DemoApplication.executor&quot;: &quot;Run&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/ChuyenDeWeb/sell-cake/back_end&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;fe01ce2a7fbac8fafaed7c982a04e229&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.AdminManagementCustomerDao.executor": "Run",
+    "Application.AdminManagementDao.executor": "Run",
+    "Application.Customer.executor": "Run",
+    "Application.FreeGNH.executor": "Run",
+    "Application.OrderItemsDao.executor": "Run",
+    "Application.RevenueManagementDao (1).executor": "Run",
+    "Application.RevenueManagementDao.executor": "Run",
+    "Application.RootDiaryDao.executor": "Run",
+    "Application.WriteExcel.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.DemoApplication.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "A:/NhungNgu/food-delivery/back_end",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "fe01ce2a7fbac8fafaed7c982a04e229",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Spring Boot.DemoApplication">
-    <configuration name="AdminManagementCustomerDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.demo.dao.AdminManagementCustomerDao" />
+    <configuration name="Customer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.demo.modal.Customer" />
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.demo.modal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RevenueManagementDao (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="RevenueManagementDao" />
+      <module name="demo" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RevenueManagementDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.demo.dao.RevenueManagementDao" />
       <module name="demo" />
       <extension name="coverage">
         <pattern>
@@ -89,8 +116,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AdminManagementDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.demo.dao.AdminManagementDao" />
+    <configuration name="RootDiaryDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.demo.dao.RootDiaryDao" />
       <module name="demo" />
       <extension name="coverage">
         <pattern>
@@ -102,38 +129,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FreeGNH" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.demo.utils.FreeGNH" />
+    <configuration name="WriteExcel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.demo.utils.WriteExcel" />
       <module name="demo" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.demo.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HistoryDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.demo.dao.HistoryDao" />
-      <module name="demo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.demo.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="OrderItemsDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.demo.dao.OrderItemsDao" />
-      <module name="demo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.demo.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -150,11 +151,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.HistoryDao" />
-        <item itemvalue="Application.AdminManagementCustomerDao" />
-        <item itemvalue="Application.AdminManagementDao" />
-        <item itemvalue="Application.OrderItemsDao" />
-        <item itemvalue="Application.FreeGNH" />
+        <item itemvalue="Application.RootDiaryDao" />
+        <item itemvalue="Application.RevenueManagementDao" />
+        <item itemvalue="Application.RevenueManagementDao (1)" />
+        <item itemvalue="Application.WriteExcel" />
+        <item itemvalue="Application.Customer" />
       </list>
     </recent_temporary>
   </component>
@@ -207,11 +208,15 @@
       <workItem from="1717028275468" duration="1839000" />
       <workItem from="1717053081811" duration="800000" />
       <workItem from="1717055011764" duration="549000" />
-      <workItem from="1717060821374" duration="783000" />
-      <workItem from="1717513111149" duration="6079000" />
-      <workItem from="1717649632974" duration="11129000" />
-      <workItem from="1717721771104" duration="8804000" />
-      <workItem from="1717900470330" duration="12564000" />
+      <workItem from="1717060821374" duration="1006000" />
+      <workItem from="1717466397662" duration="1787000" />
+      <workItem from="1717469512632" duration="4200000" />
+      <workItem from="1717500731513" duration="4905000" />
+      <workItem from="1717750410113" duration="4314000" />
+      <workItem from="1717838261387" duration="9115000" />
+      <workItem from="1717936197635" duration="2234000" />
+      <workItem from="1718008529798" duration="6076000" />
+      <workItem from="1718108839811" duration="657000" />
     </task>
     <task id="LOCAL-00001" summary="push để pull">
       <option name="closed" value="true" />

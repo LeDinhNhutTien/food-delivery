@@ -4,24 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7040cd83-6514-43a4-b2fb-11366a5bec77" name="Changes" comment="">
+    <list default="true" id="7040cd83-6514-43a4-b2fb-11366a5bec77" name="Changes" comment="bổ sung thêm chức năng root quản lý diary">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/controller/HistoryOrdersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/controller/HistoryOrdersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/HistoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/HistoryDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/modal/History.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/modal/History.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/OrderDetailManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/OrderDetailManagement.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/OrderManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/OrderManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/ProductList.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/ProductList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/productManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/productManagement.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/revenueManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/revenueManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/revenueMonthManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/revenueMonthManagement.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/userManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/userManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/OrderDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/OrderDetail.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Checkout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Checkout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/ConfirmCheckOut.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/ConfirmCheckOut.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/root/WorkDiary.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/root/WorkDiary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/root/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/root/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
@@ -51,28 +60,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Study_FSoftAcademy/MockProject&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\Tai_Intelij IDEA\\IntelliJ IDEA 2022.1\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "A:/NhungNgu/food-delivery/back_end",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
+    "ts.external.directory.path": "A:\\IntelliJ IDEA 2024.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="A:\NhungNgu\food-delivery\font_end\food-delivery\src\root" />
       <recent name="A:\NhungNgu\food-delivery\font_end\food-delivery\src\assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -151,14 +161,38 @@
       <workItem from="1714652774856" duration="1407000" />
       <workItem from="1714697968554" duration="1240000" />
       <workItem from="1715307245792" duration="2441000" />
-      <workItem from="1715309736777" duration="1589000" />
-      <workItem from="1717512226631" duration="7728000" />
-      <workItem from="1717598300743" duration="78000" />
-      <workItem from="1717649530340" duration="13163000" />
-      <workItem from="1717675101799" duration="659000" />
-      <workItem from="1717721708371" duration="17095000" />
-      <workItem from="1717813479657" duration="274000" />
-      <workItem from="1717900399643" duration="12918000" />
+      <workItem from="1715309736777" duration="1772000" />
+      <workItem from="1715344214761" duration="5360000" />
+      <workItem from="1715498918430" duration="9067000" />
+      <workItem from="1715825745275" duration="3381000" />
+      <workItem from="1715832027846" duration="397000" />
+      <workItem from="1715832587286" duration="1067000" />
+      <workItem from="1715861204085" duration="6254000" />
+      <workItem from="1715868288771" duration="2787000" />
+      <workItem from="1715908291217" duration="2549000" />
+      <workItem from="1715995268369" duration="2056000" />
+      <workItem from="1716258166700" duration="96000" />
+      <workItem from="1716469133894" duration="3000" />
+      <workItem from="1716539422878" duration="9810000" />
+      <workItem from="1716549564921" duration="50000" />
+      <workItem from="1716883247429" duration="5740000" />
+      <workItem from="1716975645687" duration="992000" />
+      <workItem from="1717028203164" duration="2042000" />
+      <workItem from="1717053038155" duration="1549000" />
+      <workItem from="1717054965411" duration="599000" />
+      <workItem from="1717056726228" duration="195000" />
+      <workItem from="1717060694361" duration="1136000" />
+      <workItem from="1717145583472" duration="40000" />
+      <workItem from="1717466354204" duration="1242000" />
+      <workItem from="1717469519174" duration="3803000" />
+      <workItem from="1717502740596" duration="7297000" />
+      <workItem from="1717749467591" duration="5270000" />
+      <workItem from="1717838234790" duration="9822000" />
+      <workItem from="1717850803036" duration="90000" />
+      <workItem from="1717935441488" duration="3930000" />
+      <workItem from="1718007908145" duration="6119000" />
+      <workItem from="1718015768576" duration="151000" />
+      <workItem from="1718108736403" duration="2177000" />
     </task>
     <task id="LOCAL-00001" summary="fix code">
       <created>1712395860228</created>
@@ -259,60 +293,126 @@
       <option name="project" value="LOCAL" />
       <updated>1714698604957</updated>
     </task>
-    <task id="LOCAL-00014" summary="fix chức năng update account,">
-      <created>1717519585057</created>
+    <task id="LOCAL-00014" summary="FIX API tỉnh thành phố vào chức năng checkout">
+      <option name="closed" value="true" />
+      <created>1715314774369</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1717519585057</updated>
+      <updated>1715314774370</updated>
     </task>
-    <task id="LOCAL-00015" summary="tạo giao diện quản lý đơn hàng">
-      <created>1717651348517</created>
+    <task id="LOCAL-00015" summary="FIX API tỉnh thành phố vào chức năng checkout">
+      <option name="closed" value="true" />
+      <created>1715350516642</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1717651348517</updated>
+      <updated>1715350516642</updated>
     </task>
-    <task id="LOCAL-00016" summary="song phần hiển thị tất cả đơn hàng">
-      <created>1717656503610</created>
+    <task id="LOCAL-00016" summary="hoàn thiện chức năng giỏ hàng và bổ sung thời gian giao hàng + thông tin đơn hàng">
+      <option name="closed" value="true" />
+      <created>1715507742986</created>
       <option name="number" value="00016" />
       <option name="presentableId" value="LOCAL-00016" />
       <option name="project" value="LOCAL" />
-      <updated>1717656503610</updated>
+      <updated>1715507742986</updated>
     </task>
-    <task id="LOCAL-00017" summary="tạo giao diện xem chi tiết đơn hàng cho admin">
-      <created>1717664528705</created>
+    <task id="LOCAL-00017" summary="hoàn thiện chức năng thanh toán theo phương thức thanh toán trực tiếp">
+      <option name="closed" value="true" />
+      <created>1715910241723</created>
       <option name="number" value="00017" />
       <option name="presentableId" value="LOCAL-00017" />
       <option name="project" value="LOCAL" />
-      <updated>1717664528705</updated>
+      <updated>1715910241723</updated>
     </task>
-    <task id="LOCAL-00018" summary="xử lý update status đơn hàng">
-      <created>1717731721660</created>
+    <task id="LOCAL-00018" summary="fix các lỗi nhỏ trong trang allFood và cart">
+      <option name="closed" value="true" />
+      <created>1715997352255</created>
       <option name="number" value="00018" />
       <option name="presentableId" value="LOCAL-00018" />
       <option name="project" value="LOCAL" />
-      <updated>1717731721660</updated>
+      <updated>1715997352255</updated>
     </task>
-    <task id="LOCAL-00019" summary="fix thêm sp vào giỏ hàng ở trang chi tiết sp, hiển thị sp liên quan">
-      <created>1717740389709</created>
+    <task id="LOCAL-00019" summary="bổ sung chức năng quản lý người dùng">
+      <option name="closed" value="true" />
+      <created>1716889098031</created>
       <option name="number" value="00019" />
       <option name="presentableId" value="LOCAL-00019" />
       <option name="project" value="LOCAL" />
-      <updated>1717740389709</updated>
+      <updated>1716889098031</updated>
     </task>
-    <task id="LOCAL-00020" summary="fix lỗi hiển thị sản phẩn phần xem đơn hàng">
-      <created>1717911273164</created>
+    <task id="LOCAL-00020" summary="bổ sung chức năng quản lý người dùng">
+      <option name="closed" value="true" />
+      <created>1717054987388</created>
       <option name="number" value="00020" />
       <option name="presentableId" value="LOCAL-00020" />
       <option name="project" value="LOCAL" />
-      <updated>1717911273164</updated>
+      <updated>1717054987388</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="bổ sung chức năng quản lý người dùng">
+      <option name="closed" value="true" />
+      <created>1717061625894</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1717061625894</updated>
+    </task>
+    <task id="LOCAL-00022" summary="bổ sung chức năng in danh sachs người dùng trong quản lý người dùng">
+      <option name="closed" value="true" />
+      <created>1717473752483</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1717473752483</updated>
+    </task>
+    <task id="LOCAL-00023" summary="bổ sung chức năng biểu đồ doanh thu">
+      <option name="closed" value="true" />
+      <created>1717510690375</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1717510690375</updated>
+    </task>
+    <task id="LOCAL-00024" summary="bổ sung chức năng in báo cáo và fix lại giao diện của biểu đồ doanh thu">
+      <option name="closed" value="true" />
+      <created>1717756560585</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1717756560585</updated>
+    </task>
+    <task id="LOCAL-00025" summary="bổ sung chức năng in báo cáo theo từng tháng">
+      <option name="closed" value="true" />
+      <created>1717850758632</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1717850758632</updated>
+    </task>
+    <task id="LOCAL-00026" summary="bổ sung thêm chức năng root quản lý diary">
+      <option name="closed" value="true" />
+      <created>1718015909755</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1718015909755</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -323,13 +423,31 @@
     <MESSAGE value="dùng ajax thực hiện gợi ý tìm kiếm sản phẩm" />
     <MESSAGE value="Thêm sản phẩm vào giỏ hàng" />
     <MESSAGE value="thêm API tỉnh thành phố vào chức năng checkout" />
-    <MESSAGE value="fix chức năng update account," />
-    <MESSAGE value="tạo giao diện quản lý đơn hàng" />
-    <MESSAGE value="song phần hiển thị tất cả đơn hàng" />
-    <MESSAGE value="tạo giao diện xem chi tiết đơn hàng cho admin" />
-    <MESSAGE value="xử lý update status đơn hàng" />
-    <MESSAGE value="fix thêm sp vào giỏ hàng ở trang chi tiết sp, hiển thị sp liên quan" />
-    <MESSAGE value="fix lỗi hiển thị sản phẩn phần xem đơn hàng" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix lỗi hiển thị sản phẩn phần xem đơn hàng" />
+    <MESSAGE value="FIX API tỉnh thành phố vào chức năng checkout" />
+    <MESSAGE value="hoàn thiện chức năng giỏ hàng và bổ sung thời gian giao hàng + thông tin đơn hàng" />
+    <MESSAGE value="hoàn thiện chức năng thanh toán theo phương thức thanh toán trực tiếp" />
+    <MESSAGE value="fix các lỗi nhỏ trong trang allFood và cart" />
+    <MESSAGE value="bổ sung chức năng quản lý người dùng" />
+    <MESSAGE value="bổ sung chức năng in danh sachs người dùng trong quản lý người dùng" />
+    <MESSAGE value="bổ sung chức năng biểu đồ doanh thu" />
+    <MESSAGE value="bổ sung chức năng in báo cáo và fix lại giao diện của biểu đồ doanh thu" />
+    <MESSAGE value="bổ sung chức năng in báo cáo theo từng tháng" />
+    <MESSAGE value="bổ sung thêm chức năng root quản lý diary" />
+    <option name="LAST_COMMIT_MESSAGE" value="bổ sung thêm chức năng root quản lý diary" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/font_end/food-delivery/src/Admin/index.js</url>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/font_end/food-delivery/src/Admin/index.js</url>
+          <line>266</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

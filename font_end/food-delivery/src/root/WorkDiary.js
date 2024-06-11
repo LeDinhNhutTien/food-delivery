@@ -9,7 +9,18 @@ function UserManagement() {
 
     const [diaries, setDiaries] = useState([]);
 
+    const userLogin = JSON.parse(sessionStorage.getItem("userInfo"));
+    console.log(userLogin);
 
+    useEffect(() => {
+        if (!userLogin) {
+            window.location.href = "/login";
+        } else {
+            if(userLogin.role != "admin") {
+                window.location.href = "/";
+            }
+        }
+    }, [userLogin]);
     const toggleDropdown = () => {
         setShowDropdown(!showDropdown);
     };

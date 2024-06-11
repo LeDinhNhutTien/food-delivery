@@ -15,7 +15,16 @@ function UserManagement() {
     const [selectedUser, setSelectedUser] = useState(null);
     const userLogin = JSON.parse(sessionStorage.getItem("userInfo"));
     console.log(userLogin);
-
+  
+    useEffect(() => {
+        if (!userLogin) {
+            window.location.href = "/login";
+        } else {
+            if(userLogin.role != "admin") {
+                window.location.href = "/";
+            }
+        }
+    }, [userLogin]);
 
     useEffect(() => {
         const fetchData = async () => {

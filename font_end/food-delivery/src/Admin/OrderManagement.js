@@ -12,7 +12,16 @@ function OrderManagement() {
     const [showUpdateUserModal, setShowUpdateUserModal] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
     const [orders, setOrders] = useState([]);
-
+    const userLogin = JSON.parse(sessionStorage.getItem("userInfo"));
+    useEffect(() => {
+        if (!userLogin) {
+            window.location.href = "/login";
+        } else {
+            if(userLogin.role != "admin") {
+                window.location.href = "/";
+            }
+        }
+    }, [userLogin]);
     useEffect(() => {
         const fetchData = async () => {
             try {
