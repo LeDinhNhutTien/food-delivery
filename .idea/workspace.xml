@@ -4,16 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7040cd83-6514-43a4-b2fb-11366a5bec77" name="Changes" comment="bổ sung chức năng quản lý người dùng">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="7040cd83-6514-43a4-b2fb-11366a5bec77" name="Changes" comment="bổ sung thêm chức năng root quản lý diary">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/components/UI/product-card/ProductCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/components/UI/product-card/ProductCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/OrderDetailManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/OrderDetailManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/OrderManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/OrderManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/ProductList.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/ProductList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/productManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/productManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/revenueManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/revenueManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/revenueMonthManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/revenueMonthManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/userManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/userManagement.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Checkout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Checkout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/ConfirmCheckOut.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/ConfirmCheckOut.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/root/WorkDiary.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/root/WorkDiary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/root/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/root/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,28 +60,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;A:/NhungNgu/food-delivery/back_end&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;A:\\IntelliJ IDEA 2024.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "A:/NhungNgu/food-delivery/back_end",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
+    "ts.external.directory.path": "A:\\IntelliJ IDEA 2024.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="A:\NhungNgu\food-delivery\font_end\food-delivery\src\root" />
       <recent name="A:\NhungNgu\food-delivery\font_end\food-delivery\src\assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -175,7 +181,18 @@
       <workItem from="1717053038155" duration="1549000" />
       <workItem from="1717054965411" duration="599000" />
       <workItem from="1717056726228" duration="195000" />
-      <workItem from="1717060694361" duration="661000" />
+      <workItem from="1717060694361" duration="1136000" />
+      <workItem from="1717145583472" duration="40000" />
+      <workItem from="1717466354204" duration="1242000" />
+      <workItem from="1717469519174" duration="3803000" />
+      <workItem from="1717502740596" duration="7297000" />
+      <workItem from="1717749467591" duration="5270000" />
+      <workItem from="1717838234790" duration="9822000" />
+      <workItem from="1717850803036" duration="90000" />
+      <workItem from="1717935441488" duration="3930000" />
+      <workItem from="1718007908145" duration="6119000" />
+      <workItem from="1718015768576" duration="151000" />
+      <workItem from="1718108736403" duration="2177000" />
     </task>
     <task id="LOCAL-00001" summary="fix code">
       <created>1712395860228</created>
@@ -332,11 +349,70 @@
       <option name="project" value="LOCAL" />
       <updated>1717054987388</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="bổ sung chức năng quản lý người dùng">
+      <option name="closed" value="true" />
+      <created>1717061625894</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1717061625894</updated>
+    </task>
+    <task id="LOCAL-00022" summary="bổ sung chức năng in danh sachs người dùng trong quản lý người dùng">
+      <option name="closed" value="true" />
+      <created>1717473752483</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1717473752483</updated>
+    </task>
+    <task id="LOCAL-00023" summary="bổ sung chức năng biểu đồ doanh thu">
+      <option name="closed" value="true" />
+      <created>1717510690375</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1717510690375</updated>
+    </task>
+    <task id="LOCAL-00024" summary="bổ sung chức năng in báo cáo và fix lại giao diện của biểu đồ doanh thu">
+      <option name="closed" value="true" />
+      <created>1717756560585</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1717756560585</updated>
+    </task>
+    <task id="LOCAL-00025" summary="bổ sung chức năng in báo cáo theo từng tháng">
+      <option name="closed" value="true" />
+      <created>1717850758632</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1717850758632</updated>
+    </task>
+    <task id="LOCAL-00026" summary="bổ sung thêm chức năng root quản lý diary">
+      <option name="closed" value="true" />
+      <created>1718015909755</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1718015909755</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -352,22 +428,23 @@
     <MESSAGE value="hoàn thiện chức năng thanh toán theo phương thức thanh toán trực tiếp" />
     <MESSAGE value="fix các lỗi nhỏ trong trang allFood và cart" />
     <MESSAGE value="bổ sung chức năng quản lý người dùng" />
-    <option name="LAST_COMMIT_MESSAGE" value="bổ sung chức năng quản lý người dùng" />
+    <MESSAGE value="bổ sung chức năng in danh sachs người dùng trong quản lý người dùng" />
+    <MESSAGE value="bổ sung chức năng biểu đồ doanh thu" />
+    <MESSAGE value="bổ sung chức năng in báo cáo và fix lại giao diện của biểu đồ doanh thu" />
+    <MESSAGE value="bổ sung chức năng in báo cáo theo từng tháng" />
+    <MESSAGE value="bổ sung thêm chức năng root quản lý diary" />
+    <option name="LAST_COMMIT_MESSAGE" value="bổ sung thêm chức năng root quản lý diary" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/font_end/food-delivery/src/Admin/revenueManagement.js</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/font_end/food-delivery/src/Admin/index.js</url>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/font_end/food-delivery/src/Admin/index.js</url>
-          <line>257</line>
+          <line>266</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
