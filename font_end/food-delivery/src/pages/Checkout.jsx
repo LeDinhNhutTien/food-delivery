@@ -16,7 +16,13 @@ const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState('Thanh toán trực tiếp');
   const [orderPlaced, setOrderPlaced] = useState(false);
 
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
+  useEffect(() => {
+    if (!userInfo) {
+      window.location.href = "/login";
+    }
+  }, [userInfo]);
   useEffect(() => {
     const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     setCartItems(storedCartItems);

@@ -3,7 +3,16 @@ import axios from 'axios';
 
 function ProductList() {
     const [products, setProducts] = useState([]);
-
+    const userLogin = JSON.parse(sessionStorage.getItem("userInfo"));
+    useEffect(() => {
+        if (!userLogin) {
+            window.location.href = "/login";
+        } else {
+            if(userLogin.role != "admin") {
+                window.location.href = "/";
+            }
+        }
+    }, [userLogin]);
     useEffect(() => {
         const fetchProducts = async () => {
             try {

@@ -7,6 +7,13 @@ const ConfirmCheckOut = () => {
     const [cartItems, setCartItems] = useState([]);
     const [userInfo, setUserInfo] = useState(null);
     console.log(shippingInfo);
+    const userLogin = JSON.parse(sessionStorage.getItem("userInfo"));
+
+    useEffect(() => {
+        if (!userLogin) {
+            window.location.href = "/login";
+        }
+    }, [userLogin]);
     useEffect(() => {
         // Fetch shipping information and order details from local storage
         const storedShippingInfo = JSON.parse(localStorage.getItem("shippingInfo")) || {};

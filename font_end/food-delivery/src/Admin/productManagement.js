@@ -1,8 +1,18 @@
 import './vendor/fontawesome-free/css/all.min.css'
 import './vendor/datatables/dataTables.bootstrap4.min.css'
-import React from "react";
+import React, {useEffect} from "react";
 
 function ProductManagement() {
+    const userLogin = JSON.parse(sessionStorage.getItem("userInfo"));
+    useEffect(() => {
+        if (!userLogin) {
+            window.location.href = "/login";
+        } else {
+            if(userLogin.role != "admin") {
+                window.location.href = "/";
+            }
+        }
+    }, [userLogin]);
     return (
         <div>
             <div id="wrapper">
