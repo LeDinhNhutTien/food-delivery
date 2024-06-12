@@ -9,11 +9,11 @@ const Account = () => {
 
     const [formData, setFormData] = useState({
         username: userInfo.username || "",
-        firstName: userInfo.first_name || "",
-        lastName: userInfo.last_name || "",
+        first_name: userInfo.first_name || "",
+        last_name: userInfo.last_name || "",
         phone: userInfo.phone || "",
         address: userInfo.address || "",
-        id: id || "",
+        id_user: id || "",
         role: userInfo.role || "",
     });
     const [error, setError] = useState("");
@@ -44,11 +44,11 @@ const Account = () => {
                 setFormData({
                     ...formData,
                     username: updatedUserInfo.username,
-                    firstName: updatedUserInfo.first_name,
-                    lastName: updatedUserInfo.last_name,
+                    first_name: updatedUserInfo.first_name,
+                    last_name: updatedUserInfo.last_name,
                     phone: updatedUserInfo.phone,
                     address: updatedUserInfo.address,
-                    id: id || "",
+                    id_user: id || "",
                     role: userInfo.role || "",
                 });
                 // Cập nhật thông tin người dùng trong session storage
@@ -114,17 +114,17 @@ const Account = () => {
                             <form id="form" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
                                 <div className="input ">
                                     <label><span className="req">*</span>Tên đăng nhập:</label>
-                                    <input name="userName" type="text" value={formData.username} onChange={handleChange} onKeyPress={handleKeyPress} maxLength="150" id="acc_email" />
+                                    <input readOnly name="userName" type="text" value={formData.username} onChange={handleChange} onKeyPress={handleKeyPress} maxLength="150" id="acc_email" />
                                     <small>{error}</small>
                                 </div>
                                 <div className="input ">
                                     <label htmlFor="acc_fname"><span className="req">*</span>Họ:</label>
-                                    <input name="firstName" type="text" value={formData.firstName} onChange={handleChange} onKeyPress={handleKeyPress} maxLength="150" id="acc_fname" />
+                                    <input name="first_name" type="text" value={formData.first_name} onChange={handleChange} onKeyPress={handleKeyPress} maxLength="150" id="acc_fname" />
                                     <small>{error}</small>
                                 </div>
                                 <div className="input ">
                                     <label htmlFor="acc_lname"><span className="req">*</span>Tên:</label>
-                                    <input name="lastName" type="text" value={formData.lastName} onChange={handleChange} onKeyPress={handleKeyPress} maxLength="150" id="acc_lname" />
+                                    <input name="last_name" type="text" value={formData.last_name} onChange={handleChange} onKeyPress={handleKeyPress} maxLength="150" id="acc_lname" />
                                     <small>{error}</small>
                                 </div>
                                 <div className="input ">

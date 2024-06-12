@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.modal.Customer;
-import com.example.demo.service.RegisterService;
+import com.example.demo.service.CustomerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +14,8 @@ import com.example.demo.dao.*;
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:3000")
 public class RegisterController {
-    CustomerDao dao = new CustomerDao();
-
     @Autowired
-    RegisterService registerService;
+    CustomerService customerService;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody @Valid Customer customer,
@@ -25,7 +23,7 @@ public class RegisterController {
          if (bindingResult.hasErrors()){
              return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Đăng kí không thành công");
          }
-         if (registerService.save(customer) == true) {
+         if (customerService.addCustomer(customer) == true) {
             return ResponseEntity.status(HttpStatus.OK).body("Đăng kí tài khoản thành công");
 
         } else {
@@ -35,7 +33,7 @@ public class RegisterController {
 
     @GetMapping("/checkUsername/{username}")
     public ResponseEntity<String> checkUsernameExists(@PathVariable String username) {
-        if (registerService.checkUsername(username) == true) {
+        if (customerService.checkUsername(username) == true) {
             return ResponseEntity.status(HttpStatus.OK).body("Tài khoản đã tồn tại");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tài khoản chưa tồn tại");

@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.*;
-import com.example.demo.service.LoginService;
+import com.example.demo.service.CustomerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +17,7 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:3000")
 public class LoginController {
     @Autowired
-    LoginService loginService;
+    CustomerService customerService;
 
     @PostMapping("/login")
     public ResponseEntity<?> register(@RequestBody @Valid Customer customer,
@@ -30,8 +29,8 @@ public class LoginController {
             return ResponseEntity.badRequest().body(errors);
         }
 
-        if (loginService.validateLogin(customer.getUsername(), customer.getPassword()) == true) {
-            Customer c = loginService.getCustomerByUsername(customer.getUsername());
+        if (customerService.validateLogin(customer.getUsername(), customer.getPassword()) == true) {
+            Customer c = customerService.getCustomerByUsername(customer.getUsername());
             return ResponseEntity.ok(c);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tên đăng nhập hoặc mật khẩu không đúng");
