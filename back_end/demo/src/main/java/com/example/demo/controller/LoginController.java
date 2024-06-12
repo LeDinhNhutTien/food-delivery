@@ -1,39 +1,40 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.*;
+import com.example.demo.service.LoginService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.modal.*;
+
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:3000")
 public class LoginController {
-    CustomerDao dao = new CustomerDao();
+    @Autowired
+    LoginService loginService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> register(@RequestBody Map<String, String> credentials) {
-        String username = credentials.get("username");
-        String password = credentials.get("password");
-        if(username.isEmpty() &&  password.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Thông tin người dùng và mật khẩu không được để trống");
+    public ResponseEntity<?> register(@RequestBody @Valid Customer customer,
+                                      BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            Map<String, String> errors = new HashMap<>();
+            bindingResult.getFieldErrors().forEach(error ->
+                    errors.put(error.getField(), error.getDefaultMessage()));
+            return ResponseEntity.badRequest().body(errors);
         }
-        if (username.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Thông tin người dùng không được để trống");
-        }
-        if(password.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Mật khẩu không được để trống");
-        }
-        else if (dao.login(username, password) == true) {
-//            Customer c = new Customer(username, password, "","","","");
-            Customer c = dao.getUserInfo(username);
-            return ResponseEntity.ok(c);
-//            return ResponseEntity.status(HttpStatus.OK).body("Đăng nhập thành công");
 
+        if (loginService.validateLogin(customer.getUsername(), customer.getPassword()) == true) {
+            Customer c = loginService.getCustomerByUsername(customer.getUsername());
+            return ResponseEntity.ok(c);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Đăng nhập không thành công");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tên đăng nhập hoặc mật khẩu không đúng");
         }
     }
 

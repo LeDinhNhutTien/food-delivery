@@ -1,10 +1,14 @@
 package com.example.demo.controller;
 
+import com.example.demo.modal.Customer;
+import com.example.demo.service.RegisterService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.dao.*;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -12,21 +16,16 @@ import java.util.Map;
 public class RegisterController {
     CustomerDao dao = new CustomerDao();
 
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody Map<String, String> credentials) {
-        String username = credentials.get("username");
-        String password = credentials.get("password");
+    @Autowired
+    RegisterService registerService;
 
-        if(username.isEmpty() &&  password.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Thông tin người dùng và mật khẩu không được để trống");
-        }
-        if (username.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Thông tin người dùng không được để trống");
-        }
-        if(password.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Mật khẩu không được để trống");
-        }
-        else if (dao.sign(username, password) == true) {
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody @Valid Customer customer,
+                                      BindingResult bindingResult){
+         if (bindingResult.hasErrors()){
+             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Đăng kí không thành công");
+         }
+         if (registerService.save(customer) == true) {
             return ResponseEntity.status(HttpStatus.OK).body("Đăng kí tài khoản thành công");
 
         } else {
@@ -36,9 +35,8 @@ public class RegisterController {
 
     @GetMapping("/checkUsername/{username}")
     public ResponseEntity<String> checkUsernameExists(@PathVariable String username) {
-        if (dao.checkUsername(username) == true) {
+        if (registerService.checkUsername(username) == true) {
             return ResponseEntity.status(HttpStatus.OK).body("Tài khoản đã tồn tại");
-
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tài khoản chưa tồn tại");
         }

@@ -2,6 +2,7 @@ package com.example.demo.modal;
 
 import com.example.demo.modal.Orders;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,9 +23,11 @@ public class Customer implements Serializable {
     @Column(name = "id_user")
     private int id_user;
 
+    @NotBlank(message = "Username không được để trống")
     @Column(name = "username")
     private String username;
 
+    @NotBlank(message = "Password không được để trống")
     @Column(name = "password")
     private String password;
 
@@ -66,6 +69,14 @@ public class Customer implements Serializable {
     public Customer(String username, String phone, String address) {
     }
 
+    public Customer(String username, String password, String role, int status) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.status = status;
+    }
+
     public Customer(int id, String email, String password, String firtName, String lastName, String phone, String address, String role, String date, int status) {
     }
+
 }
