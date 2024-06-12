@@ -5,20 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7040cd83-6514-43a4-b2fb-11366a5bec77" name="Changes" comment="bổ sung thêm chức năng root quản lý diary">
+      <change afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/modal/DiaryEmployee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/modal/Images.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/modal/OrderItems.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/modal/Orders.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/modal/TypeOfProduct.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/OrderDetailManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/OrderDetailManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/OrderManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/OrderManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/ProductList.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/ProductList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/productManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/productManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/revenueManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/revenueManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/revenueMonthManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/revenueMonthManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/userManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/userManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Checkout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Checkout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/ConfirmCheckOut.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/ConfirmCheckOut.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/root/WorkDiary.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/root/WorkDiary.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/root/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/root/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/dao/ProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/modal/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/modal/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/modal/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/modal/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/utils/WriteExcel.java" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/src/main/java/com/example/demo/utils/WriteExcel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +53,7 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2eidULVzLh0i6CNUFtqSsIdG32t" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -69,7 +69,7 @@
     "WebServerToolWindowFactoryState": "false",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "A:/NhungNgu/food-delivery/back_end",
+    "last_opened_file_path": "A:/F/2023-HK2/sell-cake",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -193,6 +193,9 @@
       <workItem from="1718007908145" duration="6119000" />
       <workItem from="1718015768576" duration="151000" />
       <workItem from="1718108736403" duration="2177000" />
+      <workItem from="1718191478131" duration="47000" />
+      <workItem from="1718191548991" duration="13000" />
+      <workItem from="1718192338735" duration="649000" />
     </task>
     <task id="LOCAL-00001" summary="fix code">
       <created>1712395860228</created>

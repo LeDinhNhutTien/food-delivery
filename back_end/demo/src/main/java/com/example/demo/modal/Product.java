@@ -1,13 +1,12 @@
 package com.example.demo.modal; // Changed package name to lowercase and corrected typo in 'Modal' to 'modal'
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import java.util.List;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "products")
 public class Product {
@@ -19,33 +18,36 @@ public class Product {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "type")
-    private int type;
-
     @Column(name = "description")
     private String description;
 
     @Column(name = "price")
     private double price;
 
-    // Change imageUrl to a list of images
-    @Column(name = "image_urls")
-    private List<String> imageUrls;
-
     @Column(name = "specification")
     private String specification;
 
-    @Column(name = "date_time")
+    @Column(name = "dateTime")
     private String dateTime;
 
-    // Constructors, getters, setters
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type_id")
+    private TypeOfProduct type;
 
-    // Default constructor
+    @Transient
+    private List<String> imageUrls;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private List<Images> images;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private List<OrderItems> orderItems;
+
     public Product() {
     }
 
     // Parameterized constructor
-    public Product(Long id, String name, int type, String description, double price, List<String> imageUrls, String specification, String dateTime) {
+    public Product(Long id, String name, TypeOfProduct type, String description, double price, List<String> imageUrls, String specification, String dateTime) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -56,7 +58,7 @@ public class Product {
         this.dateTime = dateTime;
     }
 
-    public Product(Long id, String name, String description, double price, List<String> imageUrls, int type) {
+    public Product(Long id, String name, String description, double price, List<String> imageUrls, TypeOfProduct type) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -81,14 +83,6 @@ public class Product {
         this.name = name;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -105,14 +99,6 @@ public class Product {
         this.price = price;
     }
 
-    public List<String> getImageUrls() {
-        return imageUrls;
-    }
-
-    public void setImageUrls(List<String> imageUrls) {
-        this.imageUrls = imageUrls;
-    }
-
     public String getSpecification() {
         return specification;
     }
@@ -127,6 +113,38 @@ public class Product {
 
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public TypeOfProduct getType() {
+        return type;
+    }
+
+    public void setType(TypeOfProduct type) {
+        this.type = type;
+    }
+
+    public List<String> getImageUrls(List<String> imageUrls) {
+        return this.imageUrls;
+    }
+
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
+    }
+
+    public List<Images> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Images> images) {
+        this.images = images;
+    }
+
+    public List<OrderItems> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItems> orderItems) {
+        this.orderItems = orderItems;
     }
 
     // Optional: Override toString() method for debugging purposes
