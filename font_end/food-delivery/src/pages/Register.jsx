@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import heroImg from "../assets/images/hero.png";
 import {useNavigate } from "react-router-dom";
 
@@ -45,6 +45,19 @@ const Register = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        let isValid = true;
+
+        // Custom validation
+        if (!username) {
+            setError("Tên không được để trống");
+        }
+        else if (!password) {
+            setError("Mật khẩu không được để trống");
+        }
+        else if (!rePassword) {
+            setError("Nhập lại không để trống");
+        }
+
             try {
                 // Kiểm tra username đã tồn tại hay chưa
                 const usernameCheckResponse = await fetch(`http://localhost:8080/api/checkUsername/${username}`);
@@ -58,7 +71,7 @@ const Register = () => {
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify({username, password, rePassword}),
+                        body: JSON.stringify({ username, password, role: "user" }),
                     });
 
                     if (response.ok) {
@@ -95,7 +108,7 @@ const Register = () => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit} className="form-signin text-center" style={{marginTop: "40px"}}>
+            <form onSubmit={handleSubmit} className="form-signin text-center" style={{marginTop: "40px"}} noValidate>
                 <img className="mb-4 d-block mx-auto" src={heroImg} alt="" width="72" height="72"/>
                 <h1 className="h3 mb-3 font-weight-normal">Vui lòng nhập đầy đủ thông tin</h1>
                 <input style={{ marginBottom : "10px"}} type="text" name="username" value={username} onChange={handleUsernameChange} className="form-control" placeholder="Tên đăng nhập" required autoFocus/>
