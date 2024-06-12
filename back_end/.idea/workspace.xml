@@ -5,20 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbdc7fa1-e23b-4c02-a3f3-98e7c707b2ae" name="Changes" comment="fix lại chức năng cập nhật và khóa tài khoản người dùng trong quản lý người dùng">
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/modal/DiaryEmployee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/modal/Images.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/modal/OrderItems.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/modal/Orders.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/modal/TypeOfProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/repository/ImageRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/repository/ProductRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/OrderDetailManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/OrderDetailManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/OrderManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/OrderManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/ProductList.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/ProductList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/productManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/productManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/revenueManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/revenueManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/revenueMonthManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/revenueMonthManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/userManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/userManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/Checkout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/Checkout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/ConfirmCheckOut.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/ConfirmCheckOut.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/root/WorkDiary.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/root/WorkDiary.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/root/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/root/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/DemoApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controller/SuggestionsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controller/SuggestionsServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/dao/ProductDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/modal/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/modal/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/modal/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/modal/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/utils/WriteExcel.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/utils/WriteExcel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +35,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -72,7 +80,7 @@
     "WebServerToolWindowFactoryState": "false",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "A:/NhungNgu/food-delivery/back_end",
+    "last_opened_file_path": "A:/mock_project",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -82,6 +90,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.demo.modal" />
+    </key>
+  </component>
   <component name="RunManager" selected="Spring Boot.DemoApplication">
     <configuration name="Customer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.demo.modal.Customer" />
@@ -217,6 +230,7 @@
       <workItem from="1717936197635" duration="2234000" />
       <workItem from="1718008529798" duration="6076000" />
       <workItem from="1718108839811" duration="657000" />
+      <workItem from="1718191564914" duration="2993000" />
     </task>
     <task id="LOCAL-00001" summary="push để pull">
       <option name="closed" value="true" />

@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.ProductDAO;
+import com.example.demo.repository.ProductRepository;
 import com.google.gson.Gson;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,19 +16,22 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class SuggestionsServlet {
 
+    private final ProductRepository productRepository;
+
+    @Autowired
+    public SuggestionsServlet(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
     @GetMapping
     protected void doGet(@RequestParam("query") String query, HttpServletResponse response) throws IOException {
         try {
-
-            List<String> suggestions = ProductDAO.getSearchSuggestions(query);
-
+            List<String> suggestions = productRepository.findDistinctByNameContaining(query);
 
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
 
-
             String json = convertListToJson(suggestions);
-
 
             PrintWriter out = response.getWriter();
             out.print(json);
@@ -40,7 +45,6 @@ public class SuggestionsServlet {
     }
 
     private String convertListToJson(List<String> suggestions) {
-
         return new Gson().toJson(suggestions);
     }
 }
