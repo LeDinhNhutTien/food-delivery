@@ -2,8 +2,10 @@ package com.example.demo.controller;
 
 import com.example.demo.dao.AdminManagementCustomerDao;
 import com.example.demo.dao.AdminManagementDao;
+import com.example.demo.dto.CustomerDTO;
 import com.example.demo.modal.AdminManagement;
 import com.example.demo.modal.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +17,12 @@ import java.util.List;
 @RequestMapping("/api/managementCustomerAdmin")
 @CrossOrigin(origins = "http://localhost:3000")
 public class AdminManagementCustomerController {
-    AdminManagementCustomerDao dao = new AdminManagementCustomerDao()  ;
+    @Autowired
+    private AdminManagementCustomerDao dao;
 
     @GetMapping
-    public List<Customer> getAllCustomer() {
-        List<Customer> customers = dao.getAllCustomer();
+    public List<CustomerDTO> getAllCustomer() {
+        List<CustomerDTO> customers = dao.getAllCustomers();
 
         return customers;
     }

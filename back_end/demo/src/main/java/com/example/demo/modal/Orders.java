@@ -1,17 +1,13 @@
 package com.example.demo.modal;
 
-import com.example.demo.modal.OrderItems;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
 @Setter
 @Getter
@@ -33,7 +29,7 @@ public class Orders implements Serializable {
     private LocalDate creationDate;
 
     @Column(name = "TotalAmount")
-    private String totalAmount;
+    private double totalAmount;
 
     @Column(name = "OrderStatus")
     private String orderStatus;
@@ -53,4 +49,19 @@ public class Orders implements Serializable {
     @OneToOne(mappedBy = "order", fetch = FetchType.LAZY)
     private OrderItems orderItem;
 
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "orderID=" + orderID +
+
+                ", creationDate=" + creationDate +
+                ", totalAmount=" + totalAmount +
+                ", orderStatus='" + orderStatus + '\'' +
+                ", shippingAddress='" + shippingAddress + '\'' +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", discountCode='" + discountCode + '\'' +
+                ", note='" + note + '\'' +
+                ", orderItem=" + orderItem +
+                '}';
+    }
 }

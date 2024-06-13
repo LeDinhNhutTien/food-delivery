@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dao.ProductDao;
 import com.example.demo.repository.ProductRepository;
 import com.google.gson.Gson;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,17 +17,18 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class SuggestionsServlet {
 
-    private final ProductRepository productRepository;
+
+    private final ProductDao dao;
 
     @Autowired
-    public SuggestionsServlet(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public SuggestionsServlet(ProductDao dao) {
+        this.dao = dao;
     }
 
     @GetMapping
     protected void doGet(@RequestParam("query") String query, HttpServletResponse response) throws IOException {
         try {
-            List<String> suggestions = productRepository.findDistinctByNameContaining(query);
+            List<String> suggestions = dao.getSearchSuggestions(query);
 
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");

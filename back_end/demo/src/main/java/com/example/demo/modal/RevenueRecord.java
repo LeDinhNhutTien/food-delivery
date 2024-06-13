@@ -1,50 +1,28 @@
 package com.example.demo.modal;
 
 public class RevenueRecord {
+    private int month;
+    private double totalRevenue;
 
-        private int year;
-        private int month;
-        private double totalRevenue;
+    // Constructor must match the query
+    public RevenueRecord(int month, double totalRevenue) {
+        this.month = month;
+        this.totalRevenue = totalRevenue;
+    }
 
-        // Constructor
-        public RevenueRecord(int year, int month, double totalRevenue) {
-            this.year = year;
-            this.month = month;
-            this.totalRevenue = totalRevenue;
-        }
+    public int getMonth() {
+        return month;
+    }
 
-        // Getters and Setters
-        public int getYear() {
-            return year;
-        }
+    public double getTotalRevenue() {
+        return totalRevenue;
+    }
 
-        public void setYear(int year) {
-            this.year = year;
-        }
-
-        public int getMonth() {
-            return month;
-        }
-
-        public void setMonth(int month) {
-            this.month = month;
-        }
-
-        public double getTotalRevenue() {
-            return totalRevenue;
-        }
-
-        public void setTotalRevenue(double totalRevenue) {
-            this.totalRevenue = totalRevenue;
-        }
-
-        // ToString method
-        @Override
-        public String toString() {
-            return "RevenueRecord{" +
-                    "year=" + year +
-                    ", month=" + month +
-                    ", totalRevenue=" + totalRevenue +
-                    '}';
-        }
+    @Override
+    public String toString() {
+        return "RevenueRecord{" +
+                "month=" + month +
+                ", totalRevenue=" + totalRevenue +
+                '}';
+    }
 }
