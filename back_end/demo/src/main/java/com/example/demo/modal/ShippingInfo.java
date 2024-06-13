@@ -101,8 +101,8 @@ public class ShippingInfo {
         this.paymentMethod = paymentMethod;
     }
 
-    public String getTotalPrice() {
-        return totalPrice;
+    public double getTotalPrice() {
+        return Double.parseDouble(totalPrice) ;
     }
 
     public void setTotalPrice(String totalPrice) {

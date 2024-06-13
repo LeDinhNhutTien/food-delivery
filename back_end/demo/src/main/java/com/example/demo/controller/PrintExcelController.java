@@ -2,12 +2,14 @@ package com.example.demo.controller;
 
 import com.example.demo.dao.AdminManagementCustomerDao;
 import com.example.demo.dao.RevenueManagementDao;
+import com.example.demo.dto.CustomerDTO;
 import com.example.demo.modal.Customer;
 import com.example.demo.modal.RevenueRecord;
 import com.example.demo.modal.RevenueRecordMonth;
 import com.example.demo.utils.WriteExcel;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -18,17 +20,20 @@ import java.util.List;
 @RequestMapping("/api/printCustomer")
 @CrossOrigin(origins = "http://localhost:3000")
 public class PrintExcelController {
+    @Autowired
+    private AdminManagementCustomerDao dao;
+    private final RevenueManagementDao dao2;
+
+    public PrintExcelController(RevenueManagementDao dao2) {
+        this.dao2 = dao2;
+    }
 
     @GetMapping("/excel")
     public void exportToExcel(HttpServletResponse response) throws IOException {
-        AdminManagementCustomerDao adminManagementCustomerDao = new AdminManagementCustomerDao();
+
         response.setContentType("application/vnd.ms-excel");
         response.setHeader("Content-Disposition", "attachment; filename=customers.xlsx");
-
-        // Fetch data from database
-        List<Customer> customers = adminManagementCustomerDao.getAllCustomer(); // Implement this method in your DAO
-
-        // Create Excel workbook and write data
+        List<CustomerDTO> customers = dao.getAllCustomers(); // Implement this method in your DAO
         Workbook workbook = WriteExcel.exportDataToExcel(customers);
 
         // Write Excel data to response output stream
@@ -38,8 +43,8 @@ public class PrintExcelController {
     @GetMapping("/excelRevenue")
     public void exportToExcelRevengue(HttpServletResponse response, @RequestParam int year) throws IOException, SQLException {
         // Tạo một đối tượng RevenueManagementDao và gọi phương thức để lấy danh sách doanh thu cho năm cụ thể
-        RevenueManagementDao revenueManagementDao = new RevenueManagementDao();
-        List<RevenueRecord> revenueRecords = revenueManagementDao.calculateMonthlyRevenue(year);
+
+        List<RevenueRecord> revenueRecords = dao2.calculateMonthlyRevenue(year);
 
         // Thiết lập loại nội dung và tiêu đề phản hồi
         response.setContentType("application/vnd.ms-excel");
@@ -54,8 +59,8 @@ public class PrintExcelController {
     public void exportToExcelRevenueMonth(HttpServletResponse response, @RequestParam int year, @RequestParam int month) throws IOException, SQLException {
         try {
             // Get revenue data for the specific year and month
-            RevenueManagementDao revenueManagementDao = new RevenueManagementDao();
-            List<RevenueRecordMonth> revenueRecordMonths = revenueManagementDao.calculateMonthlyRevenueForMonth(year, month);
+
+            List<RevenueRecordMonth> revenueRecordMonths = dao2.calculateMonthlyRevenueForMonth(year, month);
 
             // Set response content type and header
             response.setContentType("application/vnd.ms-excel");

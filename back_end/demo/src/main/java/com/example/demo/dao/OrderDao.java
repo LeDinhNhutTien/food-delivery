@@ -1,85 +1,74 @@
 package com.example.demo.dao;
 
 import com.example.demo.modal.CartItem;
-import com.example.demo.modal.OrderRequest;
-import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+import com.example.demo.modal.OrderItems;
+import com.example.demo.modal.OrderRequest;
+import com.example.demo.modal.Orders;
+import com.example.demo.repository.CustomerRepository;
+import com.example.demo.repository.OrderItemRepository;
+import com.example.demo.repository.OrderRepository;
+import com.example.demo.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Currency;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Repository
 public class OrderDao {
+
     private static final Logger LOGGER = Logger.getLogger(OrderDao.class.getName());
 
-    public Integer insert(OrderRequest orderRequest) throws SQLException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        Integer orderId = null;
+    @Autowired
+    private OrderRepository orderRepository;
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private CustomerRepository customerRepository;
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
+    @Transactional
+    public Integer insert(OrderRequest orderRequest) {
         try {
-            // Connect to the database
-            connection = DatabaseConnectionTest.getConnection();
+            Orders order = new Orders();
+            order.setCustomer(customerRepository.findById(orderRequest.getUserId()));
+            order.setCreationDate(LocalDate.from(LocalDateTime.now()));
+            order.setTotalAmount(orderRequest.getShippingInfo().getTotalPrice());
+            order.setOrderStatus("Chờ xử lý");
+            order.setShippingAddress(orderRequest.getShippingInfo().getAddress() + ", " +
+                    orderRequest.getShippingInfo().getDistrict() + ", " +
+                    orderRequest.getShippingInfo().getWard() + ", " +
+                    orderRequest.getShippingInfo().getProvince());
+            order.setPaymentMethod(orderRequest.getShippingInfo().getPaymentMethod());
+            order.setDiscountCode("");
+            order.setNote(orderRequest.getShippingInfo().getNote());
 
-            // Create the SQL statement to insert the order
-            String query = "INSERT INTO orders (UserID, CreationDate, TotalAmount, OrderStatus, ShippingAddress, PaymentMethod, DiscountCode, Note) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            Orders savedOrder = orderRepository.save(order);
 
-            // Set parameters for the order
-            preparedStatement.setInt(1, orderRequest.getUserId());
-            preparedStatement.setTimestamp(2, new java.sql.Timestamp(System.currentTimeMillis()));
-            preparedStatement.setString(3, orderRequest.getShippingInfo().getTotalPrice());
-            preparedStatement.setString(4, "Chờ xử lý");
-            preparedStatement.setString(5, orderRequest.getShippingInfo().getAddress()+", "+orderRequest.getShippingInfo().getDistrict()+", "+orderRequest.getShippingInfo().getWard()+", "+orderRequest.getShippingInfo().getProvince());
-            preparedStatement.setString(6, orderRequest.getShippingInfo().getPaymentMethod());
-            preparedStatement.setString(7, "");
-            preparedStatement.setString(8, orderRequest.getShippingInfo().getNote());
 
-            // Execute the statement
-            int affectedRows = preparedStatement.executeUpdate();
-
-            if (affectedRows == 0) {
-                throw new SQLException("Creating order failed, no rows affected.");
-            }
-
-            // Get the auto-generated order ID
-            resultSet = preparedStatement.getGeneratedKeys();
-            if (resultSet.next()) {
-                orderId = resultSet.getInt(1);
-            } else {
-                throw new SQLException("Creating order failed, no ID obtained.");
-            }
-
-            LOGGER.info("Inserted new order into the database with ID: " + orderId);
-
-            // Insert order items
-            OrderItemsDao orderItemsDao = new OrderItemsDao();
             for (CartItem orderItem : orderRequest.getStoredCartItems()) {
-                orderItemsDao.insert(orderItem.getId(),orderId, orderItem.getQuantity(), orderItem.getPrice(), 0.0);
+                OrderItems item = new OrderItems();
+                item.setOrder(savedOrder);
+                item.setProduct(productRepository.findById(orderItem.getId()));
+                item.setQuantity(orderItem.getQuantity());
+                item.setPrice(orderItem.getPrice());
+                item.setDiscount(0.0);
+
+                orderItemRepository.save(item);
             }
 
-            return orderId;
-        } catch (SQLException e) {
+            return savedOrder.getOrderID();
+        } catch (Exception e) {
             LOGGER.severe("Error inserting order: " + e.getMessage());
             throw e;
-        } finally {
-            // Close the connection, statement, and result set
-            if (resultSet != null) {
-                resultSet.close();
-            }
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
-            }
         }
     }
 }

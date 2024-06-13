@@ -1,5 +1,6 @@
 package com.example.demo.utils;
 
+import com.example.demo.dto.CustomerDTO;
 import com.example.demo.modal.Customer;
 
 import com.example.demo.modal.RevenueRecord;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class WriteExcel {
 
-    public static Workbook exportDataToExcel(List<Customer> customers) {
+    public static Workbook exportDataToExcel(List<CustomerDTO> customers) {
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Customer Info");
 
@@ -34,16 +35,16 @@ public class WriteExcel {
 
         // Add data of each customer to the Excel file
         int rowNum = 1;
-//        for (Customer customer : customers) {
-//            Row dataRow = sheet.createRow(rowNum++);
-//            dataRow.createCell(0).setCellValue(customer.getUsername());
-//            dataRow.createCell(1).setCellValue(customer.getPassword());
-//            dataRow.createCell(2).setCellValue(customer.getFirst_name());
-//            dataRow.createCell(3).setCellValue(customer.getLast_name());
-//            dataRow.createCell(4).setCellValue(customer.getPhone());
-//            dataRow.createCell(5).setCellValue(customer.getAddress());
-//            dataRow.createCell(6).setCellValue(customer.getStatusToString());
-//        }
+        for (CustomerDTO customer : customers) {
+            Row dataRow = sheet.createRow(rowNum++);
+            dataRow.createCell(0).setCellValue(customer.getUsername());
+            dataRow.createCell(1).setCellValue(customer.getPassword());
+            dataRow.createCell(2).setCellValue(customer.getFirst_name());
+            dataRow.createCell(3).setCellValue(customer.getLast_name());
+            dataRow.createCell(4).setCellValue(customer.getPhone());
+            dataRow.createCell(5).setCellValue(customer.getAddress());
+            dataRow.createCell(6).setCellValue(customer.getStatus());
+        }
 
         return workbook;
     }

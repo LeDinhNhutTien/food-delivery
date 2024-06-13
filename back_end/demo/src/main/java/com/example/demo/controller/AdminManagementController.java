@@ -3,10 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.dao.AdminManagementDao;
 
 import com.example.demo.modal.AdminManagement;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,13 +13,19 @@ import java.util.List;
 @RequestMapping("/api/managementAdmin")
 @CrossOrigin(origins = "http://localhost:3000")
 public class AdminManagementController {
-    AdminManagementDao dao = new AdminManagementDao();
-
+    @Autowired
+    private AdminManagementDao adminManagementDao;
     @GetMapping
     public AdminManagement getAllInfor() {
         LocalDate currentDate = LocalDate.now();
         int currentMonth = currentDate.getMonthValue();
-        AdminManagement adminManagement = new AdminManagement(dao.getDoanhSoHangThang(currentMonth),dao.getNguoiMoi(currentMonth),dao.getTongDoanhThu(),dao.getSoLuongSanPham(currentMonth));
+
+        String doanhSoHangThang = adminManagementDao.getDoanhSoHangThang(currentMonth).toString();
+        String soLuongSanPham = adminManagementDao.getSoLuongSanPham(currentMonth).toString();
+        String tongDoanhThu = adminManagementDao.getTongDoanhThu().toString();
+        String nguoiMoi = adminManagementDao.getNguoiMoi(currentMonth).toString();
+
+        AdminManagement adminManagement = new AdminManagement(doanhSoHangThang ,nguoiMoi,tongDoanhThu,soLuongSanPham);
         return adminManagement;
     }
 }

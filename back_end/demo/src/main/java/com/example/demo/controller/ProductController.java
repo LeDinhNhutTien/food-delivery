@@ -1,7 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.dao.ProductDao;
+import com.example.demo.dto.ProductDTO;
 import com.example.demo.modal.Product;
-import com.example.demo.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,25 +16,22 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
 
-    private final ProductRepository productRepository;
+    private final ProductDao dao;
 
     @Autowired
-    public ProductController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductController( ProductDao dao) {
+        this.dao = dao;
+
     }
 
     @GetMapping
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public List<ProductDTO> getAllProducts() {
+        return dao.getAllProducts();
     }
 
     @GetMapping("/detailProduct/{id}")
-    public ResponseEntity<?> getProductDetail(@PathVariable("id") long id) {
-        Optional<Product> product = productRepository.findById(id);
-        if (product.isPresent()) {
-            return ResponseEntity.ok(product.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Không tìm thấy sản phẩm");
-        }
+    public ProductDTO getProductDetail(@PathVariable("id") long id) {
+        ProductDTO product = dao.getProductById(id);
+        return product;
     }
 }

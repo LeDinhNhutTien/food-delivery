@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Setter
@@ -47,7 +49,7 @@ public class Customer implements Serializable {
     private String role;
 
     @Column(name = "create_date")
-    private String createDate;
+    private LocalDate createDate;
 
     @Column(name = "status")
     private int status;
@@ -55,6 +57,13 @@ public class Customer implements Serializable {
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private List<Orders> orders;
 
+
+    @PrePersist
+    protected void onCreate() {
+        if (this.createDate == null) {
+            this.createDate = LocalDate.now();
+        }
+    }
     public Customer(int id_user, String username, String password, String first_name, String last_name, String phone, String address, String role) {
         this.id_user = id_user;
         this.username = username;
@@ -79,4 +88,20 @@ public class Customer implements Serializable {
     public Customer(int id, String email, String password, String firtName, String lastName, String phone, String address, String role, String date, int status) {
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id_user=" + id_user +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", role='" + role + '\'' +
+                ", createDate=" + createDate +
+                ", status=" + status +
+                
+                '}';
+    }
 }
