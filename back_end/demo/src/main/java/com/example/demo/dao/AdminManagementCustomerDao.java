@@ -3,6 +3,7 @@ package com.example.demo.dao;
 import com.example.demo.dto.CustomerDTO;
 import com.example.demo.modal.Customer;
 import com.example.demo.repository.CustomerRepository;
+import com.example.demo.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,10 +42,14 @@ public class AdminManagementCustomerDao {
         );
     }
     public void addCustomer(Customer customer) {
+        String encryptedPassword = MD5Utils.encrypt(customer.getPassword());
+        customer.setPassword(encryptedPassword);
         customerRepository.save(customer);
     }
 
     public void updateCustomer(Customer customer) {
+        String encryptedPassword = MD5Utils.encrypt(customer.getPassword());
+        customer.setPassword(encryptedPassword);
         customerRepository.save(customer);
     }
 }

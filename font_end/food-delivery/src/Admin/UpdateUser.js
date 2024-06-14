@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const TextInput = ({ label, name, value, onChange, required }) => (
+const TextInput = ({ label, name, value, onChange, required, onBlur }) => (
     <div className="form-group">
         <label>{label}</label>
         <input
@@ -9,6 +9,7 @@ const TextInput = ({ label, name, value, onChange, required }) => (
             name={name}
             value={value}
             onChange={onChange}
+            onBlur={onBlur}
             required={required}
         />
     </div>
@@ -16,20 +17,79 @@ const TextInput = ({ label, name, value, onChange, required }) => (
 
 const UpdateUser = ({ onClose, userData }) => {
     const [updatedUser, setUpdatedUser] = useState({ ...userData });
+    const [errors, setErrors] = useState({});
+    const [usernameError, setUsernameError] = useState('');
 
     useEffect(() => {
-        console.log("UserData passed to UpdateUser:", userData); // Debugging log
         setUpdatedUser({ ...userData });
     }, [userData]);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        setUpdatedUser({ ...updatedUser, [name]: value, status: 1 });
+        setUpdatedUser({ ...updatedUser, [name]: value });
+    };
+
+    const validateForm = () => {
+        const errors = {};
+
+        if (!updatedUser.last_name) {
+            errors.last_name = 'Họ là bắt buộc';
+        }
+
+        if (!updatedUser.first_name) {
+            errors.first_name = 'Tên là bắt buộc';
+        }
+
+        if (!updatedUser.username) {
+            errors.username = 'Email là bắt buộc';
+        } else if (!/\S+@\S+\.\S+/.test(updatedUser.username)) {
+            errors.username = 'Email không hợp lệ';
+        }
+
+        if (!updatedUser.password) {
+            errors.password = 'Mật khẩu là bắt buộc';
+        } else if (updatedUser.password.length < 6) {
+            errors.password = 'Mật khẩu phải có ít nhất 6 ký tự';
+        }
+
+        if (!updatedUser.address) {
+            errors.address = 'Địa chỉ là bắt buộc';
+        }
+
+        if (!updatedUser.phone) {
+            errors.phone = 'Số điện thoại là bắt buộc';
+        } else if (!/^\d{10}$/.test(updatedUser.phone)) {
+            errors.phone = 'Số điện thoại không hợp lệ';
+        }
+
+        setErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
+
+    const checkUsername = async (username) => {
+        try {
+            const response = await fetch(`http://localhost:8080/api/checkUsername/${username}`);
+            const data = await response.text();
+            if (response.ok) {
+                setUsernameError(data ? 'Email đã tồn tại' : '');
+            } else {
+                setUsernameError('');
+            }
+        } catch (error) {
+            console.error("Error checking username:", error);
+            setUsernameError('Lỗi kiểm tra email');
+        }
+    };
+
+    const handleUsernameBlur = (event) => {
+        checkUsername(event.target.value);
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log("Submitting updated user:", updatedUser); // Debugging log
+        if (!validateForm() || usernameError) {
+            return;
+        }
 
         try {
             const response = await fetch(`http://localhost:8080/api/managementCustomerAdmin/${updatedUser.id_user}`, {
@@ -92,6 +152,7 @@ const UpdateUser = ({ onClose, userData }) => {
                                     onChange={handleInputChange}
                                     required
                                 />
+                                {errors.last_name && <small className="text-danger">{errors.last_name}</small>}
                                 <TextInput
                                     label="Tên"
                                     name="first_name"
@@ -99,13 +160,17 @@ const UpdateUser = ({ onClose, userData }) => {
                                     onChange={handleInputChange}
                                     required
                                 />
+                                {errors.first_name && <small className="text-danger">{errors.first_name}</small>}
                                 <TextInput
                                     label="Email"
                                     name="username"
                                     value={updatedUser.username}
                                     onChange={handleInputChange}
+                                    onBlur={handleUsernameBlur} // Check username on blur
                                     required
                                 />
+                                {errors.username && <small className="text-danger">{errors.username}</small>}
+                                {usernameError && <small className="text-danger">{usernameError}</small>}
                                 <TextInput
                                     label="Mật khẩu"
                                     name="password"
@@ -113,6 +178,7 @@ const UpdateUser = ({ onClose, userData }) => {
                                     onChange={handleInputChange}
                                     required
                                 />
+                                {errors.password && <small className="text-danger">{errors.password}</small>}
                                 <TextInput
                                     label="Địa chỉ"
                                     name="address"
@@ -120,6 +186,7 @@ const UpdateUser = ({ onClose, userData }) => {
                                     onChange={handleInputChange}
                                     required
                                 />
+                                {errors.address && <small className="text-danger">{errors.address}</small>}
                                 <TextInput
                                     label="Số điện thoại"
                                     name="phone"
@@ -127,6 +194,7 @@ const UpdateUser = ({ onClose, userData }) => {
                                     onChange={handleInputChange}
                                     required
                                 />
+                                {errors.phone && <small className="text-danger">{errors.phone}</small>}
                                 <div className="form-group">
                                     <button type="submit" className="btn btn-primary">Cập nhật</button>
                                     <button type="button" className="btn btn-danger ml-2" onClick={onClose}>Đóng</button>
