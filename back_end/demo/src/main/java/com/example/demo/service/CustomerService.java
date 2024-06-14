@@ -13,14 +13,11 @@ public class CustomerService {
     CustomerRepository customerRepository;
 
     // login
-    public boolean validateLogin(String username, String password) {
-        Customer customer = customerRepository.findByUsername(username);
-        if (customer != null) {
-            String encryptedPassword = MD5Utils.encrypt(password);
-            return customer.getPassword().equals(encryptedPassword);
-        }
-        return false;
+    public Customer authenticate(String username, String password) {
+        String encryptedPassword = MD5Utils.encrypt(password);
+        return customerRepository.findByUsernameAndPassword(username, encryptedPassword);
     }
+
     public Customer getCustomerByUsername(String username) {
         return customerRepository.findByUsername(username);
     }
