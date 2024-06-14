@@ -18,7 +18,7 @@ public class OrderItems implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "OrderItemID")
-    private int orderItemID;
+    private Integer orderItemID;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "OrderID")

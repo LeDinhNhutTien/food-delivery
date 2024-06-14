@@ -19,10 +19,10 @@ public class Orders implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "OrderID")
-    private int orderID;
+    private Integer orderID;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "UserID")
+    @JoinColumn(name = "id_user", referencedColumnName = "id_user")
     private Customer customer;
 
     @Column(name = "CreationDate")

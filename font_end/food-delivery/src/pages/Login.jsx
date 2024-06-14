@@ -62,17 +62,19 @@ const Login = () => {
                 } else if (userInfo.role === "admin") {
                     navigate('/admin');
                 }
-            } else if (response.status === 400) {
-                const errors = await response.json();
-                setError(errors);
-            } else {
+            } else if (response.status === 401 || response.status === 400) {
                 const errorMessage = await response.text();
                 setError({ general: errorMessage });
+            } else {
+                console.error("Login failed with status:", response.status);
+                setError({ general: "Login failed. Please try again later." });
             }
         } catch (error) {
-            console.error("Error:", error);
+            console.error("Error logging in:", error);
+            setError({ general: "Something went wrong. Please try again later." });
         }
     };
+
 
     return (
         <div>

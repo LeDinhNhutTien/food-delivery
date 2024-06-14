@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.modal.request.LoginRequest;
 import com.example.demo.service.CustomerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,20 +21,15 @@ public class LoginController {
     CustomerService customerService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> register(@RequestBody @Valid Customer customer,
-                                      BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
-            Map<String, String> errors = new HashMap<>();
-            bindingResult.getFieldErrors().forEach(error ->
-                    errors.put(error.getField(), error.getDefaultMessage()));
-            return ResponseEntity.badRequest().body(errors);
-        }
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        String username = loginRequest.getUsername();
+        String password = loginRequest.getPassword();
 
-        if (customerService.validateLogin(customer.getUsername(), customer.getPassword()) == true) {
-            Customer c = customerService.getCustomerByUsername(customer.getUsername());
-            return ResponseEntity.ok(c);
+        Customer customer = customerService.authenticate(username, password);
+        if (customer != null) {
+            return ResponseEntity.ok(customer); // Return customer info if login successful
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tên đăng nhập hoặc mật khẩu không đúng");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
     }
 

@@ -23,7 +23,7 @@ public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user")
-    private int id_user;
+    private Integer id_user;
 
     @NotBlank(message = "Username không được để trống")
     @Column(name = "username")
@@ -64,7 +64,7 @@ public class Customer implements Serializable {
             this.createDate = LocalDate.now();
         }
     }
-    public Customer(int id_user, String username, String password, String first_name, String last_name, String phone, String address, String role) {
+    public Customer(Integer id_user, String username, String password, String first_name, String last_name, String phone, String address, String role) {
         this.id_user = id_user;
         this.username = username;
         this.password = password;
