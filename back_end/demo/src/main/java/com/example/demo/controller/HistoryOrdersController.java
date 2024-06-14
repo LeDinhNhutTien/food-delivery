@@ -1,7 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.*;
+import com.example.demo.dto.OrderDTO;
 import com.example.demo.modal.*;
+import com.example.demo.service.HistoryOrdersService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +19,19 @@ import java.util.Map;
 public class HistoryOrdersController {
     HistoryDao dao = new HistoryDao();
 
-    @PostMapping("/historyOrders")
-    public ResponseEntity<?> historyOrder(@RequestBody Map<String, String> credentials) throws SQLException {
-        int id = Integer.parseInt(credentials.get("idUser"));
+    private final HistoryOrdersService historyOrdersService;
+
+    @Autowired
+    public HistoryOrdersController(HistoryOrdersService historyOrdersService) {
+        this.historyOrdersService = historyOrdersService;
+    }
+
+    @GetMapping("/historyOrders")
+    public ResponseEntity<?> historyOrder(@RequestParam(value = "id_user") int id) throws SQLException {
 
         if (id != 0) {
-            List<History> historys = dao.getAllHistoryById(id);
-            return ResponseEntity.ok(historys);
-
+            List<OrderDTO> orders = historyOrdersService.getAllOrdersByCustomerId(id);
+            return ResponseEntity.ok(orders);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Không có lịch sử đơn hàng");
         }
@@ -31,10 +39,9 @@ public class HistoryOrdersController {
 
     @GetMapping("/orderDetail/{id}")
     public ResponseEntity<?> orderDetail(@PathVariable String id) throws SQLException {
-        HistoryDao historyDao = new HistoryDao();
         int idd = Integer.parseInt(id);
         if ( idd!=0) {
-            List<History> history = historyDao.getHistoryById(Integer.parseInt(id));
+            List<OrderDTO> history = historyOrdersService.getHistoryById(Integer.parseInt(id));
             return ResponseEntity.status(HttpStatus.OK).body(history);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tài khoản chưa tồn tại");
@@ -43,10 +50,9 @@ public class HistoryOrdersController {
 
     @GetMapping("/orderDetailInfo/{id}")
     public ResponseEntity<?> orderDetailInfo(@PathVariable String id) throws SQLException {
-        HistoryDao historyDao = new HistoryDao();
         int idd = Integer.parseInt(id);
         if ( idd!=0) {
-            List<History> history = historyDao.getHistoryInformationById(Integer.parseInt(id));
+            List<OrderDTO> history = historyOrdersService.getHistoryInformationById(Integer.parseInt(id));
             return ResponseEntity.status(HttpStatus.OK).body(history);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tài khoản chưa tồn tại");
@@ -56,16 +62,11 @@ public class HistoryOrdersController {
     @PostMapping("/cancelOrder/{id}")
     public ResponseEntity<String> cancelOrder(@PathVariable String id) {
         int idd = Integer.parseInt(id);
-        try {
-            // Gọi phương thức updateHistoryById từ dao để cập nhật tình trạng đơn hàng
-            boolean success = dao.updateHistoryById(idd);
-            if (success) {
-                return ResponseEntity.ok("Đã hủy đơn hàng thành công");
-            } else {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Không thể hủy đơn hàng");
-            }
-        } catch (SQLException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi khi xử lý yêu cầu");
+        boolean success = historyOrdersService.cancelOrder(idd);
+        if (success) {
+            return ResponseEntity.ok("Đã hủy đơn hàng thành công");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Không thể hủy đơn hàng");
         }
     }
 
