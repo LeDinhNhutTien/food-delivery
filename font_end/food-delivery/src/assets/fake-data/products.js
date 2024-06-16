@@ -50,6 +50,38 @@ import product_01_image_039 from "../images/Product_Hamburger/mac_and_cheese_bur
 import product_01_image_049 from "../images/Product_Hamburger/cuban_burger_image1.jpg";
 import product_01_image_050 from "../images/Product_Hamburger/breakfast_burger_image1.jpg";
 
+
+
+import  pizz1 from "../images/Pizza/Margherita.jpg"
+import  pizz2 from "../images/Pizza/BBQChicken.jpg"
+import  pizz3 from "../images/Pizza/BuffaloChicken.jpg"
+import  pizz4 from "../images/Pizza/Greek.jpg"
+import  pizz5 from "../images/Pizza/Taco.jpg"
+import  pizz6 from "../images/Pizza/Capricciosa.jpg"
+import  pizz7 from "../images/Pizza/Cheeseburger.jpg"
+import  pizz8 from "../images/Pizza/FourCheese.jpg"
+import  pizz9 from "../images/Pizza/Hawaiian.jpg"
+import  pizz10 from "../images/Pizza/Margarita.jpg"
+import  pizz11 from "../images/Pizza/MeatLover.jpg"
+import  pizz12 from "../images/Pizza/Mediterranean.jpg"
+import  pizz13 from "../images/Pizza/Pepperoni.jpg"
+import  pizz14 from "../images/Pizza/Veggie.jpg"
+import  pizz15 from "../images/Pizza/TruffleMushroom.jpg"
+import  pizz16 from "../images/Pizza/Supreme.jpg"
+import  pizz17 from "../images/Pizza/Spinach.jpg"
+import  pizz18 from "../images/Pizza/Seafood.jpg"
+import  pizz19 from "../images/Pizza/PhillyCheeseSteak.jpg"
+import  pizz20 from "../images/Pizza/PestoChicken.jpg"
+
+
+import  drink1 from "../images/drinks/numberone.jpeg"
+import  drink2 from "../images/drinks/fanta.jpg"
+import  drink3 from "../images/drinks/miridan.jpg"
+import  drink4 from "../images/drinks/cocal.jpg"
+import  drink5 from "../images/drinks/pepsi.jpg"
+import  drink6 from "../images/drinks/sprite.jpg"
+import  drink7 from "../images/drinks/7up.jpg"
+import  drink8 from "../images/drinks/numberone.jpg"
 import product_02_image_01 from "../images/product_2.1.jpg";
 import product_02_image_02 from "../images/product_2.2.jpg";
 import product_02_image_03 from "../images/product_2.3.jpg";

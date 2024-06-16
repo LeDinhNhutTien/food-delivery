@@ -56,7 +56,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    const filteredPizza = allProducts.filter((item) => item.type === 2);
+    const filteredPizza = allProducts.filter((item) => item.typeId === 2);
     const slicePizza = filteredPizza.slice(0, 4);
     console.log("Products:", filteredPizza); // In ra sản phẩm để kiểm tra
     setHotPizza(slicePizza);
@@ -64,7 +64,7 @@ const Home = () => {
 
   const handlePizzaButtonClick = () => {
     setProductType("PIZZA");
-    const filteredPizza = allProducts.filter((item) => item.type === 2);
+    const filteredPizza = allProducts.filter((item) => item.typeId === 2);
     const slicePizza = filteredPizza.slice(0, 4);
     console.log("Products:", filteredPizza); // In ra sản phẩm để kiểm tra
     setHotPizza(slicePizza);
@@ -73,7 +73,7 @@ const Home = () => {
   const filteredProducts =
       productType === "ALL"
           ? allProducts
-          : allProducts.filter((item) => item.type === parseInt(productType));
+          : allProducts.filter((item) => item.typeId === parseInt(productType));
 
 
 
@@ -88,6 +88,7 @@ const Home = () => {
                   <h1 className="mb-4 hero__title">
                     <span>HUNGRY?</span> Just wait <br /> food at
                     <span> your door</span>
+
                   </h1>
                   <p>
                     Quý khách có thể đặt hàng trực tuyến ở website TastyCake
@@ -118,7 +119,7 @@ const Home = () => {
               </Col>
               <Col lg="6" md="6">
                 <div className="hero__img">
-                  <img src={heroImg} alt="hero-img" className="w-100" />
+                  <img src={heroImg} alt="hero-img" className="w-100"/>
                 </div>
               </Col>
             </Row>
@@ -175,7 +176,7 @@ const Home = () => {
                       className={`d-flex align-items-center gap-2 ${
                           productType === "BURGER" ? "foodBtnActive" : ""
                       } `}
-                      onClick={() => setProductType("1")}
+                      onClick={() => setProductType(1)}
                   >
                     <img src={foodCategoryImg01} alt=""/> Hamburger
                   </button>
@@ -184,7 +185,7 @@ const Home = () => {
                       className={`d-flex align-items-center gap-2 ${
                           productType === "PIZZA" ? "foodBtnActive" : ""
                       } `}
-                      onClick={() => setProductType("2")}
+                      onClick={() => setProductType(2)}
                   >
                     <img src={foodCategoryImg02} alt=""/> Pizza
                   </button>
@@ -193,9 +194,9 @@ const Home = () => {
                       className={`d-flex align-items-center gap-2 ${
                           productType === "BREAD" ? "foodBtnActive" : ""
                       } `}
-                      onClick={() => setProductType("3")}
+                      onClick={() => setProductType(3)}
                   >
-                    <img src={foodCategoryImg03} alt=""/> Bánh mì
+                    <img src={foodCategoryImg03} alt=""/> Nước uống
                   </button>
 
                 </div>

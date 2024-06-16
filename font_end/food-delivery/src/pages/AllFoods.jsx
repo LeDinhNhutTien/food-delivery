@@ -128,7 +128,7 @@ const AllFoods = () => {
 
     const filterProductsByType = (type) => {
         setProducts(allProducts);
-        const filteredProducts = allProducts.filter(item => item.type === type);
+        const filteredProducts = allProducts.filter(item => item.typeId === type);
         setProducts(filteredProducts);
     };
 
