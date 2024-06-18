@@ -29,6 +29,12 @@ public class CustomerDTO {
         this.status = status;
     }
 
+    public CustomerDTO(String username, String address, String phone) {
+        this.username = username;
+        this.address = address;
+        this.phone = phone;
+    }
+
     public String getPassword() {
         return password;
     }

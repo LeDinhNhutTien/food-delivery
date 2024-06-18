@@ -62,5 +62,30 @@ public interface HistoryOrdersRepository extends JpaRepository<Orders, Integer> 
     @Transactional
     @Query("UPDATE Orders o SET o.orderStatus = 'Đã hủy' WHERE o.orderID = :orderId")
     int cancel(@Param("orderId") int orderId);
+
+    // manager order admin
+    @Query(value = "SELECT o.OrderID, GROUP_CONCAT(DISTINCT p.`name` SEPARATOR ', ') AS products, c.username, " +
+            "o.Creation_Date, SUM(od.Price) AS totalPrice, o.Order_Status, " +
+            "GROUP_CONCAT(DISTINCT selected_images.url SEPARATOR ', ') AS image_urls, " +
+            "o.Shipping_Address " +
+            "FROM orders o " +
+            "JOIN orderitems od ON o.OrderID = od.OrderID " +
+            "JOIN products p ON p.id = od.ProductID " +
+            "JOIN (SELECT products_id, MIN(url) AS url FROM images GROUP BY products_id) AS selected_images " +
+            "ON selected_images.products_id = p.id " +
+            "JOIN customer c ON c.id_user = o.UserID " +
+            "GROUP BY o.OrderID, c.username, o.Creation_Date, o.Order_Status, o.Shipping_Address", nativeQuery = true)
+    List<Object[]> findAllOrdersAdmin();
+
+    @Query(value = "SELECT c.username, c.address, c.phone " +
+            "FROM orders o " +
+            "JOIN customer c ON c.id_user = o.UserID " +
+            "WHERE o.OrderID = ?", nativeQuery = true)
+    List<Object[]> findCustomerById(@Param("orderID") int orderID);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Orders o SET o.orderStatus = :state WHERE o.orderID = :orderId")
+    int update(@Param("orderId") int orderId, @Param("state") String state);
 }
 
