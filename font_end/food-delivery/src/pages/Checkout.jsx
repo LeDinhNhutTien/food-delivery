@@ -15,7 +15,7 @@ const Checkout = () => {
   const [cartItems, setCartItems] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState('Thanh toán trực tiếp');
   const [orderPlaced, setOrderPlaced] = useState(false);
-
+  const totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   useEffect(() => {
@@ -31,63 +31,148 @@ const Checkout = () => {
   useEffect(() => {
     const fetchProvinces = async () => {
       try {
-        const response = await fetch('https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json');
+        const response = await fetch('https://online-gateway.ghn.vn/shiip/public-api/master-data/province', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Token': '274efaf3-b96d-11ed-bcba-eac62dba9bd9'
+          }
+        });
+
         if (!response.ok) {
           throw new Error('Failed to fetch provinces');
         }
+
         const data = await response.json();
-        setProvinces(data);
+        if (data.code === 200) {
+          setProvinces(data.data);
+        } else {
+          throw new Error('Failed to fetch provinces data');
+        }
         setLoading(false);
       } catch (error) {
         console.error('Error fetching provinces:', error);
+        setLoading(false);
       }
     };
 
     fetchProvinces();
   }, []);
 
-  const totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+  // Fetch districts when a province is selected
+  useEffect(() => {
+    if (selectedProvince) {
+      const fetchDistricts = async () => {
+        try {
+          const response = await fetch(`https://online-gateway.ghn.vn/shiip/public-api/master-data/district?province_id=${selectedProvince}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Token': '274efaf3-b96d-11ed-bcba-eac62dba9bd9'
+            }
+          });
+
+          if (!response.ok) {
+            throw new Error('Failed to fetch districts');
+          }
+
+          const data = await response.json();
+          if (data.code === 200) {
+            setDistricts(data.data);
+          } else {
+            throw new Error('Failed to fetch districts data');
+          }
+        } catch (error) {
+          console.error('Error fetching districts:', error);
+        }
+      };
+
+      fetchDistricts();
+    }
+  }, [selectedProvince]);
+
+  useEffect(() => {
+    const fetchWards = async () => {
+      try {
+        if (selectedDistrict) {
+          const url = `https://online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id=${selectedDistrict}`;
+          const response = await fetch(url, {
+            method: 'GET', // GET method since we are using query parameters
+            headers: {
+              'Content-Type': 'application/json',
+              'Token': '274efaf3-b96d-11ed-bcba-eac62dba9bd9' // Replace with your actual token
+            }
+          });
+
+          if (!response.ok) {
+            throw new Error('Failed to fetch wards');
+          }
+
+          const data = await response.json();
+          if (data.code === 200) {
+            setWards(data.data);
+          } else {
+            throw new Error('Failed to fetch wards data');
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching wards:', error);
+      }
+    };
+
+    fetchWards();
+  }, [selectedDistrict]);
+
+
+
 
   const handleProvinceChange = (event) => {
     const value = event.target.value;
     setSelectedProvince(value);
-    const selectedProvinceData = provinces.find(province => province.Id === value);
-    if (selectedProvinceData) {
-      setDistricts(selectedProvinceData.Districts || []);
-      setWards([]);
-    }
+    setSelectedDistrict('');
+    setSelectedWard('');
   };
 
+  // Function to handle district selection change
   const handleDistrictChange = (event) => {
     const value = event.target.value;
     setSelectedDistrict(value);
-    const selectedDistrictData = districts.find(district => district.Id === value);
-    if (selectedDistrictData) {
-      setWards(selectedDistrictData.Wards || []);
-    }
+    setSelectedWard('');
   };
 
   const handleWardChange = async (event) => {
     const value = event.target.value;
     setSelectedWard(value);
-    const selectedWardData = wards.find(ward => ward.Id === value);
-    const selectedDistrictData = districts.find(district => district.Id === selectedDistrict);
-    if (selectedWardData && selectedDistrictData) {
+    const selectedWardData = wards.find(ward => ward.WardCode === value);
+
+    // Ensure selectedDistrict is a valid value
+    if (!selectedDistrict) {
+      console.error('Selected district is invalid.');
+      return;
+    }
+
+
+
+      const toWardId = selectedWardData.WardCode; // ID of the selected ward
+
       try {
-        const encodedToDistrict = encodeURIComponent(selectedDistrictData.Name);
-        const encodedToWard = encodeURIComponent(selectedWardData.Name);
-        const response = await fetch(`http://localhost:8080/api/feeGHN?toDistrict=${encodedToDistrict}&toWard=${encodedToWard}`);
+        const url = `http://localhost:8080/api/feeGHN?toDistrict=${selectedDistrict}&toWard=${toWardId}`;
+        const response = await fetch(url);
+
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
+
         const { total, time } = await response.json();
         setShippingFee(total);
         setShippingTime(time);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
-    }
+
   };
+
+
 
   const handlePaymentMethodChange = (event) => {
     setPaymentMethod(event.target.value);
@@ -217,8 +302,8 @@ const Checkout = () => {
                     <select value={selectedProvince} className="form-select" onChange={handleProvinceChange} required>
                       <option value="">Chọn Tỉnh/Thành phố</option>
                       {provinces && provinces.map(province => (
-                          <option key={province.Id} value={province.Id}>
-                            {province.Name}
+                          <option key={province.ProvinceID} value={province.ProvinceID}>
+                            {province.ProvinceName}
                           </option>
                       ))}
                     </select>
@@ -231,8 +316,8 @@ const Checkout = () => {
                     <select value={selectedDistrict} className="form-select" onChange={handleDistrictChange} required>
                       <option value="">Chọn Quận/Huyện</option>
                       {districts && districts.map(district => (
-                          <option key={district.Id} value={district.Id}>
-                            {district.Name}
+                          <option key={district.DistrictID} value={district.DistrictID}>
+                            {district.DistrictName}
                           </option>
                       ))}
                     </select>
@@ -245,8 +330,8 @@ const Checkout = () => {
                     <select value={selectedWard} className="form-select" onChange={handleWardChange} required>
                       <option value="">Chọn Xã/Phường</option>
                       {wards && wards.map(ward => (
-                          <option key={ward.Id} value={ward.Id}>
-                            {ward.Name}
+                          <option key={ward.WardCode} value={ward.WardCode}>
+                            {ward.WardName}
                           </option>
                       ))}
                     </select>

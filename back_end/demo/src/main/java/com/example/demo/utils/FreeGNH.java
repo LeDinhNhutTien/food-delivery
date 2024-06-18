@@ -205,9 +205,7 @@ public class FreeGNH {
         return null;
     }
     public static void main(String[] args) throws IOException {
-        System.out.println(calculateShippingFee(getDistrictId("Quận 2"), getDistrictIdOfWard("Phường Thủ Thiêm",getDistrictId("Quận 2")),50, 50, 50, 50));
-        System.out.println(getDistrictId("Quận 2"));
-        System.out.println(getDistrictIdOfWard("Phường Thủ Thiêm",getDistrictId("Quận 2")));
-        System.out.println(calculateShippingTime(1443,"20211"));
+        System.out.println(calculateShippingFee(2211,"390509",50, 50, 50, 50));
+
     }
 }

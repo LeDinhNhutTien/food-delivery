@@ -16,16 +16,15 @@ import java.util.Map;
 public class FeeGNHController {
 
     @GetMapping()
-    public ResponseEntity<Map<String, String>> calculateShippingFee(@RequestParam("toDistrict") String toDistrict,
+    public ResponseEntity<Map<String, String>> calculateShippingFee(@RequestParam("toDistrict") int toDistrict,
                                                                     @RequestParam("toWard") String toWard) {
         try {
-            int toDistrictId = FreeGNH.getDistrictId(toDistrict);
-            String toWardCode = FreeGNH.getDistrictIdOfWard(toWard, toDistrictId);
+
             System.out.println("a"+toDistrict + toWard);
             String total = FreeGNH.calculateShippingFee(
-                    toDistrictId, toWardCode,
+                    toDistrict, toWard,
                     50, 50, 50, 50);
-            String time = FreeGNH.calculateShippingTime(toDistrictId, toWardCode);
+            String time = FreeGNH.calculateShippingTime(toDistrict, toWard);
 
             // Tạo một đối tượng Map để chứa total và time
             Map<String, String> resultMap = new HashMap<>();
