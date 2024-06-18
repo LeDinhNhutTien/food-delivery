@@ -28,6 +28,7 @@ public class OrderDTO {
     private String discountCode;
     private String note;
     private List<OrderItemDTO> orderItems;
+    private String customerName;
 
     // Constructors if needed
 
@@ -48,13 +49,23 @@ public class OrderDTO {
         this.price = price;
         this.shippingAddress = shippingAddress;
     }
-
+    public OrderDTO(Integer orderID, LocalDate creationDate, String orderStatus, String productName, String imageUrl, double price, String customerName, String shippingAddress) {
+        this.orderID = orderID;
+        this.creationDate = creationDate;
+        this.orderStatus = orderStatus;
+        this.productName = productName;
+        this.imageUrl = imageUrl;
+        this.price = price;
+        this.customerName = customerName;
+        this.shippingAddress = shippingAddress;
+    }
     public OrderDTO(String productName, int totalAmount, double price, String imageUrl) {
         this.productName = productName;
         this.totalAmount = totalAmount;
         this.price = price;
         this.imageUrl = imageUrl;
     }
+
 
     public Integer getOrderID() {
         return orderID;

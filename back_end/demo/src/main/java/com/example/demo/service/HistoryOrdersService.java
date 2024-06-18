@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.CustomerDTO;
 import com.example.demo.dto.OrderDTO;
 import com.example.demo.modal.Orders;
 import com.example.demo.repository.HistoryOrdersRepository;
@@ -13,9 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class HistoryOrdersService {
+public class HistoryOrdersService{
 
-    private final HistoryOrdersRepository historyOrdersRepository;
+    private  HistoryOrdersRepository historyOrdersRepository;
 
     @Autowired
     public HistoryOrdersService(HistoryOrdersRepository historyOrdersRepository) {
@@ -71,5 +72,44 @@ public class HistoryOrdersService {
     public boolean cancelOrder(int orderId) {
         int affectedRows = historyOrdersRepository.cancel(orderId);
         return affectedRows > 0;
+    }
+
+    // admin
+
+    public List<OrderDTO> getAllOrdersAdmin() {
+        List<Object[]> results = historyOrdersRepository.findAllOrdersAdmin();
+        List<OrderDTO> orders = new ArrayList<>();
+        for (Object[] result : results) {
+            Integer orderID = (Integer) result[0];
+            String productNames = (String) result[1];
+            String customerName = (String) result[2];
+            LocalDate creationDate = ((Date) result[3]).toLocalDate();
+            double price = (double) result[4];
+            String orderStatus = (String) result[5];
+            String imageUrls = (String) result[6];
+            String address = (String) result[7];
+
+            orders.add(new OrderDTO(orderID, creationDate, orderStatus, productNames, imageUrls,
+                    price, customerName, address));
+        }
+        return orders;
+    }
+
+    public CustomerDTO getCustomer(Integer orderId) {
+        List<Object[]> results = historyOrdersRepository.findCustomerById(orderId);
+        CustomerDTO customers = null;
+        for (Object[] result : results) {
+            String username = (String) result[0];
+            String address = (String) result[1];
+            String phone = (String) result[2];
+            
+            customers = new CustomerDTO(username, address, phone);
+        }
+        return customers;
+    }
+
+    public boolean updateHistory(int orderId, String state) {
+        int updatedRows = historyOrdersRepository.update(orderId, state);
+        return updatedRows > 0;
     }
 }

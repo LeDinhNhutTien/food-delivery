@@ -1,6 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.*;
+import com.example.demo.dto.CustomerDTO;
+import com.example.demo.dto.OrderDTO;
+import com.example.demo.service.HistoryOrdersService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +18,14 @@ import java.util.Map;
 @RequestMapping("/api/managementOrderAdmin")
 @CrossOrigin(origins = "http://localhost:3000")
 public class AdminManagementOrder {
+    @Autowired
+    HistoryOrdersService service;
 
     HistoryDao dao =  new HistoryDao();
 
     @GetMapping
-    public List<History> getAllHistory() throws SQLException {
-        List<History> histories = dao.getAllHistory();
+    public List<OrderDTO> getAllHistory() throws SQLException {
+        List<OrderDTO> histories = service.getAllOrdersAdmin();
 
         return histories;
     }
@@ -28,7 +34,7 @@ public class AdminManagementOrder {
     public ResponseEntity<?> getOrder(@PathVariable String id) throws SQLException {
         int idd = Integer.parseInt(id);
         if ( idd!=0) {
-            List<History> histories = dao.getHistoryById(idd);
+            List<OrderDTO> histories = service.getHistoryById(idd);
             return ResponseEntity.ok(histories);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Lỗi");
@@ -38,7 +44,7 @@ public class AdminManagementOrder {
     public ResponseEntity<?> getCustomer(@PathVariable String id) throws SQLException {
         int idd = Integer.parseInt(id);
         if ( idd!=0) {
-            Customer customer = dao.getCustomerByIdOrder(idd);
+            CustomerDTO customer = service.getCustomer(idd);
             return ResponseEntity.status(HttpStatus.OK).body(customer);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Lỗi");
@@ -49,15 +55,11 @@ public class AdminManagementOrder {
     public ResponseEntity<String> updateOrder(@PathVariable String id, @RequestBody Map<String, String> requestBody) {
         int orderId = Integer.parseInt(id);
         String state = requestBody.get("state");
-        try {
-            boolean success = dao.updateHistory(orderId, state);
-            if (success) {
-                return ResponseEntity.ok("Đã cập nhật đơn hàng thành công");
-            } else {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Không thể cập nhật đơn hàng");
-            }
-        } catch (SQLException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi khi xử lý yêu cầu");
+        boolean success = service.updateHistory(orderId, state);
+        if (success) {
+            return ResponseEntity.ok("Đã cập nhật đơn hàng thành công");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Không thể cập nhật đơn hàng");
         }
     }
 
