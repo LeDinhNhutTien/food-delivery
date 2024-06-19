@@ -23,10 +23,7 @@ const nav__links = [
         display: "Liên hệ",
         path: "/contact",
     },
-    {
-        display: "Admin",
-        path: "/admin",
-    },
+
 ];
 
 const Header = () => {
