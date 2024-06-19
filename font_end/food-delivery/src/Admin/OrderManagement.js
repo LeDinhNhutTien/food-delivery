@@ -384,18 +384,18 @@ function OrderManagement() {
                                                         <td><Link to={`/orderDetailAdmin?id=${order.orderID}`}>{order.orderID}</Link></td>
                                                         <td>
                                                             <Link to={`/orderDetailAdmin?id=${order.orderID}`}>
-                                                                {order.url.split(', ').map((url, index) => (
+                                                                {order.imageUrl.split(', ').map((url, index) => (
                                                                     <div key={index} style={{ marginBottom: "10px" }}>
                                                                         <img style={{ height: "50px" }} src={url} alt="product" />
                                                                         <br />
-                                                                        {order.name.split(', ')[index]}
+                                                                        {order.productName.split(', ')[index]}
                                                                     </div>
                                                                 ))}
                                                             </Link>
                                                         </td>
-                                                        <td>{order.nameCustomer}</td>
-                                                        <td>{order.date}</td>
-                                                        <td>{order.totalPrice}</td>
+                                                        <td>{order.customerName}</td>
+                                                        <td>{order.creationDate}</td>
+                                                        <td>{order.price}</td>
                                                         <td className= "status">{order.status}</td>
                                                     </tr>
                                                 ))}

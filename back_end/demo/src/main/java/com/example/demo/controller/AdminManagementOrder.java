@@ -40,6 +40,17 @@ public class AdminManagementOrder {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Lỗi");
         }
     }
+    @GetMapping("/orderDetailInfo/{id}")
+    public ResponseEntity<?> orderDetailInfo(@PathVariable String id) throws SQLException {
+        int idd = Integer.parseInt(id);
+        if ( idd!=0) {
+            List<OrderDTO> history = service.getHistoryInformationById(Integer.parseInt(id));
+            return ResponseEntity.status(HttpStatus.OK).body(history);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tài khoản chưa tồn tại");
+        }
+    }
+
     @GetMapping("/getCustomer/{id}")
     public ResponseEntity<?> getCustomer(@PathVariable String id) throws SQLException {
         int idd = Integer.parseInt(id);

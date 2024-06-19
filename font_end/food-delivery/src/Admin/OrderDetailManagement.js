@@ -9,6 +9,8 @@ const OrderDetailManagement = () => {
     const [userInfo, setUserInfo] = useState({});
     const [selectedStatuses, setSelectedStatuses] = useState({});
     const userLogin = JSON.parse(sessionStorage.getItem("userInfo"));
+    const [orderDetailInfo, setOrderDetailInfo] = useState([]);
+
     useEffect(() => {
         if (!userLogin) {
             window.location.href = "/login";
@@ -56,6 +58,23 @@ const OrderDetailManagement = () => {
         getCustomer();
     }, []);
 
+    useEffect(() => {
+        const fetchOrderDetail = async () => {
+            try {
+                const orderId = new URLSearchParams(window.location.search).get("id");
+                const response = await fetch(`http://localhost:8080/api/managementOrderAdmin/orderDetailInfo/${orderId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setOrderDetailInfo(data);
+                } else {
+                    console.error("Error fetching order detail");
+                }
+            } catch (error) {
+                console.error("Error fetching order detail:", error);
+            }
+        };
+        fetchOrderDetail();
+    }, []);
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
@@ -78,7 +97,7 @@ const OrderDetailManagement = () => {
 
                 // Update the order status in orderDetail
                 setOrderDetail(prevDetails => prevDetails.map(order =>
-                    order.orderID === orderId ? { ...order, OrderStatus: state } : order
+                    order.orderID === orderId ? { ...order, orderStatus: state } : order
                 ));
             } else {
                 console.error('Error updating order');
@@ -134,24 +153,24 @@ const OrderDetailManagement = () => {
                                 </tr>
                                 <tr>
                                     <td>Ngày đặt hàng:</td>
-                                    <td>{formatDate(order.date)}</td>
+                                    <td>{formatDate(order.creationDate)}</td>
                                 </tr>
                                 <tr>
                                     <td>Tổng giá trị:</td>
-                                    <td>{order.totalPrice} VNĐ</td>
+                                    <td>{order.price} VNĐ</td>
                                 </tr>
                                 <tr>
                                     <td>Tình trạng:</td>
                                     <td>
                                         <select
-                                            value={selectedStatuses[order.orderID] || order.OrderStatus}
+                                            value={selectedStatuses[order.orderID] || order.orderStatus}
                                             onChange={(event) => handleStatusChange(order.orderID, event)}
                                         >
                                             <option value="">Chọn</option>
-                                            <option value="Chờ xử lý" selected={order.OrderStatus === "Chờ xử lý"}>Chờ xử lý</option>
-                                            <option value="Đang giao" selected={order.OrderStatus === "Đang giao"}>Đang giao</option>
-                                            <option value="Đã giao" selected={order.OrderStatus === "Đã giao"}>Đã giao</option>
-                                            <option value="Hủy đơn" selected={order.OrderStatus === "Hủy đơn"}>Hủy đơn</option>
+                                            <option value="Chờ xử lý" selected={order.orderStatus === "Chờ xử lý"}>Chờ xử lý</option>
+                                            <option value="Đang giao" selected={order.orderStatus === "Đang giao"}>Đang giao</option>
+                                            <option value="Đã giao" selected={order.orderStatus === "Đã giao"}>Đã giao</option>
+                                            <option value="Hủy đơn" selected={order.orderStatus === "Hủy đơn"}>Hủy đơn</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -172,12 +191,16 @@ const OrderDetailManagement = () => {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr key={order.orderID}>
-                                    <td>{order.name}</td>
-                                    <td><img style={{ height: "50px" }} src={order.url} alt="product" /></td>
-                                    <td>{order.quantity}</td>
-                                    <td>{order.totalPrice}</td>
-                                </tr>
+                                {Array.isArray(orderDetailInfo) && orderDetailInfo.map(orderInfo => (
+                                    <tr key={orderInfo}>
+                                        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{orderInfo.productName}</td>
+                                        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>
+                                            <img style={{ height: "50px" }} src={orderInfo.imageUrl} alt="product" />
+                                        </td>
+                                        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{orderInfo.quantity}</td>
+                                        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{orderInfo.totalPrice}</td>
+                                    </tr>
+                                ))}
                                 </tbody>
                             </table>
                             <div className="parent-button">
