@@ -1,7 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.RootDiaryDao;
-import com.example.demo.modal.Diary;
+import com.example.demo.modal.DiaryEmployee;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,19 +15,20 @@ import java.util.Map;
 public class RootDiaryController {
 
     @Autowired
-    private RootDiaryDao rootDiaryDao;
+    private RootDiaryDao diaryEmployeeService;
 
     @GetMapping("/all")
-    public List<Diary> getAllDiaries() {
-        return rootDiaryDao.getAllDiary();
+    public List<DiaryEmployee> getAllDiaries() {
+        return diaryEmployeeService.getAllDiaries();
     }
 
     @PostMapping("/add")
-    public boolean addDiary(@RequestBody Map<String, String> requestBody) {
+    public DiaryEmployee addDiary(@RequestBody Map<String, String> requestBody) {
         String content = requestBody.get("content");
-        int id = Integer.parseInt(requestBody.get("id"));
-        return rootDiaryDao.insertDiary(content, id);
+        int userId = Integer.parseInt(requestBody.get("userId"));
+        DiaryEmployee diary = new DiaryEmployee();
+        diary.setContent(content);
+        diary.setUserId(userId);
+        return diaryEmployeeService.saveDiary(diary);
     }
-
-
 }
