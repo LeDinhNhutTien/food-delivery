@@ -162,11 +162,10 @@ const OrderDetailManagement = () => {
                                 <tr>
                                     <td>Tình trạng:</td>
                                     <td>
-                                        <select
+                                        <select style={{background: "#ededb4", border: "#e1baba"}}
                                             value={selectedStatuses[order.orderID] || order.orderStatus}
                                             onChange={(event) => handleStatusChange(order.orderID, event)}
                                         >
-                                            <option value="">Chọn</option>
                                             <option value="Chờ xử lý" selected={order.orderStatus === "Chờ xử lý"}>Chờ xử lý</option>
                                             <option value="Đang giao" selected={order.orderStatus === "Đang giao"}>Đang giao</option>
                                             <option value="Đã giao" selected={order.orderStatus === "Đã giao"}>Đã giao</option>
@@ -197,8 +196,8 @@ const OrderDetailManagement = () => {
                                         <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>
                                             <img style={{ height: "50px" }} src={orderInfo.imageUrl} alt="product" />
                                         </td>
-                                        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{orderInfo.quantity}</td>
-                                        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{orderInfo.totalPrice}</td>
+                                        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{orderInfo.totalAmount}</td>
+                                        <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{orderInfo.price}</td>
                                     </tr>
                                 ))}
                                 </tbody>

@@ -396,7 +396,7 @@ function OrderManagement() {
                                                         <td>{order.customerName}</td>
                                                         <td>{order.creationDate}</td>
                                                         <td>{order.price}</td>
-                                                        <td className= "status">{order.status}</td>
+                                                        <td className= "status">{order.orderStatus}</td>
                                                     </tr>
                                                 ))}
                                                 </tbody>
