@@ -10,9 +10,10 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Orders, Long> {
+public interface OrderRepository extends JpaRepository<Orders, Integer> {
 
     @Query("SELECT SUM(o.totalAmount) FROM Orders o WHERE MONTH(o.creationDate) = :month")
     BigDecimal findMonthlyRevenue(@Param("month") int month);
@@ -23,7 +24,6 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
     @Query("SELECT SUM(o.totalAmount) FROM Orders o")
     BigDecimal findTotalRevenue();
 
-
     @Query("SELECT new com.example.demo.modal.RevenueRecord(MONTH(o.creationDate), COALESCE(SUM(o.totalAmount), 0)) " +
             "FROM Orders o WHERE YEAR(o.creationDate) = :year GROUP BY MONTH(o.creationDate) ORDER BY MONTH(o.creationDate)")
     List<RevenueRecord> calculateMonthlyRevenue(@Param("year") int year);
@@ -32,4 +32,7 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
             "FROM Orders o WHERE YEAR(o.creationDate) = :year AND MONTH(o.creationDate) = :month " +
             "GROUP BY DAY(o.creationDate) ORDER BY DAY(o.creationDate)")
     List<RevenueRecordMonth> calculateMonthlyRevenueForMonth(@Param("year") int year, @Param("month") int month);
+
+    // Explicitly declare findById method
+    Orders findById(Long id);
 }

@@ -1,17 +1,18 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.*;
+import com.example.demo.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.demo.modal.*;
+
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:3000")
-public class ChangePassword {
-    CustomerDao dao = new CustomerDao();
+public class ChangePasswordController {
+    CustomerService dao = new CustomerService();
     @PostMapping("/changePassword")
     public ResponseEntity<?> changePassword(@RequestBody Map<String, String> credentials) {
         String username = credentials.get("username");

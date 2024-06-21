@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.RootDiaryDao;
+import com.example.demo.service.RootDiaryService;
 import com.example.demo.modal.DiaryEmployee;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.Map;
 public class RootDiaryController {
 
     @Autowired
-    private RootDiaryDao diaryEmployeeService;
+    private RootDiaryService diaryEmployeeService;
 
     @GetMapping("/all")
     public List<DiaryEmployee> getAllDiaries() {

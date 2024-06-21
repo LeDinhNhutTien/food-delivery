@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.*;
+
 import com.example.demo.dto.OrderDTO;
 import com.example.demo.modal.*;
 import com.example.demo.service.HistoryOrdersService;
@@ -17,7 +17,6 @@ import java.util.Map;
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:3000")
 public class HistoryOrdersController {
-    HistoryDao dao = new HistoryDao();
 
     private final HistoryOrdersService historyOrdersService;
 

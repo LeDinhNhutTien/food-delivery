@@ -1,16 +1,13 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.AdminManagementCustomerDao;
-import com.example.demo.dao.AdminManagementDao;
+import com.example.demo.service.AdminManagementCustomerService;
 import com.example.demo.dto.CustomerDTO;
-import com.example.demo.modal.AdminManagement;
 import com.example.demo.modal.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -18,7 +15,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class AdminManagementCustomerController {
     @Autowired
-    private AdminManagementCustomerDao dao;
+    private AdminManagementCustomerService dao;
 
     @GetMapping
     public List<CustomerDTO> getAllCustomer() {

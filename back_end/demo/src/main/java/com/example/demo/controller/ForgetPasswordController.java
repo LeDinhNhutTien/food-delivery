@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,8 +10,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:3000")
-public class ForgetPassword {
-    CustomerDao dao = new CustomerDao();
+public class ForgetPasswordController {
+    CustomerService dao = new CustomerService();
     @PostMapping("/forgetPassword")
     public ResponseEntity<?> changePassword(@RequestBody Map<String, String> credentials) {
         String username = credentials.get("username");

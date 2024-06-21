@@ -1,4 +1,4 @@
-package com.example.demo.dao;
+package com.example.demo.service;
 
 import com.example.demo.modal.RevenueRecord;
 import com.example.demo.modal.RevenueRecordMonth;
@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RevenueManagementDao {
+public class RevenueManagementService {
 
     private final OrderRepository orderRepository;
 
     @Autowired
-    public RevenueManagementDao(OrderRepository orderRepository) {
+    public RevenueManagementService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
 

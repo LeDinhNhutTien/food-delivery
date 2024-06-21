@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.*;
+
 import com.example.demo.dto.CustomerDTO;
 import com.example.demo.dto.OrderDTO;
 import com.example.demo.service.HistoryOrdersService;
@@ -21,7 +21,6 @@ public class AdminManagementOrder {
     @Autowired
     HistoryOrdersService service;
 
-    HistoryDao dao =  new HistoryDao();
 
     @GetMapping
     public List<OrderDTO> getAllHistory() throws SQLException {

@@ -1,9 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.AdminManagementCustomerDao;
-import com.example.demo.dao.RevenueManagementDao;
+import com.example.demo.service.AdminManagementCustomerService;
+import com.example.demo.service.RevenueManagementService;
 import com.example.demo.dto.CustomerDTO;
-import com.example.demo.modal.Customer;
 import com.example.demo.modal.RevenueRecord;
 import com.example.demo.modal.RevenueRecordMonth;
 import com.example.demo.utils.WriteExcel;
@@ -21,10 +20,10 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class PrintExcelController {
     @Autowired
-    private AdminManagementCustomerDao dao;
-    private final RevenueManagementDao dao2;
+    private AdminManagementCustomerService dao;
+    private final RevenueManagementService dao2;
 
-    public PrintExcelController(RevenueManagementDao dao2) {
+    public PrintExcelController(RevenueManagementService dao2) {
         this.dao2 = dao2;
     }
 
