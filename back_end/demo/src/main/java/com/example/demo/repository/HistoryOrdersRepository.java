@@ -43,7 +43,7 @@ public interface HistoryOrdersRepository extends JpaRepository<Orders, Integer> 
             "JOIN products p ON p.id = od.ProductID " +
             "JOIN (SELECT products_id, MIN(url) AS url FROM images GROUP BY products_id) AS selected_images " +
             "ON selected_images.products_id = p.id " +
-            "JOIN customer c ON c.id_user = o.UserID " +
+            "JOIN customer c ON c.id_user = o.id_user " +
             "WHERE o.OrderID = :orderID " +
             "GROUP BY o.OrderID, o.Creation_Date, o.Order_Status,o.Shipping_Address", nativeQuery = true)
     List<Object[]> findHistoryById(@Param("orderID") int orderID);
@@ -73,13 +73,13 @@ public interface HistoryOrdersRepository extends JpaRepository<Orders, Integer> 
             "JOIN products p ON p.id = od.ProductID " +
             "JOIN (SELECT products_id, MIN(url) AS url FROM images GROUP BY products_id) AS selected_images " +
             "ON selected_images.products_id = p.id " +
-            "JOIN customer c ON c.id_user = o.UserID " +
+            "JOIN customer c ON c.id_user = o.id_user " +
             "GROUP BY o.OrderID, c.username, o.Creation_Date, o.Order_Status, o.Shipping_Address", nativeQuery = true)
     List<Object[]> findAllOrdersAdmin();
 
     @Query(value = "SELECT c.username, c.address, c.phone " +
             "FROM orders o " +
-            "JOIN customer c ON c.id_user = o.UserID " +
+            "JOIN customer c ON c.id_user = o.id_user " +
             "WHERE o.OrderID = ?", nativeQuery = true)
     List<Object[]> findCustomerById(@Param("orderID") int orderID);
 

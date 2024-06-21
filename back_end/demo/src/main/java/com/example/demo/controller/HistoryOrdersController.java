@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.*;
+import com.example.demo.dto.CustomerDTO;
 import com.example.demo.dto.OrderDTO;
 import com.example.demo.modal.*;
 import com.example.demo.service.HistoryOrdersService;
@@ -56,6 +57,16 @@ public class HistoryOrdersController {
             return ResponseEntity.status(HttpStatus.OK).body(history);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tài khoản chưa tồn tại");
+        }
+    }
+    @GetMapping("/getCustomer/{id}")
+    public ResponseEntity<?> getCustomer(@PathVariable String id) throws SQLException {
+        int idd = Integer.parseInt(id);
+        if ( idd!=0) {
+            CustomerDTO customer = historyOrdersService.getCustomer(idd);
+            return ResponseEntity.status(HttpStatus.OK).body(customer);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Lỗi");
         }
     }
     // Thêm một endpoint mới để xử lý yêu cầu cập nhật tình trạng đơn hàng

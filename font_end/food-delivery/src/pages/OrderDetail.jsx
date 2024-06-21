@@ -4,7 +4,7 @@ import '../styles/order-detail.css';
 import { useNavigate } from "react-router-dom";
 
 const OrderDetail = () => {
-    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+    const [userInfo, setUserInfo] = useState({});
     const [orderDetail, setOrderDetail] = useState([]);
     const [orderDetailInfo, setOrderDetailInfo] = useState([]);
 
@@ -45,6 +45,26 @@ const OrderDetail = () => {
         };
         fetchOrderDetail();
     }, []);
+
+    useEffect(() => {
+        const getCustomer = async () => {
+            try {
+                const orderId = new URLSearchParams(window.location.search).get("id");
+                const response = await fetch(`http://localhost:8080/api/getCustomer/${orderId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setUserInfo(data);
+                } else {
+                    console.error("Error fetching customer detail");
+                }
+            } catch (error) {
+                console.error("Error fetching customer detail:", error);
+            }
+        };
+
+        getCustomer();
+    }, []);
+
     // Function để format ngày
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -92,7 +112,7 @@ const OrderDetail = () => {
                                 </tr>
                                 <tr>
                                     <td>Địa chỉ:</td>
-                                    <td>{order.address}</td>
+                                    <td>{userInfo.address}</td>
                                 </tr>
                                 <tr>
                                     <td>Số điện thoại:</td>
@@ -111,15 +131,15 @@ const OrderDetail = () => {
                                 </tr>
                                 <tr>
                                     <td>Ngày đặt hàng:</td>
-                                    <td>{formatDate(order.date)}</td>
+                                    <td>{formatDate(order.creationDate)}</td>
                                 </tr>
                                 <tr>
                                     <td>Tổng giá trị:</td>
-                                    <td>{order.totalPrice} VNĐ</td>
+                                    <td>{order.price} VNĐ</td>
                                 </tr>
                                 <tr>
                                     <td>Tình trạng:</td>
-                                    <td>{order.status}</td>
+                                    <td>{order.orderStatus}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -140,18 +160,26 @@ const OrderDetail = () => {
                                 <tbody>
                                 {Array.isArray(orderDetailInfo) && orderDetailInfo.map(orderInfo => (
                                     <tr key={orderInfo}>
-                                                <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{orderInfo.name}</td>
-                                                <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>
-                                                    <img style={{ height: "50px" }} src={orderInfo.url} alt="product" />
-                                                </td>
-                                                <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{orderInfo.quantity}</td>
-                                                <td style={{ verticalAlign: "top", paddingBottom: "10px" }}>{orderInfo.totalPrice}</td>
-                                            </tr>
+                                        <td style={{
+                                            verticalAlign: "top",
+                                            paddingBottom: "10px"
+                                        }}>{orderInfo.productName}</td>
+                                        <td style={{verticalAlign: "top", paddingBottom: "10px"}}>
+                                            <img style={{height: "50px"}} src={orderInfo.imageUrl} alt="product"/>
+                                        </td>
+                                        <td style={{
+                                            verticalAlign: "top",
+                                            paddingBottom: "10px"
+                                        }}>{orderInfo.totalAmount}</td>
+                                        <td style={{verticalAlign: "top", paddingBottom: "10px"}}>{orderInfo.price}</td>
+                                    </tr>
                                 ))}
                                 </tbody>
                             </table>
                             <div className="parent-button">
-                                <button className="centered-button" onClick={(event) => cancelOrder(order.orderID, event)}>Hủy đơn</button>
+                                <button className="centered-button"
+                                        onClick={(event) => cancelOrder(order.orderID, event)}>Hủy đơn
+                                </button>
                             </div>
                         </div>
                     </div>
