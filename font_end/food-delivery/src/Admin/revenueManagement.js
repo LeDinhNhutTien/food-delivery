@@ -133,6 +133,11 @@ function RevenueManagement() {
                             <span>Quản lý sản phẩm</span></a>
                     </li>
                     <li className="nav-item">
+                        <a className="nav-link" href="/orderManagement">
+                            <i className="fas fa-fw fa-table"></i>
+                            <span>Quản lý đơn hàng</span></a>
+                    </li>
+                    <li className="nav-item">
                         <a className="nav-link" href="/revenueManagement">
                             <i className="fas fa-fw fa-chart-area"></i>
                             <span>Biểu đồ doanh thu</span></a>
@@ -142,7 +147,6 @@ function RevenueManagement() {
                         <a href="/home" className="rounded-circle border-0" id="sidebarToggle"></a>
                     </div>
                 </ul>
-
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
                         <nav className="navbar navbar-expand-lg navbar-light bg-white topbar mb-4 static-top shadow">

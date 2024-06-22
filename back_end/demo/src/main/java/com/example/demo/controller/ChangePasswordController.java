@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.*;
+import com.example.demo.service.CustomerDao;
 import com.example.demo.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import java.util.Map;
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:3000")
 public class ChangePasswordController {
-    CustomerService dao = new CustomerService();
+    CustomerDao dao = new CustomerDao();
     @PostMapping("/changePassword")
     public ResponseEntity<?> changePassword(@RequestBody Map<String, String> credentials) {
         String username = credentials.get("username");

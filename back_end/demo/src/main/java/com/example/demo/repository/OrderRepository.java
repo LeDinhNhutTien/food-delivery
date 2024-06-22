@@ -28,11 +28,10 @@ public interface OrderRepository extends JpaRepository<Orders, Integer> {
             "FROM Orders o WHERE YEAR(o.creationDate) = :year GROUP BY MONTH(o.creationDate) ORDER BY MONTH(o.creationDate)")
     List<RevenueRecord> calculateMonthlyRevenue(@Param("year") int year);
 
-    @Query("SELECT new com.example.demo.modal.RevenueRecordMonth(DAY(o.creationDate), IFNULL(SUM(o.totalAmount), 0)) " +
+    @Query("SELECT new com.example.demo.modal.RevenueRecordMonth(DAY(o.creationDate), COALESCE(SUM(o.totalAmount), 0)) " +
             "FROM Orders o WHERE YEAR(o.creationDate) = :year AND MONTH(o.creationDate) = :month " +
             "GROUP BY DAY(o.creationDate) ORDER BY DAY(o.creationDate)")
     List<RevenueRecordMonth> calculateMonthlyRevenueForMonth(@Param("year") int year, @Param("month") int month);
 
-    // Explicitly declare findById method
-    Orders findById(Long id);
+    Optional<Orders> findById(Integer orderId);
 }

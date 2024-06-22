@@ -52,16 +52,23 @@ const AllFoods = () => {
                     return;
                 }
 
-                const response = await fetch(`http://localhost:3000/api/suggestions?query=${query}`);
+                const response = await fetch(`http://localhost:3000/api/suggestions?query=${encodeURIComponent(query)}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
                 const data = await response.json();
                 setSuggestions(data);
                 setShowSuggestions(data.length > 0);
             } catch (error) {
-                console.error("Lỗi khi lấy gợi ý:", error);
+                console.error("Error fetching suggestions:", error);
+                // Handle specific error cases or set fallback state
+                setSuggestions([]);
+                setShowSuggestions(false);
             }
-        }, 300), []
+        }, 300),
+        []
     );
-
 
     useEffect(() => {
         debouncedFetchSuggestions(searchTerm);
@@ -94,6 +101,7 @@ const AllFoods = () => {
     );
 
     const handleSuggestionClick = (suggestion) => {
+        setProducts(allProducts);
         setSuggestions([]);
         setSearchTerm(suggestion);
         setShowSuggestions(false);

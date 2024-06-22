@@ -67,8 +67,5 @@ public class OrderService {
             throw e;
         }
     }
-    public Orders getOrderById(Long id) {
-        Orders order = orderRepository.findById(id);
-        return order; // or throw an exception, or handle it in another appropriate way
-    }
+
 }

@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.CustomerDTO;
 import com.example.demo.modal.Customer;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.utils.MD5Utils;
@@ -12,10 +13,30 @@ public class CustomerService {
     @Autowired
     CustomerRepository customerRepository;
 
-    // login
-    public Customer authenticate(String username, String password) {
+    public CustomerDTO authenticate(String username, String password) {
         String encryptedPassword = MD5Utils.encrypt(password);
-        return customerRepository.findByUsernameAndPassword(username, encryptedPassword);
+        Customer customer = customerRepository.findByUsernameAndPassword(username, encryptedPassword);
+
+        // Convert Customer entity to CustomerDTO
+        if (customer != null) {
+            return convertToCustomerDTO(customer);
+        }
+        return null;
+    }
+
+    private CustomerDTO convertToCustomerDTO(Customer customer) {
+        return new CustomerDTO(
+                customer.getId_user(),
+                customer.getUsername(),
+                customer.getFirst_name(),
+                customer.getLast_name(),
+                customer.getPassword(),
+                customer.getPhone(),
+                customer.getAddress(),
+                customer.getRole(),
+                customer.getCreateDate().toString(), // Assuming LocalDate to String conversion
+                customer.getStatus()
+        );
     }
 
     public Customer getCustomerByUsername(String username) {

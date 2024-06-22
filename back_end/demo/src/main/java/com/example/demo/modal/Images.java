@@ -2,18 +2,9 @@ package com.example.demo.modal;
 
 import com.example.demo.modal.Product;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
+import lombok.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.List;
 
 @Setter
 @Getter
@@ -22,10 +13,11 @@ import java.util.List;
 @Entity
 @Table(name = "images")
 public class Images implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id; // Update to Long instead of int for ID
 
     @Column(name = "url")
     private String url;
@@ -33,4 +25,11 @@ public class Images implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "products_id")
     private Product product;
+
+    public Images(String url, Product product) {
+        this.url = url;
+        this.product = product;
+    }
+
+
 }

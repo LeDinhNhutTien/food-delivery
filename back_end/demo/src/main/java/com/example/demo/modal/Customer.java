@@ -101,7 +101,7 @@ public class Customer implements Serializable {
                 ", role='" + role + '\'' +
                 ", createDate=" + createDate +
                 ", status=" + status +
-                
+
                 '}';
     }
 }

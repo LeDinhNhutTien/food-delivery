@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import heroImg from "../assets/images/hero.png";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../styles/login.css";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -12,7 +12,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Custom validation script
+        // Custom validation script (HTML5 form validation handles basic checks)
         (function() {
             'use strict';
             window.addEventListener('load', function() {
@@ -54,9 +54,10 @@ const Login = () => {
             });
 
             if (response.ok) {
-                const userInfo = await response.json();
+                const userInfo = await response.json(); // Read the JSON response once
                 sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
 
+                // Redirect based on user role
                 if (userInfo.role === "user") {
                     navigate('/home');
                 } else if (userInfo.role === "admin") {
@@ -74,7 +75,6 @@ const Login = () => {
             setError({ general: "Something went wrong. Please try again later." });
         }
     };
-
 
     return (
         <div>
@@ -127,4 +127,3 @@ const Login = () => {
 };
 
 export default Login;
-
