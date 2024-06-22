@@ -1,4 +1,4 @@
-package com.example.demo.dao;
+package com.example.demo.service;
 
 import com.example.demo.repository.OrderRepository;
 import com.example.demo.repository.CustomerRepository;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 
 @Service
-public class AdminManagementDao {
+public class AdminManagementService {
 
     @Autowired
     private OrderRepository orderRepository;

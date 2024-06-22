@@ -13,19 +13,7 @@ function ProductList() {
             }
         }
     }, [userLogin]);
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await axios.get('http://localhost:8080/api/products');
-                setProducts(response.data);
-                console.log(response.data); // In dữ liệu ra log
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            }
-        };
 
-        fetchProducts();
-    }, []);
 
     return (
         <div>

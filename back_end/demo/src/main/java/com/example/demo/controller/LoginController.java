@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.CustomerDTO;
 import com.example.demo.modal.request.LoginRequest;
 import com.example.demo.service.CustomerService;
 import jakarta.validation.Valid;
@@ -22,15 +23,13 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        String username = loginRequest.getUsername();
-        String password = loginRequest.getPassword();
-
-        Customer customer = customerService.authenticate(username, password);
-        if (customer != null) {
-            return ResponseEntity.ok(customer); // Return customer info if login successful
+        CustomerDTO customerDTO = customerService.authenticate(loginRequest.getUsername(), loginRequest.getPassword());
+        if (customerDTO != null) {
+            return new ResponseEntity<>(customerDTO, HttpStatus.OK);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+            return new ResponseEntity<>("Invalid username or password", HttpStatus.UNAUTHORIZED);
         }
+
     }
 
 }

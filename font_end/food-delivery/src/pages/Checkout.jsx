@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Checkout = () => {
@@ -15,24 +14,29 @@ const Checkout = () => {
   const [cartItems, setCartItems] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState('Thanh toán trực tiếp');
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [totalPriceWithShipping, setTotalPriceWithShipping] = useState(0); // Adjusted state for totalPriceWithShipping
   const totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-
+  const [namePro, setNamePr] = useState([]);
+  const [nameDt, setNameDt] = useState([]);
+  // Redirect to login if userInfo is not available
   useEffect(() => {
     if (!userInfo) {
       window.location.href = "/login";
     }
   }, [userInfo]);
+
+  // Fetch cart items from localStorage on component mount
   useEffect(() => {
     const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     setCartItems(storedCartItems);
   }, []);
 
+  // Fetch provinces on component mount
   useEffect(() => {
     const fetchProvinces = async () => {
       try {
         const response = await fetch('https://online-gateway.ghn.vn/shiip/public-api/master-data/province', {
-          method: 'GET',
           headers: {
             'Content-Type': 'application/json',
             'Token': '274efaf3-b96d-11ed-bcba-eac62dba9bd9'
@@ -61,11 +65,10 @@ const Checkout = () => {
 
   // Fetch districts when a province is selected
   useEffect(() => {
-    if (selectedProvince) {
-      const fetchDistricts = async () => {
+    const fetchDistricts = async () => {
+      if (selectedProvince) {
         try {
           const response = await fetch(`https://online-gateway.ghn.vn/shiip/public-api/master-data/district?province_id=${selectedProvince}`, {
-            method: 'GET',
             headers: {
               'Content-Type': 'application/json',
               'Token': '274efaf3-b96d-11ed-bcba-eac62dba9bd9'
@@ -85,22 +88,21 @@ const Checkout = () => {
         } catch (error) {
           console.error('Error fetching districts:', error);
         }
-      };
+      }
+    };
 
-      fetchDistricts();
-    }
+    fetchDistricts();
   }, [selectedProvince]);
 
+  // Fetch wards when a district is selected
   useEffect(() => {
     const fetchWards = async () => {
-      try {
-        if (selectedDistrict) {
-          const url = `https://online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id=${selectedDistrict}`;
-          const response = await fetch(url, {
-            method: 'GET', // GET method since we are using query parameters
+      if (selectedDistrict) {
+        try {
+          const response = await fetch(`https://online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id=${selectedDistrict}`, {
             headers: {
               'Content-Type': 'application/json',
-              'Token': '274efaf3-b96d-11ed-bcba-eac62dba9bd9' // Replace with your actual token
+              'Token': '274efaf3-b96d-11ed-bcba-eac62dba9bd9'
             }
           });
 
@@ -114,89 +116,102 @@ const Checkout = () => {
           } else {
             throw new Error('Failed to fetch wards data');
           }
+        } catch (error) {
+          console.error('Error fetching wards:', error);
         }
-      } catch (error) {
-        console.error('Error fetching wards:', error);
       }
     };
 
     fetchWards();
   }, [selectedDistrict]);
 
+  // Calculate total price including shipping fee
+  useEffect(() => {
+    const calculateTotalPriceWithShipping = () => {
+      const totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+      const totalPriceFloat = parseFloat(totalPrice);
+      const shippingFeeFloat = parseFloat(shippingFee || 0);
+      const totalPriceWithShipping = (totalPriceFloat + shippingFeeFloat).toFixed(2);
+      setTotalPriceWithShipping(totalPriceWithShipping);
+    };
 
+    calculateTotalPriceWithShipping();
+  }, [cartItems, shippingFee]);
 
-
+  // Handle province selection change
   const handleProvinceChange = (event) => {
     const value = event.target.value;
+
+    provinces.forEach(province => {
+      if (province.ProvinceID == value) {
+       setNamePr( province.ProvinceName)
+      }
+    });
+
+
+
+
     setSelectedProvince(value);
     setSelectedDistrict('');
     setSelectedWard('');
   };
 
-  // Function to handle district selection change
+  // Handle district selection change
   const handleDistrictChange = (event) => {
     const value = event.target.value;
+    districts.forEach(district => {
+      if (district.DistrictID == value) {
+        setNameDt( district.DistrictName)
+      }
+    });
     setSelectedDistrict(value);
     setSelectedWard('');
   };
 
+  // Handle ward selection change and fetch shipping fee
   const handleWardChange = async (event) => {
     const value = event.target.value;
     setSelectedWard(value);
-    const selectedWardData = wards.find(ward => ward.WardCode === value);
+    console.log(selectedProvince)
+    try {
+      const url = `http://localhost:8080/api/feeGHN?toDistrict=${selectedDistrict}&toWard=${value}`;
+      const response = await fetch(url);
 
-    // Ensure selectedDistrict is a valid value
-    if (!selectedDistrict) {
-      console.error('Selected district is invalid.');
-      return;
-    }
-
-
-
-      const toWardId = selectedWardData.WardCode; // ID of the selected ward
-
-      try {
-        const url = `http://localhost:8080/api/feeGHN?toDistrict=${selectedDistrict}&toWard=${toWardId}`;
-        const response = await fetch(url);
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-
-        const { total, time } = await response.json();
-        setShippingFee(total);
-        setShippingTime(time);
-      } catch (error) {
-        console.error('Error fetching data:', error);
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
       }
 
+      const { total, time } = await response.json();
+      setShippingFee(total);
+      setShippingTime(time);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
-
-
+  // Handle payment method change
   const handlePaymentMethodChange = (event) => {
     setPaymentMethod(event.target.value);
   };
+
+  // Place order function
   const placeOrder = (event) => {
     event.preventDefault();
 
-    // Find selected province, district, and ward objects
-    const selectedProvinceData = provinces.find(province => province.Id === selectedProvince);
-    const selectedDistrictData = districts.find(district => district.Id === selectedDistrict);
-    const selectedWardData = wards.find(ward => ward.Id === selectedWard);
+
+
+    const selectedWardData = wards.find(ward => ward.WardCode === selectedWard);
 
     // Retrieve names from selected objects
-    const provinceName = selectedProvinceData ? selectedProvinceData.Name : '';
-    const districtName = selectedDistrictData ? selectedDistrictData.Name : '';
-    const wardName = selectedWardData ? selectedWardData.Name : '';
+    const wardName = selectedWardData ? selectedWardData.WardName : '';
 
     // Save user information to localStorage
     const formData = {
       name: document.getElementById("inputName").value,
       phone: document.getElementById("inputPhone").value,
       email: document.getElementById("inputEmail").value,
-      province: provinceName,
-      district: districtName,
+      province: namePro,
+      district: nameDt,
       ward: wardName,
       address: document.getElementById("inputAddress").value,
       note: document.getElementById("inputNote").value,
@@ -209,11 +224,6 @@ const Checkout = () => {
     setOrderPlaced(true);
     window.location.href = "/order-confirmation"; // Redirect to the order confirmation page
   };
-
-
-
-  const totalPriceWithShipping = (totalPrice + parseFloat(shippingFee || 0)).toFixed(2);
-
 
 
   return (
@@ -300,11 +310,9 @@ const Checkout = () => {
                   <div className="col-md-4">
                     <label htmlFor="inputCity" className="form-label">Tỉnh/Tp</label>
                     <select value={selectedProvince} className="form-select" onChange={handleProvinceChange} required>
-                      <option value="">Chọn Tỉnh/Thành phố</option>
-                      {provinces && provinces.map(province => (
-                          <option key={province.ProvinceID} value={province.ProvinceID}>
-                            {province.ProvinceName}
-                          </option>
+                      <option value="">Select Province</option>
+                      {provinces.map(province => (
+                          <option key={province.ProvinceID} value={province.ProvinceID}>{province.ProvinceName}</option>
                       ))}
                     </select>
                     <div className="invalid-feedback">
@@ -314,11 +322,9 @@ const Checkout = () => {
                   <div className="col-md-4">
                     <label htmlFor="inputDistrict" className="form-label">Quận/huyện</label>
                     <select value={selectedDistrict} className="form-select" onChange={handleDistrictChange} required>
-                      <option value="">Chọn Quận/Huyện</option>
-                      {districts && districts.map(district => (
-                          <option key={district.DistrictID} value={district.DistrictID}>
-                            {district.DistrictName}
-                          </option>
+                      <option value="">Select District</option>
+                      {districts.map(district => (
+                          <option key={district.DistrictID} value={district.DistrictID}>{district.DistrictName}</option>
                       ))}
                     </select>
                     <div className="invalid-feedback">
@@ -328,11 +334,9 @@ const Checkout = () => {
                   <div className="col-md-4">
                     <label htmlFor="inputWard" className="form-label">Phường/xã</label>
                     <select value={selectedWard} className="form-select" onChange={handleWardChange} required>
-                      <option value="">Chọn Xã/Phường</option>
-                      {wards && wards.map(ward => (
-                          <option key={ward.WardCode} value={ward.WardCode}>
-                            {ward.WardName}
-                          </option>
+                      <option value="">Select Ward</option>
+                      {wards.map(ward => (
+                          <option key={ward.WardCode} value={ward.WardCode}>{ward.WardName}</option>
                       ))}
                     </select>
                     <div className="invalid-feedback">

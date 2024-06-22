@@ -1,12 +1,11 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.RevenueManagementDao;
+import com.example.demo.service.RevenueManagementService;
 import com.example.demo.modal.RevenueRecord;
 import com.example.demo.modal.RevenueRecordMonth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -14,10 +13,10 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class RevenueManagementController {
 
-    private final RevenueManagementDao dao;
+    private final RevenueManagementService dao;
 
     @Autowired
-    public RevenueManagementController(RevenueManagementDao dao) {
+    public RevenueManagementController(RevenueManagementService dao) {
         this.dao = dao;
     }
 

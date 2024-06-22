@@ -1,4 +1,4 @@
-package com.example.demo.dao;
+package com.example.demo.service;
 
 import com.example.demo.modal.CartItem;
 
@@ -13,18 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Currency;
-import java.util.List;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @Repository
-public class OrderDao {
+public class OrderService {
 
-    private static final Logger LOGGER = Logger.getLogger(OrderDao.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(OrderService.class.getName());
 
     @Autowired
     private OrderRepository orderRepository;
@@ -71,4 +67,5 @@ public class OrderDao {
             throw e;
         }
     }
+
 }

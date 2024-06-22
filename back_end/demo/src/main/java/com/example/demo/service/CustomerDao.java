@@ -1,8 +1,8 @@
-package com.example.demo.dao;
+package com.example.demo.service;
 
 import com.example.demo.modal.*;
 import com.example.demo.utils.*;
-import com.example.demo.dao.*;
+
 import java.sql.*;
 
 public class CustomerDao {

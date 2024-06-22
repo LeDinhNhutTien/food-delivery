@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.ProductDao;
-import com.example.demo.repository.ProductRepository;
+import com.example.demo.service.ProductService;
 import com.google.gson.Gson;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +17,10 @@ import java.util.List;
 public class SuggestionsServlet {
 
 
-    private final ProductDao dao;
+    private final ProductService dao;
 
     @Autowired
-    public SuggestionsServlet(ProductDao dao) {
+    public SuggestionsServlet(ProductService dao) {
         this.dao = dao;
     }
 

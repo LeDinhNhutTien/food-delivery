@@ -1,6 +1,5 @@
 package com.example.demo.repository;
 
-import com.example.demo.modal.Customer;
 import com.example.demo.modal.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,9 +10,10 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    Product findById(int id);
+
+    Product findById(int id); // Spring Data JPA automatically generates this method
+
     @Query("SELECT DISTINCT p.name FROM Product p WHERE p.name LIKE %:query%")
     List<String> findDistinctProductNamesContaining(@Param("query") String query);
-
 
 }

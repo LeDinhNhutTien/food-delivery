@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/review-order.css';
+import { Link } from "react-router-dom";
 
 const ReviewOrder = () => {
     const [allOrders, setAllOrders] = useState([]);
@@ -17,7 +18,6 @@ const ReviewOrder = () => {
                 });
                 if (response.ok) {
                     const rawData = await response.text();
-                    console.log("Raw response:", rawData); // Log the raw response
                     try {
                         const trimmedData = rawData.trim();
                         const data = JSON.parse(trimmedData);
@@ -41,10 +41,10 @@ const ReviewOrder = () => {
         } else {
             console.error("User info is not available.");
         }
-    }, []); // Run only once when the component mounts
+    }, [userInfo.id_user]); // Depend on userInfo.id_user for fetching when it changes
 
     const handleLogout = () => {
-        sessionStorage.removeItem("userInfo");
+        // Assuming you want to redirect to home on logout
         window.location.href = "/home";
     };
 
@@ -54,13 +54,13 @@ const ReviewOrder = () => {
         return formattedDate;
     };
 
-    function setActiveTab(tabId) {
+    const setActiveTab = (tabId) => {
         const tabLinks = document.querySelectorAll('.tablinks');
         tabLinks.forEach(link => {
             link.classList.remove('active');
         });
         document.getElementById(tabId).classList.add('active');
-    }
+    };
 
     return (
         <div id="content">
@@ -71,22 +71,22 @@ const ReviewOrder = () => {
                         <div className="list_ctrl">
                             <ul>
                                 <li className="first">
-                                    <a id="account" title="Thông tin tài khoản" href="/account" onClick={() => setActiveTab('account')}>Thông tin tài khoản</a>
+                                    <Link id="account" to="/account" className="tablinks" onClick={() => setActiveTab('account')}>Thông tin tài khoản</Link>
                                 </li>
                                 <li className="first">
-                                    <a id="changePassword" title="Đổi mật khẩu" href="/changePassword" onClick={() => setActiveTab('changePassword')}>Đổi mật khẩu</a>
+                                    <Link id="changePassword" to="/changePassword" className="tablinks" onClick={() => setActiveTab('changePassword')}>Đổi mật khẩu</Link>
                                 </li>
                                 <li className="first active">
-                                    <a id="reviewOrders" title="Xem lại đơn hàng" href="/reviewOrder" onClick={() => setActiveTab('reviewOrders')}>Xem lại đơn hàng</a>
+                                    <Link id="reviewOrders" to="/reviewOrder" className="tablinks" onClick={() => setActiveTab('reviewOrders')}>Xem lại đơn hàng</Link>
                                 </li>
                                 <li className="first">
-                                    <a id="logout" title="Đăng xuất" href="/home" onClick={handleLogout}>Đăng xuất</a>
+                                    <Link id="logout" to="/home" onClick={handleLogout}>Đăng xuất</Link>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div className="col_1_1">
-                        <div className="order-box" style={{width: "838px"}}>
+                        <div className="order-box" style={{ width: "838px" }}>
                             <div className="order-box-header">
                                 <div className="order-box-header-left">
                                     Thông tin đơn hàng
@@ -110,8 +110,8 @@ const ReviewOrder = () => {
                                         <tbody>
                                         {allOrders.map(order => (
                                             <tr key={order.orderID}>
-                                                <td style={{width: "73px", paddingTop: "20px"}}>{order.orderID}</td>
-                                                <td style={{width: "63px", paddingTop: "20px"}}>
+                                                <td style={{ width: "73px", paddingTop: "20px" }}>{order.orderID}</td>
+                                                <td style={{ width: "63px", paddingTop: "20px" }}>
                                                     {order.productName.split(', ').map((name, index) => (
                                                         <div key={index} style={{ marginBottom: "20px" }}>{name}</div>
                                                     ))}
@@ -121,9 +121,11 @@ const ReviewOrder = () => {
                                                         <div key={index} style={{ marginBottom: "10px" }}><img style={{ height: "50px" }} src={url} alt="product" /></div>
                                                     ))}
                                                 </td>
-                                                <td style={{paddingTop: "20px"}}>{formatDate(order.creationDate)}</td>
-                                                <td style={{paddingTop: "20px"}}>{order.orderStatus}</td>
-                                                <td style={{paddingTop: "20px"}}><a className="btn_blue" href={`/orderDetail?id=${order.orderID}`}>Chi tiết</a></td>
+                                                <td style={{ paddingTop: "20px" }}>{formatDate(order.creationDate)}</td>
+                                                <td style={{ paddingTop: "20px" }}>{order.orderStatus}</td>
+                                                <td style={{ paddingTop: "20px" }}>
+                                                    <Link className="btn_blue" to={`/orderDetail?id=${order.orderID}`}>Chi tiết</Link>
+                                                </td>
                                             </tr>
                                         ))}
                                         </tbody>

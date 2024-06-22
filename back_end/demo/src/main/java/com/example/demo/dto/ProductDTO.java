@@ -1,5 +1,7 @@
 package com.example.demo.dto;
 
+import com.example.demo.modal.Images;
+
 import java.util.List;
 
 public class ProductDTO {
@@ -10,9 +12,9 @@ public class ProductDTO {
     private List<String> imageUrls;
     private String specification;
     private String dateTime;
-    private int typeId;
+    private int  typeId;
 
-    public ProductDTO(long id, String name, String description, double price, List<String> imageUrls, String specification, String dateTime, int typeId) {
+    public ProductDTO(long id, String name, String description, double price, List<String> imageUrls, String specification, String dateTime, Integer typeId) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -20,7 +22,7 @@ public class ProductDTO {
         this.imageUrls = imageUrls;
         this.specification = specification;
         this.dateTime = dateTime;
-        this.typeId = typeId;
+        this.typeId = typeId != null ? typeId.intValue() : 1; // Handle null typeId by defaulting to 0
     }
 
     public long getId() {
@@ -85,5 +87,19 @@ public class ProductDTO {
 
     public void setTypeId(int typeId) {
         this.typeId = typeId;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", imageUrls=" + imageUrls +
+                ", specification='" + specification + '\'' +
+                ", dateTime='" + dateTime + '\'' +
+                ", typeId=" + typeId +
+                '}';
     }
 }
