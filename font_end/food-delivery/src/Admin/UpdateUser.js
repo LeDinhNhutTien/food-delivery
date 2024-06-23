@@ -46,12 +46,6 @@ const UpdateUser = ({ onClose, userData }) => {
             errors.username = 'Email không hợp lệ';
         }
 
-        if (!updatedUser.password) {
-            errors.password = 'Mật khẩu là bắt buộc';
-        } else if (updatedUser.password.length < 6) {
-            errors.password = 'Mật khẩu phải có ít nhất 6 ký tự';
-        }
-
         if (!updatedUser.address) {
             errors.address = 'Địa chỉ là bắt buộc';
         }
@@ -67,6 +61,11 @@ const UpdateUser = ({ onClose, userData }) => {
     };
 
     const checkUsername = async (username) => {
+        if (username === userData.username) {
+            setUsernameError('');
+            return;
+        }
+
         try {
             const response = await fetch(`http://localhost:8080/api/checkUsername/${username}`);
             const data = await response.text();
@@ -171,15 +170,7 @@ const UpdateUser = ({ onClose, userData }) => {
                                 />
                                 {errors.username && <small className="text-danger">{errors.username}</small>}
                                 {usernameError && <small className="text-danger">{usernameError}</small>}
-                                <TextInput
-                                    type="password"
-                                    label="Mật khẩu"
-                                    name="password"
-                                    value={updatedUser.password}
-                                    onChange={handleInputChange}
-                                    required
-                                />
-                                {errors.password && <small className="text-danger">{errors.password}</small>}
+
                                 <TextInput
                                     label="Địa chỉ"
                                     name="address"
