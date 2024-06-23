@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './assests/css/sb-admin-2.min.css'
 
 import './vendor/fontawesome-free/css/all.min.css'
-
+import avatar from '../assets/images/ava-1.jpg'
 function AdminHeader() {
     const [showDropdown, setShowDropdown] = useState(false);
     const [showDropdown1, setShowDropdown1] = useState(false);
@@ -227,7 +227,7 @@ function AdminHeader() {
                                 >
                                     <span className="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                     <img className="img-profile rounded-circle"
-                                         src="img/undraw_profile.svg"/>
+                                         src= {avatar}/>
                                 </a>
 
                                 <div
@@ -351,14 +351,14 @@ function AdminHeader() {
                             </div>
                         </div>
                     </div>
-                    <div style={{width: '50%', padding :'12px'}}>
+                    <div style={{width: '80%', padding :'12px'}}>
                         <h1 style={{fontSize: '24px', color: '#333'}}>Danh sách người dùng</h1>
                         <table className="table">
                             <thead>
                             <tr>
                                 <th style={{
                                     width: '20%',
-                                    fontSize: '12px',
+                                    fontSize: '16px',
                                     padding: '10px',
                                     border: '1px solid #ddd',
                                     backgroundColor: '#f2f2f2',
@@ -369,7 +369,7 @@ function AdminHeader() {
                                 <th style={{
                                     width: '20%',
                                     padding: '10px',
-                                    fontSize: '12px',
+                                    fontSize: '16px',
                                     border: '1px solid #ddd',
                                     backgroundColor: '#f2f2f2',
 
@@ -377,7 +377,7 @@ function AdminHeader() {
                                 </th>
                                 <th style={{
                                     width: '17%',
-                                    fontSize: '12px',
+                                    fontSize: '16px',
                                     padding: '10px',
                                     border: '1px solid #ddd',
                                     backgroundColor: '#f2f2f2',
@@ -387,7 +387,7 @@ function AdminHeader() {
                                 <th style={{
                                     width: '30%',
                                     padding: '10px',
-                                    fontSize: '12px',
+                                    fontSize: '16px',
                                     border: '1px solid #ddd',
                                     backgroundColor: '#f2f2f2',
 
@@ -396,7 +396,7 @@ function AdminHeader() {
 
                                 <th style={{
                                     width: '13%',
-                                    fontSize: '12px',
+                                    fontSize: '16px',
                                     padding: '10px',
                                     border: '1px solid #ddd',
                                     backgroundColor: '#f2f2f2',
@@ -410,31 +410,31 @@ function AdminHeader() {
                                 <tr key={user.id_user}>
                                     <td  style={{
                                         width: '13%',
-                                        fontSize: '10px',
+                                        fontSize: '14px',
                                         padding: '10px',
 
                                         }}>{user.username}</td>
                                     <td style={{
                                         width: '13%',
-                                        fontSize: '10px',
+                                        fontSize: '14px',
                                         padding: '10px',
 
                                     }}>{user.last_name} {user.first_name}  </td>
                                     <td style={{
                                         width: '13%',
-                                        fontSize: '10px',
+                                        fontSize: '14px',
                                         padding: '10px',
 
                                     }}>{user.phone}</td>
                                     <td style={{
                                         width: '13%',
-                                        fontSize: '10px',
+                                        fontSize: '14px',
                                         padding: '10px',
 
                                     }}>{user.address}</td>
                                     <td style={{
                                         width: '13%',
-                                        fontSize: '10px',
+                                        fontSize: '14px',
                                         padding: '10px',
 
                                     }}>{user.createDate}</td>

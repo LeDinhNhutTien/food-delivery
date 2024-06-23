@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.service.AdminManagementCustomerService;
 import com.example.demo.dto.CustomerDTO;
 import com.example.demo.modal.Customer;
+import com.example.demo.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,14 @@ public class AdminManagementCustomerController {
     private AdminManagementCustomerService dao;
 
     @GetMapping
-    public List<CustomerDTO> getAllCustomer() {
+    public List<CustomerDTO> getAllCustomers() {
         List<CustomerDTO> customers = dao.getAllCustomers();
+        for (CustomerDTO customer : customers) {
 
+            String hashedPassword = MD5Utils.encrypt(customer.getPassword());
+            customer.setPassword(hashedPassword);
+            System.out.println(customer.getPassword()+": " + MD5Utils.encrypt(customer.getPassword()));
+        }
         return customers;
     }
     @PostMapping

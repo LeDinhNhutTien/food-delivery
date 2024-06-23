@@ -172,6 +172,7 @@ const UpdateUser = ({ onClose, userData }) => {
                                 {errors.username && <small className="text-danger">{errors.username}</small>}
                                 {usernameError && <small className="text-danger">{usernameError}</small>}
                                 <TextInput
+                                    type="password"
                                     label="Mật khẩu"
                                     name="password"
                                     value={updatedUser.password}

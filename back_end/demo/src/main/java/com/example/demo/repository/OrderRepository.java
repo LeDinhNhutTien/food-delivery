@@ -34,4 +34,6 @@ public interface OrderRepository extends JpaRepository<Orders, Integer> {
     List<RevenueRecordMonth> calculateMonthlyRevenueForMonth(@Param("year") int year, @Param("month") int month);
 
     Optional<Orders> findById(Integer orderId);
+
+
 }
