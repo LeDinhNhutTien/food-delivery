@@ -63,4 +63,13 @@ public class CustomerService {
     public Customer getCustomerById(int id){
         return customerRepository.findById(id);
     }
+
+    public boolean checkPass(String username, String password) {
+        return customerRepository.checkPass(username, password);
+    }
+
+    public boolean updatePassword(String username, String newPassword) {
+        int updatedRows = customerRepository.updatePassword(username, newPassword);
+        return updatedRows > 0;
+    }
 }
