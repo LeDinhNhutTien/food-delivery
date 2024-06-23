@@ -74,7 +74,7 @@ public class ProductService {
                 product.getPrice(),
                 imageUrls,
                 product.getSpecification(),
-                product.getDateTime(),
+                product.getDateTime().toString(),
                 typeId
         );
     }
