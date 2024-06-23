@@ -13,7 +13,8 @@ const setItemFunc = (cartItems, totalAmount, totalQuantity) => {
 };
 
 const calculateTotalAmount = (cartItems) => {
-  return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  return parseFloat(total.toFixed(2)); // Limit to 2 decimal places
 };
 
 const cartSlice = createSlice({
@@ -68,5 +69,5 @@ const cartSlice = createSlice({
   },
 });
 
-export const  cartActions = cartSlice.actions;
+export const cartActions = cartSlice.actions;
 export default cartSlice;
