@@ -1,32 +1,26 @@
 package com.example.demo.modal;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-
-@Setter
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@Setter
 @Entity
 @Table(name = "orderitems")
-public class OrderItems implements Serializable {
+public class OrderItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "OrderItemID")
-    private Integer orderItemID;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "OrderID")
-    private Orders order;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ProductID")
+    @JoinColumn(name = "ProductID") // Ensure this matches the column name in the 'products' table
     private Product product;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "OrderID")
+    private Orders order;
 
     @Column(name = "Quantity")
     private int quantity;
@@ -37,4 +31,5 @@ public class OrderItems implements Serializable {
     @Column(name = "Discount")
     private double discount;
 
+    // Constructors, getters, setters, toString() omitted for brevity
 }

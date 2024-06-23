@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -46,14 +47,13 @@ public class Orders implements Serializable {
     @Column(name = "Note")
     private String note;
 
-    @OneToOne(mappedBy = "order", fetch = FetchType.LAZY)
-    private OrderItems orderItem;
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<OrderItems> orderItems;
 
     @Override
     public String toString() {
         return "Orders{" +
                 "orderID=" + orderID +
-
                 ", creationDate=" + creationDate +
                 ", totalAmount=" + totalAmount +
                 ", orderStatus='" + orderStatus + '\'' +
@@ -61,7 +61,7 @@ public class Orders implements Serializable {
                 ", paymentMethod='" + paymentMethod + '\'' +
                 ", discountCode='" + discountCode + '\'' +
                 ", note='" + note + '\'' +
-                ", orderItem=" + orderItem +
+                ", orderItems=" + orderItems +
                 '}';
     }
 }
