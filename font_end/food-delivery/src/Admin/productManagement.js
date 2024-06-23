@@ -2,7 +2,7 @@ import './vendor/fontawesome-free/css/all.min.css';
 import './vendor/datatables/dataTables.bootstrap4.min.css';
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import avatar from '../assets/images/ava-1.jpg'
 function ProductManagement() {
     const [products, setProducts] = useState([]);
     const userLogin = JSON.parse(sessionStorage.getItem("userInfo"));
@@ -317,7 +317,7 @@ function ProductManagement() {
                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span
                                             className="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                        <img className="img-profile rounded-circle" src="img/undraw_profile.svg"
+                                        <img className="img-profile rounded-circle" src={avatar}
                                              alt="..."/>
                                     </a>
                                     <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"

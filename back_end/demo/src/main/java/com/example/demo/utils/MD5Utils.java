@@ -22,4 +22,7 @@ public class MD5Utils {
             return null;
         }
     }
+    public static String decryptPassword(String hashedPassword) {
+        return MD5Utils.encrypt(hashedPassword);
+    }
 }

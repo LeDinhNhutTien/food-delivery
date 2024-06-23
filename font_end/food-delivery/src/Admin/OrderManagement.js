@@ -3,7 +3,7 @@ import './vendor/fontawesome-free/css/all.min.css';
 import './vendor/datatables/dataTables.bootstrap4.min.css';
 import { Link } from 'react-router-dom';
 import '../styles/OrderDetailManagement.css'
-
+import avatar from '../assets/images/ava-1.jpg'
 function OrderManagement() {
     const [showDropdown, setShowDropdown] = useState(false);
     const [showDropdown1, setShowDropdown1] = useState(false);
@@ -334,7 +334,7 @@ function OrderManagement() {
                                 <li className="nav-item dropdown no-arrow">
                                     <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span className="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                                        <img className="img-profile rounded-circle" src="img/undraw_profile.svg"/>
+                                        <img className="img-profile rounded-circle" src={avatar}/>
                                     </a>
                                     <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                         <a className="dropdown-item" href="#">

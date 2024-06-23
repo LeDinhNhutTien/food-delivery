@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Chart from "chart.js/auto";
-
-import {useParams} from "react-router-dom";
+import avatar from '../assets/images/ava-1.jpg';
+import { useParams } from "react-router-dom";
 import RevenueMonthManagement from "./revenueMonthManagement";
 
 function RevenueManagement() {
-
     const [revenueData, setRevenueData] = useState([]);
     const [selectedYear, setSelectedYear] = useState(2024);
     const [showDetailsModal, setShowDetailsModal] = useState(false);
     const [selectedMonth, setSelectedMonth] = useState(null);
-    const { year } = useParams(); // Using useParams to get the year and month
+    const { year } = useParams(); // Using useParams to get the year from the URL
 
     useEffect(() => {
         fetchRevenueData(selectedYear);
@@ -23,7 +22,7 @@ function RevenueManagement() {
 
     useEffect(() => {
         if (year) {
-            setSelectedYear(year); // Set the selected year from the URL params
+            setSelectedYear(parseInt(year)); // Convert year to integer and set selected year from URL params
         }
     }, [year]);
 
@@ -33,21 +32,22 @@ function RevenueManagement() {
             setRevenueData(response.data);
         } catch (error) {
             console.error('Error fetching revenue data:', error);
+            // Handle error (e.g., display error message to the user)
         }
     };
 
     const handleYearChange = (event) => {
         const year = event.target.value;
-        setSelectedYear(year);
+        setSelectedYear(parseInt(year)); // Convert year to integer
     };
-
 
     const drawChart = () => {
         const months = revenueData.map(item => item.month);
         const revenues = revenueData.map(item => item.totalRevenue);
 
-        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const ctx = document.getElementById('revenueChart');
 
+        // Ensure only one chart instance is active
         if (window.myChart instanceof Chart) {
             window.myChart.destroy();
         }
@@ -94,11 +94,11 @@ function RevenueManagement() {
             })
             .catch(error => {
                 console.error('Error downloading Excel file:', error);
+                // Handle error (e.g., display error message to the user)
             });
     };
 
     const handleViewDetails = (month) => {
-        console.log(month)
         setSelectedMonth(month);
         setShowDetailsModal(true);
     };
@@ -106,6 +106,7 @@ function RevenueManagement() {
     const handleCloseDetailsModal = () => {
         setShowDetailsModal(false);
     };
+
     return (
         <div>
             <div id="wrapper">
@@ -116,7 +117,7 @@ function RevenueManagement() {
                         </div>
                         <div className="sidebar-brand-text mx-3">MITI FOOD <sup>2</sup></div>
                     </a>
-                    <hr className="sidebar-divider my-0"/>
+                    <hr className="sidebar-divider my-0" />
                     <li className="nav-item active">
                         <a className="nav-link" href="/admin">
                             <i className="fas fa-fw fa-tachometer-alt"></i>
@@ -142,7 +143,7 @@ function RevenueManagement() {
                             <i className="fas fa-fw fa-chart-area"></i>
                             <span>Biểu đồ doanh thu</span></a>
                     </li>
-                    <hr className="sidebar-divider d-none d-md-block"/>
+                    <hr className="sidebar-divider d-none d-md-block" />
                     <div className="text-center d-none d-md-inline">
                         <a href="/home" className="rounded-circle border-0" id="sidebarToggle"></a>
                     </div>
@@ -158,7 +159,7 @@ function RevenueManagement() {
                                 <div className="input-group">
                                     <input type="text" className="form-control bg-light border-0 small"
                                            placeholder="Search for..." aria-label="Search"
-                                           aria-describedby="basic-addon2"/>
+                                           aria-describedby="basic-addon2" />
                                     <button className="btn btn-primary" type="button">
                                         <i className="fas fa-search fa-sm"></i>
                                     </button>
@@ -177,7 +178,7 @@ function RevenueManagement() {
                                                 <div className="input-group">
                                                     <input type="text" className="form-control bg-light border-0 small"
                                                            placeholder="Search for..." aria-label="Search"
-                                                           aria-describedby="basic-addon2"/>
+                                                           aria-describedby="basic-addon2" />
                                                     <button className="btn btn-primary" type="button">
                                                         <i className="fas fa-search fa-sm"></i>
                                                     </button>
@@ -252,7 +253,7 @@ function RevenueManagement() {
                                             <a className="dropdown-item d-flex align-items-center" href="#">
                                                 <div className="dropdown-list-image mr-3">
                                                     <img className="rounded-circle" src="img/undraw_profile_1.svg"
-                                                         alt="..."/>
+                                                         alt="..." />
                                                     <div className="status-indicator bg-success"></div>
                                                 </div>
                                                 <div className="font-weight-bold">
@@ -267,7 +268,7 @@ function RevenueManagement() {
                                             <a className="dropdown-item d-flex align-items-center" href="#">
                                                 <div className="dropdown-list-image mr-3">
                                                     <img className="rounded-circle" src="img/undraw_profile_2.svg"
-                                                         alt="..."/>
+                                                         alt="..." />
                                                     <div className="status-indicator"></div>
                                                 </div>
                                                 <div>
@@ -282,7 +283,7 @@ function RevenueManagement() {
                                             <a className="dropdown-item d-flex align-items-center" href="#">
                                                 <div className="dropdown-list-image mr-3">
                                                     <img className="rounded-circle" src="img/undraw_profile_3.svg"
-                                                         alt="..."/>
+                                                         alt="..." />
                                                     <div className="status-indicator bg-warning"></div>
                                                 </div>
                                                 <div>
@@ -298,7 +299,7 @@ function RevenueManagement() {
                                                 <div className="dropdown-list-image mr-3">
                                                     <img className="rounded-circle"
                                                          src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                                         alt="..."/>
+                                                         alt="..." />
                                                     <div className="status-indicator bg-success"></div>
                                                 </div>
                                                 <div>
@@ -319,7 +320,7 @@ function RevenueManagement() {
                                        data-bs-toggle="dropdown" aria-expanded="false">
                                         <span
                                             className="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                        <img className="img-profile rounded-circle" src="img/undraw_profile.svg"/>
+                                        <img className="img-profile rounded-circle" src={avatar} alt="Profile" />
                                     </a>
                                     <ul className="dropdown-menu dropdown-menu-end shadow animated--grow-in"
                                         aria-labelledby="userDropdown">
@@ -368,7 +369,7 @@ function RevenueManagement() {
                                             <div className="chart-bar">
                                                 <canvas id="revenueChart"></canvas>
                                             </div>
-                                            <hr/>
+                                            <hr />
                                             <div className="table-responsive">
                                                 <table className="table table-bordered" id="dataTable" width="100%"
                                                        cellSpacing="0">
@@ -383,15 +384,18 @@ function RevenueManagement() {
                                                     {revenueData.map((item, index) => (
                                                         <tr key={index}>
                                                             <td>{item.month}</td>
-                                                            <td>${item.totalRevenue}</td>
+                                                            <td>${item.totalRevenue.toFixed(2)}</td> {/* Limiting to 2 decimal places */}
                                                             <td>
                                                                 <button
                                                                     onClick={() => handleViewDetails(item.month)}
-                                                                    className="btn btn-primary">Xem chi tiết
+                                                                    className="btn btn-primary"
+                                                                >
+                                                                    Xem chi tiết
                                                                 </button>
                                                             </td>
                                                         </tr>
                                                     ))}
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -415,7 +419,6 @@ function RevenueManagement() {
                             onClose={handleCloseDetailsModal}
                         />
                     )}
-
                 </div>
             </div>
         </div>

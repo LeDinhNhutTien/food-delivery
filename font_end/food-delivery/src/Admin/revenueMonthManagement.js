@@ -5,15 +5,17 @@ import Chart from "chart.js/auto";
 function RevenueMonthManagement({ year, month, onClose }) {
     const [revenueData, setRevenueData] = useState([]);
     const userLogin = JSON.parse(sessionStorage.getItem("userInfo"));
+
     useEffect(() => {
         if (!userLogin) {
             window.location.href = "/login";
         } else {
-            if(userLogin.role != "admin") {
+            if(userLogin.role !== "admin") {
                 window.location.href = "/";
             }
         }
     }, [userLogin]);
+
     useEffect(() => {
         // Fetch revenue details when year or month changes
         if (year && month) {
@@ -42,13 +44,14 @@ function RevenueMonthManagement({ year, month, onClose }) {
         const days = revenueData.map(item => item.day);
         const revenues = revenueData.map(item => item.totalRevenue);
 
-        const ctx = document.getElementById(`revenueChart-${year}-${month}`).getContext('2d');
+        const ctx = document.getElementById(`revenueChart-${year}-${month}`);
 
-        if (window.myChart instanceof Chart) {
-            window.myChart.destroy();
+        // Ensure only one chart instance is active
+        if (ctx && ctx.chart) {
+            ctx.chart.destroy();
         }
 
-        window.myChart = new Chart(ctx, {
+        new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: days,
@@ -90,11 +93,9 @@ function RevenueMonthManagement({ year, month, onClose }) {
             })
             .catch(error => {
                 console.error('Error downloading Excel file:', error);
+                // Handle error (e.g., display error message to the user)
             });
     };
-
-
-
 
     return (
         <div
