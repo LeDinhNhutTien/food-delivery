@@ -119,7 +119,7 @@ const Login = () => {
                 </div>
                 {error.general && <div className="alert alert-danger">{error.general}</div>}
                 <button style={{ marginTop: "-15px", marginBottom: "10px" }} className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                <a href="#" className="mb-2">Forgot Password? </a>
+                <a href="/forgetPassword" className="mb-2">Forgot Password? </a>
                 <a href="/register" className="mb-2">Sign up</a>
             </form>
         </div>
