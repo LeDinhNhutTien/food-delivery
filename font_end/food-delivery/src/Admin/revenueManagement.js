@@ -32,13 +32,13 @@ function RevenueManagement() {
             setRevenueData(response.data);
         } catch (error) {
             console.error('Error fetching revenue data:', error);
-            // Handle error (e.g., display error message to the user)
+
         }
     };
 
     const handleYearChange = (event) => {
         const year = event.target.value;
-        setSelectedYear(parseInt(year)); // Convert year to integer
+        setSelectedYear(parseInt(year));
     };
 
     const drawChart = () => {
@@ -94,7 +94,7 @@ function RevenueManagement() {
             })
             .catch(error => {
                 console.error('Error downloading Excel file:', error);
-                // Handle error (e.g., display error message to the user)
+
             });
     };
 

@@ -28,38 +28,38 @@ function ProductManagement() {
         try {
             const response = await axios.get('http://localhost:8080/api/managementProductAdmin');
             setProducts(response.data);
-            console.log(response.data); // Log fetched data
+            console.log(response.data);
         } catch (error) {
             console.error('Error fetching products:', error);
         }
     };
     useEffect(() => {
-        fetchProducts(); // Call fetchProducts function here
+        fetchProducts();
     }, []);
     const addNewItem = () => {
-        // Handle add new item logic here
-        setShowAddForm(true); // Show the add form
+
+        setShowAddForm(true);
     };
 
     const handleEdit = (productId) => {
-        // Handle edit product logic here
+
     };
 
     const handleDelete = (productId) => {
-        // Handle delete product logic here
+
     };
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
-    // Tạo các trang
+
     const totalPages = Math.ceil(products.length / productsPerPage);
     const pageNumbers = [];
     for (let i = 1; i <= totalPages; i++) {
         pageNumbers.push(i);
     }
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
-    // Handle form input changes
+
     const handleNameChange = (event) => {
         setName(event.target.value);
     };
@@ -73,8 +73,7 @@ function ProductManagement() {
     };
 
     const handleImageUrlsChange = (event) => {
-        // Assuming imageUrls is an array, you can handle multiple image URLs
-        // For simplicity, let's assume it's a single URL for now
+
         setImageUrls([event.target.value]);
     };
     const handleSubmit = async (event) => {

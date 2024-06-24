@@ -15,12 +15,9 @@ const ConfirmCheckOut = () => {
         }
     }, [userLogin]);
     useEffect(() => {
-        // Fetch shipping information and order details from local storage
         const storedShippingInfo = JSON.parse(localStorage.getItem("shippingInfo")) || {};
         const storedOrderDetails = JSON.parse(localStorage.getItem("orderDetails")) || [];
         const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-
-        // Fetch userInfo from local storage
         const storedUserInfo = JSON.parse(sessionStorage.getItem("userInfo"));
         setUserInfo(storedUserInfo);
 
@@ -33,7 +30,6 @@ const ConfirmCheckOut = () => {
 
         const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-        // Use userInfo.id_user instead of 0
         const userId = userInfo ? userInfo.id_user : 0;
         console.log(userId);
 
@@ -57,10 +53,7 @@ const ConfirmCheckOut = () => {
 
 
     const handleReturn = () => {
-        // Perform actions to go back
-        // For example, you can redirect to the previous page
-        // Or reset the form fields
-        // Here, let's log a return message
+
         console.log("Returned to previous page!");
     };
 

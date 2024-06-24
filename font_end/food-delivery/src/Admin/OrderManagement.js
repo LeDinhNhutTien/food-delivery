@@ -134,7 +134,7 @@ function OrderManagement() {
     const handlePrintUserList = () => {
         fetch('http://localhost:8080/api/printCustomer/excel')
             .then(response => {
-                // Check if the response is successful
+
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -142,18 +142,18 @@ function OrderManagement() {
                 return response.blob();
             })
             .then(blob => {
-                // Create a URL for the blob
+
                 const url = URL.createObjectURL(blob);
-                // Create an <a> element to trigger download
+
                 const a = document.createElement('a');
                 a.href = url;
                 a.download = 'userList.xlsx'; // Set the filename
-                // Append the <a> element to the body and trigger the download
+
                 document.body.appendChild(a);
                 a.click();
-                // Revoke the URL object to free up memory
+
                 URL.revokeObjectURL(url);
-                // Remove the <a> element from the DOM
+
                 document.body.removeChild(a);
             })
             .catch(error => {
