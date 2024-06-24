@@ -25,7 +25,13 @@ function OrderManagement() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:8080/api/managementOrderAdmin");
+                const accessToken = sessionStorage.getItem("accessToken");
+                const response = await fetch("http://localhost:8080/api/managementOrderAdmin",
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${accessToken}`
+                        }
+                    });
                 const data = await response.json();
                 setOrders(data);
             } catch (error) {

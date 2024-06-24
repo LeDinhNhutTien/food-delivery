@@ -22,6 +22,7 @@ public class ProductController {
 
     @GetMapping
     public List<ProductDTO> getAllProducts() {
+
         return dao.getAllProducts();
     }
 

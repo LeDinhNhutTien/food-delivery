@@ -84,10 +84,12 @@ const OrderDetailManagement = () => {
         event.preventDefault();
         const state = selectedStatuses[orderId];
         try {
+            const accessToken = sessionStorage.getItem("accessToken");
             const response = await fetch(`http://localhost:8080/api/managementOrderAdmin/updateOrder/${orderId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${accessToken}`
                 },
                 body: JSON.stringify({ state }),
             });

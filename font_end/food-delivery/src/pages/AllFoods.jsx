@@ -16,20 +16,6 @@ const AllFoods = () => {
     const [suggestions, setSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch("http://localhost:3000/api/products");
-                const data = await response.json();
-                setAllProducts(data);
-                setProducts(data);
-            } catch (error) {
-                console.error("Lỗi khi lấy dữ liệu:", error);
-            }
-        };
-        fetchData();
-    }, []);
-
     const debounce = (func, delay) => {
         let timeoutId;
         return function(...args) {
@@ -50,8 +36,14 @@ const AllFoods = () => {
                     setShowSuggestions(false);
                     return;
                 }
-
-                const response = await fetch(`http://localhost:3000/api/suggestions?query=${encodeURIComponent(query)}`);
+                const accessToken = sessionStorage.getItem("accessToken");
+                const response = await fetch(`http://localhost:3000/api/suggestions?query=${encodeURIComponent(query)}`,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${accessToken}`
+                        }
+                    }
+                );
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
@@ -79,8 +71,13 @@ const AllFoods = () => {
 
     useEffect(() => {
         const fetchData = async () => {
+            const accessToken = sessionStorage.getItem("accessToken");
             try {
-                const response = await fetch("http://localhost:300/api/products");
+                const response = await fetch("http://localhost:8080/api/products", {
+                    headers: {
+                        "Authorization": `Bearer ${accessToken}`
+                    }
+                });
                 const data = await response.json();
                 setAllProducts(data);
                 setProducts(data);

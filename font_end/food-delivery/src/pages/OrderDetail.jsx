@@ -14,7 +14,14 @@ const OrderDetail = () => {
         const fetchOrderDetail = async () => {
             try {
                 const orderId = new URLSearchParams(window.location.search).get("id");
-                const response = await fetch(`http://localhost:8080/api/orderDetail/${orderId}`);
+                const accessToken = sessionStorage.getItem("accessToken");
+                const response = await fetch(`http://localhost:8080/api/orderDetail/${orderId}`,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${accessToken}`
+                        }
+                    }
+                    );
                 if (response.ok) {
                     const data = await response.json();
                     setOrderDetail(data);
