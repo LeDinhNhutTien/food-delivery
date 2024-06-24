@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RegisterRequest {
     @NotBlank(message = "Name cannot be empty")
-    private String name;
+    private String username;
 
     @NotBlank(message = "Password cannot be null")
     private String password;

@@ -57,6 +57,16 @@ public class Customer implements Serializable {
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private List<Orders> orders;
 
+    public Customer(String firstName, String lastName, String phone, String address, String role, String string, int status) {
+        this.first_name = firstName;
+        this.last_name = lastName;
+        this.phone = phone;
+        this.address = address;
+        this.role = role;
+        this.createDate = LocalDate.now();
+        this.status = status;
+    }
+
 
     @PrePersist
     protected void onCreate() {

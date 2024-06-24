@@ -14,12 +14,12 @@ const Checkout = () => {
   const [cartItems, setCartItems] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState('Thanh toán trực tiếp');
   const [orderPlaced, setOrderPlaced] = useState(false);
-  const [totalPriceWithShipping, setTotalPriceWithShipping] = useState(0); // Adjusted state for totalPriceWithShipping
+  const [totalPriceWithShipping, setTotalPriceWithShipping] = useState(0);
   const totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const [namePro, setNamePr] = useState([]);
   const [nameDt, setNameDt] = useState([]);
-  // Redirect to login if userInfo is not available
+
   useEffect(() => {
     if (!userInfo) {
       window.location.href = "/login";
@@ -63,7 +63,6 @@ const Checkout = () => {
     fetchProvinces();
   }, []);
 
-  // Fetch districts when a province is selected
   useEffect(() => {
     const fetchDistricts = async () => {
       if (selectedProvince) {
@@ -94,7 +93,6 @@ const Checkout = () => {
     fetchDistricts();
   }, [selectedProvince]);
 
-  // Fetch wards when a district is selected
   useEffect(() => {
     const fetchWards = async () => {
       if (selectedDistrict) {
@@ -125,7 +123,6 @@ const Checkout = () => {
     fetchWards();
   }, [selectedDistrict]);
 
-  // Calculate total price including shipping fee
   useEffect(() => {
     const calculateTotalPriceWithShipping = () => {
       const totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
@@ -138,7 +135,6 @@ const Checkout = () => {
     calculateTotalPriceWithShipping();
   }, [cartItems, shippingFee]);
 
-  // Handle province selection change
   const handleProvinceChange = (event) => {
     const value = event.target.value;
 
@@ -156,7 +152,6 @@ const Checkout = () => {
     setSelectedWard('');
   };
 
-  // Handle district selection change
   const handleDistrictChange = (event) => {
     const value = event.target.value;
     districts.forEach(district => {
@@ -168,7 +163,6 @@ const Checkout = () => {
     setSelectedWard('');
   };
 
-  // Handle ward selection change and fetch shipping fee
   const handleWardChange = async (event) => {
     const value = event.target.value;
     setSelectedWard(value);
@@ -189,12 +183,10 @@ const Checkout = () => {
     }
   };
 
-  // Handle payment method change
   const handlePaymentMethodChange = (event) => {
     setPaymentMethod(event.target.value);
   };
 
-  // Place order function
   const placeOrder = (event) => {
     event.preventDefault();
 
@@ -202,10 +194,9 @@ const Checkout = () => {
 
     const selectedWardData = wards.find(ward => ward.WardCode === selectedWard);
 
-    // Retrieve names from selected objects
+
     const wardName = selectedWardData ? selectedWardData.WardName : '';
 
-    // Save user information to localStorage
     const formData = {
       name: document.getElementById("inputName").value,
       phone: document.getElementById("inputPhone").value,
@@ -220,9 +211,9 @@ const Checkout = () => {
     };
     localStorage.setItem("shippingInfo", JSON.stringify(formData));
 
-    // Logic to place the order
+
     setOrderPlaced(true);
-    window.location.href = "/order-confirmation"; // Redirect to the order confirmation page
+    window.location.href = "/order-confirmation";
   };
 
 
