@@ -13,19 +13,30 @@ public class CustomerDTO {
     private int status;
 
     public CustomerDTO() {
-
     }
 
-    public CustomerDTO(int id_user, String username, String first_name, String last_name, String password, String phone, String address, String role, String createDate, int status) {
+    public CustomerDTO(int id_user, String username, String first_name, String last_name, String phone, String address, String role, String createDate, int status) {
         this.id_user = id_user;
         this.username = username;
         this.first_name = first_name;
         this.last_name = last_name;
-        this.password = password;
         this.phone = phone;
         this.address = address;
         this.role = role;
         this.createDate = createDate;
+        this.status = status;
+    }
+
+    public CustomerDTO(Integer idUser, String username, String firstName, String lastName, String password, String phone, String address, String role, String string, int status) {
+        this.id_user = idUser;
+        this.username = username;
+        this.first_name = firstName;
+        this.last_name = lastName;
+        this.password = password;
+        this.phone = phone;
+        this.address = address;
+        this.role = role;
+        this.createDate = string;
         this.status = status;
     }
 
@@ -34,6 +45,9 @@ public class CustomerDTO {
         this.address = address;
         this.phone = phone;
     }
+
+    // Getters and Setters
+
 
     public String getPassword() {
         return password;

@@ -27,9 +27,10 @@ public class JwtToken {
         return claimsResolver.apply(claims);
     }
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails, Long userId) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("authorities", userDetails.getAuthorities());
+        claims.put("id", userId);
         return generateToken(claims, userDetails);
     }
 
@@ -47,8 +48,8 @@ public class JwtToken {
                 .compact();
     }
 
-    public String generateRefreshToken(UserDetails userDetails) {
-        return generateToken(userDetails);
+    public String generateRefreshToken(UserDetails userDetails, Long userId) {
+        return generateToken(userDetails, userId);
     }
 
     public String generateRefreshToken(Map<String, Object> extraClaims, UserDetails userDetails) {
@@ -57,7 +58,8 @@ public class JwtToken {
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        final Long userId = extractClaim(token, claims -> (Long) claims.get("id"));
+        return (username.equals(userDetails.getUsername()) && userId != null && !isTokenExpired(token));
     }
 
     private boolean isTokenExpired(String token) {
@@ -80,5 +82,6 @@ public class JwtToken {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
 
 }

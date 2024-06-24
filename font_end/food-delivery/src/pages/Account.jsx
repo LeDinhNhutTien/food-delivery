@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/account.css';
 
-
 const Account = () => {
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-    const id = userInfo.id_user;
+    const id = userInfo.id;
 
     const [formData, setFormData] = useState({
         username: userInfo.username || "",
@@ -16,10 +15,43 @@ const Account = () => {
         id_user: id || "",
         role: userInfo.role || "",
     });
+
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const [currentAlert, setCurrentAlert] = useState("");
 
+    // Function to fetch user data from backend on component mount
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/customer/${id}`);
+                if (response.ok) {
+                    const userData = await response.json();
+                    console.log(userData.body);
+
+                    // Update formData based on userData.body
+                    setFormData(prevFormData => ({
+                        ...prevFormData,
+                        username: userData.body.username || prevFormData.username,
+                        first_name: userData.body.first_name || prevFormData.first_name,
+                        last_name: userData.body.last_name || prevFormData.last_name,
+                        phone: userData.body.phone || prevFormData.phone,
+                        address: userData.body.address || prevFormData.address,
+                        role: userData.body.role || prevFormData.role,
+                    }));
+                } else {
+                    setError("Failed to fetch user data");
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+                setError("Failed to fetch user data");
+            }
+        };
+
+        fetchUserData();
+    }, [id]);
+    // Dependency array ensures useEffect runs only on mount and when 'id' changes
+    console.log(formData);
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
             event.preventDefault();
@@ -41,17 +73,6 @@ const Account = () => {
                 const updatedUserInfo = await response.json();
                 setSuccess("Thông tin đã được cập nhật");
                 setCurrentAlert("success");
-                setFormData({
-                    ...formData,
-                    username: updatedUserInfo.username,
-                    first_name: updatedUserInfo.first_name,
-                    last_name: updatedUserInfo.last_name,
-                    phone: updatedUserInfo.phone,
-                    address: updatedUserInfo.address,
-                    id_user: id || "",
-                    role: userInfo.role || "",
-                });
-                // Cập nhật thông tin người dùng trong session storage
                 sessionStorage.setItem("userInfo", JSON.stringify(updatedUserInfo));
             } else {
                 const errorMessage = await response.text();
@@ -60,6 +81,8 @@ const Account = () => {
             }
         } catch (error) {
             console.error("Error:", error);
+            setError("Đã xảy ra lỗi khi cập nhật thông tin tài khoản.");
+            setCurrentAlert("error");
         }
     };
 
@@ -72,12 +95,10 @@ const Account = () => {
     };
 
     const handleLogout = () => {
-        // Xóa sessionStorage khi người dùng đăng xuất
         sessionStorage.removeItem("userInfo");
-        // Chuyển hướng người dùng đến trang đăng nhập hoặc trang chính
-        window.location.href = "/home"; // Thay đổi đường dẫn tùy theo yêu cầu của bạn
+        window.location.href = "/home"; // Redirect to login or homepage
     };
-    // set active khi nhan vao
+
     function setActiveTab(tabId) {
         const tabLinks = document.querySelectorAll('.tablinks');
         tabLinks.forEach(link => {
@@ -85,6 +106,7 @@ const Account = () => {
         });
         document.getElementById(tabId).classList.add('active');
     }
+
     return (
         <div id="content">
             <div className="wrapper">
@@ -114,7 +136,7 @@ const Account = () => {
                             <form id="form" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
                                 <div className="input ">
                                     <label><span className="req">*</span>Tên đăng nhập:</label>
-                                    <input readOnly name="userName" type="text" value={formData.username} onChange={handleChange} onKeyPress={handleKeyPress} maxLength="150" id="acc_email" />
+                                    <input readOnly name="username" type="text" value={formData.username} onChange={handleChange} onKeyPress={handleKeyPress} maxLength="150" id="acc_email" />
                                     <small>{error}</small>
                                 </div>
                                 <div className="input ">
