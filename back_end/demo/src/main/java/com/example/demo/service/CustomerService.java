@@ -77,8 +77,9 @@ public class CustomerService {
     public AuthResponse addCustomer(RegisterRequest  request) {
         // Encrypt password before save
         String encryptedPassword = passwordEncoder.encode(request.getPassword());
+
         Customer customer = new Customer();
-        customer.setUsername(request.getName());
+        customer.setUsername(request.getUsername());
         customer.setPassword(encryptedPassword);
         customer.setRole("user");
 
@@ -109,7 +110,6 @@ public class CustomerService {
         int updatedRows = customerRepository.updatePassword(username, newPassword);
         return updatedRows > 0;
     }
-
 
     public AuthResponse login(LoginRequest request) {
         authenticationManager.authenticate(

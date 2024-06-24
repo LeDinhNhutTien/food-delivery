@@ -28,7 +28,13 @@ function RevenueManagement() {
 
     const fetchRevenueData = async (year) => {
         try {
-            const response = await axios.get(`http://localhost:8080/api/revenue?year=${year}`);
+            const accessToken = sessionStorage.getItem("accessToken");
+            const response = await axios.get(`http://localhost:8080/api/revenue?year=${year}`,
+                {
+                    headers: {
+                        "Authorization": `Bearer ${accessToken}`
+                    }
+                });
             setRevenueData(response.data);
         } catch (error) {
             console.error('Error fetching revenue data:', error);

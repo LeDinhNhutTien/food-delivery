@@ -43,10 +43,16 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const accessToken = sessionStorage.getItem("accessToken");
       try {
-        const response = await axios.get("http://localhost:8080/api/products");
-        setAllProducts(response.data);
-        console.log("Products:", response.data); // In ra sản phẩm để kiểm tra
+        const response = await fetch("http://localhost:8080/api/products", {
+          headers: {
+            "Authorization": `Bearer ${accessToken}`
+          }
+        });
+        const data = await response.json();
+        setAllProducts(data);
+        console.log("Products:", data); // In ra sản phẩm để kiểm tra
       } catch (error) {
         console.error('Error fetching products:', error);
       }

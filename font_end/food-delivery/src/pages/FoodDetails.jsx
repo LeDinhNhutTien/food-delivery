@@ -19,7 +19,14 @@ const FoodDetails = () => {
         const fetchProductDetail = async () => {
             try {
                 const idd = new URLSearchParams(window.location.search).get("id");
-                const response = await fetch(`http://localhost:8080/api/products/detailProduct/${idd}`);
+                const accessToken = sessionStorage.getItem("accessToken");
+                const response = await fetch(`http://localhost:8080/api/products/detailProduct/${idd}`,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${accessToken}`
+                        }
+                    }
+                    );
                 if (response.ok) {
                     const data = await response.json();
                     setProductDetail(data);

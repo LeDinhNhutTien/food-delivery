@@ -13,6 +13,7 @@ function AdminHeader() {
         setShowDropdown(!showDropdown);
     };
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+
     useEffect(() => {
         if (!userInfo) {
             window.location.href = "/login";
@@ -25,7 +26,13 @@ function AdminHeader() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:8080/api/managementAdmin");
+                const accessToken = sessionStorage.getItem("accessToken");
+                const response = await fetch("http://localhost:8080/api/managementAdmin",
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${accessToken}`
+                        }
+                    });
                 const data = await response.json();
                 setinformation(data);
 
@@ -39,7 +46,13 @@ function AdminHeader() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:8080/api/managementCustomerAdmin");
+                const accessToken = sessionStorage.getItem("accessToken");
+                const response = await fetch("http://localhost:8080/api/managementCustomerAdmin",
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${accessToken}`
+                        }
+                    });
                 const data = await response.json();
                 setUsers(data);
 
