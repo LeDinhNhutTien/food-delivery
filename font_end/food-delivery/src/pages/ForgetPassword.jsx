@@ -9,12 +9,11 @@ const ChangePassword = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
-    const [currentAlert, setCurrentAlert] = useState(""); // Thêm state để theo dõi thông báo hiện tại
+    const [currentAlert, setCurrentAlert] = useState("");
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            // Kiểm tra username đã tồn tại hay chưa
             const usernameCheckResponse = await fetch(`http://localhost:8080/api/checkUsername/${username}`);
             if (!usernameCheckResponse.ok) {
                 setError("Tên đăng nhập không tồn tại");
@@ -31,11 +30,11 @@ const ChangePassword = () => {
             if (response.ok) {
                 const successMessage = await response.text();
                 setSuccess(successMessage);
-                setCurrentAlert("success"); // Cập nhật thông báo hiện tại là thành công
+                setCurrentAlert("success");
             } else {
                 const errorMessage = await response.text();
                 setError(errorMessage);
-                setCurrentAlert("error"); // Cập nhật thông báo hiện tại là lỗi
+                setCurrentAlert("error");
             }
         }
             }catch (error) {
@@ -64,7 +63,7 @@ const ChangePassword = () => {
             setError("");
         }
     };
-    // Function to handle checking username
+
     const checkUsername = async (username) => {
         try {
             const response = await fetch(`http://localhost:8080/api/checkUsername/${username}`);

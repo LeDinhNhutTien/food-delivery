@@ -57,10 +57,9 @@ const Login = () => {
                 const userInfo = await response.json(); // Read the JSON response once
                 sessionStorage.setItem("accessToken", userInfo.accessToken);
                 sessionStorage.setItem("refreshToken", userInfo.refreshToken);
-
+                console.log(userInfo.id);
                 // Giải mã accessToken
                 const decodedToken = jwtDecode(userInfo.accessToken);
-                console.log(decodedToken)
 
                 // Kiểm tra vai trò người dùng từ accessToken
                 const authorities = decodedToken.authorities || []; // authorities là một object

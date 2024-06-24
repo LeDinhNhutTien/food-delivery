@@ -17,14 +17,13 @@ function RevenueMonthManagement({ year, month, onClose }) {
     }, [userLogin]);
 
     useEffect(() => {
-        // Fetch revenue details when year or month changes
+
         if (year && month) {
             fetchRevenueDetails(year, month);
         }
     }, [year, month]);
 
     useEffect(() => {
-        // Draw chart when revenue data changes
         if (revenueData.length > 0) {
             drawChart();
         }
@@ -36,17 +35,13 @@ function RevenueMonthManagement({ year, month, onClose }) {
             setRevenueData(response.data);
         } catch (error) {
             console.error('Error fetching revenue details:', error);
-            // Handle error (e.g., display error message to the user)
         }
     };
 
     const drawChart = () => {
         const days = revenueData.map(item => item.day);
         const revenues = revenueData.map(item => item.totalRevenue);
-
         const ctx = document.getElementById(`revenueChart-${year}-${month}`);
-
-        // Ensure only one chart instance is active
         if (ctx && ctx.chart) {
             ctx.chart.destroy();
         }
