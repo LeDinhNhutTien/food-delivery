@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbdc7fa1-e23b-4c02-a3f3-98e7c707b2ae" name="Changes" comment="fix code">
-      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Pizza/revenue_report_2024.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/assets/images/Pizza/userList.xlsx" afterDir="false" />
+    <list default="true" id="dbdc7fa1-e23b-4c02-a3f3-98e7c707b2ae" name="Changes" comment="fix lại chức năng xem đơn hàng đã đặt">
+      <change beforePath="$PROJECT_DIR$/../.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/OrderManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/OrderManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/productManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/productManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/revenueManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/revenueManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/revenueMonthManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/Admin/revenueMonthManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/Checkout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/Checkout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/ConfirmCheckOut.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/ConfirmCheckOut.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/ForgetPassword.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/ForgetPassword.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/FoodDetails.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../font_end/food-delivery/src/pages/FoodDetails.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,11 +25,6 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$/.." value="master" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -76,12 +64,15 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;A:/F/2023-HK2/2sell_case/back_end&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/ChuyenDeWeb/sell-cake/back_end&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;fe01ce2a7fbac8fafaed7c982a04e229&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -92,12 +83,12 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.DemoApplication">
-    <configuration name="FreeGNH" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.demo.utils.FreeGNH" />
+    <configuration name="Customer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.demo.modal.Customer" />
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.demo.utils.*" />
+          <option name="PATTERN" value="com.example.demo.modal.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -112,12 +103,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RevenueManagementService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.demo.service.RevenueManagementService" />
+    <configuration name="RevenueManagementDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.demo.dao.RevenueManagementDao" />
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.demo.service.*" />
+          <option name="PATTERN" value="com.example.demo.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -125,12 +116,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RootDiaryService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.demo.service.RootDiaryService" />
+    <configuration name="RootDiaryDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.demo.dao.RootDiaryDao" />
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.demo.service.*" />
+          <option name="PATTERN" value="com.example.demo.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -160,19 +151,19 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FreeGNH" />
-        <item itemvalue="Application.RootDiaryService" />
-        <item itemvalue="Application.RevenueManagementService" />
+        <item itemvalue="Application.RootDiaryDao" />
+        <item itemvalue="Application.RevenueManagementDao" />
         <item itemvalue="Application.RevenueManagementDao (1)" />
         <item itemvalue="Application.WriteExcel" />
+        <item itemvalue="Application.Customer" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
       </set>
     </attachedChunks>
   </component>
@@ -227,27 +218,17 @@
       <workItem from="1718008529798" duration="6076000" />
       <workItem from="1718108839811" duration="657000" />
       <workItem from="1718191564914" duration="2993000" />
-      <workItem from="1718258927565" duration="738000" />
-      <workItem from="1718259785068" duration="2164000" />
-      <workItem from="1718262156205" duration="977000" />
-      <workItem from="1718265209948" duration="2872000" />
-      <workItem from="1718330933464" duration="1091000" />
-      <workItem from="1718540887813" duration="472000" />
-      <workItem from="1718678626962" duration="11000" />
-      <workItem from="1718678782241" duration="3438000" />
-      <workItem from="1718772355038" duration="380000" />
-      <workItem from="1718806357015" duration="616000" />
-      <workItem from="1718871222026" duration="4130000" />
-      <workItem from="1718959745439" duration="13000" />
-      <workItem from="1718962127748" duration="6697000" />
-      <workItem from="1719013693278" duration="6646000" />
-      <workItem from="1719024479131" duration="2593000" />
-      <workItem from="1719028731890" duration="2437000" />
-      <workItem from="1719114716311" duration="2670000" />
-      <workItem from="1719127878410" duration="2887000" />
-      <workItem from="1719149360722" duration="733000" />
-      <workItem from="1719196153690" duration="1706000" />
-      <workItem from="1719198825317" duration="2197000" />
+      <workItem from="1718291131164" duration="8814000" />
+      <workItem from="1718331942330" duration="744000" />
+      <workItem from="1718348765675" duration="12585000" />
+      <workItem from="1718376707193" duration="7588000" />
+      <workItem from="1718643036698" duration="4478000" />
+      <workItem from="1718678176645" duration="3329000" />
+      <workItem from="1718765122197" duration="7300000" />
+      <workItem from="1718977114267" duration="5282000" />
+      <workItem from="1719053668039" duration="41000" />
+      <workItem from="1719071688314" duration="491000" />
+      <workItem from="1719111644890" duration="4484000" />
     </task>
     <task id="LOCAL-00001" summary="push để pull">
       <option name="closed" value="true" />
@@ -281,60 +262,47 @@
       <option name="project" value="LOCAL" />
       <updated>1717030180389</updated>
     </task>
-    <task id="LOCAL-00005" summary="fix lại root diary">
+    <task id="LOCAL-00005" summary="fix lại chức năng login">
       <option name="closed" value="true" />
-      <created>1718806967356</created>
+      <created>1718387843741</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1718806967356</updated>
+      <updated>1718387843741</updated>
     </task>
-    <task id="LOCAL-00006" summary="fix code">
+    <task id="LOCAL-00006" summary="fix lại chức năng xem đơn hàng đã đặt">
       <option name="closed" value="true" />
-      <created>1719013789726</created>
+      <created>1718387878496</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1719013789726</updated>
+      <updated>1718387878496</updated>
     </task>
-    <task id="LOCAL-00007" summary="fix code">
-      <option name="closed" value="true" />
-      <created>1719117397819</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1719117397819</updated>
-    </task>
-    <task id="LOCAL-00008" summary="fix code">
-      <option name="closed" value="true" />
-      <created>1719149841728</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1719149841728</updated>
-    </task>
-    <task id="LOCAL-00009" summary="fix code">
-      <option name="closed" value="true" />
-      <created>1719150038917</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1719150038917</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="push để pull" />
     <MESSAGE value="bổ sung trang chính admin" />
     <MESSAGE value="fix lại chức năng cập nhật và khóa tài khoản người dùng trong quản lý người dùng" />
-    <MESSAGE value="fix lại root diary" />
-    <MESSAGE value="fix code" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix code" />
+    <MESSAGE value="fix lại chức năng login" />
+    <MESSAGE value="fix lại chức năng xem đơn hàng đã đặt" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix lại chức năng xem đơn hàng đã đặt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

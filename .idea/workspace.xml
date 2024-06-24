@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7040cd83-6514-43a4-b2fb-11366a5bec77" name="Changes" comment="fix code">
-      <change afterPath="$PROJECT_DIR$/font_end/food-delivery/src/assets/images/Pizza/revenue_report_2024.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/font_end/food-delivery/src/assets/images/Pizza/userList.xlsx" afterDir="false" />
+    <list default="true" id="7040cd83-6514-43a4-b2fb-11366a5bec77" name="Changes" comment="fix display order detail of user">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back_end/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back_end/demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/demo/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/OrderManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/OrderManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/productManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/productManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/revenueManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/revenueManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/revenueMonthManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/Admin/revenueMonthManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Checkout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/Checkout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/ConfirmCheckOut.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/ConfirmCheckOut.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/ForgetPassword.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/ForgetPassword.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font_end/food-delivery/src/pages/FoodDetails.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/font_end/food-delivery/src/pages/FoodDetails.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,14 +60,14 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;A:/F/2023-HK2/2sell_case/back_end&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/ChuyenDeWeb/sell-cake/back_end&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;A:\\IntelliJ IDEA 2024.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\Tai_Intelij IDEA\\IntelliJ IDEA 2024.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -120,8 +113,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
       </set>
     </attachedChunks>
   </component>
@@ -194,25 +187,18 @@
       <workItem from="1718191478131" duration="47000" />
       <workItem from="1718191548991" duration="13000" />
       <workItem from="1718192338735" duration="649000" />
-      <workItem from="1718258766007" duration="159000" />
-      <workItem from="1718259777099" duration="6000" />
-      <workItem from="1718262580018" duration="572000" />
-      <workItem from="1718265180415" duration="2886000" />
-      <workItem from="1718330760866" duration="1307000" />
-      <workItem from="1718536321361" duration="4975000" />
-      <workItem from="1718678641104" duration="4990000" />
-      <workItem from="1718767921086" duration="650000" />
-      <workItem from="1718772345557" duration="360000" />
-      <workItem from="1718806576430" duration="281000" />
-      <workItem from="1719014116540" duration="9674000" />
-      <workItem from="1719024475500" duration="2931000" />
-      <workItem from="1719028715096" duration="14000" />
-      <workItem from="1719114786725" duration="1527000" />
-      <workItem from="1719127889760" duration="3532000" />
-      <workItem from="1719143353598" duration="1508000" />
-      <workItem from="1719149204937" duration="891000" />
-      <workItem from="1719195035870" duration="2926000" />
-      <workItem from="1719198448378" duration="2574000" />
+      <workItem from="1718276853518" duration="2102000" />
+      <workItem from="1718284312184" duration="824000" />
+      <workItem from="1718286605390" duration="4000" />
+      <workItem from="1718290946141" duration="4393000" />
+      <workItem from="1718298040016" duration="630000" />
+      <workItem from="1718298682377" duration="927000" />
+      <workItem from="1718348506393" duration="8208000" />
+      <workItem from="1718376527929" duration="6491000" />
+      <workItem from="1718440159827" duration="60000" />
+      <workItem from="1718973953083" duration="6080000" />
+      <workItem from="1719071224710" duration="1619000" />
+      <workItem from="1719111578077" duration="4517000" />
     </task>
     <task id="LOCAL-00001" summary="fix code">
       <created>1712395860228</created>
@@ -417,55 +403,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718015909755</updated>
     </task>
-    <task id="LOCAL-00027" summary="Chuyển csdl sang JPA">
+    <task id="LOCAL-00027" summary="fix display order detail of user">
       <option name="closed" value="true" />
-      <created>1718268245864</created>
+      <created>1718983026807</created>
       <option name="number" value="00027" />
       <option name="presentableId" value="LOCAL-00027" />
       <option name="project" value="LOCAL" />
-      <updated>1718268245865</updated>
+      <updated>1718983026807</updated>
     </task>
-    <task id="LOCAL-00028" summary="fix lại quản lý người dùng , thêm ajax kiểm tra email và mã hóa mật khẩu">
-      <option name="closed" value="true" />
-      <created>1718332064297</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1718332064297</updated>
-    </task>
-    <task id="LOCAL-00029" summary="bổ sung hình ảnh">
-      <option name="closed" value="true" />
-      <created>1718541338614</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1718541338614</updated>
-    </task>
-    <task id="LOCAL-00030" summary="fix lại api giao hàng nhanh">
-      <option name="closed" value="true" />
-      <created>1718683755489</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1718683755490</updated>
-    </task>
-    <task id="LOCAL-00031" summary="fix code">
-      <option name="closed" value="true" />
-      <created>1719027361111</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1719027361111</updated>
-    </task>
-    <task id="LOCAL-00032" summary="fix code">
-      <option name="closed" value="true" />
-      <created>1719131483077</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1719131483078</updated>
-    </task>
-    <option name="localTasksCounter" value="33" />
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -476,7 +422,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/NhutTien" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -484,6 +442,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="fix code" />
     <MESSAGE value="load hình ảnh từ API" />
     <MESSAGE value="load hình ảnh từ API, fix lại trang home" />
     <MESSAGE value="tất cả sản phẩm bổ sung chức năng lọc sản phẩm" />
@@ -500,12 +459,8 @@
     <MESSAGE value="bổ sung chức năng in báo cáo và fix lại giao diện của biểu đồ doanh thu" />
     <MESSAGE value="bổ sung chức năng in báo cáo theo từng tháng" />
     <MESSAGE value="bổ sung thêm chức năng root quản lý diary" />
-    <MESSAGE value="Chuyển csdl sang JPA" />
-    <MESSAGE value="fix lại quản lý người dùng , thêm ajax kiểm tra email và mã hóa mật khẩu" />
-    <MESSAGE value="bổ sung hình ảnh" />
-    <MESSAGE value="fix lại api giao hàng nhanh" />
-    <MESSAGE value="fix code" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix code" />
+    <MESSAGE value="fix display order detail of user" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix display order detail of user" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -518,10 +473,6 @@
           <url>file://$PROJECT_DIR$/font_end/food-delivery/src/Admin/index.js</url>
           <line>266</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/font_end/food-delivery/src/Admin/productManagement.js</url>
-          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
