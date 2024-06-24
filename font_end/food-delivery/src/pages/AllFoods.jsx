@@ -27,7 +27,6 @@ const AllFoods = () => {
                 console.error("Lỗi khi lấy dữ liệu:", error);
             }
         };
-
         fetchData();
     }, []);
 
@@ -183,7 +182,7 @@ const AllFoods = () => {
                             zIndex: 1000,
                             width: '100%',
                             display: showSuggestions ? 'block' : 'none'
-                        }}>
+                         }}>
                             {suggestions.map((suggestion, index) => (
                                 <li key={index} style={{
                                     padding: '8px 12px',
