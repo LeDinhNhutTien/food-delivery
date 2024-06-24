@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import heroImg from "../assets/images/hero.png";
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../styles/login.css";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -56,13 +56,24 @@ const Login = () => {
             if (response.ok) {
                 const userInfo = await response.json(); // Read the JSON response once
                 sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
+                sessionStorage.setItem("accessToken", userInfo.accessToken);
+                sessionStorage.setItem("refreshToken", userInfo.refreshToken);
 
-                // Redirect based on user role
-                if (userInfo.role === "user") {
-                    navigate('/home');
-                } else if (userInfo.role === "admin") {
+                // Giải mã accessToken
+                const decodedToken = jwtDecode(userInfo.accessToken);
+                console.log(decodedToken)
+                // Kiểm tra vai trò người dùng từ accessToken
+                const authorities = decodedToken.authorities || []; // authorities là một object
+
+                // Kiểm tra quyền của người dùng
+                if (authorities.some(auth => auth.authority === "ROLE_admin")) {
                     navigate('/admin');
+                } else if (authorities.some(auth => auth.authority === "ROLE_user")) {
+                    navigate('/home');
+                } else {
+                    navigate('/login'); // Điều hướng về trang đăng nhập nếu không có quyền hợp lệ
                 }
+
             } else if (response.status === 401 || response.status === 400) {
                 const errorMessage = await response.text();
                 setError({ general: errorMessage });
@@ -75,6 +86,7 @@ const Login = () => {
             setError({ general: "Something went wrong. Please try again later." });
         }
     };
+
 
     return (
         <div>

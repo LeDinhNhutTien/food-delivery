@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.modal.Customer;
+import com.example.demo.modal.request.RegisterRequest;
+import com.example.demo.modal.response.AuthResponse;
 import com.example.demo.service.CustomerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +20,16 @@ public class RegisterController {
     CustomerService customerService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody @Valid Customer customer,
+    public ResponseEntity<?> register(@RequestBody @Valid RegisterRequest request,
                                       BindingResult bindingResult){
-         if (bindingResult.hasErrors()){
-             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Đăng kí không thành công");
-         }
-         if (customerService.addCustomer(customer) == true) {
-            return ResponseEntity.status(HttpStatus.OK).body("Đăng kí tài khoản thành công");
+        try {
+            if (bindingResult.hasErrors()){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Đăng kí không thành công");
+            }
+            AuthResponse authResponse = customerService.addCustomer(request);
 
-        } else {
+            return new ResponseEntity<>(authResponse, HttpStatus.OK);
+        } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Đăng kí không thành công");
         }
     }

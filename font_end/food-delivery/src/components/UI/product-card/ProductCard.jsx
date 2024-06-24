@@ -19,7 +19,6 @@ const ProductCard = (props) => {
                 imageUrl: imageUrls,
                 price,
                 quantity
-
             })
         );
 
