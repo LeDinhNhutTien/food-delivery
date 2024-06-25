@@ -2,15 +2,19 @@ import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/review-order.css';
 import { Link } from "react-router-dom";
+import {jwtDecode} from "jwt-decode";
 
 const ReviewOrder = () => {
     const [allOrders, setAllOrders] = useState([]);
-    const userInfo = JSON.parse(sessionStorage.getItem("userInfo") || '{}');
+    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+    const decodedToken = jwtDecode(userInfo.accessToken);
+    const id = decodedToken.id;
+
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/api/historyOrders?id_user=${userInfo.id || ""}`, {
+                const response = await fetch(`http://localhost:8080/api/historyOrders?id_user=${id || ""}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -37,12 +41,12 @@ const ReviewOrder = () => {
             }
         };
 
-        if (userInfo.id) {
+        if (id) {
             fetchData();
         } else {
             console.error("User info is not available.");
         }
-    }, [userInfo.id]);
+    }, [id]);
 
     const handleLogout = () => {
         window.location.href = "/home";

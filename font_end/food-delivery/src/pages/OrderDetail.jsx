@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/order-detail.css';
 import { useNavigate } from "react-router-dom";
-
+import { useTranslation } from "react-i18next";
 const OrderDetail = () => {
+    const { t } = useTranslation();
     const [userInfo, setUserInfo] = useState({});
     const [orderDetail, setOrderDetail] = useState([]);
     const [orderDetailInfo, setOrderDetailInfo] = useState([]);
@@ -14,14 +15,10 @@ const OrderDetail = () => {
         const fetchOrderDetail = async () => {
             try {
                 const orderId = new URLSearchParams(window.location.search).get("id");
-                const accessToken = sessionStorage.getItem("accessToken");
-                const response = await fetch(`http://localhost:8080/api/orderDetail/${orderId}`,
-                    {
-                        headers: {
-                            "Authorization": `Bearer ${accessToken}`
-                        }
-                    }
-                    );
+                const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+
+                const response = await fetch(`http://localhost:8080/api/orderDetail/${orderId}`);
+
                 if (response.ok) {
                     const data = await response.json();
                     setOrderDetail(data);
@@ -102,96 +99,94 @@ const OrderDetail = () => {
     };
 
     return (
-        <div className="container" style={{ minHeight: "600px" }}>
+        <div className="container" style={{ minHeight: '600px' }}>
             <div>
-                <h1 className="text-center my-4" style={{ paddingTop: "60px" }}>Chi tiết đơn hàng</h1>
+                <h1 className="text-center my-4" style={{ paddingTop: '60px' }}>
+                    {t('orderDetailTitle')}
+                </h1>
             </div>
-            {Array.isArray(orderDetail) && orderDetail.map(order => (
-                <form action="" method="post" acceptCharset="UTF-8" key={order.orderID}>
-                    <div className="row">
-                        <div className="col-md-6">
-                            <h2 style={{fontSize: "25px"}}>Thông tin khách hàng</h2>
-                            <table className="table">
-                                <tbody>
-                                <tr>
-                                    <td>Tên:</td>
-                                    <td>{userInfo.username}</td>
-                                </tr>
-                                <tr>
-                                    <td>Địa chỉ:</td>
-                                    <td>{userInfo.address}</td>
-                                </tr>
-                                <tr>
-                                    <td>Số điện thoại:</td>
-                                    <td>{userInfo.phone}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className="col-md-6">
-                            <h2 style={{fontSize: "25px"}}>Thông tin đơn hàng</h2>
-                            <table className="table">
-                                <tbody>
-                                <tr>
-                                    <td>Mã đơn hàng:</td>
-                                    <td>{order.orderID}</td>
-                                </tr>
-                                <tr>
-                                    <td>Ngày đặt hàng:</td>
-                                    <td>{formatDate(order.creationDate)}</td>
-                                </tr>
-                                <tr>
-                                    <td>Tổng giá trị:</td>
-                                    <td>{order.price} VNĐ</td>
-                                </tr>
-                                <tr>
-                                    <td>Tình trạng:</td>
-                                    <td>{order.orderStatus}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
-                            <h2 style={{fontSize: "25px"}}>Danh sách sản phẩm</h2>
-                            <table className="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Tên sản phẩm</th>
-                                    <th scope="col">Ảnh</th>
-                                    <th scope="col">Số lượng</th>
-                                    <th scope="col">Tổng tiền</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {Array.isArray(orderDetailInfo) && orderDetailInfo.map(orderInfo => (
-                                    <tr key={orderInfo}>
-                                        <td style={{
-                                            verticalAlign: "top",
-                                            paddingBottom: "10px"
-                                        }}>{orderInfo.productName}</td>
-                                        <td style={{verticalAlign: "top", paddingBottom: "10px"}}>
-                                            <img style={{height: "50px"}} src={orderInfo.imageUrl} alt="product"/>
-                                        </td>
-                                        <td style={{
-                                            verticalAlign: "top",
-                                            paddingBottom: "10px"
-                                        }}>{orderInfo.totalAmount}</td>
-                                        <td style={{verticalAlign: "top", paddingBottom: "10px"}}>{orderInfo.price}</td>
+            {Array.isArray(orderDetail) &&
+                orderDetail.map((order) => (
+                    <form action="" method="post" acceptCharset="UTF-8" key={order.orderID}>
+                        <div className="row">
+                            <div className="col-md-6">
+                                <h2 style={{ fontSize: '25px' }}>{t('customerInfoTitle')}</h2>
+                                <table className="table">
+                                    <tbody>
+                                    <tr>
+                                        <td>{t('nameLabel')}:</td>
+                                        <td>{userInfo.username}</td>
                                     </tr>
-                                ))}
-                                </tbody>
-                            </table>
-                            <div className="parent-button">
-                                <button className="centered-button"
-                                        onClick={(event) => cancelOrder(order.orderID, event)}>Hủy đơn
-                                </button>
+                                    <tr>
+                                        <td>{t('addressLabel')}:</td>
+                                        <td>{userInfo.address}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{t('phoneNumberLabel')}:</td>
+                                        <td>{userInfo.phone}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className="col-md-6">
+                                <h2 style={{ fontSize: '25px' }}>{t('orderInfoTitle')}</h2>
+                                <table className="table">
+                                    <tbody>
+                                    <tr>
+                                        <td>{t('orderIdLabel')}:</td>
+                                        <td>{order.orderID}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{t('orderDateLabel')}:</td>
+                                        <td>{formatDate(order.creationDate)}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{t('totalValueLabel')}:</td>
+                                        <td>{order.price} VNĐ</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{t('orderStatusLabel')}:</td>
+                                        <td>{order.orderStatus}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                    </div>
-                </form>
-            ))}
+                        <div className="row">
+                            <div className="col-md-12">
+                                <h2 style={{ fontSize: '25px' }}>{t('productListTitle')}</h2>
+                                <table className="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">{t('productName')}</th>
+                                        <th scope="col">{t('image')}</th>
+                                        <th scope="col">{t('quantity')}</th>
+                                        <th scope="col">{t('totalPrice')}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {Array.isArray(orderDetailInfo) &&
+                                        orderDetailInfo.map((orderInfo) => (
+                                            <tr key={orderInfo}>
+                                                <td style={{ verticalAlign: 'top', paddingBottom: '10px' }}>{orderInfo.productName}</td>
+                                                <td style={{ verticalAlign: 'top', paddingBottom: '10px' }}>
+                                                    <img style={{ height: '50px' }} src={orderInfo.imageUrl} alt="product" />
+                                                </td>
+                                                <td style={{ verticalAlign: 'top', paddingBottom: '10px' }}>{orderInfo.totalAmount}</td>
+                                                <td style={{ verticalAlign: 'top', paddingBottom: '10px' }}>{orderInfo.price}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                                <div className="parent-button">
+                                    <button className="centered-button" onClick={(event) => cancelOrder(order.orderID, event)}>
+                                        {t('cancelOrderButton')}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                ))}
         </div>
     );
 };

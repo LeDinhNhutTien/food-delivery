@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/account.css';
 import { useTranslation } from "react-i18next";
+import {jwtDecode} from "jwt-decode";
 
 const Account = () => {
     const { t } = useTranslation();
 
-    const userInfo = JSON.parse(sessionStorage.getItem("userInfo")) || {};
-    const id = userInfo.id;
+    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+    const decodedToken = jwtDecode(userInfo.accessToken);
+    const id = decodedToken.id;
+
+
 
     const [formData, setFormData] = useState({
         username: userInfo.username || "",
@@ -23,22 +27,24 @@ const Account = () => {
     const [success, setSuccess] = useState("");
     const [currentAlert, setCurrentAlert] = useState("");
 
+    // Function to fetch user data from backend on component mount
     useEffect(() => {
         const fetchUserData = async () => {
             try {
                 const response = await fetch(`http://localhost:8080/api/customer/${id}`);
                 if (response.ok) {
                     const userData = await response.json();
-                    console.log(userData);
+                    console.log(userData.body);
 
+                    // Update formData based on userData.body
                     setFormData(prevFormData => ({
                         ...prevFormData,
-                        username: userData.username || prevFormData.username,
-                        first_name: userData.first_name || prevFormData.first_name,
-                        last_name: userData.last_name || prevFormData.last_name,
-                        phone: userData.phone || prevFormData.phone,
-                        address: userData.address || prevFormData.address,
-                        role: userData.role || prevFormData.role,
+                        username: userData.body.username || prevFormData.username,
+                        first_name: userData.body.first_name || prevFormData.first_name,
+                        last_name: userData.body.last_name || prevFormData.last_name,
+                        phone: userData.body.phone || prevFormData.phone,
+                        address: userData.body.address || prevFormData.address,
+                        role: userData.body.role || prevFormData.role,
                     }));
                 } else {
                     setError(t("fetchUserDataError"));
@@ -49,10 +55,9 @@ const Account = () => {
             }
         };
 
-        if (id) {
-            fetchUserData();
-        }
+        fetchUserData();
     }, [id, t]);
+    // Dependency array ensures useEffect runs only on mount and when 'id' changes
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
@@ -75,7 +80,7 @@ const Account = () => {
                 const updatedUserInfo = await response.json();
                 setSuccess(t("updateSuccess"));
                 setCurrentAlert("success");
-                sessionStorage.setItem("userInfo", JSON.stringify(updatedUserInfo));
+
                 setError(""); // Clear any previous error on success
             } else {
                 const errorMessage = await response.text();
@@ -118,16 +123,13 @@ const Account = () => {
                         <div className="list_ctrl">
                             <ul>
                                 <li className="first active">
-                                    <a id="account" title="Thông tin tài khoản" href="/account"
-                                       onClick={() => setActiveTab('account')}>Thông tin tài khoản</a>
+                                    <a id="account" title="Thông tin tài khoản" href="/account" onClick={() => setActiveTab('account')}>Thông tin tài khoản</a>
                                 </li>
                                 <li className="first ">
-                                    <a id="changePassword" title="Đổi mật khẩu" href="/changePassword"
-                                       onClick={() => setActiveTab('changePassword')}>Đổi mật khẩu</a>
+                                    <a id="changePassword" title="Đổi mật khẩu" href="/changePassword" onClick={() => setActiveTab('changePassword')}>Đổi mật khẩu</a>
                                 </li>
                                 <li className="first ">
-                                    <a id="reviewOrders" title="Xem lại đơn hàng" href="/reviewOrder"
-                                       onClick={() => setActiveTab('reviewOrders')}>Xem lại đơn hàng</a>
+                                    <a id="reviewOrders" title="Xem lại đơn hàng" href="/reviewOrder" onClick={() => setActiveTab('reviewOrders')}>Xem lại đơn hàng</a>
                                 </li>
                                 <li className="first">
                                     <a id="logout" title="Đăng xuất" href="/home" onClick={handleLogout}>Đăng xuất</a>
@@ -138,23 +140,15 @@ const Account = () => {
                     <div className="col_1_1">
                         <div id="login" className="frm_content">
                             <h2>{t("updateAccountInfo")}</h2>
-                            <form id="form" onSubmit={(e) => {
-                                e.preventDefault();
-                                handleSubmit();
-                            }}>
+                            <form id="form" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
                                 <div className="input ">
                                     <label><span className="req">*</span>{t("usernameLabel")}:</label>
-                                    <input readOnly name="username" type="text" value={formData.username}
-                                           onChange={handleChange} onKeyPress={handleKeyPress} maxLength="150"
-                                           id="acc_email"/>
+                                    <input readOnly name="username" type="text" value={formData.username} onChange={handleChange} onKeyPress={handleKeyPress} maxLength="150" id="acc_email" />
                                     <small>{error}</small>
                                 </div>
                                 <div className="input ">
-                                    <label htmlFor="acc_fname"><span
-                                        className="req">*</span>{t("firstNameLabel")}:</label>
-                                    <input name="first_name" type="text" value={formData.first_name}
-                                           onChange={handleChange} onKeyPress={handleKeyPress} maxLength="150"
-                                           id="acc_fname"/>
+                                    <label htmlFor="acc_fname"><span className="req">*</span>{t("firstNameLabel")}:</label>
+                                    <input name="first_name" type="text" value={formData.first_name} onChange={handleChange} onKeyPress={handleKeyPress} maxLength="150" id="acc_fname" />
                                     <small>{error}</small>
                                 </div>
                                 <div className="input ">

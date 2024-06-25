@@ -6,6 +6,7 @@ import AddUserModal from './AddUser';
 import UpdateUserModal from './UpdateUser';
 import axios from "axios";
 import avatar from '../assets/images/ava-1.jpg'
+import {jwtDecode} from "jwt-decode";
 function UserManagement() {
     const [showDropdown, setShowDropdown] = useState(false);
     const [showDropdown1, setShowDropdown1] = useState(false);
@@ -13,20 +14,17 @@ function UserManagement() {
     const [showAddUserModal, setShowAddUserModal] = useState(false);
     const [showUpdateUserModal, setShowUpdateUserModal] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
-    const userLogin = JSON.parse(sessionStorage.getItem("userInfo"));
-    console.log(userLogin);
+    const userInfoLogin = JSON.parse(sessionStorage.getItem("userInfo"));
+    const decodedToken = jwtDecode(userInfoLogin.accessToken);
+    const id = decodedToken.id;
   
 
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const accessToken = sessionStorage.getItem("accessToken");
-                const response = await fetch("http://localhost:8080/api/managementCustomerAdmin",{
-                    headers: {
-                        "Authorization": `Bearer ${accessToken}`
-                    }
-                });
+
+                const response = await fetch("http://localhost:8080/api/managementCustomerAdmin");
                 const data = await response.json();
                 const filteredUsers = data.filter(user => user.role === 'user');
                 setUsers(filteredUsers);
@@ -125,7 +123,7 @@ function UserManagement() {
             });
             setUsers(updatedUsers);
             const diaryContent = `User ${userId} đã khóa.`;
-            const diaryInserted = await insertDiary(diaryContent, userLogin.id_user);
+            const diaryInserted = await insertDiary(diaryContent, id);
 
             if (!diaryInserted) {
                 console.error("Failed to insert diary entry");
@@ -166,7 +164,7 @@ function UserManagement() {
             setUsers(updatedUsers);
             setUsers(updatedUsers);
             const diaryContent = `User ${userId} đã được mở khóa.`;
-            const diaryInserted = await insertDiary(diaryContent, userLogin.id_user);
+            const diaryInserted = await insertDiary(diaryContent, id);
 
             if (!diaryInserted) {
                 console.error("Failed to insert diary entry");

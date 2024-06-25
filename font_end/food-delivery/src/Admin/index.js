@@ -12,7 +12,7 @@ function AdminHeader() {
     const toggleDropdown = () => {
         setShowDropdown(!showDropdown);
     };
-    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+
 
     useEffect(() => {
         const fetchData = async () => {

@@ -19,7 +19,6 @@ public class AuthResponse {
 
     @JsonProperty("refreshToken")
     private String refreshToken;
-    @JsonProperty("id")
-    private Long id;
+
 
 }
