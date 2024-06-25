@@ -28,7 +28,7 @@ function UserManagement() {
                 const decodedToken = jwtDecode(userInfoLogin.accessToken);
                 const id = decodedToken.id;
                 setid(id)
-                const response = await axios.get("http://localhost:8080/api/managementCustomerAdmin", {
+                const response = await axios.get("http://localhost:8080/api/admin/managementCustomerAdmin", {
                     headers: {
                         "Authorization": `Bearer ${userInfoLogin.accessToken}`
                     }
@@ -78,14 +78,11 @@ function UserManagement() {
                 return;
             }
 
-            const response = await axios.put(`http://localhost:8080/api/managementCustomerAdmin/${userId}`, {
+            const response = await axios.put(`http://localhost:8080/api/admin/managementCustomerAdmin/${userId}`, {
                 ...userToUpdate,
                 status: '0'
             });
 
-            if (!response.ok) {
-                throw new Error("Lỗi khi cập nhật trạng thái người dùng");
-            }
 
             const updatedUsers = users.map(user => {
                 if (user.id_user === userId) {
@@ -114,14 +111,12 @@ function UserManagement() {
                 return;
             }
 
-            const response = await axios.put(`http://localhost:8080/api/managementCustomerAdmin/${userId}`, {
+            const response = await axios.put(`http://localhost:8080/api/admin/managementCustomerAdmin/${userId}`, {
                 ...userToUpdate,
                 status: '1'
             });
 
-            if (!response.ok) {
-                throw new Error("Lỗi khi cập nhật trạng thái người dùng");
-            }
+
 
             const updatedUsers = users.map(user => {
                 if (user.id_user === userId) {
@@ -181,16 +176,14 @@ function UserManagement() {
                 return;
             }
 
-            const response = await axios.get('http://localhost:8080/api/printCustomer/excel', {
+            const response = await axios.get('http://localhost:8080/api/admin/printCustomer/excel', {
                 responseType: 'blob',
                 headers: {
                     'Authorization': `Bearer ${userInfoLogin.accessToken}`
                 }
             });
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+
 
             const url = URL.createObjectURL(new Blob([response.data]));
             const a = document.createElement('a');

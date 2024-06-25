@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/printCustomer")
+@RequestMapping("/api/admin/printCustomer")
 @CrossOrigin(origins = "http://localhost:3000")
 public class PrintExcelController {
     @Autowired
