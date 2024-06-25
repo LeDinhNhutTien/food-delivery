@@ -115,6 +115,7 @@ public class CustomerService {
             authResponse.setUsername(request.getUsername());
             authResponse.setAccessToken(accessToken);
             authResponse.setRefreshToken(refreshToken);
+
             return authResponse;
         }
         return null;
