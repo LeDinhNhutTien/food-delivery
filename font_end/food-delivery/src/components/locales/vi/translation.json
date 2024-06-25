@@ -142,5 +142,6 @@
   "province": "Tỉnh/Thành phố",
   "note": "Ghi chú",
   "paymentMethod": "Phương thức thanh toán",
-  "totalPrice": "Tổng tiền"
+  "totalPrice": "Tổng tiền",
+  "Place Order": "Đặt hàng"
 }

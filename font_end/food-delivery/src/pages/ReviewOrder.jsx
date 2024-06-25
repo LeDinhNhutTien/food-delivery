@@ -14,10 +14,12 @@ const ReviewOrder = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                const accessToken = sessionStorage.getItem("accessToken");
                 const response = await fetch(`http://localhost:8080/api/historyOrders?id_user=${id || ""}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
+                        "Authorization": `Bearer ${accessToken}`
                     }
                 });
                 if (response.ok) {
