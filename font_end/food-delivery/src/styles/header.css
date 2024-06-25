@@ -226,3 +226,28 @@ a {
   color: #fff;
   cursor: pointer;
 }
+.language__container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px; /* Cân chỉnh khoảng cách giữa các nút */
+}
+
+.language__button {
+  background-color: #659a67;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 20%;
+  width: 23px;
+  height: 30px;
+  line-height: 23px;
+}
+
+.language__button:hover {
+  background-color: #45a049; /* Màu nền khi rê chuột qua nút */
+}
