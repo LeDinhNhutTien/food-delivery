@@ -119,5 +119,6 @@
   "province": "Province",
   "note": "Note",
   "paymentMethod": "Payment Method",
-  "totalPrice": "Total Price"
+  "totalPrice": "Total Price",
+  "Place Order": "Place Order"
 }

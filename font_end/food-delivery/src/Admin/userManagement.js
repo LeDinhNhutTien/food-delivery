@@ -14,26 +14,30 @@ function UserManagement() {
     const [showAddUserModal, setShowAddUserModal] = useState(false);
     const [showUpdateUserModal, setShowUpdateUserModal] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
-    const userInfoLogin = JSON.parse(sessionStorage.getItem("userInfo"));
-    const decodedToken = jwtDecode(userInfoLogin.accessToken);
-    const id = decodedToken.id;
-
+    const [id, setid] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const accessToken = sessionStorage.getItem("accessToken");
-                const response = await fetch("http://localhost:8080/api/managementCustomerAdmin",
-                    {
-                        headers: {
-                            "Authorization": `Bearer ${accessToken}`
-                        }
+                const userInfoLogin = JSON.parse(sessionStorage.getItem("userInfo"));
+                if (!userInfoLogin || !userInfoLogin.accessToken) {
+                    console.error("User not logged in or session expired.");
+                    // Redirect to login or handle accordingly
+                    window.location.href = "/login";
+                }
+
+                const decodedToken = jwtDecode(userInfoLogin.accessToken);
+                const id = decodedToken.id;
+                setid(id)
+                const response = await axios.get("http://localhost:8080/api/managementCustomerAdmin", {
+                    headers: {
+                        "Authorization": `Bearer ${userInfoLogin.accessToken}`
                     }
-                    );
-                const data = await response.json();
-                const filteredUsers = data.filter(user => user.role === 'user');
+                });
+
+                const filteredUsers = response.data.filter(user => user.role === 'user');
                 setUsers(filteredUsers);
             } catch (error) {
-                console.error("Lỗi khi lấy dữ liệu:", error);
+                console.error("Error fetching data:", error);
             }
         };
 
@@ -57,7 +61,6 @@ function UserManagement() {
     };
 
     const handleEditUserClick = (user) => {
-        console.log("Selected User for Edit:", user);
         setSelectedUser(user);
         setShowUpdateUserModal(true);
     };
@@ -67,37 +70,6 @@ function UserManagement() {
         setSelectedUser(null);
     };
 
-
-    const insertDiary = async (content, id) => {
-        try {
-            const response = await fetch('http://localhost:8080/api/rootDiary/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ content, id }),
-            });
-
-            if (!response.ok) {
-                // Handle specific HTTP errors
-                throw new Error(`Failed to insert diary entry: ${response.status} - ${response.statusText}`);
-            }
-
-            const data = await response.json();
-
-            // Optionally, you might want to perform additional checks on the response data
-
-            // Diary entry successfully inserted
-            return true;
-        } catch (error) {
-            // Handle network errors or unexpected exceptions
-            console.error('Error inserting diary entry:', error);
-            return false;
-        }
-    };
-
-
-
     const handleLockUser = async (userId) => {
         try {
             const userToUpdate = users.find(user => user.id_user === userId);
@@ -106,19 +78,15 @@ function UserManagement() {
                 return;
             }
 
-            const response = await fetch(`http://localhost:8080/api/managementCustomerAdmin/${userId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ ...userToUpdate, status: '0' }),
+            const response = await axios.put(`http://localhost:8080/api/managementCustomerAdmin/${userId}`, {
+                ...userToUpdate,
+                status: '0'
             });
 
             if (!response.ok) {
                 throw new Error("Lỗi khi cập nhật trạng thái người dùng");
             }
 
-            // Update the user status in the state
             const updatedUsers = users.map(user => {
                 if (user.id_user === userId) {
                     return { ...user, status: 0 };
@@ -126,12 +94,12 @@ function UserManagement() {
                 return user;
             });
             setUsers(updatedUsers);
-            const diaryContent = `User ${userId} đã khóa.`;
+
+            const diaryContent = `User ${userId} đã bị khóa.`;
             const diaryInserted = await insertDiary(diaryContent, id);
 
             if (!diaryInserted) {
                 console.error("Failed to insert diary entry");
-                // Optionally, handle the failure here
             }
         } catch (error) {
             console.error("Lỗi khi khóa người dùng:", error);
@@ -146,19 +114,15 @@ function UserManagement() {
                 return;
             }
 
-            const response = await fetch(`http://localhost:8080/api/managementCustomerAdmin/${userId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ ...userToUpdate, status: '1' }),
+            const response = await axios.put(`http://localhost:8080/api/managementCustomerAdmin/${userId}`, {
+                ...userToUpdate,
+                status: '1'
             });
 
             if (!response.ok) {
                 throw new Error("Lỗi khi cập nhật trạng thái người dùng");
             }
 
-            // Update the user status in the state
             const updatedUsers = users.map(user => {
                 if (user.id_user === userId) {
                     return { ...user, status: 1 };
@@ -166,50 +130,80 @@ function UserManagement() {
                 return user;
             });
             setUsers(updatedUsers);
-            setUsers(updatedUsers);
+
             const diaryContent = `User ${userId} đã được mở khóa.`;
             const diaryInserted = await insertDiary(diaryContent, id);
 
             if (!diaryInserted) {
                 console.error("Failed to insert diary entry");
-                // Optionally, handle the failure here
             }
         } catch (error) {
             console.error("Lỗi khi mở khóa người dùng:", error);
         }
     };
 
+    const insertDiary = async (content, id) => {
+        try {
+            const userInfoLogin = JSON.parse(sessionStorage.getItem("userInfo"));
+            if (!userInfoLogin || !userInfoLogin.accessToken) {
+                console.error("User not logged in or session expired.");
+                // Handle accordingly
+                return false;
+            }
 
-
-    const handlePrintUserList = () => {
-        fetch('http://localhost:8080/api/printCustomer/excel')
-            .then(response => {
-                // Check if the response is successful
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+            const response = await axios.post('http://localhost:8080/api/rootDiary/add', {
+                content,
+                id
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${userInfoLogin.accessToken}`
                 }
-                // Return the response blob
-                return response.blob();
-            })
-            .then(blob => {
-                // Create a URL for the blob
-                const url = URL.createObjectURL(blob);
-                // Create an <a> element to trigger download
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'userList.xlsx'; // Set the filename
-                // Append the <a> element to the body and trigger the download
-                document.body.appendChild(a);
-                a.click();
-                // Revoke the URL object to free up memory
-                URL.revokeObjectURL(url);
-                // Remove the <a> element from the DOM
-                document.body.removeChild(a);
-            })
-            .catch(error => {
-                console.error('Error downloading Excel file:', error);
             });
+
+            if (!response.ok) {
+                throw new Error(`Failed to insert diary entry: ${response.status} - ${response.statusText}`);
+            }
+
+            return true;
+        } catch (error) {
+            console.error('Error inserting diary entry:', error);
+            return false;
+        }
     };
+
+    const handlePrintUserList = async () => {
+        try {
+            const userInfoLogin = JSON.parse(sessionStorage.getItem("userInfo"));
+            if (!userInfoLogin || !userInfoLogin.accessToken) {
+                console.error("User not logged in or session expired.");
+                // Handle accordingly
+                return;
+            }
+
+            const response = await axios.get('http://localhost:8080/api/printCustomer/excel', {
+                responseType: 'blob',
+                headers: {
+                    'Authorization': `Bearer ${userInfoLogin.accessToken}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const url = URL.createObjectURL(new Blob([response.data]));
+            const a = document.createElement('a');
+            a.href = url;
+            a.setAttribute('download', 'userList.xlsx');
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        } catch (error) {
+            console.error('Error downloading Excel file:', error);
+        }
+    };
+
 
     return (
         <div>

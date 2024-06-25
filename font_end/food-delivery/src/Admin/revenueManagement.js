@@ -4,6 +4,7 @@ import Chart from "chart.js/auto";
 import avatar from '../assets/images/ava-1.jpg';
 import { useParams } from "react-router-dom";
 import RevenueMonthManagement from "./revenueMonthManagement";
+import {jwtDecode} from "jwt-decode";
 
 function RevenueManagement() {
     const [revenueData, setRevenueData] = useState([]);
@@ -11,7 +12,7 @@ function RevenueManagement() {
     const [showDetailsModal, setShowDetailsModal] = useState(false);
     const [selectedMonth, setSelectedMonth] = useState(null);
     const { year } = useParams(); // Using useParams to get the year from the URL
-
+    const [id, setid] = useState(null);
     useEffect(() => {
         fetchRevenueData(selectedYear);
     }, [selectedYear]);
@@ -28,6 +29,16 @@ function RevenueManagement() {
 
     const fetchRevenueData = async (year) => {
         try {
+            const userInfoLogin = JSON.parse(sessionStorage.getItem("userInfo"));
+            if (!userInfoLogin || !userInfoLogin.accessToken) {
+                console.error("User not logged in or session expired.");
+                // Redirect to login or handle accordingly
+                window.location.href = "/login";
+            }
+
+            const decodedToken = jwtDecode(userInfoLogin.accessToken);
+            const id = decodedToken.id;
+            setid(id)
             const accessToken = sessionStorage.getItem("accessToken");
             const response = await axios.get(`http://localhost:8080/api/revenue?year=${year}`,
                 {
