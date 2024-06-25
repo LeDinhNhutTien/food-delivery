@@ -16,7 +16,13 @@ const OrderDetailManagement = () => {
         const fetchOrderDetail = async () => {
             try {
                 const orderId = new URLSearchParams(window.location.search).get("id");
-                const response = await fetch(`http://localhost:8080/api/admin/managementOrderAdmin/getOrder/${orderId}`);
+                const accessToken = sessionStorage.getItem("accessToken");
+                const response = await fetch(`http://localhost:8080/api/admin/managementOrderAdmin/getOrder/${orderId}`,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${accessToken}`
+                        }
+                    });
                 if (response.ok) {
                     const data = await response.json();
                     setOrderDetail(data);
@@ -35,7 +41,13 @@ const OrderDetailManagement = () => {
         const getCustomer = async () => {
             try {
                 const orderId = new URLSearchParams(window.location.search).get("id");
-                const response = await fetch(`http://localhost:8080/api/admin/managementOrderAdmin/getCustomer/${orderId}`);
+                const accessToken = sessionStorage.getItem("accessToken");
+                const response = await fetch(`http://localhost:8080/api/admin/managementOrderAdmin/getCustomer/${orderId}`,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${accessToken}`
+                        }
+                    });
                 if (response.ok) {
                     const data = await response.json();
                     setUserInfo(data);
@@ -53,8 +65,14 @@ const OrderDetailManagement = () => {
     useEffect(() => {
         const fetchOrderDetail = async () => {
             try {
+                const accessToken = sessionStorage.getItem("accessToken");
                 const orderId = new URLSearchParams(window.location.search).get("id");
-                const response = await fetch(`http://localhost:8080/api/admin/managementOrderAdmin/orderDetailInfo/${orderId}`);
+                const response = await fetch(`http://localhost:8080/api/admin/managementOrderAdmin/orderDetailInfo/${orderId}`,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${accessToken}`
+                        }
+                    });
                 if (response.ok) {
                     const data = await response.json();
                     setOrderDetailInfo(data);

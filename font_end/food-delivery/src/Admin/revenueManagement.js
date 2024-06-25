@@ -92,7 +92,13 @@ function RevenueManagement() {
     };
 
     const handlePrintRevenue = () => {
-        fetch(`http://localhost:8080/api/admin/printCustomer/excelRevenue?year=${selectedYear}`)
+        const accessToken = sessionStorage.getItem("accessToken");
+        fetch(`http://localhost:8080/api/admin/printCustomer/excelRevenue?year=${selectedYear}`,
+            {
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            })
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

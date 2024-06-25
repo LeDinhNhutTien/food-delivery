@@ -28,6 +28,7 @@ public class SecurityConfig {
             "/api/products/**",
             "/api/login",
             "/api/register",
+            "/api/feeGHN"
     };
 
     @Bean
@@ -48,7 +49,11 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000")); // Replace with your frontend origin
+        configuration.setAllowedOrigins(List.of(
+                "http://localhost:3000",
+                "https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee",
+                "https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/leadtime"
+        ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);

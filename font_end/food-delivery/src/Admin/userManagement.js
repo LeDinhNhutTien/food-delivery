@@ -78,11 +78,17 @@ function UserManagement() {
                 return;
             }
 
-            const response = await axios.put(`http://localhost:8080/api/admin/managementCustomerAdmin/${userId}`, {
-                ...userToUpdate,
-                status: '0'
-            });
+            const userInfoLogin = JSON.parse(sessionStorage.getItem("userInfo"));
 
+            const response = await axios.put(
+                `http://localhost:8080/api/admin/managementCustomerAdmin/${userId}`,
+                { ...userToUpdate, status: '0' },
+                {
+                    headers: {
+                        "Authorization": `Bearer ${userInfoLogin.accessToken}`
+                    }
+                }
+            );
 
             const updatedUsers = users.map(user => {
                 if (user.id_user === userId) {
@@ -90,14 +96,9 @@ function UserManagement() {
                 }
                 return user;
             });
+
             setUsers(updatedUsers);
 
-            const diaryContent = `User ${userId} đã bị khóa.`;
-            const diaryInserted = await insertDiary(diaryContent, id);
-
-            if (!diaryInserted) {
-                console.error("Failed to insert diary entry");
-            }
         } catch (error) {
             console.error("Lỗi khi khóa người dùng:", error);
         }
@@ -111,12 +112,17 @@ function UserManagement() {
                 return;
             }
 
-            const response = await axios.put(`http://localhost:8080/api/admin/managementCustomerAdmin/${userId}`, {
-                ...userToUpdate,
-                status: '1'
-            });
+            const userInfoLogin = JSON.parse(sessionStorage.getItem("userInfo"));
 
-
+            const response = await axios.put(
+                `http://localhost:8080/api/admin/managementCustomerAdmin/${userId}`,
+                { ...userToUpdate, status: '1' },
+                {
+                    headers: {
+                        "Authorization": `Bearer ${userInfoLogin.accessToken}`
+                    }
+                }
+            );
 
             const updatedUsers = users.map(user => {
                 if (user.id_user === userId) {
@@ -126,46 +132,11 @@ function UserManagement() {
             });
             setUsers(updatedUsers);
 
-            const diaryContent = `User ${userId} đã được mở khóa.`;
-            const diaryInserted = await insertDiary(diaryContent, id);
-
-            if (!diaryInserted) {
-                console.error("Failed to insert diary entry");
-            }
         } catch (error) {
             console.error("Lỗi khi mở khóa người dùng:", error);
         }
     };
 
-    const insertDiary = async (content, id) => {
-        try {
-            const userInfoLogin = JSON.parse(sessionStorage.getItem("userInfo"));
-            if (!userInfoLogin || !userInfoLogin.accessToken) {
-                console.error("User not logged in or session expired.");
-                // Handle accordingly
-                return false;
-            }
-
-            const response = await axios.post('http://localhost:8080/api/rootDiary/add', {
-                content,
-                id
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${userInfoLogin.accessToken}`
-                }
-            });
-
-            if (!response.ok) {
-                throw new Error(`Failed to insert diary entry: ${response.status} - ${response.statusText}`);
-            }
-
-            return true;
-        } catch (error) {
-            console.error('Error inserting diary entry:', error);
-            return false;
-        }
-    };
 
     const handlePrintUserList = async () => {
         try {

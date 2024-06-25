@@ -22,7 +22,13 @@ function RevenueMonthManagement({ year, month, onClose }) {
 
     const fetchRevenueDetails = async (year, month) => {
         try {
-            const response = await axios.get(`http://localhost:8080/api/admin/revenue/details/${month}/${year}`);
+            const accessToken = sessionStorage.getItem("accessToken");
+            const response = await axios.get(`http://localhost:8080/api/admin/revenue/details/${month}/${year}`,
+                {
+                    headers: {
+                        "Authorization": `Bearer ${accessToken}`
+                    }
+                });
             setRevenueData(response.data);
         } catch (error) {
             console.error('Error fetching revenue details:', error);

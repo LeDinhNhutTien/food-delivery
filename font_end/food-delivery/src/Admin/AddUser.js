@@ -60,7 +60,13 @@ const AddUserModal = ({ onClose }) => {
 
     const checkUsername = async (username) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/checkUsername/${username}`);
+            const accessToken = sessionStorage.getItem("accessToken");
+            const response = await fetch(`http://localhost:8080/api/checkUsername/${username}`,
+            {
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            });
             const data = await response.text();
             if (response.ok) {
                 setUsernameError(data ? 'Email đã tồn tại' : '');

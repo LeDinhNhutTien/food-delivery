@@ -18,7 +18,7 @@ const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState('Cash on Delivery');
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [totalPriceWithShipping, setTotalPriceWithShipping] = useState(0);
-  const [namePro, setNamePr] = useState('');
+  const [namePro, setNamePro] = useState('');
   const [nameDt, setNameDt] = useState('');
 
   const totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
@@ -141,15 +141,15 @@ const Checkout = () => {
     setSelectedProvince(value);
     setSelectedDistrict('');
     setSelectedWard('');
-    const province = provinces.find(province => province.ProvinceID === value);
-    setNamePr(province ? province.ProvinceName : '');
+    const province = provinces.find(province => province.ProvinceID === parseInt(value));
+    setNamePro(province ? province.ProvinceName : '');
   };
 
   const handleDistrictChange = (event) => {
     const value = event.target.value;
     setSelectedDistrict(value);
     setSelectedWard('');
-    const district = districts.find(district => district.DistrictID === value);
+    const district = districts.find(district => district.DistrictID === parseInt(value));
     setNameDt(district ? district.DistrictName : '');
   };
 
@@ -162,14 +162,15 @@ const Checkout = () => {
       const response = await fetch(url);
 
       if (!response.ok) {
-        throw new Error('Failed to fetch data');
+        throw new Error('Failed to fetch shipping fee');
       }
 
       const { total, time } = await response.json();
+
       setShippingFee(total);
       setShippingTime(time);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching shipping fee:', error);
     }
   };
 
@@ -186,12 +187,14 @@ const Checkout = () => {
       email: document.getElementById("inputEmail").value,
       province: namePro,
       district: nameDt,
-      ward: selectedWard,
+      ward: wards.find(ward => ward.WardCode === selectedWard)?.WardName || '',
       address: document.getElementById("inputAddress").value,
       note: document.getElementById("inputNote").value,
       paymentMethod: paymentMethod,
       totalPrice: totalPriceWithShipping
     };
+
+    console.log("Form Data:", formData); // Log form data for debugging
 
     localStorage.setItem("shippingInfo", JSON.stringify(formData));
     setOrderPlaced(true);
