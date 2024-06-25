@@ -36,6 +36,7 @@ public class CustomerService {
     public AuthResponse addCustomer(RegisterRequest request) {
         // Encrypt password before saving
         String encryptedPassword = passwordEncoder.encode(request.getPassword());
+
         Customer customer = new Customer();
         customer.setUsername(request.getUsername());
         customer.setPassword(encryptedPassword);

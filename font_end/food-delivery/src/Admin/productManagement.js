@@ -18,7 +18,13 @@ function ProductManagement() {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/api/managementProductAdmin');
+            const accessToken = sessionStorage.getItem("accessToken");
+            const response = await axios.get('http://localhost:8080/api/managementProductAdmin',
+                {
+                    headers: {
+                        "Authorization": `Bearer ${accessToken}`
+                    }
+                });
             setProducts(response.data);
             console.log(response.data);
         } catch (error) {

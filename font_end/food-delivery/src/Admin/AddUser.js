@@ -80,10 +80,12 @@ const AddUserModal = ({ onClose }) => {
         }
 
         try {
+            const accessToken = sessionStorage.getItem("accessToken");
             const response = await fetch("http://localhost:8080/api/managementCustomerAdmin", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${accessToken}`
                 },
                 body: JSON.stringify(newUser),
             });
