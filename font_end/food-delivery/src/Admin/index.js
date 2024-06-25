@@ -13,15 +13,7 @@ function AdminHeader() {
         setShowDropdown(!showDropdown);
     };
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-    useEffect(() => {
-        if (!userInfo) {
-            window.location.href = "/login";
-        } else {
-            if(userInfo.role != "admin") {
-                window.location.href = "/";
-            }
-        }
-    }, [userInfo]);
+
     useEffect(() => {
         const fetchData = async () => {
             try {

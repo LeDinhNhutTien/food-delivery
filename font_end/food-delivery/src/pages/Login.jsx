@@ -58,7 +58,7 @@ const Login = () => {
                 sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
                 sessionStorage.setItem("accessToken", userInfo.accessToken);
                 sessionStorage.setItem("refreshToken", userInfo.refreshToken);
-                console.log(userInfo.id);
+                console.log(userInfo);
                 // Giải mã accessToken
                 const decodedToken = jwtDecode(userInfo.accessToken);
                 const authorities = decodedToken.authorities || []; // authorities là một object

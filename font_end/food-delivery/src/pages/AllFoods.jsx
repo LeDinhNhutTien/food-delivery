@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useTranslation } from 'react-i18next'; // Thêm useTranslation từ thư viện react-i18next
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/common-section/CommonSection";
 import { Container, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
@@ -8,6 +9,8 @@ import "../styles/all-foods.css";
 import "../styles/pagination.css";
 
 const AllFoods = () => {
+    const { t } = useTranslation(); // Sử dụng hook useTranslation để dịch các chuỗi
+
     const [allProducts, setAllProducts] = useState([]);
     const [products, setProducts] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
@@ -24,7 +27,7 @@ const AllFoods = () => {
                 setAllProducts(data);
                 setProducts(data);
             } catch (error) {
-                console.error("Lỗi khi lấy dữ liệu:", error);
+                console.error("Error fetching data:", error);
             }
         };
         fetchData();
@@ -76,22 +79,6 @@ const AllFoods = () => {
         }
     }, [searchTerm, debouncedFetchSuggestions]);
 
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch("http://localhost:300/api/products");
-                const data = await response.json();
-                setAllProducts(data);
-                setProducts(data);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-
-        fetchData();
-    }, []);
-
     const productPerPage = 12;
     const visitedPage = pageNumber * productPerPage;
 
@@ -104,7 +91,6 @@ const AllFoods = () => {
         setSuggestions([]);
         setSearchTerm(suggestion);
         setShowSuggestions(false);
-
     };
 
     const sortedProducts = filteredProducts.sort((a, b) => {
@@ -144,22 +130,22 @@ const AllFoods = () => {
     };
 
     return (
-        <Helmet title="Tất cả món ăn">
-            <CommonSection title="Tất cả món ăn" />
+        <Helmet title={t("all_food_title")}> {/* Sử dụng t() để dịch tiêu đề */}
+            <CommonSection title={t("all_food_title")} /> {/* Sử dụng t() để dịch tiêu đề */}
             <section>
                 <Row className="mb-3" style={{ width: '67%', marginRight: '5%', marginLeft: 'auto' }}>
                     <Col xs={3} className="d-inline-block">
-                        <Button variant="outline-secondary" onClick={() => handleFilter(1)}>Hamburger</Button>
+                        <Button variant="outline-secondary" onClick={() => handleFilter(1)}>{t("burgerBtn")}</Button> {/* Sử dụng t() để dịch nút */}
                     </Col>
                     <Col xs={3} className="d-inline-block">
-                        <Button variant="outline-secondary" onClick={() => handleFilter(2)}>Pizza</Button>
+                        <Button variant="outline-secondary" onClick={() => handleFilter(2)}>{t("pizzaBtn")}</Button> {/* Sử dụng t() để dịch nút */}
                     </Col>
                     <Col xs={3} className="d-inline-block">
-                        <Button variant="outline-secondary" onClick={() => handleFilter(3)}>Đồ uống</Button>
+                        <Button variant="outline-secondary" onClick={() => handleFilter(3)}>{t("drinkBtn")}</Button> {/* Sử dụng t() để dịch nút */}
                     </Col>
                     <Col xs={3} className="d-inline-block">
                         <FormControl
-                            placeholder="Tìm kiếm sản phẩm..."
+                            placeholder={t("search_placeholder")}
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             style={{
@@ -182,7 +168,7 @@ const AllFoods = () => {
                             zIndex: 1000,
                             width: '100%',
                             display: showSuggestions ? 'block' : 'none'
-                         }}>
+                        }}>
                             {suggestions.map((suggestion, index) => (
                                 <li key={index} style={{
                                     padding: '8px 12px',
@@ -204,11 +190,11 @@ const AllFoods = () => {
                                         value={sortOption}
                                         onChange={(e) => setSortOption(e.target.value)}
                                     >
-                                        <option value="">Sắp xếp theo...</option>
-                                        <option value="name_asc">Tên (A-Z)</option>
-                                        <option value="name_desc">Tên (Z-A)</option>
-                                        <option value="price_asc">Giá thấp đến cao</option>
-                                        <option value="price_desc">Giá cao đến thấp</option>
+                                        <option value="">{t("sort_by")}...</option> {/* Sử dụng t() để dịch option */}
+                                        <option value="name_asc">{t("sort_name_asc")}</option> {/* Sử dụng t() để dịch option */}
+                                        <option value="name_desc">{t("sort_name_desc")}</option> {/* Sử dụng t() để dịch option */}
+                                        <option value="price_asc">{t("sort_price_asc")}</option> {/* Sử dụng t() để dịch option */}
+                                        <option value="price_desc">{t("sort_price_desc")}</option> {/* Sử dụng t() để dịch option */}
                                     </FormControl>
                                 </InputGroup>
                             </div>
@@ -226,8 +212,8 @@ const AllFoods = () => {
                                     <ReactPaginate
                                         pageCount={pageCount}
                                         onPageChange={changePage}
-                                        previousLabel={"Trước"}
-                                        nextLabel={"Tiếp"}
+                                        previousLabel={t("prev")}
+                                        nextLabel={t("next")}
                                         containerClassName="paginationBttns"
                                     />
                                 </Col>

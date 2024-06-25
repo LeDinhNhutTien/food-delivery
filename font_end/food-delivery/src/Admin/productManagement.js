@@ -14,15 +14,7 @@ function ProductManagement() {
     const [imageUrls, setImageUrls] = useState([]);
     const [showAddForm, setShowAddForm] = useState(false);
     const [typeId, setCategory] = useState('');
-    useEffect(() => {
-        if (!userLogin) {
-            window.location.href = "/login";
-        } else {
-            if (userLogin.role !== "admin") {
-                window.location.href = "/";
-            }
-        }
-    }, [userLogin]);
+
 
     const fetchProducts = async () => {
         try {

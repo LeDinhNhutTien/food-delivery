@@ -16,15 +16,7 @@ function UserManagement() {
     const userLogin = JSON.parse(sessionStorage.getItem("userInfo"));
     console.log(userLogin);
   
-    useEffect(() => {
-        if (!userLogin) {
-            window.location.href = "/login";
-        } else {
-            if(userLogin.role != "admin") {
-                window.location.href = "/";
-            }
-        }
-    }, [userLogin]);
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -446,11 +438,11 @@ function UserManagement() {
                                                     <td>{user.phone}</td>
                                                     <td>{user.status === 0 ? 'Khóa' : 'Mở khóa'}</td>
                                                     <td>
-                                                        <button className="btn btn-primary" onClick={() => handleEditUserClick(user)}>Chỉnh sửa</button>
+                                                        <button className="btn btn-primary" onClick={() => handleEditUserClick(user)}>Sửa</button>
                                                         {user.status === 1 ? (
                                                             <button className="btn btn-danger ml-2" onClick={() => handleLockUser(user.id_user)}>Khóa</button>
                                                         ) : (
-                                                            <button className="btn btn-success ml-2" onClick={() => handleUnLockUser(user.id_user)}>Mở khóa</button>
+                                                            <button className="btn btn-success ml-2" onClick={() => handleUnLockUser(user.id_user)}>Mở </button>
                                                         )}
                                                     </td>
                                                 </tr>
