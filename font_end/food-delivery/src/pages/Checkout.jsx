@@ -350,7 +350,7 @@ const Checkout = () => {
                 </div>
               </div>
               <hr className="mb-4" />
-              <button className="btn btn-primary btn-lg btn-block" onClick={placeOrder} type="submit">{t('Place Order')}</button>
+              <button className="btn btn-primary btn-lg btn-block" onClick={placeOrder} type="submit"> {t('Place Order')}</button>
             </form>
           </div>
         </div>
