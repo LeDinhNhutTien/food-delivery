@@ -3,11 +3,26 @@ import './assests/css/sb-admin-2.min.css'
 
 import './vendor/fontawesome-free/css/all.min.css'
 import avatar from '../assets/images/ava-1.jpg'
+import {jwtDecode} from "jwt-decode";
 function AdminHeader() {
     const [showDropdown, setShowDropdown] = useState(false);
     const [showDropdown1, setShowDropdown1] = useState(false);
     const [information, setinformation] = useState([]);
     const [users, setUsers] = useState([]);
+
+    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+
+    useEffect(() => {
+        if (userInfo == null) {
+            window.location.href = "/login";
+        } else {
+            const decodedToken = jwtDecode(userInfo.accessToken);
+            const authorities = decodedToken.authorities || [];
+            if (authorities.every(auth => auth.authority !== "ROLE_admin")) {
+                window.location.href = "/login";
+            }
+        }
+    }, [userInfo]);
 
     const toggleDropdown = () => {
         setShowDropdown(!showDropdown);
