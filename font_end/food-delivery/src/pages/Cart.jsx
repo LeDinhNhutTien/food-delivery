@@ -6,8 +6,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "reactstrap";
 import { cartActions } from "../store/shopping-cart/cartSlice";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Cart = () => {
+    const { t } = useTranslation();
     const totalAmount = useSelector((state) => state.cart.totalAmount);
     const cartItems = useSelector((state) => state.cart.cartItems);
     const dispatch = useDispatch();
@@ -33,27 +35,27 @@ const Cart = () => {
     };
 
     return (
-        <Helmet title="Cart">
-            <CommonSection title="Giỏ hàng của bạn" />
+        <Helmet title={t("Your Cart")}>
+            <CommonSection title={t("Your Cart")} />
             <section>
                 <Container>
                     <Row>
                         <Col lg="12">
                             {cartItems.length === 0 ? (
-                                <h5 className="text-center">Giỏ hàng của bạn trống</h5>
+                                <h5 className="text-center">{t("Your cart is empty")}</h5>
                             ) : (
                                 <table className="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>Hình</th>
-                                        <th>Tên sản phẩm</th>
-                                        <th>Giá</th>
-                                        <th>Số lượng</th>
+                                        <th>{t("Image")}</th>
+                                        <th>{t("Product Name")}</th>
+                                        <th>{t("Price")}</th>
+                                        <th>{t("Quantity")}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {cartItems.map((item) => (
-                                        <Tr
+                                        <CartItemRow
                                             key={item.id}
                                             item={item}
                                             increaseQuantity={increaseQuantity}
@@ -66,21 +68,21 @@ const Cart = () => {
 
                             <div className="mt-4">
                                 <h6>
-                                    Tổng: $
+                                    {t("Total")}: $
                                     <span className="cart__subtotal">{totalAmount}</span>
                                 </h6>
-                                <p>Thuế và phí vận chuyển sẽ được tính khi thanh toán</p>
+                                <p>{t("Taxes and shipping will be calculated at checkout")}</p>
                                 <div className="cart__page-btn">
                                     <button className="addTOCart__btn me-4">
-                                        <Link to="/foods">Tiếp tục mua</Link>
+                                        <Link to="/foods">{t("Continue Shopping")}</Link>
                                     </button>
                                     {cartItems.length > 0 ? (
                                         <button className="addTOCart__btn">
-                                            <Link to="/checkout">Tiến hành thanh toán</Link>
+                                            <Link to="/checkout">{t("Proceed to Checkout")}</Link>
                                         </button>
                                     ) : (
                                         <button className="addTOCart__btn" disabled>
-                                            Tiến hành thanh toán
+                                            {t("Proceed to Checkout")}
                                         </button>
                                     )}
                                 </div>
@@ -93,13 +95,13 @@ const Cart = () => {
     );
 };
 
-const Tr = ({ item, increaseQuantity, decreaseQuantity }) => {
+const CartItemRow = ({ item, increaseQuantity, decreaseQuantity }) => {
     const { id, imageUrl, name, price, quantity } = item;
 
     return (
         <tr>
             <td className="text-center cart__img-box">
-                <img src={imageUrl} alt="" />
+                <img src={imageUrl} alt={name} />
             </td>
             <td className="text-center">{name}</td>
             <td className="text-center">${price}</td>
