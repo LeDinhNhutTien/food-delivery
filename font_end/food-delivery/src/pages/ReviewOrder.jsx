@@ -10,16 +10,15 @@ const ReviewOrder = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const accessToken = sessionStorage.getItem("accessToken");
-                const response = await fetch(`http://localhost:8080/api/historyOrders?id_user=${userInfo.id_user || ""}`, {
+                const response = await fetch(`http://localhost:8080/api/historyOrders?id_user=${userInfo.id || ""}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer ${accessToken}`
                     }
                 });
                 if (response.ok) {
                     const rawData = await response.text();
+                    console.log("check", rawData);
                     try {
                         const trimmedData = rawData.trim();
                         const data = JSON.parse(trimmedData);
@@ -38,15 +37,14 @@ const ReviewOrder = () => {
             }
         };
 
-        if (userInfo.id_user) {
+        if (userInfo.id) {
             fetchData();
         } else {
             console.error("User info is not available.");
         }
-    }, [userInfo.id_user]); // Depend on userInfo.id_user for fetching when it changes
+    }, [userInfo.id]);
 
     const handleLogout = () => {
-        // Assuming you want to redirect to home on logout
         window.location.href = "/home";
     };
 
@@ -120,7 +118,9 @@ const ReviewOrder = () => {
                                                 </td>
                                                 <td>
                                                     {order.imageUrl.split(', ').map((url, index) => (
-                                                        <div key={index} style={{ marginBottom: "10px" }}><img style={{ height: "50px" }} src={url} alt="product" /></div>
+                                                        <div key={index} style={{ marginBottom: "10px" }}>
+                                                            <img style={{ height: "50px" }} src={url.trim()} alt="product" />
+                                                        </div>
                                                     ))}
                                                 </td>
                                                 <td style={{ paddingTop: "20px" }}>{formatDate(order.creationDate)}</td>

@@ -11,15 +11,7 @@ const OrderDetailManagement = () => {
     const userLogin = JSON.parse(sessionStorage.getItem("userInfo"));
     const [orderDetailInfo, setOrderDetailInfo] = useState([]);
 
-    useEffect(() => {
-        if (!userLogin) {
-            window.location.href = "/login";
-        } else {
-            if(userLogin.role != "admin") {
-                window.location.href = "/";
-            }
-        }
-    }, [userLogin]);
+
     useEffect(() => {
         const fetchOrderDetail = async () => {
             try {

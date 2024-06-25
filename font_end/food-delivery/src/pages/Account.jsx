@@ -4,6 +4,7 @@ import '../styles/account.css';
 
 const Account = () => {
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+    console.log(userInfo);
     const id = userInfo.id;
 
     const [formData, setFormData] = useState({

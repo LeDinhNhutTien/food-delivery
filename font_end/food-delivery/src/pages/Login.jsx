@@ -57,7 +57,7 @@ const Login = () => {
                 const userInfo = await response.json(); // Read the JSON response once
                 sessionStorage.setItem("accessToken", userInfo.accessToken);
                 sessionStorage.setItem("refreshToken", userInfo.refreshToken);
-                console.log(userInfo.id);
+                console.log(userInfo);
                 // Giải mã accessToken
                 const decodedToken = jwtDecode(userInfo.accessToken);
 

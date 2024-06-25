@@ -16,6 +16,31 @@ a {
     top: 0px;
   }
 }
+/* src/styles/header.css */
+
+.language__container {
+  display: flex;
+  gap: 10px;
+}
+
+.language__button {
+  padding: 6px 12px; /* Điều chỉnh padding để làm cho nút nhỏ hơn */
+  height: 40px; /* Đặt chiều cao của nút */
+  min-width: 60px; /* Đặt độ rộng tối thiểu của nút */
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase; /* Chuyển đổi văn bản sang chữ hoa */
+  font-weight: bold; /* Đậm chữ */
+}
+
+.language__button:hover {
+  background-color: #e0e0e0;
+}
+
 
 .header__shrink {
   position: sticky;

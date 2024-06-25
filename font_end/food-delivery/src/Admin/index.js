@@ -15,24 +15,9 @@ function AdminHeader() {
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
     useEffect(() => {
-        if (!userInfo) {
-            window.location.href = "/login";
-        } else {
-            if(userInfo.role != "admin") {
-                window.location.href = "/";
-            }
-        }
-    }, [userInfo]);
-    useEffect(() => {
         const fetchData = async () => {
             try {
-                const accessToken = sessionStorage.getItem("accessToken");
-                const response = await fetch("http://localhost:8080/api/managementAdmin",
-                    {
-                        headers: {
-                            "Authorization": `Bearer ${accessToken}`
-                        }
-                    });
+                const response = await fetch("http://localhost:8080/api/managementAdmin");
                 const data = await response.json();
                 setinformation(data);
 
@@ -46,13 +31,7 @@ function AdminHeader() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const accessToken = sessionStorage.getItem("accessToken");
-                const response = await fetch("http://localhost:8080/api/managementCustomerAdmin",
-                    {
-                        headers: {
-                            "Authorization": `Bearer ${accessToken}`
-                        }
-                    });
+                const response = await fetch("http://localhost:8080/api/managementCustomerAdmin");
                 const data = await response.json();
                 setUsers(data);
 

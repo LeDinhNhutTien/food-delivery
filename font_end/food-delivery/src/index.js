@@ -9,12 +9,16 @@ import "./index.css";
 import store from "./store/store";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../src/components/Config/i18n'; // Import your i18n configuration
 
 ReactDOM.render(
     <React.StrictMode>
         <Router>
             <Provider store={store}>
-                <App />
+                <I18nextProvider i18n={i18n}>
+                    <App />
+                </I18nextProvider>
             </Provider>
         </Router>
     </React.StrictMode>,

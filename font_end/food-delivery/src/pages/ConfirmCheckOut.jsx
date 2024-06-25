@@ -30,7 +30,7 @@ const ConfirmCheckOut = () => {
 
         const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-        const userId = userInfo ? userInfo.id_user : 0;
+        const userId = userInfo ? userInfo.id : 0;
         console.log(userId);
 
         axios.post('/api/confirmOrder', {
