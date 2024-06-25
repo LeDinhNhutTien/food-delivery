@@ -23,9 +23,9 @@ public class SecurityConfig {
             "/api/v1/auth/**",
             "/v3/api-docs/**",
             "/swagger-ui/**",
-            "/api/**",
+
             "/api/products/**",
-            "/**",
+            "/api/login/**",
             "/css/**",
             "/js/**",
             "/images/**"
@@ -40,6 +40,7 @@ public class SecurityConfig {
                         .requestMatchers(ENDPOINT_WHITELIST).permitAll()
                         .requestMatchers("/api/admin/**").hasRole("admin")
                         .requestMatchers("/api/**").hasAnyRole("user", "admin")
+                        .requestMatchers("/**").hasAnyRole("user", "admin")
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
