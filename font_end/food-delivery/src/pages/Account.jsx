@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/account.css';
 import { useTranslation } from "react-i18next";
+import { Link } from 'react-router-dom';
 
 const Account = () => {
     const { t } = useTranslation();
@@ -120,16 +121,16 @@ const Account = () => {
                         <div className="list_ctrl">
                             <ul>
                                 <li className="first active">
-                                    <a id="account" title={t("accountTab")} href="/account" onClick={(e) => { e.preventDefault(); setActiveTab(e, 'account'); }}>{t("accountTab")}</a>
+                                    <Link id="account" title={t("accountTab")} to="/account" onClick={(e) => setActiveTab(e, 'account')}>{t("accountTab")}</Link>
                                 </li>
                                 <li className="first">
-                                    <a id="changePassword" title={t("changePasswordTab")} href="/changePassword" onClick={(e) => { e.preventDefault(); setActiveTab(e, 'changePassword'); }}>{t("changePasswordTab")}</a>
+                                    <Link id="changePassword" title={t("changePasswordTab")} to="/changePassword" onClick={(e) => setActiveTab(e, 'changePassword')}>{t("changePasswordTab")}</Link>
                                 </li>
                                 <li className="first">
-                                    <a id="reviewOrders" title={t("reviewOrdersTab")} href="/reviewOrder" onClick={(e) => { e.preventDefault(); setActiveTab(e, 'reviewOrders'); }}>{t("reviewOrdersTab")}</a>
+                                    <Link id="reviewOrders" title={t("reviewOrdersTab")} to="/reviewOrder" onClick={(e) => setActiveTab(e, 'reviewOrders')}>{t("reviewOrdersTab")}</Link>
                                 </li>
                                 <li className="first">
-                                    <a id="logout" title={t("logoutLink")} href="/home" onClick={handleLogout}>{t("logoutLink")}</a>
+                                    <Link id="logout" title={t("logoutLink")} to="/home" onClick={handleLogout}>{t("logoutLink")}</Link>
                                 </li>
                             </ul>
                         </div>

@@ -106,16 +106,17 @@ public class CustomerService {
 
             Map<String, Object> extraClaims = new HashMap<>();
             extraClaims.put("username", user.getUsername());
+            extraClaims.put("id", user.getId_user());
             extraClaims.put("authorities", userSecurity.getAuthorities());
 
             String accessToken = jwtToken.generateToken(extraClaims, userSecurity);
             String refreshToken = jwtToken.generateRefreshToken(userSecurity, Long.valueOf(user.getId_user()));
 
             AuthResponse authResponse = new AuthResponse();
-            authResponse.setId(Long.valueOf(user.getId_user()));
             authResponse.setUsername(request.getUsername());
             authResponse.setAccessToken(accessToken);
             authResponse.setRefreshToken(refreshToken);
+
             return authResponse;
         }
         return null;

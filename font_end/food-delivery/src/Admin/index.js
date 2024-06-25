@@ -3,6 +3,7 @@ import './assests/css/sb-admin-2.min.css'
 
 import './vendor/fontawesome-free/css/all.min.css'
 import avatar from '../assets/images/ava-1.jpg'
+import {jwtDecode} from "jwt-decode";
 function AdminHeader() {
     const [showDropdown, setShowDropdown] = useState(false);
     const [showDropdown1, setShowDropdown1] = useState(false);
@@ -13,6 +14,16 @@ function AdminHeader() {
         setShowDropdown(!showDropdown);
     };
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+    // Giải mã accessToken
+    const decodedToken = jwtDecode(userInfo.accessToken);
+    const authorities = decodedToken.authorities || []; // authorities là một object
+
+
+    useEffect(() => {
+        if (!userInfo || authorities.some(auth => auth.authority !== "ROLE_admin")) {
+            window.location.href = "/login";
+        }
+    }, [userInfo]);
 
     useEffect(() => {
         const fetchData = async () => {
