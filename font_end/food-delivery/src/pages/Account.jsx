@@ -31,7 +31,13 @@ const Account = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/api/customer/${id}`);
+                const accessToken = sessionStorage.getItem("accessToken");
+                const response = await fetch(`http://localhost:8080/api/customer/${id}`,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${accessToken}`
+                        }
+                    });
                 if (response.ok) {
                     const userData = await response.json();
                     console.log(userData.body);
@@ -68,10 +74,12 @@ const Account = () => {
 
     const handleSubmit = async () => {
         try {
+            const accessToken = sessionStorage.getItem("accessToken");
             const response = await fetch("http://localhost:8080/api/accountUpdate", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": `Bearer ${accessToken}`
                 },
                 body: JSON.stringify(formData),
             });

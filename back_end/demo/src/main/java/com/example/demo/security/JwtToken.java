@@ -58,7 +58,7 @@ public class JwtToken {
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
-        final Long userId = extractClaim(token, claims -> (Long) claims.get("id"));
+        final Integer userId = extractClaim(token, claims -> (Integer) claims.get("id"));
         return (username.equals(userDetails.getUsername()) && userId != null && !isTokenExpired(token));
     }
 

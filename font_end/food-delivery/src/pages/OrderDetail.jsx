@@ -16,8 +16,13 @@ const OrderDetail = () => {
             try {
                 const orderId = new URLSearchParams(window.location.search).get("id");
                 const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-
-                const response = await fetch(`http://localhost:8080/api/orderDetail/${orderId}`);
+                const accessToken = sessionStorage.getItem("accessToken");
+                const response = await fetch(`http://localhost:8080/api/orderDetail/${orderId}`,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${accessToken}`
+                        }
+                    });
 
                 if (response.ok) {
                     const data = await response.json();
@@ -36,7 +41,13 @@ const OrderDetail = () => {
         const fetchOrderDetail = async () => {
             try {
                 const orderId = new URLSearchParams(window.location.search).get("id");
-                const response = await fetch(`http://localhost:8080/api/orderDetailInfo/${orderId}`);
+                const accessToken = sessionStorage.getItem("accessToken");
+                const response = await fetch(`http://localhost:8080/api/orderDetailInfo/${orderId}`,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${accessToken}`
+                        }
+                    });
                 if (response.ok) {
                     const data = await response.json();
                     setOrderDetailInfo(data);
@@ -54,7 +65,13 @@ const OrderDetail = () => {
         const getCustomer = async () => {
             try {
                 const orderId = new URLSearchParams(window.location.search).get("id");
-                const response = await fetch(`http://localhost:8080/api/getCustomer/${orderId}`);
+                const accessToken = sessionStorage.getItem("accessToken");
+                const response = await fetch(`http://localhost:8080/api/getCustomer/${orderId}`,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${accessToken}`
+                        }
+                    });
                 if (response.ok) {
                     const data = await response.json();
                     setUserInfo(data);
@@ -80,10 +97,12 @@ const OrderDetail = () => {
     const cancelOrder = async (orderId, event) => {
         event.preventDefault(); // Ngăn chặn hành vi mặc định của trình duyệt
         try {
+            const accessToken = sessionStorage.getItem("accessToken");
             const response = await fetch(`http://localhost:8080/api/cancelOrder/${orderId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${accessToken}`
                 },
             });
             if (response.ok) {

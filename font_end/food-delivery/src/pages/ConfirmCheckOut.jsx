@@ -31,11 +31,15 @@ const ConfirmCheckOut = () => {
 
         const userId = id;
         console.log(userId);
-
+        const accessToken = sessionStorage.getItem("accessToken");
         axios.post('/api/confirmOrder', {
             shippingInfo,
             userId,
             storedCartItems // Thêm trường này
+         },{
+            headers: {
+                "Authorization": `Bearer ${accessToken}`
+            }
         })
             .then(response => {
                 localStorage.removeItem("shippingInfo");

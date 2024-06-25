@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../../store/shopping-cart/cartSlice";
@@ -9,20 +9,28 @@ const ProductCard = (props) => {
     const dispatch = useDispatch();
     const [addedToCart, setAddedToCart] = useState(false);
     const [quantity, setQuantity] = useState(1);
+    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
+    useEffect(() => {
+
+    }, [userInfo]);
     const addToCart = () => {
-        if (!id || !name || !price || !imageUrls) return;
-        dispatch(
-            cartActions.addItem({
-                id,
-                name,
-                imageUrl: imageUrls,
-                price,
-                quantity
-            })
-        );
+        if (!userInfo) {
+            window.location.href = "/login";
+        }else{
 
-        setAddedToCart(true);
+        if (!id || !name || !price || !imageUrls) return;
+            dispatch(
+                cartActions.addItem({
+                    id,
+                    name,
+                    imageUrl: imageUrls,
+                    price,
+                    quantity
+                })
+            );
+         setAddedToCart(true);
+        }
     };
 
     const increaseQuantity = () => {

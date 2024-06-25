@@ -17,14 +17,18 @@ function UserManagement() {
     const userInfoLogin = JSON.parse(sessionStorage.getItem("userInfo"));
     const decodedToken = jwtDecode(userInfoLogin.accessToken);
     const id = decodedToken.id;
-  
-
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-
-                const response = await fetch("http://localhost:8080/api/managementCustomerAdmin");
+                const accessToken = sessionStorage.getItem("accessToken");
+                const response = await fetch("http://localhost:8080/api/managementCustomerAdmin",
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${accessToken}`
+                        }
+                    }
+                    );
                 const data = await response.json();
                 const filteredUsers = data.filter(user => user.role === 'user');
                 setUsers(filteredUsers);
