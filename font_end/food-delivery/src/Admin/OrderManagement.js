@@ -4,6 +4,7 @@ import './vendor/datatables/dataTables.bootstrap4.min.css';
 import { Link } from 'react-router-dom';
 import '../styles/OrderDetailManagement.css'
 import avatar from '../assets/images/ava-1.jpg'
+import {jwtDecode} from "jwt-decode";
 function OrderManagement() {
     const [showDropdown, setShowDropdown] = useState(false);
     const [showDropdown1, setShowDropdown1] = useState(false);
@@ -13,10 +14,20 @@ function OrderManagement() {
     const [selectedUser, setSelectedUser] = useState(null);
     const [orders, setOrders] = useState([]);
     const userLogin = JSON.parse(sessionStorage.getItem("userInfo"));
-
+    const [id, setid] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
             try {
+                const userInfoLogin = JSON.parse(sessionStorage.getItem("userInfo"));
+                if (!userInfoLogin || !userInfoLogin.accessToken) {
+                    console.error("User not logged in or session expired.");
+                    // Redirect to login or handle accordingly
+                    window.location.href = "/login";
+                }
+
+                const decodedToken = jwtDecode(userInfoLogin.accessToken);
+                const id = decodedToken.id;
+                setid(id)
                 const accessToken = sessionStorage.getItem("accessToken");
                 const response = await fetch("http://localhost:8080/api/managementOrderAdmin",
                     {

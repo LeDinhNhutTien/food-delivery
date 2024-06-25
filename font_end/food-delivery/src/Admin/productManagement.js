@@ -3,6 +3,7 @@ import './vendor/datatables/dataTables.bootstrap4.min.css';
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import avatar from '../assets/images/ava-1.jpg'
+import {jwtDecode} from "jwt-decode";
 function ProductManagement() {
     const [products, setProducts] = useState([]);
     const userLogin = JSON.parse(sessionStorage.getItem("userInfo"));
@@ -14,10 +15,20 @@ function ProductManagement() {
     const [imageUrls, setImageUrls] = useState([]);
     const [showAddForm, setShowAddForm] = useState(false);
     const [typeId, setCategory] = useState('');
-
+    const [id, setid] = useState(null);
 
     const fetchProducts = async () => {
         try {
+            const userInfoLogin = JSON.parse(sessionStorage.getItem("userInfo"));
+            if (!userInfoLogin || !userInfoLogin.accessToken) {
+                console.error("User not logged in or session expired.");
+                // Redirect to login or handle accordingly
+                window.location.href = "/login";
+            }
+
+            const decodedToken = jwtDecode(userInfoLogin.accessToken);
+            const id = decodedToken.id;
+            setid(id)
             const accessToken = sessionStorage.getItem("accessToken");
             const response = await axios.get('http://localhost:8080/api/managementProductAdmin',
                 {
