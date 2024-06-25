@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/managementProductAdmin")
+@RequestMapping("/api/admin/managementProductAdmin")
 @CrossOrigin(origins = "http://localhost:3000")
 public class AdminProductController {
 

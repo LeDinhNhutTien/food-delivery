@@ -33,7 +33,7 @@ function AdminHeader() {
         const fetchData = async () => {
             try {
                 const accessToken = sessionStorage.getItem("accessToken");
-                const response = await fetch("http://localhost:8080/api/managementAdmin",
+                const response = await fetch("http://localhost:8080/api/admin/managementAdmin",
                     {
                         headers: {
                             "Authorization": `Bearer ${accessToken}`
@@ -54,7 +54,7 @@ function AdminHeader() {
         const fetchData = async () => {
             try {
                 const accessToken = sessionStorage.getItem("accessToken");
-                const response = await fetch("http://localhost:8080/api/managementCustomerAdmin",
+                const response = await fetch("http://localhost:8080/api/admin/managementCustomerAdmin",
                     {
                         headers: {
                             "Authorization": `Bearer ${accessToken}`

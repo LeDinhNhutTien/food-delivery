@@ -13,7 +13,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping("/api/managementAdmin")
+@RequestMapping("/api/admin/managementAdmin")
 @CrossOrigin(origins = "http://localhost:3000")
 public class AdminManagementController {
     @Autowired

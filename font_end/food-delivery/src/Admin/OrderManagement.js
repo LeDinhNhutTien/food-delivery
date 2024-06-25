@@ -19,17 +19,13 @@ function OrderManagement() {
         const fetchData = async () => {
             try {
                 const userInfoLogin = JSON.parse(sessionStorage.getItem("userInfo"));
-                if (!userInfoLogin || !userInfoLogin.accessToken) {
-                    console.error("User not logged in or session expired.");
-                    // Redirect to login or handle accordingly
-                    window.location.href = "/login";
-                }
+
 
                 const decodedToken = jwtDecode(userInfoLogin.accessToken);
                 const id = decodedToken.id;
                 setid(id)
                 const accessToken = sessionStorage.getItem("accessToken");
-                const response = await fetch("http://localhost:8080/api/managementOrderAdmin",
+                const response = await fetch("http://localhost:8080/api/admin/managementOrderAdmin",
                     {
                         headers: {
                             "Authorization": `Bearer ${accessToken}`
@@ -88,7 +84,7 @@ function OrderManagement() {
             });
             setUsers(updatedUsers);
             const accessToken = sessionStorage.getItem("accessToken");
-            const response = await fetch(`http://localhost:8080/api/managementCustomerAdmin/${userId}`, {
+            const response = await fetch(`http://localhost:8080/api/admin/managementCustomerAdmin/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -123,7 +119,7 @@ function OrderManagement() {
             });
             setUsers(updatedUsers);
             const accessToken = sessionStorage.getItem("accessToken");
-            const response = await fetch(`http://localhost:8080/api/managementCustomerAdmin/${userId}`, {
+            const response = await fetch(`http://localhost:8080/api/admin/managementCustomerAdmin/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

@@ -40,7 +40,7 @@ function RevenueManagement() {
             const id = decodedToken.id;
             setid(id)
             const accessToken = sessionStorage.getItem("accessToken");
-            const response = await axios.get(`http://localhost:8080/api/revenue?year=${year}`,
+            const response = await axios.get(`http://localhost:8080/api/admin/revenue?year=${year}`,
                 {
                     headers: {
                         "Authorization": `Bearer ${accessToken}`
@@ -92,7 +92,7 @@ function RevenueManagement() {
     };
 
     const handlePrintRevenue = () => {
-        fetch(`http://localhost:8080/api/printCustomer/excelRevenue?year=${selectedYear}`)
+        fetch(`http://localhost:8080/api/admin/printCustomer/excelRevenue?year=${selectedYear}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

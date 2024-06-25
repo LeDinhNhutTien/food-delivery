@@ -30,7 +30,7 @@ function ProductManagement() {
             const id = decodedToken.id;
             setid(id)
             const accessToken = sessionStorage.getItem("accessToken");
-            const response = await axios.get('http://localhost:8080/api/managementProductAdmin',
+            const response = await axios.get('http://localhost:8080/api/admin/managementProductAdmin',
                 {
                     headers: {
                         "Authorization": `Bearer ${accessToken}`
@@ -97,7 +97,7 @@ function ProductManagement() {
         };
         console.log(newProduct)
         try {
-            const response = await axios.post('http://localhost:8080/api/managementProductAdmin/addProduct', newProduct);
+            const response = await axios.post('http://localhost:8080/api/admin/managementProductAdmin/addProduct', newProduct);
             console.log('Product added successfully:', response.data);
 
             // Clear form fields and reset state after successful submission
