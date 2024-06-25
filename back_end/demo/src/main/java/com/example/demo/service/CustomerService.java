@@ -45,7 +45,6 @@ public class CustomerService {
         customerRepository.save(customer);
 
         AuthResponse authResponse = new AuthResponse();
-        authResponse.setId(Long.valueOf(customer.getId_user()));
         authResponse.setUsername(customer.getUsername());
         return authResponse;
     }

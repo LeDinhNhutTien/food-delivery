@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/account.css';
 import { useTranslation } from "react-i18next";
-import { Link } from 'react-router-dom';
+import {jwtDecode} from "jwt-decode";
 
 const Account = () => {
     const { t } = useTranslation();
 
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-    const id = userInfo.id;
+    const decodedToken = jwtDecode(userInfo.accessToken);
+    const id = decodedToken.id;
+
+
 
     const [formData, setFormData] = useState({
         username: userInfo.username || "",
@@ -77,7 +80,7 @@ const Account = () => {
                 const updatedUserInfo = await response.json();
                 setSuccess(t("updateSuccess"));
                 setCurrentAlert("success");
-                sessionStorage.setItem("userInfo", JSON.stringify(updatedUserInfo));
+
                 setError(""); // Clear any previous error on success
             } else {
                 const errorMessage = await response.text();
@@ -104,14 +107,13 @@ const Account = () => {
         window.location.href = "/home"; // Redirect to login or homepage
     };
 
-    const setActiveTab = (event, tabId) => {
+    function setActiveTab(tabId) {
         const tabLinks = document.querySelectorAll('.tablinks');
         tabLinks.forEach(link => {
             link.classList.remove('active');
         });
-        event.currentTarget.classList.add('active');
-    };
-
+        document.getElementById(tabId).classList.add('active');
+    }
     return (
         <div id="content">
             <div className="wrapper">
@@ -121,16 +123,16 @@ const Account = () => {
                         <div className="list_ctrl">
                             <ul>
                                 <li className="first active">
-                                    <Link id="account" title={t("accountTab")} to="/account" onClick={(e) => setActiveTab(e, 'account')}>{t("accountTab")}</Link>
+                                    <a id="account" title="Thông tin tài khoản" href="/account" onClick={() => setActiveTab('account')}>Thông tin tài khoản</a>
+                                </li>
+                                <li className="first ">
+                                    <a id="changePassword" title="Đổi mật khẩu" href="/changePassword" onClick={() => setActiveTab('changePassword')}>Đổi mật khẩu</a>
+                                </li>
+                                <li className="first ">
+                                    <a id="reviewOrders" title="Xem lại đơn hàng" href="/reviewOrder" onClick={() => setActiveTab('reviewOrders')}>Xem lại đơn hàng</a>
                                 </li>
                                 <li className="first">
-                                    <Link id="changePassword" title={t("changePasswordTab")} to="/changePassword" onClick={(e) => setActiveTab(e, 'changePassword')}>{t("changePasswordTab")}</Link>
-                                </li>
-                                <li className="first">
-                                    <Link id="reviewOrders" title={t("reviewOrdersTab")} to="/reviewOrder" onClick={(e) => setActiveTab(e, 'reviewOrders')}>{t("reviewOrdersTab")}</Link>
-                                </li>
-                                <li className="first">
-                                    <Link id="logout" title={t("logoutLink")} to="/home" onClick={handleLogout}>{t("logoutLink")}</Link>
+                                    <a id="logout" title="Đăng xuất" href="/home" onClick={handleLogout}>Đăng xuất</a>
                                 </li>
                             </ul>
                         </div>

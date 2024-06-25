@@ -4,7 +4,6 @@ import Chart from "chart.js/auto";
 
 function RevenueMonthManagement({ year, month, onClose }) {
     const [revenueData, setRevenueData] = useState([]);
-    const userLogin = JSON.parse(sessionStorage.getItem("userInfo"));
 
 
 

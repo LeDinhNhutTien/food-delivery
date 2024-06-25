@@ -58,14 +58,13 @@ const Login = () => {
                 sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
                 sessionStorage.setItem("accessToken", userInfo.accessToken);
                 sessionStorage.setItem("refreshToken", userInfo.refreshToken);
-                console.log(userInfo.id);
 
                 // Giải mã accessToken
                 const decodedToken = jwtDecode(userInfo.accessToken);
-                console.log(decodedToken);
-
                 const authorities = decodedToken.authorities || []; // authorities là một object
 
+                const userId = decodedToken.id;
+                console.log(userId);
                 // Kiểm tra quyền của người dùng
                 if (authorities.some(auth => auth.authority === "ROLE_admin")) {
                     navigate('/admin');
